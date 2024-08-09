@@ -1,3 +1,13 @@
+# Codeblocks auto-created files
+bin/
+obj/
+*.cbp
+
+# VS Code files
+c_cpp_properties.json
+.vscode/
+build/
+
 # Prerequisites
 *.d
 
