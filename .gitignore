@@ -1,3 +1,8 @@
+# Arquivos temporarios
+*.bkp
+*.tmp
+*.temp
+
 # Codeblocks auto-created files
 bin/
 obj/
