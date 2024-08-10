@@ -4,6 +4,24 @@
 */
 
 #include <SFML/Graphics.hpp>
+#include <iostream>
+#include "Elemento.hpp"
+#include "testes.hpp"
+//#include "Lista.hpp"
+
+using namespace std;
+using namespace Listas;
+
+void esperaEnter()
+{
+    cout <<                                         endl;
+    cout << "----------------------------------" << endl;
+    cout << " Pressione ENTER para prosseguir. " << endl;
+    cout << "----------------------------------" << endl;
+    cout <<                                         endl;
+
+    cin.get();
+}
 
 void testeJanela()
 {
@@ -24,4 +42,30 @@ void testeJanela()
         window.draw(shape);
         window.display();
     }
+}
+
+void testeElemento()
+{
+    Elemento<int> e1(NULL);
+    Elemento<int> e2(NULL);
+
+    e1.setInfo(new int(123));
+    e2.setInfo(new int(321));
+    e1.setProx(&e2);
+
+    cout << "Numero do elemento 1: " << *(e1.getInfo()) << "." << endl;
+    cout << "Numero do elemento 2: " << *(e2.getInfo()) << "." << endl;
+
+    cout << "Elemento 1 aponta para: " << *(e1.getProx()->getInfo()) << "." << endl;
+
+    cout << endl << "TROCANDO ELEMENTOS..." << endl;
+    
+    e1.trocaAdiante();
+
+    cout << "Numero do elemento 1: " << *(e1.getInfo()) << "." << endl;
+    cout << "Numero do elemento 2: " << *(e2.getInfo()) << "." << endl;
+
+    cout << "Elemento 1 aponta para: " << *(e1.getProx()->getInfo()) << "." << endl;
+
+    esperaEnter();
 }
