@@ -5,7 +5,6 @@
  *   de erro de execucao.
  */
 
-
 #ifndef _ERROS_HPP
 #define _ERROS_HPP
 

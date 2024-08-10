@@ -1,13 +1,15 @@
 /** 
- *  Arquivo que implementa os testes definidos em "testes.hpp".
- *  
+ *   AUTORES : Caio Barbieri & 
+ *   DATA    : 9/08/2024
+ *   Arquivo que implementa os testes definidos em "testes.hpp".
+ * 
+ *  Para descricaoes das funcoes e detalhes de autoria vide "testes.hpp".
 */
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "Elemento.hpp"
 #include "testes.hpp"
-//#include "Lista.hpp"
 
 using namespace std;
 using namespace Listas;
