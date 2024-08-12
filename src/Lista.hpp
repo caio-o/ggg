@@ -18,12 +18,12 @@ using std::endl;
 namespace Listas
 {
     template<class TL>
-    class Lista // A lista eh indireta. Posto que o parametro seja "TL", ela armazena "TL*".
+    class Lista 
     {
     public: class Elemento
         {
         private:
-            TL*         pInfo;
+            TL*         pInfo; // A lista eh indireta (armazena como ptr. TL*). 
             Elemento*   pProx;
 
         public:
@@ -33,11 +33,12 @@ namespace Listas
 
             TL*            getInfo () const          { return pInfo;   }
             void           setInfo (TL* _pInfo)      { pInfo = _pInfo; } 
+            // Talvez seja bom sobrecarregar para setInfo(TL info) (sem ponteiro).
 
             Elemento*      getProx () const          { return pProx; }
             void           setProx (Elemento* p)     { pProx = p;    }
 
-            void  trocaAdiante();        
+            void  trocaAdiante();        // Troca o elemento de lugar com o da frente 
         };
 
 
@@ -57,9 +58,9 @@ namespace Listas
 
         void  anulaPtrs   ( );
 
-        void  push_front  (TL* dados);         // Adicionar na pos. 0
-        void  push_back   (TL* dados);         // Adicionar na pos. ultima
-        void  push_n      (TL* dados, int n);  // Adicionar na pos. N
+        void  push_front  (TL* dados);         // Adicionar na pos. 0 (primeira).
+        void  push_back   (TL* dados);         // Adicionar na pos. ultima.
+        void  push_n      (TL* dados, int n);  // Adicionar na pos. N, ou no limite, caso N o ultrapasse. 
 
         Elemento*   getPrimeiro () const  { return pPrimeiro; }
         void        setPrimeiro (TL* p);
@@ -110,6 +111,9 @@ void Lista<TL>:: Elemento::trocaAdiante()
 }
 
 
+
+
+
 //-------------------------------------//
 // Implementacoes da classe Lista      //
 
@@ -141,6 +145,11 @@ void Lista<TL>::anulaPtrs()
     pUltimo   = NULL;
 }
 
+/**
+ * TODO: Considerar se devemos checar sucesso de alocacao antes de
+ *      incluir elementos na lista (como o Simão faz). Vou perguntar
+ *      aos monitores no curso.
+ */
 template<class TL>
 void Lista<TL>::push_front(TL* dados)
 {
@@ -177,7 +186,7 @@ void Lista<TL>::push_back(TL* dados)
             pUltimo   = pPrimeiro;
         }
         else
-        {
+        { 
             Elemento* aux = pUltimo;
 
             pUltimo = new Elemento(dados);
@@ -191,10 +200,6 @@ void Lista<TL>::push_back(TL* dados)
     }
 }
 
-/** 
- * 
- * 
-*/
 template<class TL>
 void Lista<TL>::push_n(TL* dados, int n)
 {
@@ -234,6 +239,20 @@ void Lista<TL>::push_n(TL* dados, int n)
     {
         cout << "Em funcao Lista<TL>::push_n: " << ERRO_INCLUI_NULLPTR << endl << endl;
     }
+}
+
+template<class TL>
+void Lista<TL>::setPrimeiro(TL* p)
+{
+    if (pPrimeiro) { pPrimeiro->setInfo(p); }
+    else           { push_front(p); }
+}
+
+template<class TL>
+void Lista<TL>::setUltimo(TL* p)
+{
+    if (pUltimo)  { pUltimo->setInfo(p); }
+    else          { push_back(p); }
 }
 
 template<class TL>

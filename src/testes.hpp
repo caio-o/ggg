@@ -18,15 +18,16 @@ void esperaEnter();
 void testeJanela();
 
 /**
- * AUTOR   :  Caio Barbieri (caio-o)
+ * AUTOR   :  Caio e Silva Barbieri (caio-o)
  * FUNCAO  :  Cria 2 objetos Elemento<int>, faz um apontar para o outro, e imprime seu conteudo na tela,
  *           depois troca os dois de lugar, e imprime de novo.
  */
 void testeElemento();
 
 /**
- * AUTOR   :  Caio Barbieri (caio-o)
- * FUNCAO  :  
+ * AUTOR   :  Caio e Silva Barbieri (caio-o)
+ * FUNCAO  :  Cria uma Lista<int>, e adiciona dois elementos no início (push_front), 
+ *           dois no final (push_back), e três em posições várias (push_n).  
  */
 void testeLista();
 

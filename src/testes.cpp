@@ -75,7 +75,6 @@ void testeElemento()
 
 void testeLista()
 {
-    Lista<int>::Elemento* pElemento;
     srand(time(0));
 
     cout << endl;
@@ -86,32 +85,23 @@ void testeLista()
     cout << "A lista estah vazia?    R: " << (umaLista.vazia() ? "Sim." : "Nao.") << endl; 
     cout << "Adicione 4 , 2 com push_front e 2 com push_back.    ";
 
+    umaLista.push_front (new int(rand()%100));  // Adiciona na frente...
     umaLista.push_front (new int(rand()%100));
-    umaLista.push_front (new int(rand()%100));
+    umaLista.push_back  (new int(rand()%100));  // ...adiciona no fim
     umaLista.push_back  (new int(rand()%100));
-    umaLista.push_back  (new int(rand()%100));
 
-    pElemento = umaLista.getPrimeiro();
-    cout << "R: Veja os numeros:    " << *(pElemento->getInfo());
-
-    pElemento = pElemento->getProx();
-    cout << " " << *(pElemento->getInfo());
-
-    pElemento = pElemento->getProx();
-    cout << " " << *(pElemento->getInfo());
-
-    pElemento = pElemento->getProx();
-    cout << " " << *(pElemento->getInfo());
+    cout << "R: Veja os numeros:    ";
+    umaLista.imprimir();
 
     cout << "A lista estah vazia?    R: " << (umaLista.vazia() ? "Sim." : "Nao.") << endl << endl;
 
-    cout << "Coloque o numero 100 nas posicoes 0 (inicio), 2 (meio) e 6 (final) (push_n).    ";
-    umaLista.push_n (new int(100), 0);
+    cout << "Coloque o numero 100 nas posicoes 0 (inicio), 3 (meio) e 6 (final) (push_n).    ";
+    umaLista.push_n (new int(100), 0); // Adiciona em uma posicao especifica.
     umaLista.push_n (new int(100), 3);
     umaLista.push_n (new int(100), 6);
+
     cout << "R: Coloquei! Veja a lista:" << endl;
     umaLista.imprimir();
-
 
     esperaEnter();
 }
