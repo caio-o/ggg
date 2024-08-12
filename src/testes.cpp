@@ -8,7 +8,8 @@
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include "Elemento.hpp"
+#include <time.h>
+#include "Lista.hpp"
 #include "testes.hpp"
 
 using namespace std;
@@ -48,8 +49,8 @@ void testeJanela()
 
 void testeElemento()
 {
-    Elemento<int> e1(NULL);
-    Elemento<int> e2(NULL);
+    Lista<int>::Elemento e1(NULL);
+    Lista<int>::Elemento e2(NULL);
 
     e1.setInfo(new int(123));
     e2.setInfo(new int(321));
@@ -68,6 +69,49 @@ void testeElemento()
     cout << "Numero do elemento 2: " << *(e2.getInfo()) << "." << endl;
 
     cout << "Elemento 1 aponta para: " << *(e1.getProx()->getInfo()) << "." << endl;
+
+    esperaEnter();
+}
+
+void testeLista()
+{
+    Lista<int>::Elemento* pElemento;
+    srand(time(0));
+
+    cout << endl;
+    cout << "Crie uma lista.    ";
+    Lista<int> umaLista;
+    cout << "R: Criei." << endl << endl;
+    
+    cout << "A lista estah vazia?    R: " << (umaLista.vazia() ? "Sim." : "Nao.") << endl; 
+    cout << "Adicione 4 , 2 com push_front e 2 com push_back.    ";
+
+    umaLista.push_front (new int(rand()%100));
+    umaLista.push_front (new int(rand()%100));
+    umaLista.push_back  (new int(rand()%100));
+    umaLista.push_back  (new int(rand()%100));
+
+    pElemento = umaLista.getPrimeiro();
+    cout << "R: Veja os numeros:    " << *(pElemento->getInfo());
+
+    pElemento = pElemento->getProx();
+    cout << " " << *(pElemento->getInfo());
+
+    pElemento = pElemento->getProx();
+    cout << " " << *(pElemento->getInfo());
+
+    pElemento = pElemento->getProx();
+    cout << " " << *(pElemento->getInfo());
+
+    cout << "A lista estah vazia?    R: " << (umaLista.vazia() ? "Sim." : "Nao.") << endl << endl;
+
+    cout << "Coloque o numero 100 nas posicoes 0 (inicio), 2 (meio) e 6 (final) (push_n).    ";
+    umaLista.push_n (new int(100), 0);
+    umaLista.push_n (new int(100), 3);
+    umaLista.push_n (new int(100), 6);
+    cout << "R: Coloquei! Veja a lista:" << endl;
+    umaLista.imprimir();
+
 
     esperaEnter();
 }

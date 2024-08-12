@@ -24,4 +24,10 @@ void testeJanela();
  */
 void testeElemento();
 
+/**
+ * AUTOR   :  Caio Barbieri (caio-o)
+ * FUNCAO  :  
+ */
+void testeLista();
+
 #endif
