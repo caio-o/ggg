@@ -29,22 +29,22 @@ class Coordenada
 
         }
 
-        Coordenada<TIPO> operator+(Coordenada<TIPO> soma)
+        Coordenada<TIPO> operator+(const Coordenada<TIPO> soma)
         {             
             return Coordenada(x+soma.x, y+soma.y);
         }
 
-        Coordenada<TIPO> operator-(Coordenada<TIPO> subtracao)
+        Coordenada<TIPO> operator-(const Coordenada<TIPO> subtracao)
         {
-            return Coordenada(x-subtracao.x, y-subtracao.y)
+            return Coordenada(x-subtracao.x, y-subtracao.y);
         }
 
-        Coordenada<TIPO> operator*(TIPO fatorEscalar)
+        Coordenada<TIPO> operator*(const TIPO fatorEscalar)
         {
             return Coordenada(x*fatorEscalar, y*fatorEscalar);
         }
 
-        Coordenada<TIPO> operator/(TIPO divisorEscalar)
+        Coordenada<TIPO> operator/(const TIPO divisorEscalar)
         {
             if(divisorEscalar!=0)
                 return Coordenada(x/divisorEscalar, y/divisorEscalar);
@@ -53,25 +53,25 @@ class Coordenada
             exit(1);
         }
 
-        void operator+=(Coordenada<TIPO> soma)
+        void operator+=(const Coordenada<TIPO> soma)
         {
             x += soma.x;
             y += soma.y;
         }
 
-        void operator-=(Coordenada<TIPO> subtracao)
+        void operator-=(const Coordenada<TIPO> subtracao)
         {
             x -= subtracao.x;
             y -= subtracao.y;
         }
 
-        void operator*=(TIPO fatorEscalar)
+        void operator*=(const TIPO fatorEscalar)
         {
             x *= fatorEscalar;
             y *= fatorEscalar;
         }
 
-        void operator/=(TIPO divisorEscalar)
+        void operator/=(const TIPO divisorEscalar)
         {
             if(divisorEscalar!=0)
             {
@@ -82,7 +82,7 @@ class Coordenada
                 cout << "Impossivel dividir por 0!" << endl;
         }
 
-        void operator=(Coordenada<TIPO> outro)
+        void operator=(const Coordenada<TIPO> outro)
         {
             x = outro.x;
             y = outro.y;

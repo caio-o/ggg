@@ -31,4 +31,18 @@ void testeElemento();
  */
 void testeLista();
 
+/**
+ * AUTOR   :  Ana Julia Molinos Leite da Silva (ana-molinos)
+ * FUNCAO  :  Cria variáveis do tipo Coordenada e realiza operações por meio dos
+ *            operadores sobrecarregados.  
+ */
+void testeCoordenada();
+
+/**
+ * AUTOR   :  Ana Julia Molinos Leite da Silva (ana-molinos)
+ * FUNCAO  :  Repete o testeJanela() (que utiliza comandos da biblioteca SFML)
+ *            por meio do uso do gerenciador Grafico implementado.  
+ */
+void testeJanelaGerenciadorGrafico();
+
 #endif

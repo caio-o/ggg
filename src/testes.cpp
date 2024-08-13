@@ -1,16 +1,17 @@
 /** 
- *   AUTORES : Caio Barbieri & 
+ *   AUTORES : Caio Barbieri & Ana Julia Molinos
  *   DATA    : 9/08/2024
  *   Arquivo que implementa os testes definidos em "testes.hpp".
  * 
  *  Para descricaoes das funcoes e detalhes de autoria vide "testes.hpp".
 */
-
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <time.h>
 #include "Lista.hpp"
 #include "testes.hpp"
+#include "Coordenada.hpp"
+#include "Grafico.hpp"
 
 using namespace std;
 using namespace Listas;
@@ -104,4 +105,86 @@ void testeLista()
     umaLista.imprimir();
 
     esperaEnter();
+}
+
+void testeCoordenada()
+{
+    Coordenada<float> coord1, coord2, coord3;
+
+    coord1.x = 1.0;
+    coord1.y = 1.0;
+
+    coord2.x = 2.0;
+    coord2.y = 2.0;
+
+    cout << "coord1 = " << coord1.x << ", " << coord1.y << endl
+         << "coord2 = " << coord2.x << ", " << coord2.y << endl;
+
+    coord3 = coord1 + coord2;
+
+    cout << "coord3 = coord1 + coord2 = " << coord3.x << ", " 
+         << coord3.y << endl;
+
+    coord3 = coord2 - coord1;
+
+    cout << "coord3 = coord2 - coord1 = " << coord3.x << ", " 
+         << coord3.y << endl;
+
+    coord3 = coord1/2.0;
+
+    cout << "coord3 = coord1/2.0 = " << coord3.x << ", " 
+         << coord3.y << endl;
+
+    coord3 = coord2*3.0;
+
+    cout << "coord3 = coord2*3.0 = " << coord3.x << ", " 
+         << coord3.y << endl;
+
+    coord3 += coord1;
+
+    cout << "coord3 += coord1 = " << coord3.x << ", " 
+         << coord3.y << endl;
+
+    coord3 -= coord2;
+
+    cout << "coord3 -= coord2 = " << coord3.x << ", " 
+         << coord3.y << endl;
+
+    coord3 /= 5.0;
+
+    cout << "coord3 /= 5.0 = " << coord3.x << ", " 
+         << coord3.y << endl;
+
+    coord3 *= 3.0;
+
+    cout << "coord3 *= 3.0 = " << coord3.x << ", " 
+         << coord3.y << endl;
+}
+
+void testeJanelaGerenciadorGrafico()
+{
+     /*sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
+     sf::CircleShape shape(100.f);
+     shape.setFillColor(sf::Color::Green);*/
+
+     //em razão do PP Singleton, é assim que se inicializa o gerenciador
+     Gerenciadores::Grafico* gg = Gerenciadores::Grafico::getGrafico();
+     sf::RectangleShape ret(sf::Vector2f(200.f, 200.f));
+     ret.setFillColor(sf::Color::Magenta);
+
+     //P.S: estudar em qual classe devem ser implementados os métodos que dizem respeito as formas...
+
+     while (gg->janelaAberta())
+     {
+     sf::Event event;
+     while (gg->getJanela()->pollEvent(event))
+     {
+          if (event.type == sf::Event::Closed)
+               gg->fecharJanela();
+     }
+
+     gg->limpar();
+     gg->renderizar(&ret);
+     gg->mostrar();
+     }
 }

@@ -5,8 +5,6 @@
  * gráficos usando recursos da biblioteca SFML.
  * */
 
-#pragma once
-
 #include <string.h>
 
 #include "Grafico.hpp"
@@ -354,7 +352,7 @@ namespace Gerenciadores
     //Retorna quanto tempo passsou (em segundos) desde que o relógio foi iniciado.
     const float Grafico::getTempo() const
     {
-        relogio.getElapsedTime().asSeconds();
+        return relogio.getElapsedTime().asSeconds();
     }
 
 }
