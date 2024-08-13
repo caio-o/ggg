@@ -45,4 +45,6 @@ void testeCoordenada();
  */
 void testeJanelaGerenciadorGrafico();
 
+void teste2();
+
 #endif
