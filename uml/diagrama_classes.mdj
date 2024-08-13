@@ -7300,7 +7300,7 @@
 											"font": "Arial;13;0",
 											"left": 2033,
 											"top": 181,
-											"width": 395.689453125,
+											"width": 430.373046875,
 											"height": 13,
 											"text": "«Classe template»"
 										},
@@ -7314,7 +7314,7 @@
 											"font": "Arial;13;1",
 											"left": 2033,
 											"top": 196,
-											"width": 395.689453125,
+											"width": 430.373046875,
 											"height": 13,
 											"text": "Coordenada"
 										},
@@ -7352,7 +7352,7 @@
 									"font": "Arial;13;0",
 									"left": 2028,
 									"top": 176,
-									"width": 405.689453125,
+									"width": 440.373046875,
 									"height": 38,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGRRyXDRLqzZRw="
@@ -7390,7 +7390,7 @@
 											"font": "Arial;13;0",
 											"left": 2033,
 											"top": 219,
-											"width": 395.689453125,
+											"width": 430.373046875,
 											"height": 13,
 											"text": "+x: TIPO",
 											"horizontalAlignment": 0
@@ -7408,7 +7408,7 @@
 											"font": "Arial;13;0",
 											"left": 2033,
 											"top": 234,
-											"width": 395.689453125,
+											"width": 430.373046875,
 											"height": 13,
 											"text": "+y: TIPO",
 											"horizontalAlignment": 0
@@ -7418,7 +7418,7 @@
 									"font": "Arial;13;0",
 									"left": 2028,
 									"top": 214,
-									"width": 405.689453125,
+									"width": 440.373046875,
 									"height": 38
 								},
 								{
@@ -7444,7 +7444,7 @@
 											"font": "Arial;13;0",
 											"left": 2033,
 											"top": 257,
-											"width": 395.689453125,
+											"width": 430.373046875,
 											"height": 13,
 											"text": "«create»+Coordenada(TIPO xx  = 0, TIPO yy  = 0)",
 											"horizontalAlignment": 0
@@ -7462,7 +7462,7 @@
 											"font": "Arial;13;0",
 											"left": 2033,
 											"top": 272,
-											"width": 395.689453125,
+											"width": 430.373046875,
 											"height": 13,
 											"text": "«destroy»+Coordenada()",
 											"horizontalAlignment": 0
@@ -7480,9 +7480,9 @@
 											"font": "Arial;13;0",
 											"left": 2033,
 											"top": 287,
-											"width": 395.689453125,
+											"width": 430.373046875,
 											"height": 13,
-											"text": "+operatorMais(soma: Coordenada<TIPO>): Coordenada<TIPO>",
+											"text": "+operatorMais(soma: const Coordenada<TIPO>): Coordenada<TIPO>",
 											"horizontalAlignment": 0
 										},
 										{
@@ -7498,9 +7498,9 @@
 											"font": "Arial;13;0",
 											"left": 2033,
 											"top": 302,
-											"width": 395.689453125,
+											"width": 430.373046875,
 											"height": 13,
-											"text": "+operator-(subtracao: Coordenada<TIPO>): Coordenada<TIPO>",
+											"text": "+operator-(subtracao: const Coordenada<TIPO>): Coordenada<TIPO>",
 											"horizontalAlignment": 0
 										},
 										{
@@ -7516,9 +7516,9 @@
 											"font": "Arial;13;0",
 											"left": 2033,
 											"top": 317,
-											"width": 395.689453125,
+											"width": 430.373046875,
 											"height": 13,
-											"text": "+operator*(fatorEscalar: TIPO): Coordenada<TIPO>",
+											"text": "+operator*(fatorEscalar: const TIPO): Coordenada<TIPO>",
 											"horizontalAlignment": 0
 										},
 										{
@@ -7534,9 +7534,9 @@
 											"font": "Arial;13;0",
 											"left": 2033,
 											"top": 332,
-											"width": 395.689453125,
+											"width": 430.373046875,
 											"height": 13,
-											"text": "+operatorBarra(divisorEscalar: TIPO): Coordenada<TIPO>",
+											"text": "+operatorBarra(divisorEscalar: const TIPO): Coordenada<TIPO>",
 											"horizontalAlignment": 0
 										},
 										{
@@ -7552,9 +7552,9 @@
 											"font": "Arial;13;0",
 											"left": 2033,
 											"top": 347,
-											"width": 395.689453125,
+											"width": 430.373046875,
 											"height": 13,
-											"text": "+operatorMaisIgual(soma: Coordenada<TIPO>): void",
+											"text": "+operatorMaisIgual(soma: const Coordenada<TIPO>): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -7570,9 +7570,9 @@
 											"font": "Arial;13;0",
 											"left": 2033,
 											"top": 362,
-											"width": 395.689453125,
+											"width": 430.373046875,
 											"height": 13,
-											"text": "+operatorMenosIgual(subtracao: Coordenada<TIPO>): void",
+											"text": "+operatorMenosIgual(subtracao: const Coordenada<TIPO>): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -7588,9 +7588,9 @@
 											"font": "Arial;13;0",
 											"left": 2033,
 											"top": 377,
-											"width": 395.689453125,
+											"width": 430.373046875,
 											"height": 13,
-											"text": "+operatorAsteriscoIgual(fatorEscalar: TIPO): void",
+											"text": "+operatorAsteriscoIgual(fatorEscalar: const TIPO): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -7606,9 +7606,9 @@
 											"font": "Arial;13;0",
 											"left": 2033,
 											"top": 392,
-											"width": 395.689453125,
+											"width": 430.373046875,
 											"height": 13,
-											"text": "+operatorBarraIgual(divisorEscalar: TIPO): void",
+											"text": "+operatorBarraIgual(divisorEscalar: const TIPO): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -7624,9 +7624,9 @@
 											"font": "Arial;13;0",
 											"left": 2033,
 											"top": 407,
-											"width": 395.689453125,
+											"width": 430.373046875,
 											"height": 13,
-											"text": "+operatorIgual(outro: Coordenada<TIPO>): void",
+											"text": "+operatorIgual(outro: const Coordenada<TIPO>): void",
 											"horizontalAlignment": 0
 										}
 									],
@@ -7634,7 +7634,7 @@
 									"font": "Arial;13;0",
 									"left": 2028,
 									"top": 252,
-									"width": 405.689453125,
+									"width": 440.373046875,
 									"height": 173
 								},
 								{
@@ -7675,7 +7675,7 @@
 											},
 											"fillColor": "#fff8b3",
 											"font": "Arial;13;0",
-											"left": 2407.35400390625,
+											"left": 2442.03759765625,
 											"top": 163,
 											"width": 30.33544921875,
 											"height": 13,
@@ -7685,7 +7685,7 @@
 									],
 									"fillColor": "#fff8b3",
 									"font": "Arial;13;0",
-									"left": 2402.35400390625,
+									"left": 2437.03759765625,
 									"top": 158,
 									"width": 40.33544921875,
 									"height": 23
@@ -7696,7 +7696,7 @@
 							"containerChangeable": true,
 							"left": 2028,
 							"top": 158,
-							"width": 414.689453125,
+							"width": 449.373046875,
 							"height": 267,
 							"nameCompartment": {
 								"$ref": "AAAAAAGRRyXDRLqyGx0="
@@ -8771,7 +8771,7 @@
 										"$ref": "AAAAAAGRRyeEZb8/w6s="
 									},
 									"name": "soma",
-									"type": "Coordenada<TIPO>"
+									"type": "const Coordenada<TIPO>"
 								},
 								{
 									"_type": "UMLParameter",
@@ -8799,7 +8799,7 @@
 										"$ref": "AAAAAAGRRy4DDMK5faw="
 									},
 									"name": "subtracao",
-									"type": "Coordenada<TIPO>"
+									"type": "const Coordenada<TIPO>"
 								},
 								{
 									"_type": "UMLParameter",
@@ -8827,9 +8827,7 @@
 										"$ref": "AAAAAAGRRzLp5cR0duQ="
 									},
 									"name": "fatorEscalar",
-									"type": {
-										"$ref": "AAAAAAGRRyYB7rwLQVc="
-									}
+									"type": "const TIPO"
 								},
 								{
 									"_type": "UMLParameter",
@@ -8857,9 +8855,7 @@
 										"$ref": "AAAAAAGRRzPJg8TOFWQ="
 									},
 									"name": "divisorEscalar",
-									"type": {
-										"$ref": "AAAAAAGRRyYB7rwLQVc="
-									}
+									"type": "const TIPO"
 								},
 								{
 									"_type": "UMLParameter",
@@ -8887,7 +8883,7 @@
 										"$ref": "AAAAAAGRRzWkn8dxRF4="
 									},
 									"name": "soma",
-									"type": "Coordenada<TIPO>"
+									"type": "const Coordenada<TIPO>"
 								},
 								{
 									"_type": "UMLParameter",
@@ -8915,7 +8911,7 @@
 										"$ref": "AAAAAAGRRzcXN8e5fsA="
 									},
 									"name": "subtracao",
-									"type": "Coordenada<TIPO>"
+									"type": "const Coordenada<TIPO>"
 								},
 								{
 									"_type": "UMLParameter",
@@ -8943,9 +8939,7 @@
 										"$ref": "AAAAAAGRRzg4BMiKD2I="
 									},
 									"name": "fatorEscalar",
-									"type": {
-										"$ref": "AAAAAAGRRyYB7rwLQVc="
-									}
+									"type": "const TIPO"
 								},
 								{
 									"_type": "UMLParameter",
@@ -8973,9 +8967,7 @@
 										"$ref": "AAAAAAGRRziLdsjSKdU="
 									},
 									"name": "divisorEscalar",
-									"type": {
-										"$ref": "AAAAAAGRRyYB7rwLQVc="
-									}
+									"type": "const TIPO"
 								},
 								{
 									"_type": "UMLParameter",
@@ -9003,7 +8995,7 @@
 										"$ref": "AAAAAAGRRzj1xMmFjF0="
 									},
 									"name": "outro",
-									"type": "Coordenada<TIPO>"
+									"type": "const Coordenada<TIPO>"
 								},
 								{
 									"_type": "UMLParameter",
