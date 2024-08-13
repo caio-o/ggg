@@ -188,3 +188,8 @@ void testeJanelaGerenciadorGrafico()
      gg->mostrar();
      }
 }
+
+void teste()
+{
+     
+}
