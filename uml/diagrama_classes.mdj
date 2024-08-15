@@ -1033,7 +1033,26 @@
 											"top": 1517,
 											"width": 267,
 											"height": 13,
-											"text": "+const getEvento(): Evento*",
+											"text": "+getEvento(): static Evento*",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAGRVzEAmNGGJOA=",
+											"_parent": {
+												"$ref": "AAAAAAGROAgetgJPWAo="
+											},
+											"model": {
+												"$ref": "AAAAAAGRVzEAe9GAdD4="
+											},
+											"visible": false,
+											"fillColor": "#FFFF49",
+											"font": "Arial;13;0",
+											"left": 3670,
+											"top": 1532,
+											"width": 267,
+											"height": 13,
+											"text": "+setGerenciadorGrafico(pG: Grafico*): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1069,7 +1088,7 @@
 											"top": 1547,
 											"width": 267,
 											"height": 13,
-											"text": "+verificaTeclaSolta(): void",
+											"text": "+const verificaTeclaSolta(): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1087,7 +1106,7 @@
 											"top": 1562,
 											"width": 267,
 											"height": 13,
-											"text": "+verificaTeclaPressionada()",
+											"text": "+const verificaTeclaPressionada(): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1105,7 +1124,7 @@
 											"top": 1577,
 											"width": 267,
 											"height": 13,
-											"text": "+executar()",
+											"text": "+const executar(): void",
 											"horizontalAlignment": 0
 										}
 									],
@@ -1160,7 +1179,7 @@
 							"left": 3665,
 							"top": 1404,
 							"width": 276,
-							"height": 199,
+							"height": 206,
 							"nameCompartment": {
 								"$ref": "AAAAAAGROAgetgJJWIY="
 							},
@@ -12122,7 +12141,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGROAgetQJGV5w="
 									},
-									"name": "const getEvento",
+									"name": "getEvento",
 									"parameters": [
 										{
 											"_type": "UMLParameter",
@@ -12130,7 +12149,35 @@
 											"_parent": {
 												"$ref": "AAAAAAGRVp8Aa69BuC4="
 											},
-											"type": "Evento*",
+											"type": "static Evento*",
+											"direction": "return"
+										}
+									]
+								},
+								{
+									"_type": "UMLOperation",
+									"_id": "AAAAAAGRVzEAe9GAdD4=",
+									"_parent": {
+										"$ref": "AAAAAAGROAgetQJGV5w="
+									},
+									"name": "setGerenciadorGrafico",
+									"parameters": [
+										{
+											"_type": "UMLParameter",
+											"_id": "AAAAAAGRVzEsi9Wb6HQ=",
+											"_parent": {
+												"$ref": "AAAAAAGRVzEAe9GAdD4="
+											},
+											"name": "pG",
+											"type": "Grafico*"
+										},
+										{
+											"_type": "UMLParameter",
+											"_id": "AAAAAAGRVzHDpdoftwk=",
+											"_parent": {
+												"$ref": "AAAAAAGRVzEAe9GAdD4="
+											},
+											"type": "void",
 											"direction": "return"
 										}
 									]
@@ -12169,7 +12216,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGROAgetQJGV5w="
 									},
-									"name": "verificaTeclaSolta",
+									"name": "const verificaTeclaSolta",
 									"parameters": [
 										{
 											"_type": "UMLParameter",
@@ -12188,7 +12235,18 @@
 									"_parent": {
 										"$ref": "AAAAAAGROAgetQJGV5w="
 									},
-									"name": "verificaTeclaPressionada"
+									"name": "const verificaTeclaPressionada",
+									"parameters": [
+										{
+											"_type": "UMLParameter",
+											"_id": "AAAAAAGRVzYbuu/1w4w=",
+											"_parent": {
+												"$ref": "AAAAAAGRVp/0T7L+I0w="
+											},
+											"type": "void",
+											"direction": "return"
+										}
+									]
 								},
 								{
 									"_type": "UMLOperation",
@@ -12196,7 +12254,18 @@
 									"_parent": {
 										"$ref": "AAAAAAGROAgetQJGV5w="
 									},
-									"name": "executar"
+									"name": "const executar",
+									"parameters": [
+										{
+											"_type": "UMLParameter",
+											"_id": "AAAAAAGRVzYqSfI48hU=",
+											"_parent": {
+												"$ref": "AAAAAAGRVqAW8bQ94iE="
+											},
+											"type": "void",
+											"direction": "return"
+										}
+									]
 								}
 							]
 						},
