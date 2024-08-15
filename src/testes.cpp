@@ -12,6 +12,7 @@
 #include "testes.hpp"
 #include "Coordenada.hpp"
 #include "Grafico.hpp"
+#include "Evento.hpp"
 
 using namespace std;
 using namespace Listas;
@@ -176,15 +177,44 @@ void testeJanelaGerenciadorGrafico()
 
      while (gg->janelaAberta())
      {
-     sf::Event event;
-     while (gg->getJanela()->pollEvent(event))
-     {
-          if (event.type == sf::Event::Closed)
-               gg->fecharJanela();
-     }
+          sf::Event event;
+          while (gg->getJanela()->pollEvent(event))
+          {
+               if (event.type == sf::Event::Closed)
+                    gg->fecharJanela();
+          }
 
-     gg->limpar();
-     gg->renderizar(&ret);
-     gg->mostrar();
+          gg->limpar();
+          gg->renderizar(&ret);
+          gg->mostrar();
+     }
+}
+
+void testeJanelaGerenciadorEvento()
+{
+     //Instancia o gerenciador grafico
+     Gerenciadores::Grafico* gg = Gerenciadores::Grafico::getGrafico();
+
+     //Instancia o gerenciador de eventos
+     Gerenciadores::Evento* ge = Gerenciadores::Evento::getEvento();
+
+     //Instancia um quadrado ciano
+     sf::RectangleShape ret(sf::Vector2f(100.f, 100.f));
+     ret.setFillColor(sf::Color::Cyan);
+
+     //Associa o quadrado ao ge
+     ge->setForma(&ret);
+
+     while (gg->janelaAberta())
+     {
+          /* 
+           * Substitui o loop mais interno do teste anterior, assim permite realizar o teste de maneira
+           * completamente desacoplada da biblioteca gráfica.
+           */
+          ge->executar();
+
+          gg->limpar();
+          gg->renderizar(&ret);
+          gg->mostrar();
      }
 }

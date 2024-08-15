@@ -7,14 +7,17 @@
 
 int main()
 {
-    testeJanela();
+    //testeJanela();
+
     //testeElemento();
     
     //testeLista();
 
     //testeCoordenada();
 
-    testeJanelaGerenciadorGrafico();
+    //testeJanelaGerenciadorGrafico();
+
+    testeJanelaGerenciadorEvento();
 
     return 0;
 }

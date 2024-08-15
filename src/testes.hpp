@@ -34,15 +34,28 @@ void testeLista();
 /**
  * AUTOR   :  Ana Julia Molinos Leite da Silva (ana-molinos)
  * FUNCAO  :  Cria variáveis do tipo Coordenada e realiza operações por meio dos
- *            operadores sobrecarregados.  
+ *            operadores sobrecarregados.
+ * SAIDA   :  As operações e seus resultados são impressos na tela.  
  */
 void testeCoordenada();
 
 /**
  * AUTOR   :  Ana Julia Molinos Leite da Silva (ana-molinos)
  * FUNCAO  :  Repete o testeJanela() (que utiliza comandos da biblioteca SFML)
- *            por meio do uso do gerenciador Grafico implementado.  
+ *            por meio do uso do gerenciador grafico implementado.
+ * SAIDA   :  Um retangulo estático na cor magenta representado no canto superior esquerdo da
+ *            janela.
  */
 void testeJanelaGerenciadorGrafico();
+
+/**
+ * AUTOR   :  Ana Julia Molinos Leite da Silva (ana-molinos)
+ * FUNCAO  :  Repete o testeJanela() por meio do uso do gerenciador grafico e do gerenciador 
+ *            de eventos implementados no projeto.
+ * SAIDA   :  Um retangulo na cor ciano representado no canto superior esquerdo da
+ *            janela que é capaz de se mover conforme uso das teclas Direita, Esquerda, Cima e
+ *            baixo. Não há limites para o retangulo se mover.
+ */
+void testeJanelaGerenciadorEvento();
 
 #endif

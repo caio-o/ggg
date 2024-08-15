@@ -75,13 +75,13 @@ namespace Gerenciadores
     void Evento::verificaTeclaPressionada()
     {
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-            pForma->move(sf::Vector2f(0.01f, 0.f));
+            pForma->move(sf::Vector2f(0.1f, 0.f));
         else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-            pForma->move(sf::Vector2f(-0.01f, 0.f));
+            pForma->move(sf::Vector2f(-0.1f, 0.f));
         else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-            pForma->move(sf::Vector2f(0.f, 0.01f));
+            pForma->move(sf::Vector2f(0.f, -0.1f));
         else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-            pForma->move(sf::Vector2f(0.f, -0.01f));
+            pForma->move(sf::Vector2f(0.f, 0.1f));
     }
 
     /*
@@ -92,13 +92,29 @@ namespace Gerenciadores
     {
         sf::Event evento;
 
+        /*
+         * sf::Window::pollEvent(Event& event)
+
+         * Returns: True if an event was returned, or false if the event queue was empty.
+
+         * The sf::WindowBase class provides a simple interface for manipulating the window: move, 
+         * resize, show/hide, control mouse cursor, etc. It also provides event handling through 
+         * its pollEvent() and waitEvent() functions.
+         * 
+         * Em resumo: a função captura eventos da janela.
+         */
+
+        //Enquanto a janela "capturar" um evento... (i.e., clique ou movimento do mouse)
         while(pGrafico->getJanela()->pollEvent(evento))
         {
+            //Se esse evento for do tipo "fechar"...
             if(evento.type == sf::Event::Closed)
                 pGrafico->fecharJanela();
-            else if (evento.type == sf::Event::KeyPressed)
-                verificaTeclaPressionada();
+            /*else if (evento.type == sf::Event::KeyPressed)
+                verificaTeclaPressionada();*/
             
         }
+
+        verificaTeclaPressionada();
     }
 } // namespace Gerenciadores
