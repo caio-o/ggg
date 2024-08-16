@@ -7,7 +7,7 @@
 
 #include <string.h>
 
-#include "Grafico.hpp"
+#include "Gerenciadores/Grafico.hpp"
 //DIMENSÕES PROVISÓRIAS
 #define ALTURA 500.0
 #define LARGURA 500.0

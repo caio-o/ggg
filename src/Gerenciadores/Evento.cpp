@@ -5,7 +5,7 @@
  * mouse e teclado usando recursos da biblioteca SFML.
  * */
 
-#include "Evento.hpp"
+#include "Gerenciadores/Evento.hpp"
 #include "Erros.hpp"
 
 #include <iostream>

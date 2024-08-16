@@ -8,11 +8,11 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <time.h>
-#include "Lista.hpp"
+#include "../Listas/Lista.hpp"
 #include "testes.hpp"
 #include "Coordenada.hpp"
-#include "Grafico.hpp"
-#include "Evento.hpp"
+#include "../Gerenciadores/Grafico.hpp"
+#include "../Gerenciadores/Evento.hpp"
 
 using namespace std;
 using namespace Listas;

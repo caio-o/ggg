@@ -8,7 +8,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include "Grafico.hpp"
+#include "Gerenciadores/Grafico.hpp"
 
 namespace Gerenciadores
 {

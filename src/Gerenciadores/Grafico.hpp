@@ -8,7 +8,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <map>
-#include "Coordenada.hpp"
+#include "../Coordenada.hpp"
 
 using namespace std;
 
