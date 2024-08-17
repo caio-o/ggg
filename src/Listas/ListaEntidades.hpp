@@ -10,19 +10,22 @@ using namespace Listas;
 class ListaEntidades
 {
 protected:
-    Lista<Entidade*> LE;
+    Lista<Entidade> LE; // Lista indireta de entidades
 
 public:
-    class Iterator
+    /*class Iterator
     {
-
-    };
+        
+    };*/
 
     ListaEntidades();
     ~ListaEntidades();
 
-    void operator++(int); // iterator++
-    void operator++();    // ++iterator
+    void percorrer();
+    void incluir(Entidade* pE) { LE.push_front(pE); }
+
+    //void operator++(int); // iterator++
+    //void operator++();    // ++iterator
 };
 
 #endif
