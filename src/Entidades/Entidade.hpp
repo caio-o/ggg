@@ -6,6 +6,8 @@
 #include "Entidades/Ente.hpp"
 #include "Coordenada.hpp"
 
+#define GRAVIDADE 1.0f
+
 // O mesmo que Coordenada<float>.
 typedef Coordenada<float> vetor2f;
 
@@ -16,7 +18,9 @@ namespace Entidades
     {
     protected:
         vetor2f pos;
+        //vetor2f tam;
         vetor2f vel;
+        vetor2f modGravidade;
         //Coordenada<float> modGravidade;
 
     public:
@@ -25,6 +29,7 @@ namespace Entidades
 
         virtual void   executar () = 0;
         virtual void   moverse  (const float deltaT);
+        //virtual void   acelerarse (const float acel, const float deltaT) { vel += acel*deltaT; };
 
         const vetor2f  getVel   () const   { return vel;   }
         const vetor2f  getPos   () const   { return pos;   }
@@ -38,19 +43,5 @@ namespace Entidades
         void  setVelX  (const float _x)                  { vel.x = _x;             }
         void  setVelY  (const float _y)                  { vel.y = _y;             }
     };
-} using namespace Entidades;
-
-Entidade::Entidade(const ID_Classe _id, Figura* const _pFigura):
-    Ente (_id, _pFigura),
-    pos  (0.0f, 0.0f),
-    vel  (0.0f, 0.0f)
-{ }
-
-Entidade::~Entidade() 
-{ }
-
-void Entidade::moverse(const float deltaT)
-{
-    pos += vel * deltaT;
-}
+} 
 #endif

@@ -9,7 +9,7 @@
  * Seria bom substituir RectangleShape por Shape nesta e nas outras classes,
  * visto que poderiamos usar outras formas (circulos, triangulos, etc.)
  */
-typedef sf::RectangleShape Figura;
+typedef sf::Shape Figura;
 
 enum ID_Classe
 {
@@ -40,26 +40,13 @@ public:
     Figura*          getFigura  () const  { return pFigura; }
     const ID_Classe  getId      () const  { return id;      }
 
-    void setFigura (Figura* _pFigura) { pFigura = _pFigura; } // pFigura NULL -> Ente invisivel.
+    // Permite-se pFigura NULL em entes invisiveis.
+    void setFigura (Figura* _pFigura) { pFigura = _pFigura; } 
     //sem setID --> ID constante escolhido na construtora de cada classe.
     
     static void setGerenciadorGrafico () { pGG = Gerenciadores::Grafico::getGrafico(); }
 }; 
-Gerenciadores::Grafico* Ente::pGG = NULL;
-int Ente::contEntes = 0;
-
-Ente::Ente(const ID_Classe _id, Figura* const _pFigura):
-    //idObj   (++contEntes),
-    id      (_id),
-    pFigura (_pFigura)
-{ }
-
-Ente::~Ente()
-{ delete pFigura; }
-
-void Ente::desenhar()
-{
-    pGG->renderizar(pFigura);
-}
+Gerenciadores::Grafico*  Ente::pGG        = NULL;
+int                      Ente::contEntes  = 0;
 
 #endif

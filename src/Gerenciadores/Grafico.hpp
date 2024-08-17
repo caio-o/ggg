@@ -36,6 +36,7 @@ namespace Gerenciadores
             static Grafico* getGrafico();
             sf::RenderWindow* getJanela() const;
             void renderizar(sf::RectangleShape* corpo);
+            void renderizar(sf::Shape* corpo); // Com static_cast, desenhamos qualquer shape. Poderia ateh ser sf::drawable
             void renderizar(sf::Text* texto);
             void mostrar();
             void limpar();

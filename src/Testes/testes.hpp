@@ -58,4 +58,6 @@ void testeJanelaGerenciadorGrafico();
  */
 void testeJanelaGerenciadorEvento();
 
+void testeVertexArray();
+
 #endif
