@@ -11,7 +11,7 @@ obj/
 # VS Code files
 c_cpp_properties.json
 .vscode/
-# build/
+build/
 
 # Prerequisites
 *.d
@@ -48,3 +48,4 @@ c_cpp_properties.json
 
 Makefile
 ggg
+*.pdf
