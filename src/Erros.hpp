@@ -11,5 +11,6 @@
     #define ERRO_DELETE_NULLPTR "Nao se pode deletar ponteiro NULL."
     #define ERRO_INCLUI_NULLPTR "Ponteiro NULL nao incluido na lista."
     #define ERRO_SET_NULLPTR "Não é possível configurar ponteiro NULL."
+    #define ERRO_RETURN_NULLPTR "Ponteiro nulo retornado."
 
 #endif
