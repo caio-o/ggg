@@ -7,6 +7,9 @@
  * */
 #pragma once
 
+#ifndef _COORDENADA_HPP
+#define _COORDENADA_HPP
+
 #include <iostream>
 using namespace std;
 
@@ -88,3 +91,5 @@ class Coordenada
             y = outro.y;
         }
 };
+
+#endif

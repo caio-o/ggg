@@ -132,6 +132,15 @@ namespace Gerenciadores
              * ou seja, ele espera receber um objeto do tipo drawable, e não um ptr...
              */
     }
+    void Grafico::renderizar(sf::Shape* corpo)
+    {
+        if(pJanela && corpo)
+            pJanela->draw(*corpo);
+            /* P.s: draw(const sf::Drawable &drawable, const sf...)
+             * o primeiro argumento é passado por referencia escondida,
+             * ou seja, ele espera receber um objeto do tipo drawable, e não um ptr...
+             */
+    }
     
     //Renderiza texto na janela
     void Grafico::renderizar(sf::Text* texto)

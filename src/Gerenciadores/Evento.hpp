@@ -5,6 +5,9 @@
  * recursos da biblioteca SFML.
  * */
 
+#ifndef _EVENTO_HPP
+#define _EVENTO_HPP
+
 #pragma once
 
 #include <SFML/Graphics.hpp>
@@ -39,3 +42,5 @@ namespace Gerenciadores
             void executar();
     };
 } // namespace Gerenciadores
+
+#endif

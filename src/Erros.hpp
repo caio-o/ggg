@@ -7,10 +7,15 @@
 
 #ifndef _ERROS_HPP
 #define _ERROS_HPP
+    
+    #include <iostream>
 
     #define ERRO_DELETE_NULLPTR "Nao se pode deletar ponteiro NULL."
     #define ERRO_INCLUI_NULLPTR "Ponteiro NULL nao incluido na lista."
     #define ERRO_SET_NULLPTR "Não é possível configurar ponteiro NULL."
+    #define ERRO_NULLPTR_LISTA "Elemento NULL encontrado na lista!"
     #define ERRO_RETURN_NULLPTR "Ponteiro nulo retornado."
+
+    void enterFechar ();
 
 #endif

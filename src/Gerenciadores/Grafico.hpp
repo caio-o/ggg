@@ -5,6 +5,9 @@
  * recursos da biblioteca SFML.
  * */
 
+#ifndef _GRAFICO_HPP
+#define _GRAFICO_HPP
+
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <map>
@@ -36,6 +39,7 @@ namespace Gerenciadores
             static Grafico* getGrafico();
             sf::RenderWindow* getJanela() const;
             void renderizar(sf::RectangleShape* corpo);
+            void renderizar(sf::Shape* corpo); // Com static_cast, desenhamos qualquer shape. Poderia ateh ser sf::drawable
             void renderizar(sf::Text* texto);
             void mostrar();
             void limpar();
@@ -53,3 +57,5 @@ namespace Gerenciadores
             const float getTempo() const;
     };
 } // namespace Gerenciadores
+
+#endif

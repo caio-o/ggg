@@ -1,7 +1,24 @@
+ifeq ($(OS),Windows_NT) 
+    RM = del /Q /F
+    CP = copy /Y
+	ifdef ComSpec
+		SHELL := $(ComSpec)
+	endif
+	ifdef COMSPEC
+		SHELL := $(COMSPEC)
+	endif
+else
+	RM = rm 
+	CP = cp -f
+endif
+
+clean:
+	$(RM) *.o main.exe
+
 all: compile link
 
 compile:
-	g++.exe -I"C:/SFML-2.6.1/include/" -c ../src/*.cpp
+	g++.exe -I"C:/SFML-2.6.1/include/" -I"../src/" -c ../src/*.cpp ../src/Testes/*.cpp ../src/Gerenciadores/*.cpp ../src/Entidades/*.cpp ../src/Entidades/Personagens/*.cpp
 
 link:
 	g++.exe *.o -o main -L"C:/SFML-2.6.1/lib/" -lsfml-graphics -lsfml-window -lsfml-system
