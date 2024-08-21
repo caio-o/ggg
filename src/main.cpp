@@ -17,7 +17,9 @@ int main()
 
     //testeJanelaGerenciadorGrafico();
 
-    testeJanelaGerenciadorEvento();
+    //testeJanelaGerenciadorEvento();
+
+    testeVertexArray();
 
     return 0;
 }

@@ -11,8 +11,11 @@
 #include "../Listas/Lista.hpp"
 #include "testes.hpp"
 #include "Coordenada.hpp"
-#include "../Gerenciadores/Grafico.hpp"
-#include "../Gerenciadores/Evento.hpp"
+#include "Gerenciadores/Grafico.hpp"
+#include "Gerenciadores/Evento.hpp"
+
+#include "Entidades/Entidade.hpp"
+#include "Entidades/Personagens/Jogador.hpp"
 
 using namespace std;
 using namespace Listas;
@@ -215,6 +218,62 @@ void testeJanelaGerenciadorEvento()
 
           gg->limpar();
           gg->renderizar(&ret);
+          gg->mostrar();
+     }
+}
+
+void testeVertexArray()
+{
+     //Instancia o gerenciador grafico
+     sf::RenderWindow window(sf::VideoMode(50, 23), "HEYHEYHEY!");
+
+     sf::VertexArray lines(sf::LineStrip, 4);
+     lines[0].position = sf::Vector2f(10,  5);
+     lines[1].position = sf::Vector2f(20, 10);
+     lines[2].position = sf::Vector2f(30, 10);
+     lines[3].position = sf::Vector2f(10,  5);
+
+     window.clear();
+     window.draw(lines);
+     window.display();
+
+     while (window.isOpen())
+    {
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+                window.close();
+        }
+
+          window.clear();
+          window.draw(lines);
+          window.display();
+    }
+}
+
+void testeJogador()
+{
+     sf::Time tempo;
+
+     float t0 = tempo.asMilliseconds();
+     float t1 = t0;
+
+     Gerenciadores::Grafico* gg = Gerenciadores::Grafico::getGrafico();
+
+     Jogador jog (new sf::CircleShape(50), 10);
+
+     while (gg->janelaAberta())
+     {
+          gg->limpar();
+
+          t0 = t1;
+          t1 = tempo.asMilliseconds();
+
+          jog.executar();
+          jog.moverse(t1-t0);
+          jog.desenhar();
+          
           gg->mostrar();
      }
 }

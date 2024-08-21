@@ -41,9 +41,7 @@ namespace Listas
             void  trocaAdiante();        // Troca o elemento de lugar com o da frente 
         };
 
-
-
-
+        
 
         /// Aqui comeca a classe Lista propriamente dita
     private:
