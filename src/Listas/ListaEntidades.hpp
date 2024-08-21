@@ -55,7 +55,7 @@ namespace Listas
         else
         {
             cout << "Em funcao ListaEntidades::incluir: " << ERRO_INCLUI_NULLPTR << endl;
-            fechaPrograma();
+            enterFechar();
         }
     }
 
@@ -98,7 +98,7 @@ namespace Listas
             else
             {
                 cout << "Em funcao ListaEntidades::percorrer: " << ERRO_NULLPTR_LISTA << endl;
-                fechaPrograma(); 
+                enterFechar(); 
             }
         }
     }

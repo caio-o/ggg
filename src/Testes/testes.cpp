@@ -13,6 +13,8 @@
 #include "Coordenada.hpp"
 #include "Gerenciadores/Grafico.hpp"
 #include "Gerenciadores/Evento.hpp"
+
+#include "Entidades/Entidade.hpp"
 #include "Entidades/Personagens/Jogador.hpp"
 
 using namespace std;
@@ -223,7 +225,7 @@ void testeJanelaGerenciadorEvento()
 void testeVertexArray()
 {
      //Instancia o gerenciador grafico
-     sf::RenderWindow window(sf::VideoMode(100, 75), "HEYHEYHEY!");
+     sf::RenderWindow window(sf::VideoMode(50, 23), "HEYHEYHEY!");
 
      sf::VertexArray lines(sf::LineStrip, 4);
      lines[0].position = sf::Vector2f(10,  5);
@@ -258,15 +260,20 @@ void testeJogador()
      float t1 = t0;
 
      Gerenciadores::Grafico* gg = Gerenciadores::Grafico::getGrafico();
+
      Jogador jog (new sf::CircleShape(50), 10);
 
      while (gg->janelaAberta())
      {
+          gg->limpar();
+
           t0 = t1;
           t1 = tempo.asMilliseconds();
 
           jog.executar();
           jog.moverse(t1-t0);
           jog.desenhar();
+          
+          gg->mostrar();
      }
 }

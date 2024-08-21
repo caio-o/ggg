@@ -47,5 +47,6 @@ build/
 *.app
 
 Makefile
+build/Makefile
 ggg
 *.pdf

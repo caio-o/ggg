@@ -5,6 +5,9 @@
  * recursos da biblioteca SFML.
  * */
 
+#ifndef _GRAFICO_HPP
+#define _GRAFICO_HPP
+
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <map>
@@ -54,3 +57,5 @@ namespace Gerenciadores
             const float getTempo() const;
     };
 } // namespace Gerenciadores
+
+#endif
