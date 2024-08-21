@@ -1,8 +1,12 @@
 #include "Entidades/Ente.hpp"
+#include "Gerenciadores/Grafico.hpp"
 
-Ente::Ente(const ID_Classe _id, Figura* const _pFigura):
+Gerenciadores::Grafico*  Ente::pGG        = NULL;
+int                      Ente::contEntes  = 0;
+
+Ente::Ente(Figura* const _pFigura):
     //idObj   (++contEntes),
-    id      (_id),
+    id      (++contEntes),
     pFigura (_pFigura)
 { }
 

@@ -24,7 +24,7 @@ namespace Entidades
         //Coordenada<float> modGravidade;
 
     public:
-        Entidade(const ID_Classe _id = ID_Classe::indefinido, Figura* const _pFigura = NULL);
+        Entidade(Figura* const _pFigura = NULL);
         virtual ~Entidade();
 
         virtual void   executar () = 0;

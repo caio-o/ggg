@@ -2,8 +2,8 @@
 
 using namespace Entidades;
 
-Entidade::Entidade(const ID_Classe _id, Figura* const _pFigura):
-    Ente          (_id, _pFigura),
+Entidade::Entidade(Figura* const _pFigura):
+    Ente          (pFigura),
     pos           (0.0f, 0.0f),
     vel           (0.0f, 0.0f),
     modGravidade  (1.0f, 1.0f)
