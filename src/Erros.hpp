@@ -15,11 +15,6 @@
     #define ERRO_SET_NULLPTR "Não é possível configurar ponteiro NULL."
     #define ERRO_NULLPTR_LISTA "Elemento NULL encontrado na lista!"
 
-    void fechaPrograma ()
-    {
-        std::cout << "Aperte ENTER para fechar o programa." << std::endl;
-        std::cin.get();
-        exit(1);
-    }
+    void enterFechar ();
 
 #endif
