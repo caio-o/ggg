@@ -54,7 +54,7 @@ namespace Gerenciadores
      * ponteiro do tipo Jogador e, se o padrão de projeto Observer for implementado, 
      * serão os observadores que serão acionados pelo GerenciadorEventos.
      */
-    void GerenciadorEventos::setForma(sf::RectangleShape* forma)
+    void GerenciadorEventos::setForma(ElementosGraficos::Forma* forma)
     {
         if(forma)
             pForma = forma;
@@ -75,13 +75,15 @@ namespace Gerenciadores
     void GerenciadorEventos::verificaTeclaPressionada()
     {
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-            pForma->move(sf::Vector2f(0.1f, 0.f));
+            pForma->getpCorpo()->move(sf::Vector2f(0.1f, 0.f));
         else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-            pForma->move(sf::Vector2f(-0.1f, 0.f));
+            pForma->getpCorpo()->move(sf::Vector2f(-0.1f, 0.f));
         else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-            pForma->move(sf::Vector2f(0.f, -0.1f));
+            pForma->getpCorpo()->move(sf::Vector2f(0.f, -0.1f));
         else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-            pForma->move(sf::Vector2f(0.f, 0.1f));
+            pForma->getpCorpo()->move(sf::Vector2f(0.f, 0.1f));
+
+        //Obs.: método Forma::atualizar() ainda não está sendo utilizado
     }
 
     /*
