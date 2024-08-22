@@ -63,6 +63,13 @@ namespace ElementosGraficos
             cout << "Erro em ElementosGraficos::Forma::setTextura(): textura não atualizada!" << endl;
     }
 
+    sf::RectangleShape* Forma::getpCorpo() const
+    {
+        if(pCorpo == NULL)
+            cout << "Erro em ElementosGraficos::Forma::getpCorpo(): " << ERRO_RETURN_NULLPTR << endl;
+        return pCorpo;
+    }
+
     //Configura a nova posição da forma, possibilitando movimento.
     void Forma::atualizar(Coordenada::Vetor2f posicao)
     {

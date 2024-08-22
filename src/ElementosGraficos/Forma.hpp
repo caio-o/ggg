@@ -31,6 +31,7 @@ namespace ElementosGraficos
             Forma();
             ~Forma();
             void setTextura(const char* caminho);
+            sf::RectangleShape* getpCorpo() const;
             void atualizar(Coordenada::Vetor2f posicao);
             void renderizar();
     };
