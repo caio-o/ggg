@@ -20,7 +20,7 @@ namespace Entidades
 
         void pular()
         {
-            if(getY() >= Gerenciadores::Grafico::getGrafico()->getJanela()->getSize().y + 50.0f)
+            if(getY() >= Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico()->getJanela()->getSize().y + 50.0f)
             {
                 setVelY( getVel().y - 20.0f );
             }

@@ -11,8 +11,8 @@
 #include "../Listas/Lista.hpp"
 #include "testes.hpp"
 #include "Coordenada.hpp"
-#include "Gerenciadores/Grafico.hpp"
-#include "Gerenciadores/Evento.hpp"
+#include "Gerenciadores/GerenciadorGrafico.hpp"
+#include "Gerenciadores/GerenciadorEventos.hpp"
 
 #include "Entidades/Entidade.hpp"
 #include "Entidades/Personagens/Jogador.hpp"
@@ -172,7 +172,7 @@ void testeJanelaGerenciadorGrafico()
      shape.setFillColor(sf::Color::Green);*/
 
      //em razão do PP Singleton, é assim que se inicializa o gerenciador
-     Gerenciadores::Grafico* gg = Gerenciadores::Grafico::getGrafico();
+     Gerenciadores::GerenciadorGrafico* gg = Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico();
      sf::RectangleShape ret(sf::Vector2f(200.f, 200.f));
      ret.setFillColor(sf::Color::Magenta);
 
@@ -193,13 +193,13 @@ void testeJanelaGerenciadorGrafico()
      }
 }
 
-void testeJanelaGerenciadorEvento()
+void testeJanelaGerenciadorGerenciadorEventos()
 {
-     //Instancia o gerenciador grafico
-     Gerenciadores::Grafico* gg = Gerenciadores::Grafico::getGrafico();
+     //Instancia o gerenciador GerenciadorGrafico
+     Gerenciadores::GerenciadorGrafico* gg = Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico();
 
-     //Instancia o gerenciador de eventos
-     Gerenciadores::Evento* ge = Gerenciadores::Evento::getEvento();
+     //Instancia o gerenciador de GerenciadorEventoss
+     Gerenciadores::GerenciadorEventos* ge = Gerenciadores::GerenciadorEventos::getGerenciadorEventos();
 
      //Instancia um quadrado ciano
      sf::RectangleShape ret(sf::Vector2f(100.f, 100.f));
@@ -224,7 +224,7 @@ void testeJanelaGerenciadorEvento()
 
 void testeVertexArray()
 {
-     //Instancia o gerenciador grafico
+     //Instancia o gerenciador GerenciadorGrafico
      sf::RenderWindow window(sf::VideoMode(50, 23), "HEYHEYHEY!");
 
      sf::VertexArray lines(sf::LineStrip, 4);
@@ -259,7 +259,7 @@ void testeJogador()
      float t0 = tempo.asMilliseconds();
      float t1 = t0;
 
-     Gerenciadores::Grafico* gg = Gerenciadores::Grafico::getGrafico();
+     Gerenciadores::GerenciadorGrafico* gg = Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico();
 
      Jogador jog (new sf::CircleShape(50), 10);
 

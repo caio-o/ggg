@@ -1,7 +1,7 @@
 #ifndef _ENTE_HPP
 #define _ENTE_HPP
 
-#include "Gerenciadores/Grafico.hpp"
+#include "Gerenciadores/GerenciadorGrafico.hpp"
 #include "SFML/Graphics.hpp"
 
 /**
@@ -26,7 +26,7 @@ protected:
     static int      contEntes;
     //const ID_Classe id;
     const int id;
-    static Gerenciadores::Grafico* pGG;
+    static Gerenciadores::GerenciadorGrafico* pGG;
     Figura* pFigura;
     // ...
 
@@ -43,9 +43,9 @@ public:
     // Permite-se pFigura NULL em entes invisiveis.
     void setFigura (Figura* _pFigura) { pFigura = _pFigura; } 
     
-    static void setGerenciadorGrafico () { pGG = Gerenciadores::Grafico::getGrafico(); }
+    static void setGerenciadorGrafico () { pGG = Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico(); }
 }; 
-//Gerenciadores::Grafico*  Ente::pGG        = NULL;
+//Gerenciadores::GerenciadorGrafico*  Ente::pGG        = NULL;
 //int                      Ente::contEntes  = 0;
 
 #endif

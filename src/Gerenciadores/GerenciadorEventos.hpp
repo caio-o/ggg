@@ -5,19 +5,19 @@
  * recursos da biblioteca SFML.
  * */
 
-#ifndef _EVENTO_HPP
-#define _EVENTO_HPP
+#ifndef _GerenciadorEventos_HPP
+#define _GerenciadorEventos_HPP
 
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include "Gerenciadores/Grafico.hpp"
+#include "Gerenciadores/GerenciadorGrafico.hpp"
 
 namespace Gerenciadores
 {
-    class Evento{
+    class GerenciadorEventos{
         private:
-            Grafico* pGrafico;
+            Gerenciadores::GerenciadorGrafico* pGerenciadorGrafico;
 
             /*
              * Atributo provisório, após implementação da classe Jogador, será substituído por um
@@ -25,17 +25,17 @@ namespace Gerenciadores
              */
             sf::RectangleShape* pForma;
             
-            static Evento* pEvento;
+            static GerenciadorEventos* pGerenciadorEventos;
 
         private:
             //Construtora privada atendendo ao padrão de projeto Singleton
-            Evento();
+            GerenciadorEventos();
 
         public:
-            ~Evento();
-            static Evento* getEvento();
-            //void setGerenciadorGrafico(Grafico* pG);
-            //método desnecessário em função do ponteiro para o gGrafico ser estático
+            ~GerenciadorEventos();
+            static GerenciadorEventos* getGerenciadorEventos();
+            //void setGerenciadorGrafico(GerenciadorGrafico* pG);
+            //método desnecessário em função do ponteiro para o gGerenciadorGrafico ser estático
             void setForma(sf::RectangleShape* forma);
             void verificaTeclaSolta();
             void verificaTeclaPressionada();

@@ -5,7 +5,7 @@
  * mouse e teclado usando recursos da biblioteca SFML.
  * */
 
-#include "Gerenciadores/Evento.hpp"
+#include "Gerenciadores/GerenciadorEventos.hpp"
 #include "Erros.hpp"
 
 #include <iostream>
@@ -13,57 +13,57 @@ using namespace std;
 
 namespace Gerenciadores
 {
-    Evento* Evento::pEvento(NULL);
+    GerenciadorEventos* GerenciadorEventos::pGerenciadorEventos(NULL);
 
     /*Construtora privada que permite a execução do padrão de projeto Singleton.*/
-    Evento::Evento():
-    pGrafico(Grafico::getGrafico()),
+    GerenciadorEventos::GerenciadorEventos():
+    pGerenciadorGrafico(GerenciadorGrafico::getGerenciadorGrafico()),
     pForma(NULL)
     {
         
     }
 
-    Evento::~Evento()
+    GerenciadorEventos::~GerenciadorEventos()
     {
-        pGrafico = NULL;
+        pGerenciadorGrafico = NULL;
         pForma = NULL;
 
-        if(pEvento)
-            delete pEvento;
-        pEvento = NULL;
+        if(pGerenciadorEventos)
+            delete pGerenciadorEventos;
+        pGerenciadorEventos = NULL;
     }
 
     /* 
      * Se o ponteiro para o gerenciador for nulo, ele instancia um novo objeto do
-     * tipo Gerenciador::Evento e o retorna. Caso contrário, retorna o endereço
+     * tipo Gerenciador::GerenciadorEventos e o retorna. Caso contrário, retorna o endereço
      * do gerenciador já existente. Isso garante que exista apenas um gerenciador de
-     * eventos instanciado no programa, característica do padrão de projeto
+     * GerenciadorEventoss instanciado no programa, característica do padrão de projeto
      * Singleton.
      */
-    Evento* Evento::getEvento()
+    GerenciadorEventos* GerenciadorEventos::getGerenciadorEventos()
     {
-        if(pEvento == NULL)
-            pEvento = new Evento();
+        if(pGerenciadorEventos == NULL)
+            pGerenciadorEventos = new GerenciadorEventos();
 
-        return pEvento;
+        return pGerenciadorEventos;
     }
 
     /*
-     * Configura "quem" sofrerá a ação do evento gerenciado. Provisoriamente é
+     * Configura "quem" sofrerá a ação do GerenciadorEventos gerenciado. Provisoriamente é
      * um ponteiro do tipo RectangleShape (i.e. uma forma), mas futuramente será um 
      * ponteiro do tipo Jogador e, se o padrão de projeto Observer for implementado, 
-     * serão os observadores que serão acionados pelo evento.
+     * serão os observadores que serão acionados pelo GerenciadorEventos.
      */
-    void Evento::setForma(sf::RectangleShape* forma)
+    void GerenciadorEventos::setForma(sf::RectangleShape* forma)
     {
         if(forma)
             pForma = forma;
         else
-            cout << "Gerenciadores::Evento:" << ERRO_SET_NULLPTR << endl;
+            cout << "Gerenciadores::GerenciadorEventos:" << ERRO_SET_NULLPTR << endl;
     }
 
     /*Função não implementada uma vez que ainda não se faz conveniente seu uso.*/
-    void Evento::verificaTeclaSolta()
+    void GerenciadorEventos::verificaTeclaSolta()
     {
 
     }
@@ -72,7 +72,7 @@ namespace Gerenciadores
      * Verifica qual tecla está sendo pressionada (Direita, Esquerda, Cima ou Baixo) e faz a forma se
      * movimentar 0.01 unidade na direção da tecla pressionada.
      */
-    void Evento::verificaTeclaPressionada()
+    void GerenciadorEventos::verificaTeclaPressionada()
     {
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
             pForma->move(sf::Vector2f(0.1f, 0.f));
@@ -85,12 +85,12 @@ namespace Gerenciadores
     }
 
     /*
-     * Declara uma variável evento e, em um loop, prenche essa variável com entradas vindas do 
+     * Declara uma variável GerenciadorEventos e, em um loop, prenche essa variável com entradas vindas do 
      * teclado ou mouse, de modo a definir o que fazer com base no tipo da entrada. 
      */
-    void Evento::executar()
+    void GerenciadorEventos::executar()
     {
-        sf::Event evento;
+        sf::Event GerenciadorEventos;
 
         /*
          * sf::Window::pollEvent(Event& event)
@@ -101,16 +101,16 @@ namespace Gerenciadores
          * resize, show/hide, control mouse cursor, etc. It also provides event handling through 
          * its pollEvent() and waitEvent() functions.
          * 
-         * Em resumo: a função captura eventos da janela.
+         * Em resumo: a função captura GerenciadorEventoss da janela.
          */
 
-        //Enquanto a janela "capturar" um evento... (i.e., clique ou movimento do mouse)
-        while(pGrafico->getJanela()->pollEvent(evento))
+        //Enquanto a janela "capturar" um GerenciadorEventos... (i.e., clique ou movimento do mouse)
+        while(pGerenciadorGrafico->getJanela()->pollEvent(GerenciadorEventos))
         {
-            //Se esse evento for do tipo "fechar"...
-            if(evento.type == sf::Event::Closed)
-                pGrafico->fecharJanela();
-            /*else if (evento.type == sf::Event::KeyPressed)
+            //Se esse GerenciadorEventos for do tipo "fechar"...
+            if(GerenciadorEventos.type == sf::Event::Closed)
+                pGerenciadorGrafico->fecharJanela();
+            /*else if (GerenciadorEventos.type == sf::Event::KeyPressed)
                 verificaTeclaPressionada();*/
             
         }

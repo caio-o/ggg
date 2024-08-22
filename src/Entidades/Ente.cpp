@@ -1,7 +1,7 @@
 #include "Entidades/Ente.hpp"
-#include "Gerenciadores/Grafico.hpp"
+#include "Gerenciadores/GerenciadorGrafico.hpp"
 
-Gerenciadores::Grafico*  Ente::pGG        = NULL;
+Gerenciadores::GerenciadorGrafico*  Ente::pGG        = NULL;
 int                      Ente::contEntes  = 0;
 
 Ente::Ente(Figura* const _pFigura):

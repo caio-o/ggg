@@ -7,17 +7,18 @@
 
 #include <string.h>
 
-#include "Gerenciadores/Grafico.hpp"
+#include "Gerenciadores/GerenciadorGrafico.hpp"
+
 //DIMENSÕES PROVISÓRIAS
 #define ALTURA 500.0
 #define LARGURA 500.0
 
 namespace Gerenciadores
 {
-    float Grafico::dT(0);
-    Grafico* Grafico::pGrafico(NULL);
+    float GerenciadorGrafico::dT(0);
+    GerenciadorGrafico* GerenciadorGrafico::pGerenciadorGrafico(NULL);
 
-    Grafico::Grafico():
+    GerenciadorGrafico::GerenciadorGrafico():
     pJanela(NULL), 
     /* O primeiro argumento (sf::Vector2f((LARGURA/2), (ALTURA/2))) se trata do centro
      * da janela.
@@ -44,7 +45,7 @@ namespace Gerenciadores
         resetarRelogio();
     }
     
-    Grafico::~Grafico()
+    GerenciadorGrafico::~GerenciadorGrafico()
     {
         //desaloca a janela
         if(pJanela)
@@ -91,10 +92,10 @@ namespace Gerenciadores
         dT = -1.0;
 
         //desaloca o ponteiro para o gerenciador
-        if(pGrafico)
-            delete pGrafico;
+        if(pGerenciadorGrafico)
+            delete pGerenciadorGrafico;
 
-        pGrafico = NULL;
+        pGerenciadorGrafico = NULL;
     }
 
     /* 
@@ -104,16 +105,16 @@ namespace Gerenciadores
      * Gráfico instanciado no programa, característica do padrão de projeto
      * Singleton.
      */
-    Grafico* Grafico::getGrafico()
+    GerenciadorGrafico* GerenciadorGrafico::getGerenciadorGrafico()
     {
-        if(pGrafico == NULL)
-            pGrafico = new Gerenciadores::Grafico();
+        if(pGerenciadorGrafico == NULL)
+            pGerenciadorGrafico = new Gerenciadores::GerenciadorGrafico();
             
-        return pGrafico;
+        return pGerenciadorGrafico;
     }
     
     //Retorna um ponteiro para a janela do gerenciador gráfico
-    sf::RenderWindow* Grafico::getJanela() const
+    sf::RenderWindow* GerenciadorGrafico::getJanela() const
     {
         if(pJanela)
             return pJanela;
@@ -123,7 +124,7 @@ namespace Gerenciadores
     }
     
     //Renderiza um corpo na janela
-    void Grafico::renderizar(sf::RectangleShape* corpo)
+    void GerenciadorGrafico::renderizar(sf::RectangleShape* corpo)
     {
         if(pJanela && corpo)
             pJanela->draw(*corpo);
@@ -132,7 +133,7 @@ namespace Gerenciadores
              * ou seja, ele espera receber um objeto do tipo drawable, e não um ptr...
              */
     }
-    void Grafico::renderizar(sf::Shape* corpo)
+    void GerenciadorGrafico::renderizar(sf::Shape* corpo)
     {
         if(pJanela && corpo)
             pJanela->draw(*corpo);
@@ -143,28 +144,28 @@ namespace Gerenciadores
     }
     
     //Renderiza texto na janela
-    void Grafico::renderizar(sf::Text* texto)
+    void GerenciadorGrafico::renderizar(sf::Text* texto)
     {
         if(pJanela && texto)
             pJanela->draw(*texto);
     }
     
     //Mostra na janela todos os objetos renderizados
-    void Grafico::mostrar()
+    void GerenciadorGrafico::mostrar()
     {
         if(pJanela)
             pJanela->display();
     }
     
     //Limpa a janela
-    void Grafico::limpar()
+    void GerenciadorGrafico::limpar()
     {
         if(pJanela)
             pJanela->clear();
     }
     
     //Retorna true se a janela estiver aberta
-    const bool Grafico::janelaAberta() const
+    const bool GerenciadorGrafico::janelaAberta() const
     {
         if(pJanela)
             return pJanela->isOpen();
@@ -174,7 +175,7 @@ namespace Gerenciadores
     }
     
     //Encerra a janela
-    void Grafico::fecharJanela()
+    void GerenciadorGrafico::fecharJanela()
     {
         if(pJanela)
             pJanela->close();
@@ -185,7 +186,7 @@ namespace Gerenciadores
      * altura passadas por parâmetro por meio da variavel do tipo 
      * Coordenada
      */
-    void Grafico::setTamanhoJanela(const Coordenada<float> tam)
+    void GerenciadorGrafico::setTamanhoJanela(const Coordenada<float> tam)
     {
         sf::Vector2u dimensao(tam.x, tam.y);
 
@@ -197,7 +198,7 @@ namespace Gerenciadores
     }
     
     //Retorna o tamanho da janela por meio de variavel do tipo Coordenada
-    const Coordenada<float> Grafico::getTamanhoJanela() const
+    const Coordenada<float> GerenciadorGrafico::getTamanhoJanela() const
     {
         if(pJanela)
         {
@@ -214,7 +215,7 @@ namespace Gerenciadores
      * Obs.: analisar se é a posição mais conveniente para nosso interesse durante
      * o desenvolvimento.
      * */
-    const Coordenada<float> Grafico::getPosicaoInicial() const
+    const Coordenada<float> GerenciadorGrafico::getPosicaoInicial() const
     {
         if(pJanela)
         {
@@ -232,7 +233,7 @@ namespace Gerenciadores
     /* Atualiza a posição do centro da camera para o centro (da janela).
      * Obs.: analisar a utilidade desse método. Talvez seja mais util ter um método
      * que atualiza a posição para uma posição desejada que é passado como argumento.*/
-    void Grafico::centralizarCamera()
+    void GerenciadorGrafico::centralizarCamera()
     {
         sf::Vector2f centro(pJanela->getSize());
 
@@ -242,13 +243,13 @@ namespace Gerenciadores
     /* Atualiza o tamanho da camera conforme dimensões passadas por meio da variavel
      * do tipo Coordenada<float>
      */
-    void Grafico::setTamanhoCamera(Coordenada<float> tam)
+    void GerenciadorGrafico::setTamanhoCamera(Coordenada<float> tam)
     {
         camera.setSize(tam.x, tam.y);
     }
     
     //Retorna a camera
-    sf::View Grafico::getCamera() const
+    sf::View GerenciadorGrafico::getCamera() const
     {
         return camera;
     }
@@ -257,7 +258,7 @@ namespace Gerenciadores
      * Procura se a textura requerida já foi carregada anteriormente e a retorna.
      * Caso não a encontre, carrega e retorna a nova textura.
      * */
-    sf::Texture* Grafico::carregarTextura(const char* caminho)
+    sf::Texture* GerenciadorGrafico::carregarTextura(const char* caminho)
     {
         //Procura se a textura já existe no mapa de texturas
         if(!mapaTexturas.empty())
@@ -272,7 +273,7 @@ namespace Gerenciadores
                     if(it->second)
                         return it->second;
                     
-                    cout << "Erro de gerenciamento grafico: textura correspondente ao caminho "
+                    cout << "Erro de gerenciamento GerenciadorGrafico: textura correspondente ao caminho "
                             << caminho << " nao alocada adequadamente!" << endl;
 
                     exit(1);
@@ -304,7 +305,7 @@ namespace Gerenciadores
             return pTxt;
         }
 
-        cout << "Erro de gerenciamento grafico: textura nao alocada!" << endl;
+        cout << "Erro de gerenciamento GerenciadorGrafico: textura nao alocada!" << endl;
         exit(1);
     }
     
@@ -312,7 +313,7 @@ namespace Gerenciadores
      * Procura se a fonte requerida já foi carregada anteriormente e a retorna.
      * Caso não a encontre, carrega e retorna a nova fonte.
      * */
-    sf::Font* Grafico::carregarFonte(const char* caminho)
+    sf::Font* GerenciadorGrafico::carregarFonte(const char* caminho)
     {
         if(!mapaFontes.empty())
         {
@@ -325,7 +326,7 @@ namespace Gerenciadores
                     if(it->second)
                         return it->second;
 
-                    cout << "Erro de gerenciamento grafico: textura correspondente ao caminho "
+                    cout << "Erro de gerenciamento GerenciadorGrafico: textura correspondente ao caminho "
                             << caminho << " nao esta alocada adequadamente!" << endl;
 
                     exit(1);
@@ -348,18 +349,18 @@ namespace Gerenciadores
             return pFnt;
         }
 
-        cout << "Erro de gerenciamento grafico: textura nao alocada!" << endl;
+        cout << "Erro de gerenciamento GerenciadorGrafico: textura nao alocada!" << endl;
         exit(1); 
     }
     
     //Reinicia a contagem de tempo
-    void Grafico::resetarRelogio()
+    void GerenciadorGrafico::resetarRelogio()
     {
         relogio.restart();
     }
     
     //Retorna quanto tempo passsou (em segundos) desde que o relógio foi iniciado.
-    const float Grafico::getTempo() const
+    const float GerenciadorGrafico::getTempo() const
     {
         return relogio.getElapsedTime().asSeconds();
     }

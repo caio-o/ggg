@@ -5,8 +5,8 @@
  * recursos da biblioteca SFML.
  * */
 
-#ifndef _GRAFICO_HPP
-#define _GRAFICO_HPP
+#ifndef _GerenciadorGrafico_HPP
+#define _GerenciadorGrafico_HPP
 
 #pragma once
 #include <SFML/Graphics.hpp>
@@ -17,7 +17,7 @@ using namespace std;
 
 namespace Gerenciadores
 {
-    class Grafico
+    class GerenciadorGrafico
     {
         private:
             sf::RenderWindow* pJanela;
@@ -29,14 +29,14 @@ namespace Gerenciadores
             sf::Clock relogio;
             
             static float dT;
-            static Grafico* pGrafico;
+            static GerenciadorGrafico* pGerenciadorGrafico;
 
             //Construtora privada para permitir execução do padrão de projeto Singleton
-            Grafico();
+            GerenciadorGrafico();
 
         public:
-            ~Grafico();
-            static Grafico* getGrafico();
+            ~GerenciadorGrafico();
+            static GerenciadorGrafico* getGerenciadorGrafico();
             sf::RenderWindow* getJanela() const;
             void renderizar(sf::RectangleShape* corpo);
             void renderizar(sf::Shape* corpo); // Com static_cast, desenhamos qualquer shape. Poderia ateh ser sf::drawable
