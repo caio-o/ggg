@@ -12,6 +12,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "Gerenciadores/GerenciadorGrafico.hpp"
+#include "ElementosGraficos/Forma.hpp"
 
 namespace Gerenciadores
 {
@@ -23,7 +24,7 @@ namespace Gerenciadores
              * Atributo provisório, após implementação da classe Jogador, será substituído por um
              * ponteiro do tipo Jogador, ou se relacionára com os objetos do padrão de projeto Observer.
              */
-            sf::RectangleShape* pForma;
+            ElementosGraficos::Forma* pForma;
             
             static GerenciadorEventos* pGerenciadorEventos;
 
@@ -36,7 +37,7 @@ namespace Gerenciadores
             static GerenciadorEventos* getGerenciadorEventos();
             //void setGerenciadorGrafico(GerenciadorGrafico* pG);
             //método desnecessário em função do ponteiro para o gGerenciadorGrafico ser estático
-            void setForma(sf::RectangleShape* forma);
+            void setForma(ElementosGraficos::Forma* forma);
             void verificaTeclaSolta();
             void verificaTeclaPressionada();
             void executar();

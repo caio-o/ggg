@@ -62,4 +62,14 @@ void testeVertexArray();
 
 void testeJogador();
 
+/*
+ * AUTOR   :  Ana Julia Molinos Leite da Silva (ana-molinos)
+ * FUNCAO  :  Testar o uso de um objeto da classe forma, em conjunto com os gerenciadores grafico e 
+ *            de eventos.
+ * SAIDA   :  Janela de título GGG contenod um ente com a textura de um círculo com rosto, que pode 
+ *            ser controlado via teclas esquerda, direita, cima e baixo. Não há limites para o seu
+ *            movimento com relação a janela.
+ */
+void testeForma();
+
 #endif

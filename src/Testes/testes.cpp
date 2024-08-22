@@ -11,14 +11,20 @@
 #include "../Listas/Lista.hpp"
 #include "testes.hpp"
 #include "Coordenada.hpp"
+
 #include "Gerenciadores/GerenciadorGrafico.hpp"
 #include "Gerenciadores/GerenciadorEventos.hpp"
+
+#include "ElementosGraficos/Forma.hpp"
 
 #include "Entidades/Entidade.hpp"
 #include "Entidades/Personagens/Jogador.hpp"
 
 using namespace std;
 using namespace Listas;
+
+//Obs.: arrumar caminho da textura desejada  (p/ mim só funcinou assim, preciso arrumar)
+#define CAMINHO_TEXTURA "/home/ana/Documentos/BSI/P2/tec_prog/trabalho/jogo/ggg/img/emoji_com_faca.png"
 
 void esperaEnter()
 {
@@ -113,7 +119,7 @@ void testeLista()
 
 void testeCoordenada()
 {
-    Coordenada<float> coord1, coord2, coord3;
+    Coordenada::Vetor2f coord1, coord2, coord3;
 
     coord1.x = 1.0;
     coord1.y = 1.0;
@@ -206,7 +212,7 @@ void testeJanelaGerenciadorGerenciadorEventos()
      ret.setFillColor(sf::Color::Cyan);
 
      //Associa o quadrado ao ge
-     ge->setForma(&ret);
+     //ge->setForma(&ret);
 
      while (gg->janelaAberta())
      {
@@ -274,6 +280,45 @@ void testeJogador()
           jog.moverse(t1-t0);
           jog.desenhar();
           
+          gg->mostrar();
+     }
+}
+
+void testeForma()
+{
+     //Instancia o gerenciador GerenciadorGrafico
+     Gerenciadores::GerenciadorGrafico* gg = Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico();
+
+     //Instancia o gerenciador de GerenciadorEventoss
+     Gerenciadores::GerenciadorEventos* ge = Gerenciadores::GerenciadorEventos::getGerenciadorEventos();
+
+     /*//Instancia um quadrado ciano
+     sf::RectangleShape ret(sf::Vector2f(100.f, 100.f));
+     ret.setFillColor(sf::Color::Cyan);*/
+
+     //Instancia uma forma
+     ElementosGraficos::Forma* pForma = new ElementosGraficos::Forma(CAMINHO_TEXTURA,//obs.: arrumar caminho
+                                                                     Coordenada::Vetor2f(10.0,10.0), //posição
+                                                                     Coordenada::Vetor2f(50.7,48.1), //tamanho
+                                                                     3.0); //escala
+
+     /*//Associa o quadrado ao ge
+     ge->setForma(&ret);*/
+
+     //Associa a forma ao ge
+     ge->setForma(pForma);
+
+     while (gg->janelaAberta())
+     {
+          /* 
+           * Substitui o loop mais interno do teste anterior, assim permite realizar o teste de maneira
+           * completamente desacoplada da biblioteca gráfica.
+           */
+          ge->executar();
+
+          gg->limpar();
+          //gg->renderizar(&ret);
+          pForma->renderizar();
           gg->mostrar();
      }
 }
