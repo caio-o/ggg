@@ -186,7 +186,7 @@ namespace Gerenciadores
      * altura passadas por parâmetro por meio da variavel do tipo 
      * Coordenada
      */
-    void GerenciadorGrafico::setTamanhoJanela(const Coordenada<float> tam)
+    void GerenciadorGrafico::setTamanhoJanela(const Coordenada::Vetor2f tam)
     {
         sf::Vector2u dimensao(tam.x, tam.y);
 
@@ -198,12 +198,12 @@ namespace Gerenciadores
     }
     
     //Retorna o tamanho da janela por meio de variavel do tipo Coordenada
-    const Coordenada<float> GerenciadorGrafico::getTamanhoJanela() const
+    const Coordenada::Vetor2f GerenciadorGrafico::getTamanhoJanela() const
     {
         if(pJanela)
         {
             sf::Vector2u dimensao(pJanela->getSize());
-            return Coordenada<float>((float)dimensao.x, (float)dimensao.y);
+            return Coordenada::Vetor2f((float)dimensao.x, (float)dimensao.y);
         }
 
         cout << "Erro de gerenciamento gráfico: janela de visualizacao nao alocada!" << endl;
@@ -215,13 +215,13 @@ namespace Gerenciadores
      * Obs.: analisar se é a posição mais conveniente para nosso interesse durante
      * o desenvolvimento.
      * */
-    const Coordenada<float> GerenciadorGrafico::getPosicaoInicial() const
+    const Coordenada::Vetor2f GerenciadorGrafico::getPosicaoInicial() const
     {
         if(pJanela)
         {
-            Coordenada<float> posicao((float)pJanela->getPosition().x,(float)pJanela->getPosition().y);
+            Coordenada::Vetor2f posicao((float)pJanela->getPosition().x,(float)pJanela->getPosition().y);
             
-            posicao -= Coordenada<float>((float)pJanela->getSize().x/2.0, (float)pJanela->getSize().y/2.0);
+            posicao -= Coordenada::Vetor2f((float)pJanela->getSize().x/2.0, (float)pJanela->getSize().y/2.0);
 
             return posicao;
         }
@@ -243,7 +243,7 @@ namespace Gerenciadores
     /* Atualiza o tamanho da camera conforme dimensões passadas por meio da variavel
      * do tipo Coordenada<float>
      */
-    void GerenciadorGrafico::setTamanhoCamera(Coordenada<float> tam)
+    void GerenciadorGrafico::setTamanhoCamera(Coordenada::Vetor2f tam)
     {
         camera.setSize(tam.x, tam.y);
     }
