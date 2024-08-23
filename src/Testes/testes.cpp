@@ -272,9 +272,9 @@ void testeForma()
      ret.setFillColor(sf::Color::Cyan);*/
 
      //Instancia uma forma
-     ElementosGraficos::Forma* pForma = new ElementosGraficos::Forma(CAMINHO_TEXTURA,//obs.: arrumar caminho
-                                                                     Coordenadas::Vetor2f(10.0,10.0), //posição
+     ElementosGraficos::Forma* pForma = new ElementosGraficos::Forma(Coordenadas::Vetor2f(10.0,10.0), //posição
                                                                      Coordenadas::Vetor2f(50.7,48.1), //tamanho
+                                                                     CAMINHO_TEXTURA,
                                                                      3.0); //escala
 
      /*//Associa o quadrado ao ge
@@ -303,26 +303,26 @@ void testeEntidade()
      Gerenciadores::GerenciadorGrafico* gg = Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico();
      Gerenciadores::GerenciadorEventos* ge = Gerenciadores::GerenciadorEventos::getGerenciadorEventos();
 
-     Forma* pF1 = new Forma(CAMINHO_TEXTURA,           Vetor2f(10.0,10.0), Vetor2f( 50.7,  48.1), 3.0); 
-     Forma* pF2 = new Forma("../img/emoji_viking.png", Vetor2f(10.0,10.0), Vetor2f(150.7, 100.1), 3.0); 
+     //Forma* pF1 = new Forma(Vetor2f(10.0,10.0), Vetor2f( 50.7,  48.1), CAMINHO_TEXTURA, 3.0); 
+     //Forma* pF2 = new Forma(Vetor2f(10.0,10.0), Vetor2f(150.7, 100.1), "../img/emoji_viking.png", 3.0); 
 
      sf::Clock relogio;
      sf::Time t0 = relogio.getElapsedTime();
      sf::Time t1 = t0;
 
-     Jogador jog(pF1);
+     /*Jogador jog(pF1);
      jog.setGerenciadorGrafico();
-     ge->setForma(pF2);
+     ge->setForma(pF2);*/
 
 
 
-     while (gg->janelaAberta())
+     /*while (gg->janelaAberta())
      {
           /* 
            * Substitui o loop mais interno do teste anterior, assim permite realizar o teste de maneira
            * completamente desacoplada da biblioteca gráfica.
            */
-          t0 = t1;
+          /*t0 = t1;
           t1 = relogio.getElapsedTime();
 
           ge->executar();
@@ -338,5 +338,5 @@ void testeEntidade()
           pF2->renderizar();
 
           gg->mostrar();
-     }
+     }*/
 }

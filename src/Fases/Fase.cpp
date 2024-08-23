@@ -1,7 +1,7 @@
 #include "Fases/Fase.hpp"
 
 Fase::Fase():
-    Ente(new Forma("../img/quadrado_vermelho.png")),
+    Ente(),
     entidades()
 {
     //ERRO DE COMPILAÇÃO

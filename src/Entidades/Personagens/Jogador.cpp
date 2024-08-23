@@ -2,8 +2,8 @@
 #include <SFML/System.hpp>
 using sf::Keyboard;
 
-Jogador::Jogador(Forma* _pForma, int _maxVida):
-    Personagem (_pForma, _maxVida),
+Jogador::Jogador(/*Forma* _pForma,*/ int _maxVida):
+    Personagem (/*_pForma,*/ _maxVida),
     agilidade  (200.0f)
 {  }
 

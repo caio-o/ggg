@@ -1,7 +1,7 @@
 #ifndef _PERSONAGEM_HPP
 #define _PERSONAGEM_HPP
 
-#include "Entidades/Ente.hpp"
+#include "Ente.hpp"
 #include "Entidades/Entidade.hpp"
 using namespace Entidades;
 
