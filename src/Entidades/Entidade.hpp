@@ -3,7 +3,7 @@
 
 #include <SFML/System.hpp>
 #include <time.h>
-#include "Entidades/Ente.hpp"
+#include "Ente.hpp"
 #include "Coordenada.hpp"
 
 #include "ElementosGraficos/Forma.hpp"

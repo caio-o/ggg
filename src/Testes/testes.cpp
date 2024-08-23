@@ -272,9 +272,9 @@ void testeForma()
      ret.setFillColor(sf::Color::Cyan);*/
 
      //Instancia uma forma
-     ElementosGraficos::Forma* pForma = new ElementosGraficos::Forma(CAMINHO_TEXTURA,//obs.: arrumar caminho
-                                                                     Coordenadas::Vetor2f(10.0,10.0), //posição
+     ElementosGraficos::Forma* pForma = new ElementosGraficos::Forma(Coordenadas::Vetor2f(10.0,10.0), //posição
                                                                      Coordenadas::Vetor2f(50.7,48.1), //tamanho
+                                                                     CAMINHO_TEXTURA,
                                                                      3.0); //escala
 
      /*//Associa o quadrado ao ge

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Personagens/Personagem.hpp"
-#include "Personagens/Jogador.hpp"
+#include "Entidades/Personagens/Personagem.hpp"
+#include "Entidades/Personagens/Jogador.hpp"
 
 namespace Inimigos
 {

@@ -3,8 +3,8 @@
 
 #define TEXTURA_JOGADOR "../../img/quadrado_vermelho.png"
 
-#include "Entidades/Personagens/Personagem.hpp"
-#include "Entidades/Ente.hpp"
+#include "Personagem.hpp"
+#include "Ente.hpp"
 #include <SFML/Graphics.hpp>
 using namespace Entidades;
 

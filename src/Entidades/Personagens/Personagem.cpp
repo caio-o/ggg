@@ -1,5 +1,5 @@
-#include "Entidades/Personagens/Personagem.hpp"
-#include "Entidades/Ente.hpp"
+#include "Personagem.hpp"
+#include "Ente.hpp"
 
 using namespace Entidades;
 
