@@ -11,6 +11,7 @@
 #define GRAVIDADE 1.0f
 
 using namespace Coordenadas;
+using namespace ElementosGraficos;
 
 namespace Entidades
 {
@@ -24,16 +25,19 @@ namespace Entidades
         Vetor2f modGravidade;
         //Coordenada<float> modGravidade;
 
-        ElementosGraficos::Forma forma;
+        Forma forma;
 
     public:
         Entidade();
+        Entidade(Forma _forma);
         virtual ~Entidade();
 
+        void setForma  (Forma _forma)        { forma = _forma; } 
+        Forma*         getForma () const  { return (Forma*)(&forma); }
         // Diferencia-se do Ente::desenhar porque precisa atualizar a posicao da forma.
         void           desenhar (); 
         virtual void   executar () = 0;
-        virtual void   moverse  (const float n_segundos);
+        void   moverse  (const float n_segundos);
         //virtual void   acelerarse (const float acel, const float deltaT) { vel += acel*deltaT; };
 
         const Vetor2f  getVel   () const   { return vel;   }

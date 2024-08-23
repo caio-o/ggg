@@ -303,14 +303,15 @@ void testeEntidade()
      Gerenciadores::GerenciadorGrafico* gg = Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico();
      Gerenciadores::GerenciadorEventos* ge = Gerenciadores::GerenciadorEventos::getGerenciadorEventos();
 
-     Forma* pF1 = new Forma(CAMINHO_TEXTURA,           Vetor2f(10.0,10.0), Vetor2f( 50.7,  48.1), 3.0); 
-     Forma* pF2 = new Forma("../img/emoji_viking.png", Vetor2f(10.0,10.0), Vetor2f(150.7, 100.1), 3.0); 
+     Forma* pF1 = new Forma(CAMINHO_TEXTURA,           Vetor2f(10.0,10.0), Vetor2f( 50.7,  48.1), 3.0);
+     Forma* pF2 = new Forma("../img/emoji_viking.png", Vetor2f(10.0,10.0), Vetor2f(150.7, 100.1), 3.0);
 
      sf::Clock relogio;
      sf::Time t0 = relogio.getElapsedTime();
      sf::Time t1 = t0;
 
-     Jogador jog(pF1);
+     Jogador jog;
+     jog.setForma(Forma(CAMINHO_TEXTURA, Vetor2f(10.0,10.0), Vetor2f( 50.7,  48.1), 3.0));
      jog.setGerenciadorGrafico();
      ge->setForma(pF2);
 
@@ -330,9 +331,9 @@ void testeEntidade()
           gg->limpar();
 
           //pF1->renderizar();
-          jog.desenhar();
           jog.executar();
           jog.moverse(t1.asSeconds() - t0.asSeconds());
+          jog.desenhar();
 
           pF2->atualizar(Vetor2f(0.0f, 0.0f));
           pF2->renderizar();

@@ -1,6 +1,8 @@
 #ifndef _JOGADOR_HPP
 #define _JOGADOR_HPP
 
+#define TEXTURA_JOGADOR "../../img/quadrado_vermelho.png"
+
 #include "Entidades/Personagens/Personagem.hpp"
 #include "Entidades/Ente.hpp"
 #include <SFML/Graphics.hpp>
@@ -11,14 +13,20 @@ namespace Entidades
     class Jogador : public Personagem   
     {
     private:
+        //static Jogador *jogador1, *jogador2; 
+        bool ehJogador1;
         float agilidade;
 
     public:
-        Jogador(Forma* _pForma, int _maxVida = 10);
+        Jogador(int _maxVida = 10);
 
         ~Jogador();
 
         void pular();
+
+        void salvar();
+        void atacar();
+        void mover();
 
         void executar();
     };

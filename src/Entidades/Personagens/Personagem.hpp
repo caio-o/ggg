@@ -13,7 +13,7 @@ protected:
     bool vivo;
 
 public:
-    Personagem(/*Forma* _pForma,*/ int maxVida = 10);
+    Personagem(int maxVida = 10);
     virtual ~Personagem();
 
     //ADIÇÃO ana-molinos
