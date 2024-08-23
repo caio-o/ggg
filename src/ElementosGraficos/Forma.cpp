@@ -7,6 +7,7 @@
 
 #include "Forma.hpp"
 #include "Erros.hpp"
+#include "string.h"
 
 #include <iostream>
 using namespace std;
@@ -15,24 +16,32 @@ namespace ElementosGraficos
 {
     Gerenciadores::GerenciadorGrafico* Forma::pGerenciadorGrafico(Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico());
     
-    Forma::Forma(const char* caminhoText, Coordenadas::Vetor2f posicao, Coordenadas::Vetor2f tamanho, float escala):
+    Forma::Forma(Coordenadas::Vetor2f posicao, Coordenadas::Vetor2f tamanho, const char* caminhoText, float escala):
     pTextura(NULL),
     pCorpo(NULL)
     {
-        //Pede para o gerenciador gráfico carregar a textura
-        pTextura = pGerenciadorGrafico->carregarTextura(caminhoText);
-
         //Instancia um novo Corpo
         pCorpo = new sf::RectangleShape(sf::Vector2f(tamanho.x, tamanho.y));
 
-        //Passa a textura para o Corpo
-        pCorpo->setTexture(pTextura);
+        if(pCorpo)
+        {
+            if(strcmp(caminhoText, ""))
+            {
+                //Pede para o gerenciador gráfico carregar a textura
+                pTextura = pGerenciadorGrafico->carregarTextura(caminhoText);
+                
+                //Passa a textura para o Corpo
+                pCorpo->setTexture(pTextura);
+            }
 
-        //Configura a posição do Corpo
-        pCorpo->setPosition(tamanho.x, tamanho.y);
+            //Configura a posição do Corpo
+            pCorpo->setPosition(tamanho.x, tamanho.y);
 
-        //Configura a escala do Corpo
-        pCorpo->setScale(escala, escala);
+            //Configura a escala do Corpo
+            pCorpo->setScale(escala, escala);
+        }
+        else
+            cout << "Erro em ElementosGraficos::Forma::Forma() com pCorpo: " << ERRO_SET_NULLPTR << endl;
     }
 
     Forma::~Forma()

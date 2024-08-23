@@ -23,9 +23,9 @@ namespace ElementosGraficos
             static Gerenciadores::GerenciadorGrafico* pGerenciadorGrafico;
 
         public:
-            Forma(const char* caminhoText = "", 
-                  Coordenadas::Vetor2f posicao = Coordenadas::Vetor2f(0.f, 0.f), 
+            Forma(Coordenadas::Vetor2f posicao = Coordenadas::Vetor2f(0.f, 0.f), 
                   Coordenadas::Vetor2f tamanho = Coordenadas::Vetor2f(TAM_PADRAO, TAM_PADRAO), 
+                  const char* caminhoText = "",
                   float escala = 1.0);
 
             //Forma();
