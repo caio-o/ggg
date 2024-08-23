@@ -15,6 +15,7 @@
     #define ERRO_SET_NULLPTR "Não é possível configurar ponteiro NULL."
     #define ERRO_NULLPTR_LISTA "Elemento NULL encontrado na lista!"
     #define ERRO_RETURN_NULLPTR "Ponteiro nulo retornado."
+    #define ERRO_NULLPTR "Ponteiro nulo."
 
     void enterFechar ();
 
