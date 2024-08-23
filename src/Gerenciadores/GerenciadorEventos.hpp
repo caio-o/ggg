@@ -26,6 +26,7 @@ namespace Gerenciadores
              */
             ElementosGraficos::Forma* pForma;
             
+            
             static GerenciadorEventos* pGerenciadorEventos;
 
         private:

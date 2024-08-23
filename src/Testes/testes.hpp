@@ -60,8 +60,6 @@ void testeJanelaGerenciadorGerenciadorEventos();
 
 void testeVertexArray();
 
-void testeJogador();
-
 /*
  * AUTOR   :  Ana Julia Molinos Leite da Silva (ana-molinos)
  * FUNCAO  :  Testar o uso de um objeto da classe forma, em conjunto com os gerenciadores grafico e 
@@ -71,5 +69,6 @@ void testeJogador();
  *            movimento com relação a janela.
  */
 void testeForma();
+void testeEntidade();
 
 #endif

@@ -3,13 +3,9 @@
 
 #include "Gerenciadores/GerenciadorGrafico.hpp"
 #include "SFML/Graphics.hpp"
+#include "ElementosGraficos/Forma.hpp"
 
-/**
- *  Nao temos ainda o desacoplamento da classe sf::Shape e similares
- * Seria bom substituir RectangleShape por Shape nesta e nas outras classes,
- * visto que poderiamos usar outras formas (circulos, triangulos, etc.)
- */
-typedef sf::Shape Figura;
+using namespace ElementosGraficos;
 
 enum ID_Classe
 {
@@ -27,25 +23,22 @@ protected:
     //const ID_Classe id;
     const int id;
     static Gerenciadores::GerenciadorGrafico* pGG;
-    Figura* pFigura;
-    // ...
+    Forma *pForma;
 
 public:
-    Ente(Figura* const _pFigura = NULL);
+    Ente(Forma* _pForma = NULL);
     virtual ~Ente();
 
     virtual void executar () = 0;
-    void         desenhar ();
+    virtual void desenhar ();
     
-    Figura*      getFigura  () const  { return pFigura; }
+    Forma*       getForma   () const  { return pForma; }
     const int    getId      () const  { return id;      }
 
-    // Permite-se pFigura NULL em entes invisiveis.
-    void setFigura (Figura* _pFigura) { pFigura = _pFigura; } 
-    
-    static void setGerenciadorGrafico () { pGG = Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico(); }
+    // Permite-se pForma NULL em entes invisiveis. 
+    // TODO: MUDAR ISSO
+    void setForma (Forma* _pForma)        { pForma = _pForma; } 
+    static void setGerenciadorGrafico ()  { pGG = Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico(); }
 }; 
-//Gerenciadores::GerenciadorGrafico*  Ente::pGG        = NULL;
-//int                      Ente::contEntes  = 0;
 
 #endif

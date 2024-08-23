@@ -3,8 +3,8 @@
 
 using namespace Entidades;
 
-Personagem::Personagem(Figura* _pFigura, int _maxVida):
-    Entidade(_pFigura),
+Personagem::Personagem(Forma* _pForma, int _maxVida):
+    Entidade(_pForma),
     maxVida(_maxVida),
     vida(_maxVida),
     vivo(true)

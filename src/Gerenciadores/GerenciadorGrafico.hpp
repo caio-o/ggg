@@ -45,11 +45,11 @@ namespace Gerenciadores
             void limpar();
             const bool janelaAberta() const;
             void fecharJanela();
-            void setTamanhoJanela(const Coordenada::Vetor2f tam);
-            const Coordenada::Vetor2f getTamanhoJanela() const;
-            const Coordenada::Vetor2f getPosicaoInicial() const;
+            void setTamanhoJanela(const Coordenadas::Vetor2f tam);
+            const Coordenadas::Vetor2f getTamanhoJanela() const;
+            const Coordenadas::Vetor2f getPosicaoInicial() const;
             void centralizarCamera();
-            void setTamanhoCamera(Coordenada::Vetor2f tam);
+            void setTamanhoCamera(Coordenadas::Vetor2f tam);
             sf::View getCamera() const;
             sf::Texture* carregarTextura(const char* caminho);
             sf::Font* carregarFonte(const char* caminho);

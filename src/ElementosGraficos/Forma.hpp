@@ -24,15 +24,15 @@ namespace ElementosGraficos
 
         public:
             Forma(const char* caminhoText = "", 
-                  Coordenada::Vetor2f posicao = Coordenada::Vetor2f(0.f, 0.f), 
-                  Coordenada::Vetor2f tamanho = Coordenada::Vetor2f(TAM_PADRAO, TAM_PADRAO), 
+                  Coordenadas::Vetor2f posicao = Coordenadas::Vetor2f(0.f, 0.f), 
+                  Coordenadas::Vetor2f tamanho = Coordenadas::Vetor2f(TAM_PADRAO, TAM_PADRAO), 
                   float escala = 1.0);
 
-            Forma();
+            //Forma();
             ~Forma();
             void setTextura(const char* caminho);
             sf::RectangleShape* getpCorpo() const;
-            void atualizar(Coordenada::Vetor2f posicao);
+            void atualizar(Coordenadas::Vetor2f posicao);
             void renderizar();
     };
 } // namespace ElementosGraficos

@@ -142,7 +142,7 @@ namespace Gerenciadores
              * ou seja, ele espera receber um objeto do tipo drawable, e não um ptr...
              */
     }
-    
+
     //Renderiza texto na janela
     void GerenciadorGrafico::renderizar(sf::Text* texto)
     {
@@ -154,7 +154,10 @@ namespace Gerenciadores
     void GerenciadorGrafico::mostrar()
     {
         if(pJanela)
+        {
             pJanela->display();
+            //cout << "a b c " << endl;
+        }
     }
     
     //Limpa a janela
@@ -186,7 +189,7 @@ namespace Gerenciadores
      * altura passadas por parâmetro por meio da variavel do tipo 
      * Coordenada
      */
-    void GerenciadorGrafico::setTamanhoJanela(const Coordenada::Vetor2f tam)
+    void GerenciadorGrafico::setTamanhoJanela(const Coordenadas::Vetor2f tam)
     {
         sf::Vector2u dimensao(tam.x, tam.y);
 
@@ -198,12 +201,12 @@ namespace Gerenciadores
     }
     
     //Retorna o tamanho da janela por meio de variavel do tipo Coordenada
-    const Coordenada::Vetor2f GerenciadorGrafico::getTamanhoJanela() const
+    const Coordenadas::Vetor2f GerenciadorGrafico::getTamanhoJanela() const
     {
         if(pJanela)
         {
             sf::Vector2u dimensao(pJanela->getSize());
-            return Coordenada::Vetor2f((float)dimensao.x, (float)dimensao.y);
+            return Coordenadas::Vetor2f((float)dimensao.x, (float)dimensao.y);
         }
 
         cout << "Erro de gerenciamento gráfico: janela de visualizacao nao alocada!" << endl;
@@ -215,13 +218,13 @@ namespace Gerenciadores
      * Obs.: analisar se é a posição mais conveniente para nosso interesse durante
      * o desenvolvimento.
      * */
-    const Coordenada::Vetor2f GerenciadorGrafico::getPosicaoInicial() const
+    const Coordenadas::Vetor2f GerenciadorGrafico::getPosicaoInicial() const
     {
         if(pJanela)
         {
-            Coordenada::Vetor2f posicao((float)pJanela->getPosition().x,(float)pJanela->getPosition().y);
+            Coordenadas::Vetor2f posicao((float)pJanela->getPosition().x,(float)pJanela->getPosition().y);
             
-            posicao -= Coordenada::Vetor2f((float)pJanela->getSize().x/2.0, (float)pJanela->getSize().y/2.0);
+            posicao -= Coordenadas::Vetor2f((float)pJanela->getSize().x/2.0, (float)pJanela->getSize().y/2.0);
 
             return posicao;
         }
@@ -243,7 +246,7 @@ namespace Gerenciadores
     /* Atualiza o tamanho da camera conforme dimensões passadas por meio da variavel
      * do tipo Coordenada<float>
      */
-    void GerenciadorGrafico::setTamanhoCamera(Coordenada::Vetor2f tam)
+    void GerenciadorGrafico::setTamanhoCamera(Coordenadas::Vetor2f tam)
     {
         camera.setSize(tam.x, tam.y);
     }

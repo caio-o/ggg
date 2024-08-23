@@ -74,6 +74,7 @@ namespace Gerenciadores
      */
     void GerenciadorEventos::verificaTeclaPressionada()
     {
+        
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
             pForma->getpCorpo()->move(sf::Vector2f(0.1f, 0.f));
         else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
@@ -92,7 +93,7 @@ namespace Gerenciadores
      */
     void GerenciadorEventos::executar()
     {
-        sf::Event GerenciadorEventos;
+        sf::Event Evento;
 
         /*
          * sf::Window::pollEvent(Event& event)
@@ -107,14 +108,13 @@ namespace Gerenciadores
          */
 
         //Enquanto a janela "capturar" um GerenciadorEventos... (i.e., clique ou movimento do mouse)
-        while(pGerenciadorGrafico->getJanela()->pollEvent(GerenciadorEventos))
+        while(pGerenciadorGrafico->getJanela()->pollEvent(Evento))
         {
             //Se esse GerenciadorEventos for do tipo "fechar"...
-            if(GerenciadorEventos.type == sf::Event::Closed)
+            if(Evento.type == sf::Event::Closed)
                 pGerenciadorGrafico->fecharJanela();
             /*else if (GerenciadorEventos.type == sf::Event::KeyPressed)
                 verificaTeclaPressionada();*/
-            
         }
 
         verificaTeclaPressionada();

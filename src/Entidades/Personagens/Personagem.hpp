@@ -13,14 +13,14 @@ protected:
     bool vivo;
 
 public:
-    Personagem(Figura* _pFigura = NULL, int maxVida = 10);
+    Personagem(Forma* _pForma, int maxVida = 10);
     virtual ~Personagem();
 
     virtual void executar () = 0;
 
     void        setMaxVida (int _max)   { maxVida = _max;   }
     void        setVida    (int _vida)  { vida = _vida;     }
-    void        checarVida ()           { vivo = vida > 0;  }
+    void        checarVida ()           { vivo = (vida>0);  }
     
     const int   getMaxVida () const     { return maxVida;   }
     const int   getVida    () const     { return vida;      }

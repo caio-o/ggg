@@ -15,7 +15,7 @@ namespace ElementosGraficos
 {
     Gerenciadores::GerenciadorGrafico* Forma::pGerenciadorGrafico(Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico());
     
-    Forma::Forma(const char* caminhoText, Coordenada::Vetor2f posicao, Coordenada::Vetor2f tamanho, float escala):
+    Forma::Forma(const char* caminhoText, Coordenadas::Vetor2f posicao, Coordenadas::Vetor2f tamanho, float escala):
     pTextura(NULL),
     pCorpo(NULL)
     {
@@ -71,7 +71,7 @@ namespace ElementosGraficos
     }
 
     //Configura a nova posição da forma, possibilitando movimento.
-    void Forma::atualizar(Coordenada::Vetor2f posicao)
+    void Forma::atualizar(Coordenadas::Vetor2f posicao)
     {
         if(pCorpo)
             pCorpo->setPosition(posicao.x, posicao.y);

@@ -10,26 +10,17 @@ namespace Entidades
 {
     class Jogador : public Personagem   
     {
+    private:
+        float agilidade;
+
     public:
-        Jogador(Figura* _pFigura = (sf::Shape*) (new sf::CircleShape(50)), int _maxVida = 10):
-            Personagem(_pFigura, _maxVida)
-        {  }
+        Jogador(Forma* _pForma, int _maxVida = 10);
 
-        ~Jogador()
-        {  }
+        ~Jogador();
 
-        void pular()
-        {
-            if(getY() >= Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico()->getJanela()->getSize().y + 50.0f)
-            {
-                setVelY( getVel().y - 20.0f );
-            }
-        }
+        void pular();
 
-        void executar()
-        {
-            pular();
-        }
+        void executar();
     };
 }
 

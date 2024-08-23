@@ -8,28 +8,32 @@
 
 #define GRAVIDADE 1.0f
 
+using namespace Coordenadas;
+
 namespace Entidades
 {
     // << CLASSE ABSTRATA >>
     class Entidade : public Ente
     {
     protected:
-        Coordenada::Vetor2f pos;
-        //Coordenada::Vetor2f tam;
-        Coordenada::Vetor2f vel;
-        Coordenada::Vetor2f modGravidade;
+        Vetor2f pos;
+        //Coordenadas::Vetor2f tam;
+        Vetor2f vel;
+        Vetor2f modGravidade;
         //Coordenada<float> modGravidade;
 
     public:
-        Entidade(Figura* const _pFigura = NULL);
+        Entidade(Forma* _pForma = NULL);
         virtual ~Entidade();
 
+        // Diferencia-se do Ente::desenhar porque precisa atualizar a posicao da forma.
+        void           desenhar (); 
         virtual void   executar () = 0;
-        virtual void   moverse  (const float deltaT);
+        virtual void   moverse  (const float n_segundos);
         //virtual void   acelerarse (const float acel, const float deltaT) { vel += acel*deltaT; };
 
-        const Coordenada::Vetor2f  getVel   () const   { return vel;   }
-        const Coordenada::Vetor2f  getPos   () const   { return pos;   }
+        const Vetor2f  getVel   () const   { return vel;   }
+        const Vetor2f  getPos   () const   { return pos;   }
         const float    getX     () const   { return pos.x; }
         const float    getY     () const   { return pos.y; }
 

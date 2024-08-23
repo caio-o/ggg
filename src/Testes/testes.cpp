@@ -22,9 +22,10 @@
 
 using namespace std;
 using namespace Listas;
+using namespace ElementosGraficos;
 
 //Obs.: arrumar caminho da textura desejada  (p/ mim só funcinou assim, preciso arrumar)
-#define CAMINHO_TEXTURA "/home/ana/Documentos/BSI/P2/tec_prog/trabalho/jogo/ggg/img/emoji_com_faca.png"
+#define CAMINHO_TEXTURA "../img/emoji_com_faca.png"
 
 void esperaEnter()
 {
@@ -119,7 +120,7 @@ void testeLista()
 
 void testeCoordenada()
 {
-    Coordenada::Vetor2f coord1, coord2, coord3;
+    Coordenadas::Vetor2f coord1, coord2, coord3;
 
     coord1.x = 1.0;
     coord1.y = 1.0;
@@ -258,32 +259,6 @@ void testeVertexArray()
     }
 }
 
-void testeJogador()
-{
-     sf::Time tempo;
-
-     float t0 = tempo.asMilliseconds();
-     float t1 = t0;
-
-     Gerenciadores::GerenciadorGrafico* gg = Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico();
-
-     Jogador jog (new sf::CircleShape(50), 10);
-
-     while (gg->janelaAberta())
-     {
-          gg->limpar();
-
-          t0 = t1;
-          t1 = tempo.asMilliseconds();
-
-          jog.executar();
-          jog.moverse(t1-t0);
-          jog.desenhar();
-          
-          gg->mostrar();
-     }
-}
-
 void testeForma()
 {
      //Instancia o gerenciador GerenciadorGrafico
@@ -298,8 +273,8 @@ void testeForma()
 
      //Instancia uma forma
      ElementosGraficos::Forma* pForma = new ElementosGraficos::Forma(CAMINHO_TEXTURA,//obs.: arrumar caminho
-                                                                     Coordenada::Vetor2f(10.0,10.0), //posição
-                                                                     Coordenada::Vetor2f(50.7,48.1), //tamanho
+                                                                     Coordenadas::Vetor2f(10.0,10.0), //posição
+                                                                     Coordenadas::Vetor2f(50.7,48.1), //tamanho
                                                                      3.0); //escala
 
      /*//Associa o quadrado ao ge
@@ -319,6 +294,49 @@ void testeForma()
           gg->limpar();
           //gg->renderizar(&ret);
           pForma->renderizar();
+          gg->mostrar();
+     }
+}
+
+void testeEntidade()
+{
+     Gerenciadores::GerenciadorGrafico* gg = Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico();
+     Gerenciadores::GerenciadorEventos* ge = Gerenciadores::GerenciadorEventos::getGerenciadorEventos();
+
+     Forma* pF1 = new Forma(CAMINHO_TEXTURA,           Vetor2f(10.0,10.0), Vetor2f( 50.7,  48.1), 3.0); 
+     Forma* pF2 = new Forma("../img/emoji_viking.png", Vetor2f(10.0,10.0), Vetor2f(150.7, 100.1), 3.0); 
+
+     sf::Clock relogio;
+     sf::Time t0 = relogio.getElapsedTime();
+     sf::Time t1 = t0;
+
+     Jogador jog(pF1);
+     jog.setGerenciadorGrafico();
+     ge->setForma(pF2);
+
+
+
+     while (gg->janelaAberta())
+     {
+          /* 
+           * Substitui o loop mais interno do teste anterior, assim permite realizar o teste de maneira
+           * completamente desacoplada da biblioteca gráfica.
+           */
+          t0 = t1;
+          t1 = relogio.getElapsedTime();
+
+          ge->executar();
+
+          gg->limpar();
+
+          //pF1->renderizar();
+          jog.desenhar();
+          jog.executar();
+          jog.moverse(t1.asSeconds() - t0.asSeconds());
+
+          pF2->atualizar(Vetor2f(0.0f, 0.0f));
+          pF2->renderizar();
+
           gg->mostrar();
      }
 }

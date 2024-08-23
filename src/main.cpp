@@ -21,7 +21,8 @@ int main()
 
     //testeVertexArray();
 
-    testeForma();
+    //testeForma();
 
+    testeEntidade();
     return 0;
 }

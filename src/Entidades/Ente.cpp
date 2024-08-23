@@ -2,18 +2,17 @@
 #include "Gerenciadores/GerenciadorGrafico.hpp"
 
 Gerenciadores::GerenciadorGrafico*  Ente::pGG        = NULL;
-int                      Ente::contEntes  = 0;
+int                                 Ente::contEntes  = 0;
 
-Ente::Ente(Figura* const _pFigura):
-    //idObj   (++contEntes),
+Ente::Ente(Forma* _pForma):
     id      (++contEntes),
-    pFigura (_pFigura)
+    pForma  (_pForma)
 { }
 
 Ente::~Ente()
-{ delete pFigura; }
+{ delete pForma; }
 
 void Ente::desenhar()
 {
-    pGG->renderizar(pFigura);
+    pForma->renderizar();
 }

@@ -13,7 +13,7 @@
 #include <iostream>
 using namespace std;
 
-namespace Coordenada
+namespace Coordenadas
 {
     template <typename TIPO>
     class Coordenada
