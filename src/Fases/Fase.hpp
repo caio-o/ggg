@@ -7,7 +7,8 @@ class Fase : public Ente
 {
 private:
     ListaEntidades entidades;
-    virtual void criarObstaculos() = 0;
+    //ERRO DE COMPILAÇÃO: FALTA A IMPLEMENTAÇÃO DESSA FUNÇÃO
+    //virtual void criarObstaculos() = 0;
 
 public:
     Fase();

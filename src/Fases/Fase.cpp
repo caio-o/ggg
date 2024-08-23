@@ -4,7 +4,8 @@ Fase::Fase():
     Ente(new Forma("../img/quadrado_vermelho.png")),
     entidades()
 {
-    criarObstaculos();
+    //ERRO DE COMPILAÇÃO
+    //criarObstaculos();
 }
 
 Fase::~Fase()

@@ -34,7 +34,8 @@ namespace Listas
         void incluir(Entidade* pE);
     };
 
-    ListaEntidades::ListaEntidades():
+    //ERRO DE COMPILAÇÃO: DUPLA DEFINIÇÃO DAS FUNÇÕES
+    /*ListaEntidades::ListaEntidades():
         LE(),
         atual(NULL)
     {
@@ -101,7 +102,7 @@ namespace Listas
                 enterFechar(); 
             }
         }
-    }
+    }*/
 }
 
 #endif
