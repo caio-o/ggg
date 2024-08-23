@@ -6,6 +6,8 @@
 #include "Entidades/Ente.hpp"
 #include "Coordenada.hpp"
 
+#include "ElementosGraficos/Forma.hpp"
+
 #define GRAVIDADE 1.0f
 
 using namespace Coordenadas;
@@ -17,13 +19,15 @@ namespace Entidades
     {
     protected:
         Vetor2f pos;
-        //Coordenadas::Vetor2f tam;
+        Coordenadas::Vetor2f tam;
         Vetor2f vel;
         Vetor2f modGravidade;
         //Coordenada<float> modGravidade;
 
+        ElementosGraficos::Forma forma;
+
     public:
-        Entidade(Forma* _pForma = NULL);
+        Entidade();
         virtual ~Entidade();
 
         // Diferencia-se do Ente::desenhar porque precisa atualizar a posicao da forma.

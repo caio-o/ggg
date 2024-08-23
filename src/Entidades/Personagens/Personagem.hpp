@@ -13,10 +13,14 @@ protected:
     bool vivo;
 
 public:
-    Personagem(Forma* _pForma, int maxVida = 10);
+    Personagem(/*Forma* _pForma,*/ int maxVida = 10);
     virtual ~Personagem();
 
+    //ADIÇÃO ana-molinos
+    virtual void salvar() = 0;
     virtual void executar () = 0;
+    virtual void mover() = 0;
+    virtual void atacar() = 0;
 
     void        setMaxVida (int _max)   { maxVida = _max;   }
     void        setVida    (int _vida)  { vida = _vida;     }

@@ -23,21 +23,21 @@ protected:
     //const ID_Classe id;
     const int id;
     static Gerenciadores::GerenciadorGrafico* pGG;
-    Forma *pForma;
+    //Forma *pForma; não precisa de forma em ente, só em entidade
 
 public:
-    Ente(Forma* _pForma = NULL);
+    Ente(/*Forma* _pForma = NULL*/);
     virtual ~Ente();
 
     virtual void executar () = 0;
     virtual void desenhar ();
     
-    Forma*       getForma   () const  { return pForma; }
+    //Forma*       getForma   () const  { return pForma; }
     const int    getId      () const  { return id;      }
 
     // Permite-se pForma NULL em entes invisiveis. 
     // TODO: MUDAR ISSO
-    void setForma (Forma* _pForma)        { pForma = _pForma; } 
+    //void setForma (Forma* _pForma)        { pForma = _pForma; } 
     static void setGerenciadorGrafico ()  { pGG = Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico(); }
 }; 
 
