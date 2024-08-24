@@ -304,75 +304,39 @@ void testeForma()
 
 void testeEntidade()
 {
-     cout << "A" << endl;
-
      Gerenciadores::GerenciadorGrafico* gg = Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico();
      Gerenciadores::GerenciadorEventos* ge = Gerenciadores::GerenciadorEventos::getGerenciadorEventos();
+     ge->setForma(NULL);
 
      Ente::setGerenciadorGrafico();
      Forma::setGerenciadorGrafico();
      
-     
-     Forma* pF1 = new Forma(CAMINHO_TEXTURA,           Vetor2f(10.0,10.0), Vetor2f( 50.7,  48.1), 3.0);
-     Forma* pF2 = new Forma("../img/emoji_viking.png", Vetor2f(10.0,10.0), Vetor2f(150.7, 100.1), 3.0);
-     Forma f3("../img/emoji_viking.png", Vetor2f(10.0,10.0), Vetor2f(150.7, 100.1), 3.0);
-     if (!pF1 || !pF2) {
-          cout << ERRO_ALOCACAO;
-          enterFechar();
-     } 
-
-     cout << "B" << endl;
-
      sf::Clock relogio;
      sf::Time t0 = relogio.getElapsedTime();
      sf::Time t1 = t0;
 
      Jogador jog;
-     /*jog.setForma(Forma(
-          Vetor2f(10.0,10.0), 
-          Vetor2f( 50.7,  48.1), 
-          CAMINHO_TEXTURA, 
-          3.0));*/
+     Forma f(Vetor2f(20.f, 20.f), Vetor2f(50.f, 50.f), "../img/emoji_sorrindo.png", 0.5f);
+     f.setTextura("../img/emoji_viking.png");
 
      jog.setPos(10.0f, 10.0f);
-     jog.setForma(*pF2);
-     
-     ge->setForma(pF2);
+     //jog.setTextura("../img/emoji_com_faca.png", Vetor2f(50.7f, 48.9f));
 
-     cout << "C" << endl;
      while (gg->janelaAberta())
      {
-          cout << "D" << endl;
-          /* 
-           * Substitui o loop mais interno do teste anterior, assim permite realizar o teste de maneira
-           * completamente desacoplada da biblioteca gráfica.
-           */
+          gg->limpar();
+
+          // t0 = momento da ultima iteracao.
+          // t1 = momento atual.
           t0 = t1;
           t1 = relogio.getElapsedTime();
 
-          ge->executar();
-
-          gg->limpar();
-
-          //pF1->renderizar();
-          cout << "E1" << endl;
-          jog.executar();
-
-          cout << "E2" << endl;
+          // t1 - t0 = tempo decorrido entre as iteracoes, usado em moverse para atualizar a posicao da personagem.
           jog.moverse(t1.asSeconds() - t0.asSeconds());
-
-          f3.renderizar();
-          //gg->mostrar();
-
-          cout << "E3" << endl;
+          jog.executar();
           jog.desenhar();
-
-          cout << "F" << endl;
-
-          pF2->atualizar(Vetor2f(10.0f, 10.0f));
-          pF2->renderizar();
-
+          f.renderizar();
+          ge->executar();
           gg->mostrar();
-          cout << "G" << endl;
      }
 }

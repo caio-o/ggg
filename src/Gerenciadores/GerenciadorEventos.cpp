@@ -69,7 +69,7 @@ namespace Gerenciadores
         else
         {
             cout << "Gerenciadores::GerenciadorEventos: " << ERRO_SET_NULLPTR << endl;
-            enterFechar();   
+            //enterFechar();   
         }
     }
 
@@ -97,6 +97,7 @@ namespace Gerenciadores
 
         //Obs.: método Forma::atualizar() ainda não está sendo utilizado
     }
+
 
     /*
      * Declara uma variável GerenciadorEventos e, em um loop, prenche essa variável com entradas vindas do 
@@ -128,6 +129,6 @@ namespace Gerenciadores
                 verificaTeclaPressionada();*/
         }
 
-        verificaTeclaPressionada();
+        if (pForma) verificaTeclaPressionada();
     }
 } // namespace Gerenciadores

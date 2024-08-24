@@ -20,7 +20,7 @@ namespace Entidades
     {
     protected:
         Vetor2f pos;
-        Coordenadas::Vetor2f tam;
+        //Coordenadas::Vetor2f tam;
         Vetor2f vel;
         Vetor2f modGravidade;
         //Coordenada<float> modGravidade;
@@ -29,11 +29,10 @@ namespace Entidades
 
     public:
         Entidade();
-        Entidade(Forma _forma);
         virtual ~Entidade();
 
-        void setForma  (Forma _forma)        { forma = _forma; } 
-        Forma*         getForma () const  { return (Forma*)(&forma); }
+        void setTextura  (const char *caminho, const bool resetarTamanho = false);
+        const Forma*         getForma () const  { return (Forma*)(&forma); }
         // Diferencia-se do Ente::desenhar porque precisa atualizar a posicao da forma.
         void           desenhar (); 
         virtual void   executar () = 0;
@@ -46,7 +45,7 @@ namespace Entidades
         const float    getY     () const   { return pos.y; }
 
         void  setVel   (const float _x, const float _y)  { vel.x = _x; vel.y = _y; }
-        void  setPos   (const float _x, const float _y)  { pos.x = _x; pos.y = _y; }
+        void  setPos   (const float _x, const float _y)  { pos.x = _x; pos.y = _y; forma.atualizar(pos); }
         void  setX     (const float _x)                  { pos.x = _x;             }
         void  setY     (const float _y)                  { pos.y = _y;             }
         void  setVelX  (const float _x)                  { vel.x = _x;             }

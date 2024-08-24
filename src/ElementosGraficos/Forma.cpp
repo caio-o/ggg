@@ -44,37 +44,6 @@ namespace ElementosGraficos
             cout << "Erro em ElementosGraficos::Forma::Forma() com pCorpo: " << ERRO_SET_NULLPTR << endl;
     }
 
-    Forma::Forma(const char* caminhoText,
-                  Coordenadas::Vetor2f posicao, 
-                  Coordenadas::Vetor2f tamanho, 
-                  float escala):
-    pTextura(NULL),
-    pCorpo(NULL)
-    {
-        //Instancia um novo Corpo
-        pCorpo = new sf::RectangleShape(sf::Vector2f(tamanho.x, tamanho.y));
-
-        if(pCorpo)
-        {
-            if(strcmp(caminhoText, ""))
-            {
-                //Pede para o gerenciador gráfico carregar a textura
-                pTextura = pGerenciadorGrafico->carregarTextura(caminhoText);
-                
-                //Passa a textura para o Corpo
-                pCorpo->setTexture(pTextura);
-            }
-
-            //Configura a posição do Corpo
-            pCorpo->setPosition(tamanho.x, tamanho.y);
-
-            //Configura a escala do Corpo
-            pCorpo->setScale(escala, escala);
-        }
-        else
-            cout << "Erro em ElementosGraficos::Forma::Forma() com pCorpo: " << ERRO_SET_NULLPTR << endl;
-    }
-
     Forma::~Forma()
     {
         //Se houver corpo alocado, o desaloca
@@ -91,14 +60,17 @@ namespace ElementosGraficos
      * Configura uma nova textura para a forma. Se a alocação da textura pelo Gerenciador Gráfico 
      * falhar, o ponteiro para a textura não é atualizado, retornando mensagem de erro.
      */
-    void Forma::setTextura(const char* caminho)
+    void Forma::setTextura(const char* caminho, const bool resetarTamanho)
     {
         //Pede para o gerenciador gráfico carregar a textura
         sf::Texture* pAux = NULL;
         pAux = pGerenciadorGrafico->carregarTextura(caminho);
         
         if(pAux)
+        {
             pTextura = pAux;
+            pCorpo->setTexture(pTextura, resetarTamanho);
+        }
         else
             cout << "Erro em ElementosGraficos::Forma::setTextura(): textura não atualizada!" << endl;
     }
@@ -122,8 +94,6 @@ namespace ElementosGraficos
     //Renderiza a forma por meio do Gerenciador Gráfico.
     void Forma::renderizar()
     {
-        cout << "RENDERIZAR 1" << endl;
-        if(!pGerenciadorGrafico) cout << "GERENCIADOR NULO!" << endl;
         if(pCorpo)
             pGerenciadorGrafico->renderizar(pCorpo);
         else
@@ -134,5 +104,19 @@ namespace ElementosGraficos
     {
         Forma::pGerenciadorGrafico = Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico();
     }
+
+    void Forma::setEscala (float escala)
+    {
+        if(escala = 0.f) { escala = 1.f; }
+        pCorpo->setScale(escala, escala);
+    }
+
+    void Forma::setEscala (float escalaX, float escalaY)
+    {
+        if(escalaX == 0.f) { escalaX = 1.f; }
+        if(escalaY == 0.f) { escalaY = 1.f; }
+        pCorpo->setScale(escalaX, escalaY);
+    }
+
 
 } // namespace ElementosGraficos

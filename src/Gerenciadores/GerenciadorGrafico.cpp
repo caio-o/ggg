@@ -37,7 +37,12 @@ namespace Gerenciadores
         //associa a camera à janela
         if(pJanela)
             pJanela->setView(camera);
-        
+        else
+        {
+            cout << "GerenciadorGrafico::GerenciadorGrafico: " << ERRO_ALOCACAO << endl;
+            enterFechar();
+        }
+
         //garante que as coleções de textura e fontem iniciem vazias
         mapaTexturas.clear();
         mapaFontes.clear();
@@ -117,7 +122,6 @@ namespace Gerenciadores
         }
         else
         {
-            cout << "Em GerenciadorGrafico::getGerenciadorGrafico: " << ERRO_ALOCACAO << endl;
             enterFechar(); // contem exit(1)
         }
     }
@@ -135,7 +139,6 @@ namespace Gerenciadores
     //Renderiza um corpo na janela
     void GerenciadorGrafico::renderizar(sf::RectangleShape* corpo)
     {
-        cout << "GG RENDERIZAR 1" << endl;
         if(pJanela && corpo)
             pJanela->draw(*corpo);
         else
@@ -144,8 +147,6 @@ namespace Gerenciadores
              * o primeiro argumento é passado por referencia escondida,
              * ou seja, ele espera receber um objeto do tipo drawable, e não um ptr...
              */
-
-        cout << "GG RENDERIZAR 2" << endl;
     }
     void GerenciadorGrafico::renderizar(sf::Shape* corpo)
     {

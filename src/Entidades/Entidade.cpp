@@ -1,31 +1,20 @@
 #include "Entidades/Entidade.hpp"
+#include <cstring>
 
 using namespace Entidades;
 
 Entidade::Entidade():
     Ente          (/*_pForma*/),
-    tam(50.f,50.f),
+    //tam(50.f,50.f),
     pos           (10.0f, 10.0f),
     vel           (0.0f, 0.0f),
     modGravidade  (1.0f, 1.0f),
-    forma()
+    forma(pos, Vetor2f(50.7f, 48.9f),  "../img/emoji_sorrindo.png", 1.f)
 { 
     /*cout << "Entidade::Entidade:" << endl;
     cout << "    pForma = " << pForma << endl; */
 
-    setForma(Forma(pos, tam, "../img/quadrado_vermelho.png"));
-}
-
-Entidade::Entidade(Forma _forma):
-    Ente          (/*_pForma*/),
-    tam(50.f,50.f),
-    pos           (10.0f, 10.0f),
-    vel           (0.0f, 0.0f),
-    modGravidade  (1.0f, 1.0f),
-    forma(_forma)
-{ 
-    /*cout << "Entidade::Entidade:" << endl;
-    cout << "    pForma = " << pForma << endl; */
+    //setTextura("../img/quadrado_vermelho.png" /*, Vetor2f(80.f, 80.f)*/);
 }
 
 Entidade::~Entidade() 
@@ -33,14 +22,10 @@ Entidade::~Entidade()
 
 void Entidade::desenhar ()
 {
-    cout << "DESENHAR 1" << endl;
-    //cout << "Entidade::desenhar:" << endl;
     forma.atualizar(pos);
 
-    cout << "DESENHAR 2" << endl;
     forma.renderizar();
 
-    cout << "DESENHAR FIM" << endl;
     //Ente::desenhar();
 }
 
@@ -57,3 +42,10 @@ void Entidade::moverse(const float n_segundos)
     
     pos += vel * n_segundos;
 }
+
+void Entidade::setTextura  (const char* caminho, const bool resetarTamanho)        
+{ 
+    forma.setTextura(caminho, resetarTamanho);
+    /*forma.getpCorpo()->setSize(sf::Vector2f(tamanho.x, tamanho.y));*/
+    //forma.getpCorpo()->setScale(1.f, 1.f);
+} 
