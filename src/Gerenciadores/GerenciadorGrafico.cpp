@@ -11,8 +11,8 @@
 #include "Erros.hpp"
 
 //DIMENSÕES PROVISÓRIAS
-#define ALTURA 500.0
-#define LARGURA 500.0
+#define ALTURA 720.0
+#define LARGURA 1290.0
 
 namespace Gerenciadores
 {

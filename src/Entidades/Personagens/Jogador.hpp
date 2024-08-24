@@ -13,7 +13,9 @@ namespace Entidades
     private:
         //static Jogador *jogador1, *jogador2; 
         bool ehJogador1;
+        bool noChao;
         float agilidade;
+        float velPulo;
 
     public:
         Jogador(int _maxVida = 10);
@@ -21,6 +23,7 @@ namespace Entidades
         ~Jogador();
 
         void pular();
+        const bool getChao() const { return (bool)(getY() > 500.f); }
 
         void salvar();
         void atacar();

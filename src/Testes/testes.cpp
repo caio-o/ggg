@@ -331,10 +331,12 @@ void testeEntidade()
           t0 = t1;
           t1 = relogio.getElapsedTime();
 
-          // t1 - t0 = tempo decorrido entre as iteracoes, usado em moverse para atualizar a posicao da personagem.
-          jog.moverse(t1.asSeconds() - t0.asSeconds());
           jog.executar();
+          // t1 - t0 = tempo decorrido entre as iteracoes, usado em moverse para atualizar a posicao da personagem.
+          jog.setVelY(jog.getVel().y + 1000.f * (t1.asSeconds() - t0.asSeconds()));
+          jog.moverse(t1.asSeconds() - t0.asSeconds());
           jog.desenhar();
+
           f.renderizar();
           ge->executar();
           gg->mostrar();

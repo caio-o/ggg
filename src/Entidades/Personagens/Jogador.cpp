@@ -5,9 +5,13 @@ using namespace ElementosGraficos;
 
 Jogador::Jogador(int _maxVida):
     Personagem (_maxVida),
-    agilidade  (200.0f)
+    agilidade  (200.0f),
+    noChao(false),
+    velPulo(-700.f)
 { 
     setTextura("../img/circulo_azul.png", true);
+    getForma()->getpCorpo()->setSize(sf::Vector2(30.f, 30.f));
+    //getForma()->setEscala(0.5f);
 }
 
 Jogador::~Jogador()
@@ -15,7 +19,10 @@ Jogador::~Jogador()
 
 void Jogador::pular() 
 {
-    
+    if(noChao) 
+    {
+        vel.y += velPulo;
+    }
 }
 
 void Jogador::salvar()
@@ -37,11 +44,14 @@ void Jogador::mover()
 
 void Jogador::executar() 
 { 
-    if       (Keyboard::isKeyPressed (Keyboard::Up)   )    { setVelY(-agilidade); }
+    /*if       (Keyboard::isKeyPressed (Keyboard::Up)   )    { setVelY(-agilidade); }
     else if  (Keyboard::isKeyPressed (Keyboard::Down) )    { setVelY(+agilidade); }
-    else                                                   { setVelY(      0.0f); }
+    else                                                   { setVelY(      0.0f); }*/
 
     if       (Keyboard::isKeyPressed (Keyboard::Right))    { setVelX( agilidade); }
     else if  (Keyboard::isKeyPressed (Keyboard::Left) )    { setVelX(-agilidade); }
     else                                                   { setVelX(      0.0f); }
+
+    noChao = getChao();
+    pular();
 }

@@ -32,7 +32,7 @@ namespace Entidades
         virtual ~Entidade();
 
         void setTextura  (const char *caminho, const bool resetarTamanho = false);
-        const Forma*         getForma () const  { return (Forma*)(&forma); }
+        Forma*         getForma () const  { return (Forma*)(&forma); }
         // Diferencia-se do Ente::desenhar porque precisa atualizar a posicao da forma.
         void           desenhar (); 
         virtual void   executar () = 0;
