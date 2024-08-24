@@ -8,6 +8,7 @@
 #include <string.h>
 
 #include "Gerenciadores/GerenciadorGrafico.hpp"
+#include "Erros.hpp"
 
 //DIMENSÕES PROVISÓRIAS
 #define ALTURA 500.0
@@ -110,7 +111,15 @@ namespace Gerenciadores
         if(pGerenciadorGrafico == NULL)
             pGerenciadorGrafico = new Gerenciadores::GerenciadorGrafico();
             
-        return pGerenciadorGrafico;
+        if (pGerenciadorGrafico)
+        {
+            return pGerenciadorGrafico;
+        }
+        else
+        {
+            cout << "Em GerenciadorGrafico::getGerenciadorGrafico: " << ERRO_ALOCACAO << endl;
+            enterFechar(); // contem exit(1)
+        }
     }
     
     //Retorna um ponteiro para a janela do gerenciador gráfico
@@ -126,12 +135,17 @@ namespace Gerenciadores
     //Renderiza um corpo na janela
     void GerenciadorGrafico::renderizar(sf::RectangleShape* corpo)
     {
+        cout << "GG RENDERIZAR 1" << endl;
         if(pJanela && corpo)
             pJanela->draw(*corpo);
+        else
+            cout << "RectangleShape inexistente." << endl;
             /* P.s: draw(const sf::Drawable &drawable, const sf...)
              * o primeiro argumento é passado por referencia escondida,
              * ou seja, ele espera receber um objeto do tipo drawable, e não um ptr...
              */
+
+        cout << "GG RENDERIZAR 2" << endl;
     }
     void GerenciadorGrafico::renderizar(sf::Shape* corpo)
     {

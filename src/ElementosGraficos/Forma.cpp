@@ -122,10 +122,17 @@ namespace ElementosGraficos
     //Renderiza a forma por meio do Gerenciador Gráfico.
     void Forma::renderizar()
     {
+        cout << "RENDERIZAR 1" << endl;
+        if(!pGerenciadorGrafico) cout << "GERENCIADOR NULO!" << endl;
         if(pCorpo)
             pGerenciadorGrafico->renderizar(pCorpo);
         else
             cout << "Erro em ElementosGraficos::Forma::renderizar(): " << ERRO_SET_NULLPTR << endl;
+    }
+
+    void Forma::setGerenciadorGrafico()
+    {
+        Forma::pGerenciadorGrafico = Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico();
     }
 
 } // namespace ElementosGraficos

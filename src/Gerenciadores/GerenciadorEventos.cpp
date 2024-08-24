@@ -43,9 +43,17 @@ namespace Gerenciadores
     GerenciadorEventos* GerenciadorEventos::getGerenciadorEventos()
     {
         if(pGerenciadorEventos == NULL)
-            pGerenciadorEventos = new GerenciadorEventos();
-
-        return pGerenciadorEventos;
+            pGerenciadorEventos = new Gerenciadores::GerenciadorEventos();
+            
+        if (pGerenciadorEventos)
+        {
+            return pGerenciadorEventos;
+        }
+        else
+        {
+            cout << "Em GerenciadorEventos::getGerenciadorEventos: " << ERRO_ALOCACAO << endl;
+            return NULL;
+        }
     }
 
     /*
@@ -59,7 +67,10 @@ namespace Gerenciadores
         if(forma)
             pForma = forma;
         else
-            cout << "Gerenciadores::GerenciadorEventos:" << ERRO_SET_NULLPTR << endl;
+        {
+            cout << "Gerenciadores::GerenciadorEventos: " << ERRO_SET_NULLPTR << endl;
+            enterFechar();   
+        }
     }
 
     /*Função não implementada uma vez que ainda não se faz conveniente seu uso.*/
@@ -104,16 +115,16 @@ namespace Gerenciadores
          * resize, show/hide, control mouse cursor, etc. It also provides event handling through 
          * its pollEvent() and waitEvent() functions.
          * 
-         * Em resumo: a função captura GerenciadorEventoss da janela.
+         * Em resumo: a função captura eventos da janela.
          */
 
-        //Enquanto a janela "capturar" um GerenciadorEventos... (i.e., clique ou movimento do mouse)
+        //Enquanto a janela "capturar" um evento... (i.e., clique ou movimento do mouse)
         while(pGerenciadorGrafico->getJanela()->pollEvent(Evento))
         {
-            //Se esse GerenciadorEventos for do tipo "fechar"...
+            //Se esse evento for do tipo "fechar"...
             if(Evento.type == sf::Event::Closed)
                 pGerenciadorGrafico->fecharJanela();
-            /*else if (GerenciadorEventos.type == sf::Event::KeyPressed)
+            /*else if (Evento.type == sf::Event::KeyPressed)
                 verificaTeclaPressionada();*/
         }
 

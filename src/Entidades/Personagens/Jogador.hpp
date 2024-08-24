@@ -1,8 +1,6 @@
 #ifndef _JOGADOR_HPP
 #define _JOGADOR_HPP
 
-#define TEXTURA_JOGADOR "../../img/quadrado_vermelho.png"
-
 #include "Personagem.hpp"
 #include "Ente.hpp"
 #include <SFML/Graphics.hpp>

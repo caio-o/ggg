@@ -16,6 +16,7 @@
     #define ERRO_NULLPTR_LISTA "Elemento NULL encontrado na lista!"
     #define ERRO_RETURN_NULLPTR "Ponteiro nulo retornado."
     #define ERRO_NULLPTR "Ponteiro nulo."
+    #define ERRO_ALOCACAO "Nao foi possivel alocar objeto."
 
     void enterFechar ();
 

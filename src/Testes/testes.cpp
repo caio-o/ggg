@@ -19,6 +19,8 @@
 
 #include "Entidades/Entidade.hpp"
 #include "Entidades/Personagens/Jogador.hpp"
+#include "Ente.hpp"
+
 
 using namespace std;
 using namespace Listas;
@@ -296,29 +298,51 @@ void testeForma()
           pForma->renderizar();
           gg->mostrar();
      }
+
+     delete pForma;
 }
 
 void testeEntidade()
 {
+     cout << "A" << endl;
+
      Gerenciadores::GerenciadorGrafico* gg = Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico();
      Gerenciadores::GerenciadorEventos* ge = Gerenciadores::GerenciadorEventos::getGerenciadorEventos();
 
+     Ente::setGerenciadorGrafico();
+     Forma::setGerenciadorGrafico();
+     
+     
      Forma* pF1 = new Forma(CAMINHO_TEXTURA,           Vetor2f(10.0,10.0), Vetor2f( 50.7,  48.1), 3.0);
      Forma* pF2 = new Forma("../img/emoji_viking.png", Vetor2f(10.0,10.0), Vetor2f(150.7, 100.1), 3.0);
+     Forma f3("../img/emoji_viking.png", Vetor2f(10.0,10.0), Vetor2f(150.7, 100.1), 3.0);
+     if (!pF1 || !pF2) {
+          cout << ERRO_ALOCACAO;
+          enterFechar();
+     } 
+
+     cout << "B" << endl;
 
      sf::Clock relogio;
      sf::Time t0 = relogio.getElapsedTime();
      sf::Time t1 = t0;
 
      Jogador jog;
-     jog.setForma(Forma(CAMINHO_TEXTURA, Vetor2f(10.0,10.0), Vetor2f( 50.7,  48.1), 3.0));
-     jog.setGerenciadorGrafico();
+     /*jog.setForma(Forma(
+          Vetor2f(10.0,10.0), 
+          Vetor2f( 50.7,  48.1), 
+          CAMINHO_TEXTURA, 
+          3.0));*/
+
+     jog.setPos(10.0f, 10.0f);
+     jog.setForma(*pF2);
+     
      ge->setForma(pF2);
 
-
-
+     cout << "C" << endl;
      while (gg->janelaAberta())
      {
+          cout << "D" << endl;
           /* 
            * Substitui o loop mais interno do teste anterior, assim permite realizar o teste de maneira
            * completamente desacoplada da biblioteca gráfica.
@@ -331,13 +355,24 @@ void testeEntidade()
           gg->limpar();
 
           //pF1->renderizar();
+          cout << "E1" << endl;
           jog.executar();
+
+          cout << "E2" << endl;
           jog.moverse(t1.asSeconds() - t0.asSeconds());
+
+          f3.renderizar();
+          //gg->mostrar();
+
+          cout << "E3" << endl;
           jog.desenhar();
 
-          pF2->atualizar(Vetor2f(0.0f, 0.0f));
+          cout << "F" << endl;
+
+          pF2->atualizar(Vetor2f(10.0f, 10.0f));
           pF2->renderizar();
 
           gg->mostrar();
+          cout << "G" << endl;
      }
 }

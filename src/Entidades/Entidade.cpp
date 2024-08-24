@@ -8,10 +8,12 @@ Entidade::Entidade():
     pos           (10.0f, 10.0f),
     vel           (0.0f, 0.0f),
     modGravidade  (1.0f, 1.0f),
-    forma(pos, tam, "../img/quadrado_bermelho.png")
+    forma()
 { 
     /*cout << "Entidade::Entidade:" << endl;
     cout << "    pForma = " << pForma << endl; */
+
+    setForma(Forma(pos, tam, "../img/quadrado_vermelho.png"));
 }
 
 Entidade::Entidade(Forma _forma):
@@ -31,9 +33,14 @@ Entidade::~Entidade()
 
 void Entidade::desenhar ()
 {
+    cout << "DESENHAR 1" << endl;
     //cout << "Entidade::desenhar:" << endl;
     forma.atualizar(pos);
+
+    cout << "DESENHAR 2" << endl;
     forma.renderizar();
+
+    cout << "DESENHAR FIM" << endl;
     //Ente::desenhar();
 }
 

@@ -28,12 +28,14 @@ namespace ElementosGraficos
                   const char* caminhoText = "",
                   float escala = 1.0);
 
-            Forma(const char* caminhoText = "",
+            Forma(const char* caminhoText,
                   Coordenadas::Vetor2f posicao = Coordenadas::Vetor2f(0.f, 0.f), 
                   Coordenadas::Vetor2f tamanho = Coordenadas::Vetor2f(TAM_PADRAO, TAM_PADRAO), 
                   float escala = 1.0);
             //Forma();
             ~Forma();
+            static void setGerenciadorGrafico();
+            
             void setTextura(const char* caminho);
             sf::RectangleShape* getpCorpo() const;
             void atualizar(Coordenadas::Vetor2f posicao);
