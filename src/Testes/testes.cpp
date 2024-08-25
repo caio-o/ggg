@@ -11,6 +11,7 @@
 #include "../Listas/Lista.hpp"
 #include "testes.hpp"
 #include "Coordenada.hpp"
+#include "Gerenciadores/GerenciadorColisoes.hpp"
 
 #include "Gerenciadores/GerenciadorGrafico.hpp"
 #include "Gerenciadores/GerenciadorEventos.hpp"
@@ -20,6 +21,7 @@
 #include "Entidades/Entidade.hpp"
 #include "Entidades/Personagens/Jogador.hpp"
 #include "Ente.hpp"
+#include "Entidades/Obstaculos/Plataforma.hpp"
 
 
 using namespace std;
@@ -302,10 +304,11 @@ void testeForma()
      delete pForma;
 }
 
-void testeEntidade()
+void testeColisoes()
 {
-     Gerenciadores::GerenciadorGrafico* gg = Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico();
-     Gerenciadores::GerenciadorEventos* ge = Gerenciadores::GerenciadorEventos::getGerenciadorEventos();
+     Gerenciadores::GerenciadorGrafico*  gg = Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico();
+     Gerenciadores::GerenciadorEventos*  ge = Gerenciadores::GerenciadorEventos::getGerenciadorEventos();
+     Gerenciadores::GerenciadorColisoes* gc = Gerenciadores::GerenciadorColisoes::getInstancia();
      ge->setForma(NULL);
 
      Ente::setGerenciadorGrafico();
@@ -314,12 +317,19 @@ void testeEntidade()
      sf::Clock relogio;
      sf::Time t0 = relogio.getElapsedTime();
      sf::Time t1 = t0;
+     sf::Time dT = sf::Time::Zero;
 
      Jogador jog;
-     Forma f(Vetor2f(20.f, 20.f), Vetor2f(50.f, 50.f), "../img/emoji_sorrindo.png", 0.5f);
-     f.setTextura("../img/emoji_viking.png");
+     jog.setPos(300.0f, 10.0f);
 
-     jog.setPos(10.0f, 10.0f);
+     Obstaculos::Plataforma plat(500.f, 50.f);
+     Obstaculos::Plataforma plat2(50.f, 600.f);
+     plat.setPos(150.f, 600.f); 
+     plat2.setPos(400.f, 420.f);
+
+     gc->inserirJogador    (&jog);
+     gc->inserirObstaculo  (&plat);
+     gc->inserirObstaculo  (&plat2);
      //jog.setTextura("../img/emoji_com_faca.png", Vetor2f(50.7f, 48.9f));
 
      while (gg->janelaAberta())
@@ -330,14 +340,22 @@ void testeEntidade()
           // t1 = momento atual.
           t0 = t1;
           t1 = relogio.getElapsedTime();
+          dT = t1 - t0;
 
           jog.executar();
-          // t1 - t0 = tempo decorrido entre as iteracoes, usado em moverse para atualizar a posicao da personagem.
-          jog.setVelY(jog.getVel().y + 1000.f * (t1.asSeconds() - t0.asSeconds()));
-          jog.moverse(t1.asSeconds() - t0.asSeconds());
+          jog.setVelY(jog.getVel().y + 1000.f * (dT.asSeconds())); // gravidade
+          jog.moverse(dT.asSeconds());
           jog.desenhar();
+          
+          plat.executar();
+          plat.moverse(dT.asSeconds());
+          plat.desenhar();
 
-          f.renderizar();
+          plat2.executar();
+          plat2.moverse(dT.asSeconds());
+          plat2.desenhar();
+
+          gc->executar();
           ge->executar();
           gg->mostrar();
      }

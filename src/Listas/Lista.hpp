@@ -12,6 +12,7 @@
 
 #include <iostream>
 #include "Erros.hpp"
+//#include "IteradorAbstrato.hpp"
 using std::cout;
 using std::endl;
 
@@ -41,6 +42,65 @@ namespace Listas
             void  trocaAdiante();        // Troca o elemento de lugar com o da frente 
         };
 
+        // << ITERATOR >> Classe para percorrer a lista e acessar seus elementos. Não é ainda desacoplado.
+        // Classe Lista<TL>::Iterador herda de IteradorAbstrato. 
+        class Iterador /*: public IteradorAbstrato<Elemento>*/
+        {
+        private:
+            Elemento* elem;
+
+        public:
+            Iterador() {};
+            ~Iterador() {};
+            
+            TL* get() const
+            { 
+                if(elem) { return elem->getInfo(); }
+                else
+                {
+                    cout << "Em Lista<TL>::Iterador::get: " << ERRO_NULLPTR << endl;
+                    exit(1);
+                } 
+            }
+            const bool temProximo() const
+            {
+                return (bool)(elem && elem->getProx());
+            }
+
+            const bool fim()
+            {
+                return (bool) elem == NULL;
+            }
+
+
+            void setElem(Elemento* _elem) { elem = _elem; }
+
+            void set(TL* p) 
+            { 
+                if (elem) { elem->setInfo(p); }
+            }
+
+            Iterador& operator++()
+            {
+                if (!fim())
+                {
+                    elem = elem->getProx();
+                    return *this;
+                }
+                else 
+                {
+                    elem = NULL;
+                    return *this;
+                }
+            }
+
+            Iterador& operator++(int)
+            {
+                return ++(*this);
+            }
+
+            void proximo() { (*this)++; }
+        };
         
 
         /// Aqui comeca a classe Lista propriamente dita
@@ -62,7 +122,8 @@ namespace Listas
 
         Elemento*   getPrimeiro () const  { return pPrimeiro; }
         void        setPrimeiro (TL* p);
-        
+        void inicializa(Iterador &it) { it.setElem(pPrimeiro); }
+
         Elemento*   getUltimo   () const  { return pUltimo; }
         void        setUltimo   (TL* p);
 

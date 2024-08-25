@@ -32,10 +32,13 @@ namespace ElementosGraficos
                 
                 //Passa a textura para o Corpo
                 pCorpo->setTexture(pTextura);
+
+                //Faz o corpo se posicionar pelo seu centro, nao pelo seu canto superior esquerdo.
+                pCorpo->setOrigin(pCorpo->getSize() / 2.f);
             }
 
             //Configura a posição do Corpo
-            pCorpo->setPosition(tamanho.x, tamanho.y);
+            pCorpo->setPosition(posicao.x, posicao.y);
 
             //Configura a escala do Corpo
             pCorpo->setScale(escala, escala);
@@ -70,6 +73,7 @@ namespace ElementosGraficos
         {
             pTextura = pAux;
             pCorpo->setTexture(pTextura, resetarTamanho);
+            pCorpo->setOrigin(pCorpo->getSize() / 2.f);
         }
         else
             cout << "Erro em ElementosGraficos::Forma::setTextura(): textura não atualizada!" << endl;
@@ -118,5 +122,11 @@ namespace ElementosGraficos
         pCorpo->setScale(escalaX, escalaY);
     }
 
+    void Forma::setTamanho   (const float x, const float y)
+    {
+        pCorpo->setSize (sf::Vector2f(x, y));
 
+        pCorpo->setOrigin(pCorpo->getSize() / 2.f); // Centraliza a origem do shape de acordo com o novo tamanho.
+
+    }
 } // namespace ElementosGraficos

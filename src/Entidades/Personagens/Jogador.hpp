@@ -23,13 +23,13 @@ namespace Entidades
         ~Jogador();
 
         void pular();
-        const bool getChao() const { return (bool)(getY() > 500.f); }
+        const bool getChao() const { return noChao; }
 
         void salvar();
         void atacar();
         void mover();
-
         void executar();
+        void reagirAhColisao(Entidade* pE);
     };
 }
 

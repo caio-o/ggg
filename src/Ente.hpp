@@ -7,20 +7,11 @@
 
 using namespace ElementosGraficos;
 
-enum ID_Classe
-{
-    indefinido = 0,
-    jogador,
-    amigo,
-    projetilAmigo
-};
-
 /// << CLASSE ABSTRATA >> Base para Entidade
 class Ente
 {
 protected:
     static int      contEntes;
-    //const ID_Classe id;
     const int id;
     static Gerenciadores::GerenciadorGrafico* pGG;
     //Forma *pForma; não precisa de forma em ente, só em entidade

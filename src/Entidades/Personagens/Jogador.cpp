@@ -4,13 +4,13 @@ using sf::Keyboard;
 using namespace ElementosGraficos;
 
 Jogador::Jogador(int _maxVida):
-    Personagem (_maxVida),
+    Personagem (Especie::jogador, _maxVida),
     agilidade  (200.0f),
     noChao(false),
     velPulo(-700.f)
 { 
     setTextura("../img/circulo_azul.png", true);
-    getForma()->getpCorpo()->setSize(sf::Vector2(30.f, 30.f));
+    setTamanho(30.f, 30.f);
     //getForma()->setEscala(0.5f);
 }
 
@@ -21,7 +21,7 @@ void Jogador::pular()
 {
     if(noChao) 
     {
-        vel.y += velPulo;
+        vel.y = velPulo;
     }
 }
 
@@ -52,6 +52,20 @@ void Jogador::executar()
     else if  (Keyboard::isKeyPressed (Keyboard::Left) )    { setVelX(-agilidade); }
     else                                                   { setVelX(      0.0f); }
 
-    noChao = getChao();
-    pular();
+    if      (Keyboard::isKeyPressed (Keyboard::Up))        { pular();             }
+
+    noChao = false;
+}
+
+void Jogador::reagirAhColisao(Entidade* pE)
+{
+    switch(pE->getEspecie())
+    {
+    case Especie::plataforma:
+        noChao = true;
+        break;
+        
+    default:
+        break;
+    }
 }

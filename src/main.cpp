@@ -23,6 +23,8 @@ int main()
 
     //testeForma();
 
-    testeEntidade();
+    //testeEntidade();
+
+    testeColisoes();
     return 0;
 }

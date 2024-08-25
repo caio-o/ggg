@@ -3,9 +3,10 @@
 
 using namespace Entidades;
 
-Entidade::Entidade():
+Entidade::Entidade(Especie _especie):
     Ente          (/*_pForma*/),
     //tam(50.f,50.f),
+    especie(_especie),
     pos           (10.0f, 10.0f),
     vel           (0.0f, 0.0f),
     modGravidade  (1.0f, 1.0f),
@@ -49,3 +50,11 @@ void Entidade::setTextura  (const char* caminho, const bool resetarTamanho)
     /*forma.getpCorpo()->setSize(sf::Vector2f(tamanho.x, tamanho.y));*/
     //forma.getpCorpo()->setScale(1.f, 1.f);
 } 
+
+const Vetor2f Entidade::getTam() const
+{
+    if (forma.getpCorpo())
+        return Vetor2f(forma.getpCorpo()->getSize().x, forma.getpCorpo()->getSize().y);
+    else 
+        return Vetor2f();
+}

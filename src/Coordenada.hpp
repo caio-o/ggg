@@ -34,22 +34,22 @@ namespace Coordenadas
 
             }
 
-            Coordenada<TIPO> operator+(const Coordenada<TIPO> soma)
+            Coordenada<TIPO> operator+(const Coordenada<TIPO> soma) const
             {             
                 return Coordenada(x+soma.x, y+soma.y);
             }
 
-            Coordenada<TIPO> operator-(const Coordenada<TIPO> subtracao)
+            Coordenada<TIPO> operator-(const Coordenada<TIPO> subtracao) const
             {
                 return Coordenada(x-subtracao.x, y-subtracao.y);
             }
 
-            Coordenada<TIPO> operator*(const TIPO fatorEscalar)
+            Coordenada<TIPO> operator*(const TIPO fatorEscalar) const
             {
                 return Coordenada(x*fatorEscalar, y*fatorEscalar);
             }
 
-            Coordenada<TIPO> operator/(const TIPO divisorEscalar)
+            Coordenada<TIPO> operator/(const TIPO divisorEscalar) const
             {
                 if(divisorEscalar!=0)
                     return Coordenada(x/divisorEscalar, y/divisorEscalar);
@@ -91,6 +91,18 @@ namespace Coordenadas
             {
                 x = outro.x;
                 y = outro.y;
+            }
+
+            const bool operator<(Coordenada<TIPO> outroVetor) const
+            {
+                return (bool) (x < outroVetor.x && 
+                               y < outroVetor.y    );
+            }
+
+            const bool operator>(Coordenada<TIPO> outroVetor) const
+            {
+                return (bool) (x > outroVetor.x && 
+                               y > outroVetor.y    );
             }
     };
 

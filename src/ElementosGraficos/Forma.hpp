@@ -37,6 +37,7 @@ namespace ElementosGraficos
             static void setGerenciadorGrafico();
             
             void setTextura(const char* caminho, const bool resetarTamanho = false);
+            void setTamanho(const float x, const float y);
             void setEscala (float escala);
             void setEscala (float escalaX, float escalaY);
             sf::RectangleShape* getpCorpo() const;

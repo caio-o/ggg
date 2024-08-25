@@ -3,8 +3,8 @@
 
 using namespace Entidades;
 
-Personagem::Personagem(int _maxVida):
-    Entidade(),
+Personagem::Personagem(Especie _especie, int _maxVida):
+    Entidade(_especie),
     maxVida(_maxVida),
     vida(_maxVida),
     vivo(true)

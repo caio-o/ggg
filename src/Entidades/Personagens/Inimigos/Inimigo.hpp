@@ -12,7 +12,7 @@ namespace Inimigos
             Jogador* pJogador;
 
         public:
-            Inimigo(int maxVida = 10, int dano = 1, Jogador* pJ = NULL);
+            Inimigo(Especie _especie, int maxVida = 10, int dano = 1, Jogador* pJ = NULL);
             virtual ~Inimigo();
 
             virtual void salvar() = 0;

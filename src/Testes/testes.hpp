@@ -70,5 +70,6 @@ void testeVertexArray();
  */
 void testeForma();
 void testeEntidade();
+void testeColisoes();
 
 #endif

@@ -13,7 +13,7 @@ protected:
     bool vivo;
 
 public:
-    Personagem(int maxVida = 10);
+    Personagem(Especie _especie = indefinido, int maxVida = 10);
     virtual ~Personagem();
 
     //ADIÇÃO ana-molinos
@@ -21,6 +21,7 @@ public:
     virtual void executar () = 0;
     virtual void mover() = 0;
     virtual void atacar() = 0;
+    virtual void reagirAhColisao(Entidade* pE) {}
 
     void        setMaxVida (int _max)   { maxVida = _max;   }
     void        setVida    (int _vida)  { vida = _vida;     }
