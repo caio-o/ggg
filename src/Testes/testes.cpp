@@ -19,6 +19,7 @@
 
 #include "Entidades/Entidade.hpp"
 #include "Entidades/Personagens/Jogador.hpp"
+#include "Entidades/Personagens/Inimigos/Quadrado.hpp"
 
 using namespace std;
 using namespace Listas;
@@ -339,4 +340,44 @@ void testeEntidade()
 
           gg->mostrar();
      }*/
+}
+
+//Não está funcionando
+void testeQuadrado()
+{
+     //Instancia o gerenciador GerenciadorGrafico
+     Gerenciadores::GerenciadorGrafico* gg = Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico();
+
+     //Instancia o gerenciador de GerenciadorEventoss
+     Gerenciadores::GerenciadorEventos* ge = Gerenciadores::GerenciadorEventos::getGerenciadorEventos();
+
+     //Instancia jogador
+     Jogador* pJog = new Jogador();
+
+     //Instancia inimigo do tipo Quadrado
+     Inimigos::Quadrado* pIni = new Inimigos::Quadrado();
+
+     //Associa o o jogador ao quadrado
+     Inimigos::Inimigo::setpJogador1(pJog);
+
+     
+     while (gg->janelaAberta())
+     {
+          //Verifica se a janela precisa ser fechada e outras coisas
+          ge->executar();
+
+          //Limpa a tela
+          gg->limpar();
+          
+          //Renderiza as entidades
+          pJog->desenhar();
+          pIni->desenhar();
+
+          //Executa as entidades
+          pJog->executar();
+          pIni->executar();
+   
+          //Mostra tudo que foi renderizado
+          gg->mostrar();
+     }
 }

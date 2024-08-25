@@ -24,5 +24,8 @@ int main()
     //testeForma();
 
     //testeEntidade();
+
+    //testeQuadrado();
+
     return 0;
 }

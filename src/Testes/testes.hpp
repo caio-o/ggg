@@ -64,11 +64,20 @@ void testeVertexArray();
  * AUTOR   :  Ana Julia Molinos Leite da Silva (ana-molinos)
  * FUNCAO  :  Testar o uso de um objeto da classe forma, em conjunto com os gerenciadores grafico e 
  *            de eventos.
- * SAIDA   :  Janela de título GGG contenod um ente com a textura de um círculo com rosto, que pode 
+ * SAIDA   :  Janela de título GGG contendo um ente com a textura de um círculo com rosto, que pode 
  *            ser controlado via teclas esquerda, direita, cima e baixo. Não há limites para o seu
  *            movimento com relação a janela.
  */
 void testeForma();
 void testeEntidade();
+
+/*
+ * AUTOR   :  Ana Julia Molinos Leite da Silva (ana-molinos)
+ * FUNCAO  :  Testar o inimigo Quadrado e sua interação com Jogador.
+ * SAIDA   :  Um jogador controlável e um inimigo do tipo Quadrado no centro da janela. Se o jogador
+ *            se aproximar do quadrado o comportamento esperado é que o quadrado o persiga e,
+ *            conforme se aproximar, execute um dash contra o jogador.
+ */
+void testeQuadrado();
 
 #endif
