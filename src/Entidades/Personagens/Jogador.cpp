@@ -51,21 +51,4 @@ void Jogador::executar()
     if       (Keyboard::isKeyPressed (Keyboard::Right))    { setVelX( agilidade); }
     else if  (Keyboard::isKeyPressed (Keyboard::Left) )    { setVelX(-agilidade); }
     else                                                   { setVelX(      0.0f); }
-
-    if      (Keyboard::isKeyPressed (Keyboard::Up))        { pular();             }
-
-    noChao = false;
-}
-
-void Jogador::reagirAhColisao(Entidade* pE)
-{
-    switch(pE->getEspecie())
-    {
-    case Especie::plataforma:
-        noChao = true;
-        break;
-        
-    default:
-        break;
-    }
 }

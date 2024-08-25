@@ -98,6 +98,8 @@ namespace ElementosGraficos
     //Renderiza a forma por meio do Gerenciador Gráfico.
     void Forma::renderizar()
     {
+        cout << "Forma::renderizar()" << endl;
+        
         if(pCorpo)
             pGerenciadorGrafico->renderizar(pCorpo);
         else
