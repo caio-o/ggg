@@ -24,7 +24,7 @@ namespace Entidades
         Vetor2f modGravidade;
         //Coordenada<float> modGravidade;
 
-        ElementosGraficos::Forma forma;
+        ElementosGraficos::Forma* pForma;
 
     public:
         Entidade();
@@ -40,6 +40,7 @@ namespace Entidades
         const Vetor2f  getPos   () const   { return pos;   }
         const float    getX     () const   { return pos.x; }
         const float    getY     () const   { return pos.y; }
+        
 
         void  setVel   (const float _x, const float _y)  { vel.x = _x; vel.y = _y; }
         void  setPos   (const float _x, const float _y)  { pos.x = _x; pos.y = _y; }

@@ -117,6 +117,6 @@ namespace Gerenciadores
                 verificaTeclaPressionada();*/
         }
 
-        verificaTeclaPressionada();
+        //verificaTeclaPressionada();
     }
 } // namespace Gerenciadores

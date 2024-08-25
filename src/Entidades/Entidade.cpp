@@ -1,4 +1,5 @@
 #include "Entidades/Entidade.hpp"
+#include "Erros.hpp"
 
 using namespace Entidades;
 
@@ -8,8 +9,10 @@ Entidade::Entidade():
     pos           (10.0f, 10.0f),
     vel           (0.0f, 0.0f),
     modGravidade  (1.0f, 1.0f),
-    forma(pos, tam)
+    pForma(NULL)
 { 
+    new ElementosGraficos::Forma(pos, tam);
+    
     /*cout << "Entidade::Entidade:" << endl;
     cout << "    pForma = " << pForma << endl; */
 }
@@ -19,9 +22,14 @@ Entidade::~Entidade()
 
 void Entidade::desenhar ()
 {
-    //cout << "Entidade::desenhar:" << endl;
+    cout << "Entidade::desenhar:" << endl;
     /*pForma->atualizar(pos);
     Ente::desenhar();*/
+
+    if(pForma)
+        pForma->renderizar();
+    
+    cout << "Erro em Entidades::Entidade::desenhar(): em pForma:" << ERRO_NULLPTR << endl;
 }
 
 void Entidade::moverse(const float n_segundos)

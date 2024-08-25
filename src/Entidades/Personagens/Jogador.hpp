@@ -21,6 +21,12 @@ namespace Entidades
         void pular();
 
         void executar();
+
+        void salvar();
+
+        void mover();
+        
+        void atacar();
     };
 }
 

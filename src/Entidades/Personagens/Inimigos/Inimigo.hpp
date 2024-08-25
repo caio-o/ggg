@@ -9,10 +9,11 @@ namespace Inimigos
     {
         protected:
             int dano;
-            Jogador* pJogador;
+            static Jogador* pJogador1;
+            static Jogador* pJogador2;
 
         public:
-            Inimigo(int maxVida = 10, int dano = 1, Jogador* pJ = NULL);
+            Inimigo(int maxVida = 10, int dano = 1);
             virtual ~Inimigo();
 
             virtual void salvar() = 0;
@@ -23,7 +24,7 @@ namespace Inimigos
             void setDano(const int d);
             const int getDano() const;
 
-            void setpJogador(Jogador* pJ);
-            Jogador* getpJogador() const;
+            static void setpJogador1(Jogador* pJ);
+            static void setpJogador2(Jogador* pJ);
     };
 } // namespace Inimigos
