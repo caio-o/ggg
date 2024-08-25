@@ -19,7 +19,6 @@ public:
     //ADIÇÃO ana-molinos
     virtual void salvar() = 0;
     virtual void executar () = 0;
-    virtual void mover() = 0;
     virtual void atacar() = 0;
     virtual void reagirAhColisao(Entidade* pE) {}
 

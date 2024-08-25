@@ -31,16 +31,17 @@ void Jogador::salvar()
 void Jogador::atacar()
 { }
 
-void Jogador::mover()
+//RETIREI O MOVER() DO PROJETO MAS NÃO SEI SE PODIA APAGAR ESSA ESTRUTURA, ENTÃO DEIXEI COMENTADO
+/*void Jogador::mover()
 { 
-    /*if       (Keyboard::isKeyPressed (Keyboard::Up)   )    { setVelY(-agilidade); }
+    if       (Keyboard::isKeyPressed (Keyboard::Up)   )    { setVelY(-agilidade); }
     else if  (Keyboard::isKeyPressed (Keyboard::Down) )    { setVelY(+agilidade); }
     else                                                   { setVelY(      0.0f); }
 
     if       (Keyboard::isKeyPressed (Keyboard::Right))    { setVelX( agilidade); }
     else if  (Keyboard::isKeyPressed (Keyboard::Left) )    { setVelX(-agilidade); }
-    else                                                   { setVelX(      0.0f); }*/
-}
+    else                                                   { setVelX(      0.0f); }
+}*/
 
 void Jogador::executar() 
 { 

@@ -68,11 +68,6 @@ namespace Inimigos
 
     }
 
-    void Quadrado::mover()
-    {
-
-    }
-
     //PROVISÓRIO: aumenta a velocidade em diração ao jogador, executando um "dash"
     void Quadrado::atacar()
     {

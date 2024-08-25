@@ -15,7 +15,6 @@ namespace Inimigos
             
             void salvar();
             void executar();
-            void mover();
             void atacar();
             void vira();
             

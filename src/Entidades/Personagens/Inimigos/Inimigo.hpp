@@ -18,7 +18,6 @@ namespace Inimigos
 
             virtual void salvar() = 0;
             virtual void executar() = 0;
-            virtual void mover() = 0;
             virtual void atacar() = 0;
 
             void setDano(const int d);
