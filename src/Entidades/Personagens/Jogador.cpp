@@ -10,7 +10,7 @@ Jogador::Jogador(int _maxVida):
     velPulo(-700.f)
 { 
     setTextura("../img/circulo_azul.png", true);
-    setTamanho(30.f, 30.f);
+    //setTamanho(30.f, 30.f);
     //getForma()->setEscala(0.5f);
 }
 
@@ -51,4 +51,17 @@ void Jogador::executar()
     if       (Keyboard::isKeyPressed (Keyboard::Right))    { setVelX( agilidade); }
     else if  (Keyboard::isKeyPressed (Keyboard::Left) )    { setVelX(-agilidade); }
     else                                                   { setVelX(      0.0f); }
+}
+
+void Jogador::reagirAhColisao(Entidade* pE)
+{
+    switch(pE->getEspecie())
+    {
+    case Especie::plataforma:
+        noChao = true;
+        break;
+        
+    default:
+        break;
+    }
 }

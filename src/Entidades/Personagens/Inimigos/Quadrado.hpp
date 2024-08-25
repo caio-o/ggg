@@ -10,7 +10,7 @@ namespace Inimigos
             bool esquerda;
 
         public:
-            Quadrado(int maxVida = 10, int dano = 1);
+            Quadrado(Especie _especie, int maxVida = 10, int dano = 1);
             ~Quadrado();
             
             void salvar();

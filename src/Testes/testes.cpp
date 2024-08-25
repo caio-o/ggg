@@ -347,6 +347,8 @@ void testeColisoes()
           jog.setVelY(jog.getVel().y + 1000.f * (dT.asSeconds())); // gravidade
           jog.moverse(dT.asSeconds());
           jog.desenhar();
+
+          cout << "Gravidade " << 1000.f*dT.asSeconds() << endl;
           
           plat.executar();
           plat.moverse(dT.asSeconds());
@@ -365,21 +367,45 @@ void testeColisoes()
 //Não está funcionando
 void testeQuadrado()
 {
-     //Instancia o gerenciador GerenciadorGrafico
-     Gerenciadores::GerenciadorGrafico* gg = Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico();
+     //Instancia os gerenciadores
+     Gerenciadores::GerenciadorGrafico*  gg = Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico();
+     Gerenciadores::GerenciadorEventos*  ge = Gerenciadores::GerenciadorEventos::getGerenciadorEventos();
+     Gerenciadores::GerenciadorColisoes* gc = Gerenciadores::GerenciadorColisoes::getInstancia();
+     ge->setForma(NULL);
 
-     //Instancia o gerenciador de GerenciadorEventoss
-     Gerenciadores::GerenciadorEventos* ge = Gerenciadores::GerenciadorEventos::getGerenciadorEventos();
+     Ente::setGerenciadorGrafico();
+     Forma::setGerenciadorGrafico();
+     
+     //Seta o relógio
+     /*sf::Clock relogio;
+     sf::Time t0 = relogio.getElapsedTime();
+     sf::Time t1 = t0;
+     sf::Time dT = sf::Time::Zero;*/
 
+     //Momento da ultima iteracao
+     float t0 = gg->getTempo();
+     //Momento da iteração atual
+     float t1 = t0;
+     float dT = 0.0;    
+     
      //Instancia jogador
      Jogador* pJog = new Jogador();
 
      //Instancia inimigo do tipo Quadrado
-     Inimigos::Quadrado* pIni = new Inimigos::Quadrado();
+     Inimigos::Quadrado* pIni = new Inimigos::Quadrado(inimigo);
 
      //Associa o o jogador ao quadrado
      Inimigos::Inimigo::setpJogador1(pJog);
 
+     //Cria a plataforma
+     Obstaculos::Plataforma plat;
+
+     plat.setTamanho(gg->getTamanhoJanela().x, 25.f);
+     plat.setPos(pIni->getPos().x, (pIni->getPos().y)+((pIni->getTam().y)/2) +((plat.getTam().y)/2));
+
+     gc->inserirJogador(pJog);
+     gc->inserirInimigo(pIni);
+     gc->inserirObstaculo(&plat);
      
      while (gg->janelaAberta())
      {
@@ -389,15 +415,34 @@ void testeQuadrado()
           //Limpa a tela
           gg->limpar();
           
-          //Renderiza as entidades
-          pJog->desenhar();
-          pIni->desenhar();
+          // t0 = momento da ultima iteracao.
+          // t1 = momento atual.
+          t0 = t1;
+          t1 = gg->getTempo();
+          dT = t1 - t0;         
 
           //Executa as entidades
           pJog->executar();
           pIni->executar();
+          plat.executar();
+
+          //Ajusta a gravidade
+          pJog->setVelY(pJog->getVel().y + 1000.f * dT);
+          pIni->setVelY(pIni->getVel().y + 1000.f * dT);
+
+          //cout << "Gravidade " << 1000.f*dT << endl;
+
+          //Move as entidades
+          pJog->moverse(dT);
+          pIni->moverse(dT);
+
+          //Renderiza as entidades
+          pJog->desenhar();
+          pIni->desenhar();
+          plat.desenhar();
    
           //Mostra tudo que foi renderizado
           gg->mostrar();
+          gc->executar();
      }
 }

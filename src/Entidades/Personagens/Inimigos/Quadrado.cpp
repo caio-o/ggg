@@ -1,9 +1,9 @@
 #define TEXTURA "../img/quadrado_vermelho.png"
 
-#define RANGE_ATAQUE 10.0
-#define RANGE_PERSEGUE 50.0
-#define VELOCIDADE 20.0
-#define VELOCIDADE_DASH 50.0
+#define RANGE_ATAQUE 100.0
+#define RANGE_PERSEGUE 300.0
+#define VELOCIDADE 250.0
+#define VELOCIDADE_DASH 1000.0
 
 #include "Gerenciadores/GerenciadorGrafico.hpp"
 
@@ -12,17 +12,17 @@
 
 namespace Inimigos
 {
-    Quadrado::Quadrado(int maxVida, int dano):
-    Inimigo(maxVida, dano)
+    Quadrado::Quadrado(Especie _especie, int maxVida, int dano):
+    Inimigo(_especie, maxVida, dano)
     {
-        forma.setTextura(TEXTURA);
+        forma.setTextura(TEXTURA, true);
         
         //PROVISÓRIO: Seta a posição do quadrado no centro da janela
         //Gambiarra?
         Gerenciadores::GerenciadorGrafico* pgg = Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico();
 
-        pos.x = pgg->getTamanhoJanela().x;
-        pos.y = pgg->getTamanhoJanela().y;
+        pos.x = (pgg->getTamanhoJanela().x)/2;
+        pos.y = (pgg->getTamanhoJanela().y/2);
     }
 
     Quadrado::~Quadrado()
@@ -48,16 +48,20 @@ namespace Inimigos
 
             if(jogadorAesquerda())
                 vira();
+
+                cout << "Quadrado persegue" << endl;
         }
         //Se o jogador estiver dentro do range de ataque, chama a função atacar
         else if (rangeAtacar())
         {
             atacar();
+            cout << "Quadrado ataca" << endl;
         }
         //Caso contrário, o quadrado fica parado "camuflado" no cenário
         else
         {
             vel.x = 0.0;
+            cout << "Quadrado parado" << endl;
         }
         
         //moverse();

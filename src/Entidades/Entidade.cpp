@@ -10,10 +10,8 @@ Entidade::Entidade(Especie _especie):
     pos           (10.0f, 10.0f),
     vel           (0.0f, 0.0f),
     modGravidade  (1.0f, 1.0f),
-    forma(pos, Vetor2f(50.7f, 48.9f),  "../img/emoji_sorrindo.png", 1.f)
-{ 
-    new ElementosGraficos::Forma(pos, tam);
-    
+    forma(pos, Vetor2f(50.f, 50.f),  "../img/emoji_sorrindo.png", 1.f)
+{     
     /*cout << "Entidade::Entidade:" << endl;
     cout << "    pForma = " << pForma << endl; */
 

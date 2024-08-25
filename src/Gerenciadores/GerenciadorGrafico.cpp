@@ -139,7 +139,7 @@ namespace Gerenciadores
     //Renderiza um corpo na janela
     void GerenciadorGrafico::renderizar(sf::RectangleShape* corpo)
     {
-        cout << "GerenciadorGrafico::renderizar()" << endl;
+        //cout << "GerenciadorGrafico::renderizar()" << endl;
         
         if(pJanela && corpo)
             pJanela->draw(*corpo);

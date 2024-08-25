@@ -25,8 +25,9 @@ int main()
 
     //testeEntidade();
 
-    testeColisoes();
-    //testeQuadrado();
+    //testeColisoes();
+    
+    testeQuadrado();
 
     return 0;
 }

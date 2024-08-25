@@ -9,8 +9,8 @@ namespace Inimigos
     Jogador* Inimigo::pJogador1(NULL); //Jogador* Inimigo::pJogador1(Fase::pJogador1);
     Jogador* Inimigo::pJogador2(NULL); //Jogador* Inimigo::pJogador2(Fase::pJogador2);
 
-    Inimigo::Inimigo(int maxVida, int dano):
-    Personagem(maxVida),
+    Inimigo::Inimigo(Especie _especie, int maxVida, int dano):
+    Personagem(_especie, maxVida),
     dano(dano)
     {
         

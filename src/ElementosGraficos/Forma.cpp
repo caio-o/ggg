@@ -98,7 +98,7 @@ namespace ElementosGraficos
     //Renderiza a forma por meio do Gerenciador Gráfico.
     void Forma::renderizar()
     {
-        cout << "Forma::renderizar()" << endl;
+        //cout << "Forma::renderizar()" << endl;
         
         if(pCorpo)
             pGerenciadorGrafico->renderizar(pCorpo);
@@ -128,7 +128,7 @@ namespace ElementosGraficos
     {
         pCorpo->setSize (sf::Vector2f(x, y));
 
-        pCorpo->setOrigin(pCorpo->getSize() / 2.f); // Centraliza a origem do shape de acordo com o novo tamanho.
+        pCorpo->setOrigin((pCorpo->getSize().x)/2, (pCorpo->getSize().y)/2); // Centraliza a origem do shape de acordo com o novo tamanho.
 
     }
 } // namespace ElementosGraficos
