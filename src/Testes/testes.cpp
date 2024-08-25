@@ -343,18 +343,19 @@ void testeColisoes()
           t1 = relogio.getElapsedTime();
           dT = t1 - t0;
 
-          jog.executar();
+          
+          jog.executar(dT.asSeconds());
           jog.setVelY(jog.getVel().y + 1000.f * (dT.asSeconds())); // gravidade
           jog.moverse(dT.asSeconds());
           jog.desenhar();
 
           cout << "Gravidade " << 1000.f*dT.asSeconds() << endl;
           
-          plat.executar();
+          plat.executar(dT.asSeconds());
           plat.moverse(dT.asSeconds());
           plat.desenhar();
 
-          plat2.executar();
+          plat2.executar(dT.asSeconds());
           plat2.moverse(dT.asSeconds());
           plat2.desenhar();
 
@@ -393,6 +394,7 @@ void testeQuadrado()
 
      //Instancia inimigo do tipo Quadrado
      Inimigos::Quadrado* pIni = new Inimigos::Quadrado(inimigo);
+     pIni->setPos((gg->getTamanhoJanela().x)-50.0, (gg->getTamanhoJanela().y)/2);
 
      //Associa o o jogador ao quadrado
      Inimigos::Inimigo::setpJogador1(pJog);
@@ -401,7 +403,7 @@ void testeQuadrado()
      Obstaculos::Plataforma plat;
 
      plat.setTamanho(gg->getTamanhoJanela().x, 25.f);
-     plat.setPos(pIni->getPos().x, (pIni->getPos().y)+((pIni->getTam().y)/2) +((plat.getTam().y)/2));
+     plat.setPos((gg->getTamanhoJanela().x)/2, (pIni->getPos().y)+((pIni->getTam().y)/2) +((plat.getTam().y)/2));
 
      gc->inserirJogador(pJog);
      gc->inserirInimigo(pIni);
@@ -422,9 +424,9 @@ void testeQuadrado()
           dT = t1 - t0;         
 
           //Executa as entidades
-          pJog->executar();
-          pIni->executar();
-          plat.executar();
+          pJog->executar(dT);
+          pIni->executar(dT);
+          plat.executar(dT);
 
           //Ajusta a gravidade
           pJog->setVelY(pJog->getVel().y + 1000.f * dT);
@@ -434,7 +436,7 @@ void testeQuadrado()
 
           //Move as entidades
           pJog->moverse(dT);
-          pIni->moverse(dT);
+          //pIni->moverse(dT);
 
           //Renderiza as entidades
           pJog->desenhar();
