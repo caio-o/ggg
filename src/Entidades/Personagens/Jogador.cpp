@@ -43,7 +43,7 @@ void Jogador::atacar()
     else                                                   { setVelX(      0.0f); }
 }*/
 
-void Jogador::executar() 
+void Jogador::executar(const float dT) 
 { 
     /*if       (Keyboard::isKeyPressed (Keyboard::Up)   )    { setVelY(-agilidade); }
     else if  (Keyboard::isKeyPressed (Keyboard::Down) )    { setVelY(+agilidade); }

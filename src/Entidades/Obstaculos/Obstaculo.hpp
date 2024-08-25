@@ -25,7 +25,7 @@ namespace Obstaculos
         virtual ~Obstaculo()
         { }
 
-        virtual void executar () = 0;
+        virtual void executar (const float dT) = 0;
 
         virtual void reagirAhColisao(Entidade *pE) {  };
 

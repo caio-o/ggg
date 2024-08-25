@@ -59,7 +59,7 @@ void ListaEntidades::percorrer()
         if(atual->getInfo())
         {
             atual->getInfo()->desenhar();
-            atual->getInfo()->executar();
+            //atual->getInfo()->executar();
             (*this)++;
         }
         else

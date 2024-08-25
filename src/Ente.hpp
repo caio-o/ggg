@@ -20,7 +20,7 @@ public:
     Ente(/*Forma* _pForma = NULL*/);
     virtual ~Ente();
 
-    virtual void executar () = 0;
+    virtual void executar (const float dT) = 0;
     virtual void desenhar ();
     
     //Forma*       getForma   () const  { return pForma; }

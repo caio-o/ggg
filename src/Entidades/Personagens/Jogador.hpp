@@ -27,7 +27,7 @@ namespace Entidades
 
         void salvar();
         void atacar();
-        void executar();
+        void executar(const float dT);
         void reagirAhColisao(Entidade* pE);
     };
 }

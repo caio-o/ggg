@@ -38,8 +38,9 @@ namespace ElementosGraficos
             
             void setTextura(const char* caminho, const bool resetarTamanho = false);
             void setTamanho(const float x, const float y);
-            void setEscala (float escala);
-            void setEscala (float escalaX, float escalaY);
+            void setEscala (const float escala);
+            void setEscala (const float escalaX, const float escalaY);
+
             sf::RectangleShape* getpCorpo() const;
             void atualizar(Coordenadas::Vetor2f posicao);
             void renderizar();

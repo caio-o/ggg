@@ -44,7 +44,7 @@ namespace Entidades
         Forma*         getForma () const  { return (Forma*)(&forma); }
         // Diferencia-se do Ente::desenhar porque precisa atualizar a posicao da forma.
         void           desenhar (); 
-        virtual void   executar () = 0;
+        virtual void   executar (const float dT) = 0;
         virtual void   reagirAhColisao(Entidade* pE) { };
         void           moverse  (const float n_segundos);
         //virtual void   acelerarse (const float acel, const float deltaT) { vel += acel*deltaT; };

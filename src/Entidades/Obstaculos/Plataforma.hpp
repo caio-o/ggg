@@ -36,7 +36,7 @@ namespace Entidades::Obstaculos
             }
         }
 
-        void executar()
+        void executar(const float dT)
         {
             if(caindo)
             {
