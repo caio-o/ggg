@@ -22,6 +22,7 @@
 #include "Entidades/Personagens/Jogador.hpp"
 #include "Ente.hpp"
 #include "Entidades/Obstaculos/Plataforma.hpp"
+#include "Entidades/Obstaculos/Borracha.hpp"
 
 #include "Entidades/Personagens/Inimigos/Quadrado.hpp"
 
@@ -365,8 +366,7 @@ void testeColisoes()
      }
 }
 
-//Não está funcionando
-void testeQuadrado()
+void testeFase()
 {
      //Instancia os gerenciadores
      Gerenciadores::GerenciadorGrafico*  gg = Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico();
@@ -409,11 +409,15 @@ void testeQuadrado()
      plat.setTamanho(gg->getTamanhoJanela().x, 25.f);
      plat.setPos((gg->getTamanhoJanela().x)/2, (pIni->getPos().y)+((pIni->getTam().y)/2) +((plat.getTam().y)/2));
 
+     Obstaculos::Borracha bor;
+     bor.setPos((gg->getTamanhoJanela().x)/2, plat.getPos().y - (plat.getTam().y)/2 - (bor.getTam().y)/2);
+     
      gc->inserirJogador(pJog);
      gc->inserirInimigo(pIni);
      gc->inserirObstaculo(&plat);
      gc->inserirObstaculo(&parede1);
      gc->inserirObstaculo(&parede2);
+     gc->inserirObstaculo(&bor);
 
      while (gg->janelaAberta())
      {
@@ -444,7 +448,7 @@ void testeQuadrado()
 
           //Move as entidades
           pJog->moverse(dT);
-          //pIni->moverse(dT);
+          //pIni->moverse(dT); (o método executar do jogador agora chama o moverse)
 
           //Renderiza as entidades
           pJog->desenhar();
@@ -452,6 +456,7 @@ void testeQuadrado()
           parede1.desenhar();
           parede2.desenhar();
           plat.desenhar();
+          bor.desenhar();
    
           //Mostra tudo que foi renderizado
           gg->mostrar();

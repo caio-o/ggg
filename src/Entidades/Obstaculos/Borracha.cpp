@@ -7,7 +7,7 @@
 #include "Borracha.hpp"
 #include "Erros.hpp"
 
-#define CAMINHO_TEXTURA "./img/losango_verde.png" //textura provisória
+#define CAMINHO_TEXTURA "../img/lapis.png" //textura provisória
 
 namespace Entidades
 {
@@ -22,6 +22,7 @@ namespace Entidades
         {
             forma.setTextura(CAMINHO_TEXTURA, true);
             vel.x = 0.0;
+            setTamanho(80.f, 80.f);
         }
 
         Borracha::~Borracha()
@@ -40,11 +41,12 @@ namespace Entidades
         //Reage ao contato aplicando dano ao jogador e fazendo com que ele pule
         void Borracha::reagirAhColisao(Entidade* pE)
         {
-            // if(pE->getEspecie() == jogador)
-            // {
-            //     pE->danificar(dano);
-            //     pE->setVelY(-20.0); //para o jogador pular ao receber dano
-            // }
+            if(pE->getEspecie() == jogador)
+            {
+                Jogador* pJ = static_cast<Jogador*>(pE);
+                pJ->receberDano(dano, true);
+                pJ->aceleraY(-200.0); //para o jogador pular ao receber dano
+            }
         }
 
 
