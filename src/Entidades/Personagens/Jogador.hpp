@@ -14,8 +14,9 @@ namespace Entidades
         //static Jogador *jogador1, *jogador2; 
         bool ehJogador1;
         bool noChao;
-        float agilidade;
-        float velPulo;
+        float agilidade; // velocidade do CAMINHAR do jogador (no eixo X)
+        float velPulo;   // velocidade inicial do PULO do jogador (no eixo Y)
+        virtual void morrer()  { forma.setEscala(1.f, 2.0f); setY(getY()+100.f); }; //efeito da morte no jogador
 
     public:
         Jogador(int _maxVida = 10);

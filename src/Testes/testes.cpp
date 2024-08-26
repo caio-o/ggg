@@ -393,7 +393,7 @@ void testeQuadrado()
      Jogador* pJog = new Jogador();
 
      //Instancia inimigo do tipo Quadrado
-     Inimigos::Quadrado* pIni = new Inimigos::Quadrado(inimigo);
+     Inimigos::Quadrado* pIni = new Inimigos::Quadrado(inimigo, 10, 5);
      pIni->setPos((gg->getTamanhoJanela().x)-50.0, (gg->getTamanhoJanela().y)/2);
 
      //Associa o o jogador ao quadrado
@@ -401,6 +401,10 @@ void testeQuadrado()
 
      //Cria a plataforma
      Obstaculos::Plataforma plat;
+     Obstaculos::Plataforma parede1(100.f, gg->getTamanhoJanela().y);
+     Obstaculos::Plataforma parede2(100.f, gg->getTamanhoJanela().y);
+     parede1.setPos(0.F, (gg->getTamanhoJanela().y)/2);
+     parede2.setPos(gg->getTamanhoJanela().x, (gg->getTamanhoJanela().y)/2);
 
      plat.setTamanho(gg->getTamanhoJanela().x, 25.f);
      plat.setPos((gg->getTamanhoJanela().x)/2, (pIni->getPos().y)+((pIni->getTam().y)/2) +((plat.getTam().y)/2));
@@ -408,7 +412,9 @@ void testeQuadrado()
      gc->inserirJogador(pJog);
      gc->inserirInimigo(pIni);
      gc->inserirObstaculo(&plat);
-     
+     gc->inserirObstaculo(&parede1);
+     gc->inserirObstaculo(&parede2);
+
      while (gg->janelaAberta())
      {
           //Verifica se a janela precisa ser fechada e outras coisas
@@ -427,6 +433,8 @@ void testeQuadrado()
           pJog->executar(dT);
           pIni->executar(dT);
           plat.executar(dT);
+          parede1.executar(dT);
+          parede2.executar(dT);
 
           //Ajusta a gravidade
           pJog->setVelY(pJog->getVel().y + 1000.f * dT);
@@ -441,6 +449,8 @@ void testeQuadrado()
           //Renderiza as entidades
           pJog->desenhar();
           pIni->desenhar();
+          parede1.desenhar();
+          parede2.desenhar();
           plat.desenhar();
    
           //Mostra tudo que foi renderizado

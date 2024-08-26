@@ -5,6 +5,7 @@
 #define VELOCIDADE 250.0
 #define VELOCIDADE_DASH 1000.0
 #define COOLDOWN 3.0 //(segundos)
+#define DURACAO_ATAQUE 2.0F
 
 #include "Gerenciadores/GerenciadorGrafico.hpp"
 
@@ -41,9 +42,11 @@ namespace Inimigos
     void Quadrado::executar(const float dT)
     {
         tempoUltimoAtaque += dT;
-        cout << tempoUltimoAtaque << endl;
+        //cout << tempoUltimoAtaque << endl;
 
-        atacando = false;
+        // MUDANÇA (Caio): Em vez de "atacando" receber false em toda iteração, recebe só quando passou o tempo de ataque.
+        //     Fiz isso para que o quadrado possa dar dano no jogador.
+        if (tempoUltimoAtaque >= DURACAO_ATAQUE) atacando = false;
         
         //Se o jogador estiver dentro do range de perseguição...
         if(rangePerseguir() && vel.x == 0.0 && tempoUltimoAtaque>cooldown/2)
@@ -54,7 +57,7 @@ namespace Inimigos
             if(jogadorAesquerda())
                 vira();
 
-                cout << "Quadrado persegue" << endl;
+        //cout << "Quadrado persegue" << endl;
         }
         //Se o jogador estiver dentro do range de ataque e o último ataque superou o cooldown, 
         //chama a função atacar
@@ -67,7 +70,7 @@ namespace Inimigos
         else if(!rangeAtacar() && !rangePerseguir() && tempoUltimoAtaque>cooldown/2)
         {
             vel.x = 0.0;
-            cout << "Quadrado parado" << endl;
+            //cout << "Quadrado parado" << endl;
         }
         
         moverse(dT);
@@ -102,8 +105,8 @@ namespace Inimigos
      */
     void Quadrado::reagirAhColisao(Entidade* pE)
     {
-        /*if(pE->getEspecie() == jogador && atacando)
-            pE->danificar();*/
+        if(pE->getEspecie() == jogador && atacando)
+            static_cast<Jogador*>(pE)->receberDano(dano, true);
     }
 
     //Retorna true se algum jogador estiver no range de perseguição do quadrado

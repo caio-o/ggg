@@ -65,6 +65,10 @@ namespace Entidades
         void  setVelX  (const float _x)                  { vel.x = _x;             }
         void  setVelY  (const float _y)                  { vel.y = _y;             }
         void  setTamanho(const float x, const float y)   { forma.setTamanho(x, y); }
+
+        void aceleraX  (const float _x) { vel.x += _x; }
+        void aceleraY  (const float _y) { vel.y += _y; }
+        void acelera   (const float _x, const float _y) { aceleraX(_x); aceleraY(_y); }
     };
 } 
 

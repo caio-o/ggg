@@ -5,13 +5,12 @@ using namespace ElementosGraficos;
 
 Jogador::Jogador(int _maxVida):
     Personagem (Especie::jogador, _maxVida),
-    agilidade  (200.0f),
+    agilidade  (300.0f),
     noChao(false),
     velPulo(-700.f)
 { 
     setTextura("../img/circulo_azul.png", true);
-    //setTamanho(30.f, 30.f);
-    //getForma()->setEscala(0.5f);
+    setTamanho(30.f, 30.f);
 }
 
 Jogador::~Jogador()
@@ -45,13 +44,22 @@ void Jogador::atacar()
 
 void Jogador::executar(const float dT) 
 { 
-    /*if       (Keyboard::isKeyPressed (Keyboard::Up)   )    { setVelY(-agilidade); }
-    else if  (Keyboard::isKeyPressed (Keyboard::Down) )    { setVelY(+agilidade); }
-    else                                                   { setVelY(      0.0f); }*/
-
+    if       (Keyboard::isKeyPressed (Keyboard::Up   ))    { pular();             }
+    
     if       (Keyboard::isKeyPressed (Keyboard::Right))    { setVelX( agilidade); }
     else if  (Keyboard::isKeyPressed (Keyboard::Left) )    { setVelX(-agilidade); }
     else                                                   { setVelX(      0.0f); }
+    
+    noChao = false;
+
+    
+    checarVida();
+
+    if(!vivo) 
+    {  
+        cout << "Jogador morreu!" << endl;
+        morrer();
+    }
 }
 
 void Jogador::reagirAhColisao(Entidade* pE)

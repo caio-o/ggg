@@ -178,7 +178,7 @@ const Vetor2f GerenciadorColisoes::calcularInterseccao(Entidade* pE1, Entidade* 
 
 void GerenciadorColisoes::repelir (Entidade* pRepelido, Entidade* pRepulsor, Vetor2f interseccao)
 {
-    std::cout << "REPELINDO ENTIDADES" << endl;
+    //std::cout << "REPELINDO ENTIDADES" << endl;
 
     if(interseccao.x < interseccao.y)
     {

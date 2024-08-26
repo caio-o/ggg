@@ -8,9 +8,13 @@ using namespace Entidades;
 class Personagem: public Entidade
 {
 protected:
+    static float hitDelay;
     int maxVida;
     int vida;
     bool vivo;
+    bool imunidade;
+    float momentoUltimoDano;
+    void atualizarImunidade();
 
 public:
     Personagem(Especie _especie = indefinido, int maxVida = 10);
@@ -20,6 +24,9 @@ public:
     virtual void salvar() = 0;
     virtual void executar (const float dT) = 0;
     virtual void atacar() = 0;
+    
+    virtual void receberDano(int dano, const bool delay = false);
+
     virtual void reagirAhColisao(Entidade* pE) {}
 
     void        setMaxVida (int _max)   { maxVida = _max;   }
