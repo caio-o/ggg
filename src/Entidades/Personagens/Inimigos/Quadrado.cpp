@@ -5,7 +5,7 @@
 #define VELOCIDADE 250.0
 #define VELOCIDADE_DASH 1000.0
 #define COOLDOWN 3.0 //(segundos)
-#define DURACAO_ATAQUE 2.0F
+#define DURACAO_ATAQUE 2.0
 
 #include "Gerenciadores/GerenciadorGrafico.hpp"
 
@@ -26,6 +26,8 @@ namespace Inimigos
 
     Quadrado::~Quadrado()
     {
+        cout << "Quadrado desalocado" << endl;
+        
         dano = -1;
         maxVida = -1;
         vida = -1;
@@ -49,7 +51,7 @@ namespace Inimigos
         if (tempoUltimoAtaque >= DURACAO_ATAQUE) atacando = false;
         
         //Se o jogador estiver dentro do range de perseguição...
-        if(rangePerseguir() && vel.x == 0.0 && tempoUltimoAtaque>cooldown/2)
+        if(rangePerseguir() && !atacando)
         {
             //... o inimigo passa a se mover a uma velocidade pré-definida em sua direção
             vel.x = VELOCIDADE;
@@ -57,17 +59,27 @@ namespace Inimigos
             if(jogadorAesquerda())
                 vira();
 
-        //cout << "Quadrado persegue" << endl;
+            //cout << "Quadrado persegue" << endl;
         }
+        
         //Se o jogador estiver dentro do range de ataque e o último ataque superou o cooldown, 
         //chama a função atacar
-        else if (rangeAtacar() && tempoUltimoAtaque>cooldown)
+        if (rangeAtacar() || atacando)
         {
-            atacar();
-            cout << "Quadrado ataca" << endl;
+            vel.x = VELOCIDADE_DASH;
+
+            if(jogadorAesquerda())
+                vira();
+
+            if(tempoUltimoAtaque>cooldown)    
+            {
+                atacar();
+                cout << "Quadrado ataca" << endl;
+            }
         }
+        
         //Caso contrário, o quadrado fica parado "camuflado" no cenário
-        else if(!rangeAtacar() && !rangePerseguir() && tempoUltimoAtaque>cooldown/2)
+        if(!rangeAtacar() && !rangePerseguir() && !atacando)
         {
             vel.x = 0.0;
             //cout << "Quadrado parado" << endl;
@@ -82,12 +94,7 @@ namespace Inimigos
      * de tempo do último ataque.
      */
     void Quadrado::atacar()
-    {   
-        vel.x = VELOCIDADE_DASH;
-
-        if(jogadorAesquerda())
-            vira();
-        
+    {        
         atacando = true;
 
         tempoUltimoAtaque = 0.0;
@@ -105,36 +112,43 @@ namespace Inimigos
      */
     void Quadrado::reagirAhColisao(Entidade* pE)
     {
+        
         if(pE->getEspecie() == jogador && atacando)
-            static_cast<Jogador*>(pE)->receberDano(dano, true);
+            {static_cast<Jogador*>(pE)->receberDano(dano, true);
+            cout << "ReagirAhColisao::dano: " << dano << endl;}
     }
 
     //Retorna true se algum jogador estiver no range de perseguição do quadrado
+    //Range no eixo x: delimitado por constante;
+    //Range no eixo y: a soma das metades do tamanho Quadrado e do Jogador.
     bool Quadrado::rangePerseguir()
     {
         if(pJogador2)
             return (bool)(abs(pJogador1->getPos().x - pos.x) < RANGE_PERSEGUE ||
                           abs(pJogador2->getPos().x - pos.x) < RANGE_PERSEGUE);
 
-        return (bool)(abs(pJogador1->getPos().x - pos.x) < RANGE_PERSEGUE);
+        return (bool)((abs(pJogador1->getPos().x - pos.x) < RANGE_PERSEGUE) && 
+                      (abs(pJogador1->getPos().y - pos.y) < ((pJogador1->getTam().y/2) + (getTam().y/2))));
     }
 
     //Retorna true se algum jogador estiver no range de ataque do quadrado
+    //Range no eixo x: delimitado por constante;
+    //Range no eixo y: a soma das metades do tamanho Quadrado e do Jogador.
     bool Quadrado::rangeAtacar()
-    {
+    {        
         if(pJogador2)
             return (bool)(abs(pJogador1->getPos().x - pos.x) < RANGE_ATAQUE ||
                           abs(pJogador2->getPos().x - pos.x) < RANGE_ATAQUE);
 
-        return (bool)(abs(pJogador1->getPos().x - pos.x) < RANGE_ATAQUE);
+        return (bool)((abs(pJogador1->getPos().x - pos.x) <  RANGE_ATAQUE) && 
+                      (abs(pJogador1->getPos().y - pos.y) < ((pJogador1->getTam().y/2) + (getTam().y/2))));
     }
 
     //Retorna true se o jogador estiver a esquerda do inimigo
     bool Quadrado::jogadorAesquerda()
     {
         if(pJogador2)
-            return (bool)(pJogador2->getPos().x < pos.x ||
-                          pJogador1->getPos().x < pos.x);
+            return (bool)(pJogador2->getPos().x < pos.x || pJogador1->getPos().x < pos.x);
 
         return (bool)(pJogador1->getPos().x < pos.x);
     }

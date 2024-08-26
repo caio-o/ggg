@@ -27,7 +27,7 @@ int main()
 
     //testeColisoes();
     
-    testeQuadrado();
+    testeFase();
 
     return 0;
 }

@@ -23,7 +23,7 @@ namespace Entidades
                 static Jogador* pJogador2;
 
             public:
-                Borracha(Especie _especie = obstaculo, const bool _permeavel = true, int dano = 1);
+                Borracha(Especie _especie = obstaculo, const bool _permeavel = false, int dano = 1);
                 ~Borracha();
                 
                 void executar(const float dT);

@@ -393,8 +393,11 @@ void testeFase()
      Jogador* pJog = new Jogador();
 
      //Instancia inimigo do tipo Quadrado
-     Inimigos::Quadrado* pIni = new Inimigos::Quadrado(inimigo, 10, 5);
+     Inimigos::Quadrado* pIni = new Inimigos::Quadrado();
      pIni->setPos((gg->getTamanhoJanela().x)-50.0, (gg->getTamanhoJanela().y)/2);
+     pIni->setDano(5);
+
+     pIni->setVel(pJog->getVel().x-20.0, pJog->getVel().y-20.0);
 
      //Associa o o jogador ao quadrado
      Inimigos::Inimigo::setpJogador1(pJog);
@@ -462,4 +465,7 @@ void testeFase()
           gg->mostrar();
           gc->executar();
      }
+
+     delete pIni;
+     delete pJog;
 }
