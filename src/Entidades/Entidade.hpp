@@ -20,7 +20,8 @@ namespace Entidades
         indefinido = 0,
         jogador,
         plataforma,
-        inimigo
+        inimigo,
+        obstaculo
     };
 
     // << CLASSE ABSTRATA >>
