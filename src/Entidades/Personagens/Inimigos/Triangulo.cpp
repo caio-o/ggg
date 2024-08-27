@@ -1,17 +1,26 @@
+/*
+ * AUTORA    : Ana Julia Molinos Leite da Silva
+ * DESCRIÇÃO : Implementação da classe responsável por definir o comportamento e características do 
+ *             inimigo Triângulo, que lança projéteis contra os jogadores.
+ */
+
 #include "Triangulo.hpp"
 
-#define CAMINHO_TEXTURA "../../img/triangulo_amarelo.png"
+#define CAMINHO_TEXTURA "./../img/triangulo_amarelo.png"
 
 #define COOLDOWN 3.0 //segundos
 
 namespace Inimigos
 {
+    Fases::Fase* Triangulo::pFase(NULL);
+    
     Triangulo::Triangulo(Especie _especie, int maxVida, int dano):
     Inimigo(_especie, maxVida),
     cooldown(COOLDOWN),
     tempoUltimoAtaque(0.0)
     {
         forma.setTextura(CAMINHO_TEXTURA, true);
+        setTamanho(70.,70.);
     }
 
     Triangulo::~Triangulo()
@@ -24,6 +33,8 @@ namespace Inimigos
 
     }
 
+    //Executa o comportamento do triângulo (não se movimenta, apenas lança projéteis conforme seu
+    //cooldown)
     void Triangulo::executar(const float dT)
     {
         vel.x = 0.0;
@@ -38,13 +49,13 @@ namespace Inimigos
         }
     }
 
+    //Pede para a fase instanciar um novo projétil com origem e sua própria posição.
     void Triangulo::atacar()
     {
-        //pFase->criarProjetil(pos.x, pos.y);
-        //a ideia seria q o triangulo chamasse esse método da fase pra ela alocar o projétil e add
-        //ele na sua propria lista (as posições do triangulo seriam a origem do projetil)
+        pFase->criarProjetil(pos.x, pos.y);
     }
 
+    //Não há reação.
     void Triangulo::reagirAhColisao(Entidade* pE)
     {
         //não faz nada?

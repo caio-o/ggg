@@ -1,7 +1,14 @@
+/*
+ * AUTORA    : Ana Julia Molinos Leite da Silva
+ * DESCRIÇÃO : Declaração da classe responsável por definir o comportamento e características do 
+ *             inimigo Triângulo, que lança projéteis contra os jogadores.
+ */
+
 #pragma once
 
 #include "Inimigo.hpp"
 #include "Entidades/Projetil.hpp"
+#include "Fases/Fase.hpp"
 
 namespace Inimigos
 {
@@ -10,6 +17,7 @@ namespace Inimigos
         private:
             float cooldown;
             float tempoUltimoAtaque;
+            static Fases::Fase* pFase;
 
         public:
             Triangulo(Especie _especie = inimigo, int maxVida = 10, int dano = 1);
@@ -18,6 +26,8 @@ namespace Inimigos
             void salvar();
             void executar(const float dT);
             void atacar();
-            void reagirAhColisao(Entidade* pE);            
+            void reagirAhColisao(Entidade* pE);
+
+            static void setpFase(Fases::Fase* pF);            
     };
 } // namespace Inimigos
