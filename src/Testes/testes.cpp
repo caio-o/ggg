@@ -22,6 +22,7 @@
 #include "Entidades/Personagens/Jogador.hpp"
 #include "Ente.hpp"
 #include "Entidades/Obstaculos/Plataforma.hpp"
+#include "Entidades/Obstaculos/Lapis.hpp"
 
 #include "Entidades/Personagens/Inimigos/Quadrado.hpp"
 
@@ -395,8 +396,7 @@ void testeColisoes()
      }
 }
 
-//Não está funcionando
-void testeQuadrado()
+void testeFase()
 {
      //Instancia os gerenciadores
      Gerenciadores::GerenciadorGrafico*  gg = Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico();
@@ -421,10 +421,13 @@ void testeQuadrado()
      
      //Instancia jogador
      Jogador* pJog = new Jogador();
-
+     pJog->setPos(30.f, 300.f);
      //Instancia inimigo do tipo Quadrado
-     Inimigos::Quadrado* pIni = new Inimigos::Quadrado(inimigo, 10, 5);
+     Inimigos::Quadrado* pIni = new Inimigos::Quadrado();
      pIni->setPos((gg->getTamanhoJanela().x)-50.0, (gg->getTamanhoJanela().y)/2);
+     pIni->setDano(5);
+
+     pIni->setVel(pJog->getVel().x-20.0, pJog->getVel().y-20.0);
 
      //Associa o o jogador ao quadrado
      Inimigos::Inimigo::setpJogador1(pJog);
@@ -439,11 +442,15 @@ void testeQuadrado()
      plat.setTamanho(gg->getTamanhoJanela().x, 25.f);
      plat.setPos((gg->getTamanhoJanela().x)/2, (pIni->getPos().y)+((pIni->getTam().y)/2) +((plat.getTam().y)/2));
 
+     Obstaculos::Lapis bor;
+     bor.setPos((gg->getTamanhoJanela().x)/2, plat.getPos().y - (plat.getTam().y)/2 - (bor.getTam().y)/2);
+     
      gc->inserirJogador(pJog);
      gc->inserirInimigo(pIni);
      gc->inserirObstaculo(&plat);
      gc->inserirObstaculo(&parede1);
      gc->inserirObstaculo(&parede2);
+     gc->inserirObstaculo(&bor);
 
      while (gg->janelaAberta())
      {
@@ -474,7 +481,7 @@ void testeQuadrado()
 
           //Move as entidades
           pJog->moverse(dT);
-          //pIni->moverse(dT);
+          //pIni->moverse(dT); (o método executar do jogador agora chama o moverse)
 
           //Renderiza as entidades
           pJog->desenhar();
@@ -482,9 +489,13 @@ void testeQuadrado()
           parede1.desenhar();
           parede2.desenhar();
           plat.desenhar();
+          bor.desenhar();
    
           //Mostra tudo que foi renderizado
           gg->mostrar();
           gc->executar();
      }
+
+     delete pIni;
+     delete pJog;
 }

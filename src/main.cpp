@@ -16,9 +16,12 @@ int main()
     //testeEntidade();
     //testeColisoes();
     //testeQuadrado();
+    testeFase();
 
+
+/*
     Jogo GGG;
     GGG.executar();
-
+*/
     return 0;
 }

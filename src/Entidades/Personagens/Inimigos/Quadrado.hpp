@@ -13,7 +13,7 @@ namespace Inimigos
             float cooldown;
 
         public:
-            Quadrado(Especie _especie, int maxVida = 10, int dano = 1);
+            Quadrado(Especie _especie = inimigo, int maxVida = 10, int dano = 1);
             ~Quadrado();
             
             void salvar();

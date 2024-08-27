@@ -74,11 +74,12 @@ void testeColisoes();
 
 /*
  * AUTOR   :  Ana Julia Molinos Leite da Silva (ana-molinos)
- * FUNCAO  :  Testar o inimigo Quadrado e sua interação com Jogador.
- * SAIDA   :  Um jogador controlável e um inimigo do tipo Quadrado no centro da janela. Se o jogador
- *            se aproximar do quadrado o comportamento esperado é que o quadrado o persiga e,
- *            conforme se aproximar, execute um dash contra o jogador.
+ * FUNCAO  :  Testar a fase com todas suas entidades e seus possíveis.
+ * SAIDA   :  Um jogador controlável e um inimigo do tipo Quadrado, além de um obstáculo no centro da 
+ *            janela. Se o jogador se aproximar do quadrado o comportamento esperado é que o quadrado 
+ *            o persiga e, conforme se aproximar, execute um dash contra o jogador. Se o jogador 
+ *            enconstar no obstáculo sofre dano. Ele sai voando ao morrer (?)
  */
-void testeQuadrado();
+void testeFase();
 
 #endif
