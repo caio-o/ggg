@@ -3,13 +3,12 @@
  *   Arquivo com definicao da classe Listas::Lista.
  * A implementacao tambem se encontra aqui, devido
  * ao uso de gabaritos (template<class TL>).
- * 
- *   OBS: A funcao "imprimir" nao pode ser usada com todos os tipos. e foi incluida para fins de testes.
+ *   DATA: 27/08/2024
+ *   OBS: A funcao "imprimir" nao pode ser usada com todos os tipos, e foi incluida para fins de testes.
  */
 
 #ifndef _LISTA_HPP
 #define _LISTA_HPP
-
 #include <iostream>
 #include "Erros.hpp"
 //#include "IteradorAbstrato.hpp"
@@ -18,15 +17,25 @@ using std::endl;
 
 namespace Listas
 {
+    /**
+     *    LISTA TEMPLATE, alla stl::List. Contem classes aninhadas ELEMENTO e ITERADOR.
+     *  LISTA: Lista INDIRETA duplamente encadeada, comfuncoes de adicionar, remover e buscar elementos,
+     *  alem de um metodo imrimir (QUE SO FUNCIONA SE ESTIVER DEFINIDO cout << TL).
+     */
     template<class TL>
     class Lista 
     {
-    public: class Elemento
+
+    public: 
+        /**      MODO DE INSTANCIAR ou REFERENCIAR: Lista<TIPO>::Elemento.
+         *    ELEMENTO: Nodo duplamente encadeado, usado na estrutura interna da lista.
+         */
+        class Elemento
         {
         private:
             TL*         pInfo; // A lista eh indireta (armazena como ptr. TL*). 
-            Elemento*   pProx;
-            Elemento*   pAnt;
+            Elemento*   pProx; // Ptr. para proximo nodo.
+            Elemento*   pAnt;  // Ptr. para proximo nodo.
 
         public:
             Elemento(TL* _pInfo = NULL);
@@ -42,9 +51,8 @@ namespace Listas
             Elemento*      getAnt  () const          { return pAnt;    }
             void           setAnt  (Elemento* p)     { pAnt = p;       }
 
+            // Funcao ateh agora nao utilizada.
             void  trocaAdiante();        // Troca o elemento de lugar com o da frente 
-
-            
         };
 
 
@@ -52,28 +60,35 @@ namespace Listas
 
          
         /**
-         * << ITERATOR >> Classe para percorrer a lista e acessar seus elementos. Não é ainda desacoplado.
+         * << ITERATOR >> Classe para percorrer a lista e acessar seus elementos. Não é ainda desacoplado por classe abstrata.
          *     Classe Lista<TL>::Iterador herda de IteradorAbstrato.
          */
         class Iterador /*: public IteradorAbstrato<Elemento>*/
         {
         private:
-            Elemento* elem;
+            // Referencia para o elemento. Foi usada na Lista Entidades para remover elementos, 
+            // se bem que possamos fazer uma sobrecarga de metodo remover( iterador ) e eliminar o acesso ao elemento.
+            Elemento* elem; 
 
         public:
             Iterador();
             ~Iterador();
             
-            TL*  get     () const;
-            void set     (TL* p);
+            TL*  get     () const; // Retorna a informacao apontada do elemento da lista.
+            void set     (TL* p);  // Escolhe a informacao apontada do elemento da lista.
             Elemento* getElem () const { return elem; }
             void setElem (Elemento* _elem) { elem = _elem; }
 
+            // Retorna true se o proximo elemento nao eh NULL,
+            // senao retorna false.
             const bool temProximo() const;
-            const bool fim();
 
-            Iterador& operator++();
-            Iterador& operator++(int);
+            // Retorna true se o iterador chegou ao fim da lista (a saber, se o seu elemento eh NULL),
+            // senao retorna false.
+            const bool fim();  
+
+            Iterador& operator++();    // Passa a apontar para o proximo nodo.
+            Iterador& operator++(int); // idem.
         };
 
 
@@ -81,40 +96,42 @@ namespace Listas
 
 
 
-        /// Aqui comeca a classe Lista propriamente dita
+        // Aqui comeca a classe Lista propriamente dita
     private:
-        Elemento* pPrimeiro;
-        Elemento* pUltimo;
+        Elemento* pPrimeiro; // head
+        Elemento* pUltimo;   // tail
 
     public:
         Lista();
         ~Lista();
 
-        bool  vazia       ( )   { return pPrimeiro == NULL; }
+        bool  vazia       ( )   { return pPrimeiro == NULL; } // Ignorar o warning. NAO FAZER TYPECAST (bool)pPrimeiro 
 
-        void  anulaPtrs   ( );
+        void  anulaPtrs   ( );                 // Anula pPrimeiro e pUltimo
 
         void  push_front  (TL* dados);         // Adicionar na pos. 0 (primeira).
         void  push_back   (TL* dados);         // Adicionar na pos. ultima.
         void  push_n      (TL* dados, int n);  // Adicionar na pos. N, ou no limite, caso N o ultrapasse. 
 
-        void  pop_front   ();
+        void  pop_front   ();                  // Remove da pos. 0 (primeira)
 
         Elemento*   getPrimeiro () const  { return pPrimeiro; }
-        void        setPrimeiro (TL* p);
+        Elemento*   getUltimo   () const  { return pUltimo; }
+        //void      getN        (const int n);
+        //void      setN        (const int n);
+
         void inicializa(Iterador &it) { it.setElem(pPrimeiro); }
 
-        Elemento*   getUltimo   () const  { return pUltimo; }
+        void        setPrimeiro (TL* p);       // Incongruente com os gets. Com maior tempo poderia ajustar, mas por enquanto deixe assim. 
         void        setUltimo   (TL* p);
 
-        //void  getN        (const int n);
-        //void  setN        (const int n);
 
-        Elemento* buscaElemento  (TL *dados);
+        Elemento*   buscaElemento  (TL *dados);
         //void      removeDados    (TL* dados);
         void removeElemento      (Elemento* elem);
 
-        void  imprimir();
+        // ATENCAO: NAO FUNCIONA COM TODOS OS TIPOS. Eh preciso que esteja definido o operador "<<" para o tipo TL.
+        void  imprimir(); 
     };
 } using namespace Listas;
 
