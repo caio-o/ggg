@@ -185,42 +185,38 @@ void GerenciadorColisoes::repelir (Entidade* pRepelido, Entidade* pRepulsor, Vet
     //std::cout << "REPELINDO ENTIDADES" << endl;
 
     // REPELIR NO EIXO-X SOMENTE
-    if(interseccao.x < interseccao.y && interseccao.x > 0.f)
+    if(interseccao.x < interseccao.y)
     {
         if (pRepelido->getX() < pRepulsor->getX())
         {
             pRepelido->setX(pRepelido->getX() - interseccao.x);
-            if (pRepelido->getVel().x < 0.0f)
-                pRepelido->setX(0.0f);
+            if (pRepelido->getVel().x > 0.0f)
+                pRepelido->setVelX(0.0f);
         }
         else
         {
             pRepelido->setX(pRepelido->getX() + interseccao.x);
-            if (pRepelido->getVel().x > 0.0f)
-                pRepelido->setX(0.0f);
+            if (pRepelido->getVel().x < 0.0f)
+                pRepelido->setVelX(0.0f);
         }
         
         pRepelido->setVelX(0.0f);
     }
-    else if (interseccao.y > 0.F)// REPELIR NO EIXO-Y SOMENTE.
+    else// if (interseccao.y > 0.F)// REPELIR NO EIXO-Y SOMENTE.
     {
         if (pRepelido->getY() < pRepulsor->getY())
         {
             pRepelido->setY(pRepelido->getY() - interseccao.y);
-            if (pRepelido->getVel().y < 0.0f)
-                pRepelido->setY(0.0f);
+            if (pRepelido->getVel().y > 0.0f)
+                pRepelido->setVelY(0.0f);
         }
         else
         {
             pRepelido->setY(pRepelido->getY() + interseccao.y);
-            if (pRepelido->getVel().y > 0.0f)
-                pRepelido->setY(0.0f);
+            if (pRepelido->getVel().y < 0.0f)
+                pRepelido->setVelY(0.0f);
         }
 
         pRepelido->setVelY(0.0f);
-    }
-    else 
-    {
-        cout << "AVISO: COLISAO FALSA!" << endl;
     }
 }
