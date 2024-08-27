@@ -45,7 +45,7 @@ namespace Entidades
             {
                 Jogador* pJ = static_cast<Jogador*>(pE);
                 pJ->receberDano(dano, true);
-                pJ->aceleraY(-200.0); //para o jogador pular ao receber dano
+                //pJ->aceleraY(-200.0); //para o jogador pular ao receber dano
             }
         }
 

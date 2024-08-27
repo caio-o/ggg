@@ -43,7 +43,7 @@ namespace Inimigos
 
     void Quadrado::executar(const float dT)
     {
-        cout << "QUADRADO EXECUTANDO!" << endl;
+        //cout << "QUADRADO EXECUTANDO!" << endl;
 
         tempoUltimoAtaque += dT;
         //cout << tempoUltimoAtaque << endl;
@@ -115,9 +115,11 @@ namespace Inimigos
     void Quadrado::reagirAhColisao(Entidade* pE)
     {
         
-        if(pE->getEspecie() == jogador && atacando)
-            {static_cast<Jogador*>(pE)->receberDano(dano, true);
-            cout << "ReagirAhColisao::dano: " << dano << endl;}
+        if(pE->getEspecie() == jogador && atacando/* && pE->getY() >= getY() - getTam().y/2.3*/)
+        {
+            static_cast<Jogador*>(pE)->receberDano(dano, true);
+            cout << "ReagirAhColisao::dano: " << dano << endl;
+        }
     }
 
     //Retorna true se algum jogador estiver no range de perseguição do quadrado

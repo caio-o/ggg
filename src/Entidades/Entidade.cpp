@@ -13,7 +13,7 @@ Entidade::Entidade(Especie _especie):
     forma(pos, Vetor2f(50.f, 50.f),  "../img/emoji_sorrindo.png", 1.f)
 {     
     /*cout << "Entidade::Entidade:" << endl;
-    cout << "    pForma = " << pForma << endl; */
+    //cout << "    pForma = " << pForma << endl; */
 
     //setTextura("../img/quadrado_vermelho.png" /*, Vetor2f(80.f, 80.f)*/);
 }

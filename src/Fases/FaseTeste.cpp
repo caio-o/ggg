@@ -27,7 +27,7 @@ void FaseTeste::criarObstaculos()
     pGC->inserirObstaculo(static_cast<Obstaculo*> (pPlat));
 
     pPlat = new Obstaculos::Plataforma();
-    pPlat->setPos(600.f, 700.f);
+    pPlat->setPos(500.f, 400.f);
     colecao.incluir(static_cast<Entidade*> (pPlat));
     pGC->inserirObstaculo(static_cast<Obstaculo*> (pPlat));
     
@@ -37,13 +37,14 @@ void FaseTeste::criarObstaculos()
 void FaseTeste::criarInimigos()
 {
     Inimigo* pIni = static_cast<Inimigo*> (new Quadrado(Especie::inimigo, 10, 100));
+    Inimigo::setpJogador1(pJog);
     pIni->setPos(800.f, 300.f);
     pGC->inserirInimigo(pIni);
     colecao.incluir(static_cast<Entidade*> (pIni));
-    pIni = static_cast<Inimigo*> (new Quadrado(Especie::inimigo, 10, 100));
+    /*pIni = static_cast<Inimigo*> (new Quadrado(Especie::inimigo, 10, 100));
     pIni->setPos(700.f, 300.f);
     pGC->inserirInimigo(pIni);
-    colecao.incluir(static_cast<Entidade*> (pIni));
+    colecao.incluir(static_cast<Entidade*> (pIni));*/
 }
 
 /** TODO: Talvez por isto na fase abstrata, e chamar
@@ -65,6 +66,23 @@ void FaseTeste::executar(const float dT = 0.f)
 
         // Executar, mover e desenhar entidades.
         colecao.percorrer(deltaT);
+
+        if(pJog->getY() < -50.f || pJog->getY() > 770.f) pJog->setPos(500.f, 500.f);
+        if(pJog->getX() < -50.f || pJog->getY() > 1340.f) pJog->setPos(500.f, 500.f);
+
+        if(pJog && pJog2)
+        {
+            
+        }
+        else if(pJog)
+        {
+            if(verificaGameOver())
+            {
+                efeitoGameOver.setTamanho(pGG->getTamanhoJanela().x, pGG->getTamanhoJanela().y);
+                efeitoGameOver.atualizar(pGG->getTamanhoJanela()/2.f);
+                efeitoGameOver.renderizar();
+            }
+        }
 
         pGG->mostrar();
     }

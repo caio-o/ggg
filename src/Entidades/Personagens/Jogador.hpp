@@ -15,7 +15,8 @@ namespace Entidades
         bool noChao;
         float agilidade; // velocidade do CAMINHAR do jogador (no eixo X)
         float velPulo;   // velocidade inicial do PULO do jogador (no eixo Y)
-        virtual void morrer()  { forma.setEscala(1.f, 2.0f); }; //efeito da morte no jogador
+        virtual void morrer()  { forma.setEscala(2.f, 1.0f); }; //efeito da morte no 
+        
 
     public:
         Jogador(int _maxVida = 10);

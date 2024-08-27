@@ -420,7 +420,7 @@ void testeFase()
      float dT = 0.0;    
      
      //Instancia jogador
-     Jogador* pJog = new Jogador();
+     Jogador* pJog = new Jogador(1000);
      pJog->setPos(30.f, 300.f);
      //Instancia inimigo do tipo Quadrado
      Inimigos::Quadrado* pIni = new Inimigos::Quadrado();
@@ -481,7 +481,7 @@ void testeFase()
 
           //Move as entidades
           pJog->moverse(dT);
-          //pIni->moverse(dT); (o método executar do jogador agora chama o moverse)
+          pIni->moverse(dT); //(o método executar do jogador agora chama o moverse)
 
           //Renderiza as entidades
           pJog->desenhar();

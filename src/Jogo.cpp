@@ -1,5 +1,6 @@
 
 #include "Jogo.hpp"
+#include "Ente.hpp"
 #include "Fases/Fase.hpp"
 #include <iostream>
 using namespace std;
@@ -11,11 +12,14 @@ Jogo::Jogo():
     primeiraFase(NULL)
 {
     
-    cout << "Jogo::Jogo 1" << endl;
+    //cout << "Jogo::Jogo 1" << endl;
     pGG = Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico();
     pGE = Gerenciadores::GerenciadorEventos::getGerenciadorEventos();
+    
+    Ente::setGerenciadorGrafico();
+
     primeiraFase =  static_cast<Fase*> (new FaseTeste);
-    cout << "Jogo::Jogo 2" << endl;
+    //cout << "Jogo::Jogo 2" << endl;
 }
 
 Jogo::~Jogo()
@@ -27,6 +31,6 @@ Jogo::~Jogo()
 
 void Jogo::executar()
 {
-    cout << "Jogo::EXECUTAR" << endl;
+    ////cout << "Jogo::EXECUTAR" << endl;
     primeiraFase->executar();
 }

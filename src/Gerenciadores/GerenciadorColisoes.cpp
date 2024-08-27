@@ -49,7 +49,7 @@ void GerenciadorColisoes::verificaInimigos()
 
     for(LI.inicializa(itInim); ! itInim.fim(); itInim++)
     {
-        cout << "GC::VERIFICA_INIMIGOS" << endl;
+        //cout << "GC::VERIFICA_INIMIGOS" << endl;
 
         pI = itInim.get();
 
@@ -155,7 +155,7 @@ void GerenciadorColisoes::verificaObstaculos()
 
 void GerenciadorColisoes::executar()
 {
-    cout << "GC::EXECUTAR" << endl;
+    //cout << "GC::EXECUTAR" << endl;
 
     verificaInimigos();
     verificaObstaculos();
@@ -182,7 +182,8 @@ void GerenciadorColisoes::repelir (Entidade* pRepelido, Entidade* pRepulsor, Vet
 {
     //std::cout << "REPELINDO ENTIDADES" << endl;
 
-    if(interseccao.x < interseccao.y)
+    // REPELIR NO EIXO-X SOMENTE
+    if(interseccao.x < interseccao.y && interseccao.x > 0.f)
     {
         if (pRepelido->getX() < pRepulsor->getX())
         {
@@ -199,7 +200,7 @@ void GerenciadorColisoes::repelir (Entidade* pRepelido, Entidade* pRepulsor, Vet
         
         pRepelido->setVelX(0.0f);
     }
-    else
+    else if (interseccao.y > 0.F)// REPELIR NO EIXO-Y SOMENTE.
     {
         if (pRepelido->getY() < pRepulsor->getY())
         {
@@ -215,5 +216,9 @@ void GerenciadorColisoes::repelir (Entidade* pRepelido, Entidade* pRepulsor, Vet
         }
 
         pRepelido->setVelY(0.0f);
+    }
+    else 
+    {
+        cout << "AVISO: COLISAO FALSA!" << endl;
     }
 }

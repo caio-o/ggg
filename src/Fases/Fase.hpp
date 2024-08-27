@@ -12,11 +12,14 @@ namespace Fases
     class Fase : public Ente
     {
     protected:
+        Forma efeitoGameOver;
+        bool gameOver;
         ListaEntidades colecao;
         Gerenciadores::GerenciadorGrafico *pGG;
         Gerenciadores::GerenciadorColisoes *pGC;
         Gerenciadores::GerenciadorEventos *pGE;
         Jogador *pJog;
+        Jogador *pJog2;
         float t0;
         float t1;
         float deltaT;
@@ -28,6 +31,13 @@ namespace Fases
         virtual ~Fase();
         
         virtual void executar(const float dT = 0.f) = 0;
+        virtual const bool verificaGameOver()
+        {
+            if       (pJog && pJog2)  { return gameOver = (bool) !( pJog->getVivo() && pJog2->getVivo() ); }
+            else if  (pJog         )  { return gameOver = (bool) !( pJog->getVivo() );                     }
+            else                      { return false;                                                      }
+        }
+
         virtual void salvar  ();
     };
 }

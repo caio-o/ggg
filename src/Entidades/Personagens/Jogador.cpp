@@ -2,6 +2,7 @@
 #include <SFML/System.hpp>
 using sf::Keyboard;
 using namespace ElementosGraficos;
+#define DANO_PISADA 5
 
 Jogador::Jogador(int _maxVida):
     Personagem (Especie::jogador, _maxVida),
@@ -54,12 +55,6 @@ void Jogador::executar(const float dT)
 
     
     checarVida();
-
-    if(!vivo) 
-    {  
-        cout << "Jogador morreu!" << endl;
-        morrer();
-    }
 }
 
 void Jogador::reagirAhColisao(Entidade* pE)
@@ -68,6 +63,14 @@ void Jogador::reagirAhColisao(Entidade* pE)
     {
     case Especie::plataforma:
         noChao = true;
+        break;
+
+    case Especie::inimigo:
+        if(pE->getY() - pE->getTam().y/2.F > getY())
+        {
+            static_cast<Personagem*>(pE)->receberDano(DANO_PISADA);
+            aceleraY(-200.f);
+        }
         break;
         
     default:

@@ -15,6 +15,7 @@ protected:
     bool imunidade;
     float momentoUltimoDano;
     void atualizarImunidade();
+    virtual void morrer()  { forma.setEscala(2.5f, 0.7f); };
 
 public:
     Personagem(Especie _especie = indefinido, int maxVida = 10);

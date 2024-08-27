@@ -170,7 +170,7 @@ const bool Lista<TL>::Iterador::fim()
 template<class TL>
 TL* Lista<TL>::Iterador::get() const
 { 
-    cout << "Lista<TL>::Iterador::GET"<< endl;
+    //cout << "Lista<TL>::Iterador::GET"<< endl;
     if(elem) { return elem->getInfo(); }
     else
     {

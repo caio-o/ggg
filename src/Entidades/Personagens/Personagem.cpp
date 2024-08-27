@@ -21,15 +21,14 @@ Personagem::~Personagem()
 
 void Personagem::receberDano(int dano, const bool delay)
 {
-    //cout << "RECEBENDO DANO..."<< endl;
-
+    cout << "RECEBENDO DANO..."<< endl;
     if (delay)
     {
-        //cout << "    ...COM DELAY..." << endl;
+        cout << "    ...COM DELAY..." << endl;
         atualizarImunidade();
         if(!imunidade)
         {
-            //cout << "        ...DANO RECEBIDO." << endl;
+            cout << "        ...DANO RECEBIDO." << endl;
             momentoUltimoDano = pGG->getTempo();
             vida -= dano;
             aceleraY(-200.F);
@@ -45,7 +44,14 @@ void Personagem::receberDano(int dano, const bool delay)
     }
 
     if(vida < 0)
+    {
+        if(vivo)
+        {
+            vivo = false;
+            morrer();
+        }
         vida = 0;
+    }
 }
 
 void Personagem::atualizarImunidade()

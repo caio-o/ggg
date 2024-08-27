@@ -19,7 +19,7 @@ namespace Fases
     {
     private:
         int maxInimigos;
-        void criarObstaculos() ;
+        void criarObstaculos();
         void criarInimigos();
         void executar(const float dT);
 
