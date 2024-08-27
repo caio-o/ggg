@@ -1,19 +1,25 @@
 #include "Fases/Fase.hpp"
+using namespace Fases;
 
 Fase::Fase():
     Ente(),
-    entidades()
+    t0(0.0f),
+    t1(0.0f),
+    deltaT(0.0f),
+    colecao(),
+    pJog(NULL),
+    pGC (Gerenciadores::GerenciadorColisoes::getInstancia()),
+    pGG (Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico()),
+    pGE (Gerenciadores::GerenciadorEventos::getGerenciadorEventos())
 {
-    //ERRO DE COMPILAÇÃO
-    //criarObstaculos();
+    cout << "Fase::FASE" << endl;
+    t0 = pGG->getTempo();
+    t1 = pGG->getTempo();
 }
 
 Fase::~Fase()
-{ }
-
-void Fase::executar()
 {
-    entidades.percorrer();
+    delete pGC;
 }
 
 void Fase::salvar() 

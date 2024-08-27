@@ -9,7 +9,7 @@ Entidade::Entidade(Especie _especie):
     especie(_especie),
     pos           (10.0f, 10.0f),
     vel           (0.0f, 0.0f),
-    modGravidade  (1.0f, 1.0f),
+    acelVertical  (1.0f),
     forma(pos, Vetor2f(50.f, 50.f),  "../img/emoji_sorrindo.png", 1.f)
 {     
     /*cout << "Entidade::Entidade:" << endl;

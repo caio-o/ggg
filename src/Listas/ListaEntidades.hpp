@@ -19,90 +19,25 @@ namespace Listas
     private:
         Lista<Entidade> LE; // Lista indireta de entidades
 
-        void operator++(int); // obj ++
-        void operator++();    // ++ obj
+        Lista<Entidade>::Iterador it;
+        float gravidade;
+
+        void operator++(int)  { it++; };
+        void operator++()     { it++; };    
 
     public:
-        Lista<Entidade>::Elemento* atual; 
-        //class iterator; // Iterador para percorrer a lista e acessar as entidades.
 
         ListaEntidades();
         ~ListaEntidades();
 
-        void percorrer();
+        void setGravidade(const float grav){ gravidade = grav; }
+
+        void percorrer(float deltaT);
+        void irAoInicio() { LE.inicializa(it); }
 
         void incluir(Entidade* pE);
+        void remover(Entidade* pE) { LE.removeElemento( LE.buscaElemento(pE) ); }
     };
-
-    //ERRO DE COMPILAÇÃO: DUPLA DEFINIÇÃO DAS FUNÇÕES
-    /*ListaEntidades::ListaEntidades():
-        LE(),
-        atual(NULL)
-    {
-        
-    }
-
-    ListaEntidades::~ListaEntidades()
-    {
-        
-    }
-
-    void ListaEntidades::incluir(Entidade* pE) 
-    { 
-        if (pE)
-        {
-            LE.push_front(pE);     
-        }
-        else
-        {
-            cout << "Em funcao ListaEntidades::incluir: " << ERRO_INCLUI_NULLPTR << endl;
-            enterFechar();
-        }
-    }
-
-    void ListaEntidades::operator++() 
-    {
-        if(atual)
-        {
-            atual = atual->getProx();
-        }
-        else
-        {
-            cout << "Este eh o fim da lista!" << endl;
-        }
-    }
-
-    void ListaEntidades::operator++(int) 
-    {
-        if(atual)
-        {
-            atual = atual->getProx();
-        }
-        else
-        {
-            cout << "Este eh o fim da lista!" << endl;
-        }
-    }
-
-    void ListaEntidades::percorrer()
-    {
-        atual = LE.getPrimeiro();
-        
-        while(atual != NULL)
-        {
-            if(atual->getInfo())
-            {
-                atual->getInfo()->desenhar();
-                atual->getInfo()->executar();
-                (*this)++;
-            }
-            else
-            {
-                cout << "Em funcao ListaEntidades::percorrer: " << ERRO_NULLPTR_LISTA << endl;
-                enterFechar(); 
-            }
-        }
-    }*/
 }
 
 #endif

@@ -8,8 +8,6 @@
 
 #include "ElementosGraficos/Forma.hpp"
 
-#define GRAVIDADE 1.0f
-
 using namespace Coordenadas;
 using namespace ElementosGraficos;
 
@@ -31,7 +29,7 @@ namespace Entidades
         Vetor2f pos;
         //Vetor2f tam;
         Vetor2f vel;
-        Vetor2f modGravidade;
+        float acelVertical;
         //Coordenada<float> modGravidade;
         Especie especie;
 
@@ -53,6 +51,7 @@ namespace Entidades
         const Vetor2f  getVel   () const   { return vel;   }
         const Vetor2f  getPos   () const   { return pos;   }
         const Vetor2f  getTam   () const;
+        const float getAcelVertical() const{ return acelVertical; }
         const float    getX     () const   { return pos.x; }
         const float    getY     () const   { return pos.y; }
         const Especie  getEspecie() const  { return especie; }
@@ -60,6 +59,7 @@ namespace Entidades
         void  setVel   (const float _x, const float _y)  { vel.x = _x; vel.y = _y; }
         void  setPos   (const float _x, const float _y)  { pos.x = _x; pos.y = _y; forma.atualizar(pos); }
         void  setPos   (const Vetor2f _pos            )  { pos = _pos;             forma.atualizar(pos); }
+        void setAcelVertical(const float AV)             { acelVertical = AV; }
 
         void  setX     (const float _x)                  { pos.x = _x;             }
         void  setY     (const float _y)                  { pos.y = _y;             }

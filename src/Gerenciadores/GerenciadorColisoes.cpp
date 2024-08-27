@@ -49,6 +49,8 @@ void GerenciadorColisoes::verificaInimigos()
 
     for(LI.inicializa(itInim); ! itInim.fim(); itInim++)
     {
+        cout << "GC::VERIFICA_INIMIGOS" << endl;
+
         pI = itInim.get();
 
         if(pI)
@@ -56,7 +58,7 @@ void GerenciadorColisoes::verificaInimigos()
             for(LJ.inicializa(itJoga); ! itJoga.fim(); itJoga++)
             {
                 pJ = itJoga.get();
-                
+                //cout << "Encontrei jogador!" << endl;
                 if(pJ)
                 {
                     interseccao = calcularInterseccao (static_cast<Entidade*> (pJ), static_cast<Entidade*> (pI));
@@ -91,6 +93,8 @@ void GerenciadorColisoes::verificaObstaculos()
 
     for(LO.inicializa(itObst); ! itObst.fim(); itObst++)
     {
+
+
         pO = itObst.get();
 
         if(pO)
@@ -101,14 +105,10 @@ void GerenciadorColisoes::verificaObstaculos()
                 
                 if(pJ)
                 {
-                    //cout << "Encontrei jogador!" << endl;
-
                     interseccao = calcularInterseccao (static_cast<Entidade*> (pO), static_cast<Entidade*> (pJ));
 
                     if (interseccao > zero)
                     {
-                        //cout << "Ele colidiu com um obstaculo!" << endl;
-
                         if (pO->getPermeavel() == false) 
                             repelir(static_cast<Entidade*> (pJ), static_cast<Entidade*> (pO), interseccao);
                         
@@ -155,6 +155,8 @@ void GerenciadorColisoes::verificaObstaculos()
 
 void GerenciadorColisoes::executar()
 {
+    cout << "GC::EXECUTAR" << endl;
+
     verificaInimigos();
     verificaObstaculos();
 }

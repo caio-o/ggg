@@ -20,6 +20,7 @@ namespace Entidades::Obstaculos
             tempoAtual(0.0f),
             Obstaculo(Especie::plataforma, false)
         {
+            setAcelVertical(-1000.f);
             setTamanho(largura, altura);
         }
 

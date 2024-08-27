@@ -103,12 +103,22 @@ void testeLista()
     cout << "Adicione 4 , 2 com push_front e 2 com push_back.    ";
 
     umaLista.push_front (new int(rand()%100));  // Adiciona na frente...
+    cout << "\nPRIMEIRO: " << *(umaLista.getPrimeiro()->getInfo()) << ".\nULTIMO: " << *(umaLista.getUltimo()->getInfo()) << "\n" << endl;
+
     umaLista.push_front (new int(rand()%100));
+    cout << "\nPRIMEIRO: " << *(umaLista.getPrimeiro()->getInfo()) << ".\nULTIMO: " << *(umaLista.getUltimo()->getInfo()) << "\n" << endl;
+
+
     umaLista.push_back  (new int(rand()%100));  // ...adiciona no fim
+    cout << "\nPRIMEIRO: " << *(umaLista.getPrimeiro()->getInfo()) << ".\nULTIMO: " << *(umaLista.getUltimo()->getInfo()) << "\n" << endl;
+
     umaLista.push_back  (new int(rand()%100));
+    cout << "\nPRIMEIRO: " << *(umaLista.getPrimeiro()->getInfo()) << ".\nULTIMO: " << *(umaLista.getUltimo()->getInfo()) << "\n" << endl;
 
     cout << "R: Veja os numeros:    ";
     umaLista.imprimir();
+
+    cout << "\nPRIMEIRO: " << *(umaLista.getPrimeiro()->getInfo()) << ".\nULTIMO: " << *(umaLista.getUltimo()->getInfo()) << "\n" << endl;
 
     cout << "A lista estah vazia?    R: " << (umaLista.vazia() ? "Sim." : "Nao.") << endl << endl;
 
@@ -119,6 +129,26 @@ void testeLista()
 
     cout << "R: Coloquei! Veja a lista:" << endl;
     umaLista.imprimir();
+
+    cout << "\nPRIMEIRO: " << *(umaLista.getPrimeiro()->getInfo()) << ".\nULTIMO: " << *(umaLista.getUltimo()->getInfo()) << "\n" << endl;
+
+    cout << "Remova da lista elemento por elemento.    R: OK! ..." << endl;
+    umaLista.removeElemento(umaLista.getPrimeiro());
+    umaLista.imprimir();
+    umaLista.removeElemento(umaLista.getUltimo());
+    umaLista.imprimir();        
+     umaLista.removeElemento(umaLista.getPrimeiro()->getProx());
+     umaLista.imprimir();
+    umaLista.pop_front();
+    umaLista.imprimir();
+     umaLista.pop_front();
+     umaLista.imprimir();        
+    umaLista.pop_front();
+    umaLista.imprimir();        
+     umaLista.removeElemento(umaLista.getPrimeiro());
+     umaLista.imprimir();
+
+    cout << "A lista estah vazia?    R: " << (umaLista.vazia() ? "Sim." : "Nao.") << endl << endl;
 
     esperaEnter();
 }

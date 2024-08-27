@@ -41,6 +41,8 @@ namespace Inimigos
 
     void Quadrado::executar(const float dT)
     {
+        cout << "QUADRADO EXECUTANDO!" << endl;
+
         tempoUltimoAtaque += dT;
         //cout << tempoUltimoAtaque << endl;
 
@@ -73,7 +75,7 @@ namespace Inimigos
             //cout << "Quadrado parado" << endl;
         }
         
-        moverse(dT);
+        //moverse(dT);
 
     }
 

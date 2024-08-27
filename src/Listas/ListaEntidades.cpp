@@ -1,9 +1,11 @@
 #include "Listas/ListaEntidades.hpp"
+#include <SFML/System.hpp>
+
 using namespace Listas;
 
 ListaEntidades::ListaEntidades():
     LE(),
-    atual(NULL)
+    gravidade(1000.f)
 {
         
 }
@@ -26,40 +28,22 @@ void ListaEntidades::incluir(Entidade* pE)
     }
 }
 
-void ListaEntidades::operator++() 
+void ListaEntidades::percorrer(float deltaT)
 {
-    if(atual)
+    irAoInicio();
+    Entidade *p;
+    while(! it.fim())
     {
-        atual = atual->getProx();
-    }
-    else
-    {
-        cout << "Este eh o fim da lista!" << endl;
-    }
-}
-
-void ListaEntidades::operator++(int) 
-{
-    if(atual)
-    {
-        atual = atual->getProx();
-    }
-    else
-    {
-        cout << "Este eh o fim da lista!" << endl;
-    }
-}
-
-void ListaEntidades::percorrer()
-{
-    atual = LE.getPrimeiro();
-    
-    while(atual != NULL)
-    {
-        if(atual->getInfo())
+        p = it.get();
+        if(p)
         {
-            atual->getInfo()->desenhar();
-            //atual->getInfo()->executar();
+            // if(it.get()->estahAtiva()) { ... }
+            p->executar(deltaT);
+
+            p->moverse(deltaT);
+            p->aceleraY( deltaT * (gravidade + (p->getAcelVertical())) );
+
+            p->desenhar();
             (*this)++;
         }
         else
