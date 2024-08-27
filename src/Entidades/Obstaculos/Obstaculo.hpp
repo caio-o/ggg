@@ -27,7 +27,7 @@ namespace Obstaculos
 
         virtual void executar (const float dT) = 0;
 
-        virtual void reagirAhColisao(Entidade *pE) {  };
+        virtual void reagirAhColisao(Entidade *pE) = 0;
 
         const bool getPermeavel() const { return permeavel; }
     };
