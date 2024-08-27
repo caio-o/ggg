@@ -7,13 +7,13 @@ namespace Inimigos
     class Quadrado: public Inimigo
     {
         private:
+            int dano;
             bool esquerda;
             bool atacando;
-            float tempoUltimoAtaque;
-            float cooldown;
+            
 
         public:
-            Quadrado(Especie _especie = inimigo, int maxVida = 10, int dano = 1);
+            Quadrado(Especie _especie = inimigo, int maxVida = 10);
             ~Quadrado();
             
             void salvar();
@@ -25,5 +25,8 @@ namespace Inimigos
             bool rangePerseguir();
             bool rangeAtacar();
             bool jogadorAesquerda();
+
+            void setDano(const int d);
+            const int getDano() const;
     };
 } // namespace Inimigo

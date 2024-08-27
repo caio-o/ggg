@@ -8,22 +8,25 @@ namespace Inimigos
     class Inimigo: public Personagem
     {
         protected:
-            int dano;
+            float tempoUltimoAtaque;
+            float cooldown;
             static Jogador* pJogador1;
             static Jogador* pJogador2;
 
         public:
-            Inimigo(Especie _especie = inimigo, int maxVida = 10, int dano = 1);
+            Inimigo(Especie _especie = inimigo, int const maxVida = 10);
             virtual ~Inimigo();
 
             virtual void salvar() = 0;
             virtual void executar(const float dT) = 0;
             virtual void atacar() = 0;
 
-            virtual void reagirAhColisao(Entidade* pE){ }
+            virtual void reagirAhColisao(Entidade* pE) = 0;
 
-            void setDano(const int d);
-            const int getDano() const;
+            void setCooldown(const float c);
+            const float getCooldown() const;
+
+            const float getTempoUltimoAtaque() const;
 
             static void setpJogador1(Jogador* pJ);
             static void setpJogador2(Jogador* pJ);

@@ -36,7 +36,7 @@ void FaseTeste::criarObstaculos()
 
 void FaseTeste::criarInimigos()
 {
-    Inimigo* pIni = static_cast<Inimigo*> (new Quadrado(Especie::inimigo, 10, 100));
+    Inimigo* pIni = static_cast<Inimigo*> (new Quadrado(Especie::inimigo, 10));
     Inimigo::setpJogador1(pJog);
     pIni->setPos(800.f, 300.f);
     pGC->inserirInimigo(pIni);

@@ -14,12 +14,11 @@
 
 namespace Inimigos
 {
-    Quadrado::Quadrado(Especie _especie, int maxVida, int dano):
-    Inimigo(_especie, maxVida, dano),
+    Quadrado::Quadrado(Especie _especie, int maxVida):
+    Inimigo(_especie, maxVida),
     esquerda(false),
     atacando(false),
-    tempoUltimoAtaque(0.0),
-    cooldown(COOLDOWN)
+    dano(1.0)
     {
         forma.setTextura(TEXTURA, true);
     }
@@ -155,6 +154,16 @@ namespace Inimigos
             return (bool)(pJogador2->getPos().x < pos.x || pJogador1->getPos().x < pos.x);
 
         return (bool)(pJogador1->getPos().x < pos.x);
+    }
+
+    void Quadrado::setDano(const int d)
+    {
+        dano = d;
+    }
+    
+    const int Quadrado::getDano() const
+    {
+        return dano;
     }
 
 } // namespace Inimigos

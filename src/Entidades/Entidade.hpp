@@ -19,7 +19,8 @@ namespace Entidades
         jogador,
         plataforma,
         inimigo,
-        obstaculo
+        obstaculo,
+        projetil
     };
 
     // << CLASSE ABSTRATA >>
@@ -34,6 +35,8 @@ namespace Entidades
         Especie especie;
 
         Forma forma;
+
+        bool ativo;
 
     public:
         Entidade(Especie _especie = indefinido);
@@ -55,6 +58,7 @@ namespace Entidades
         const float    getX     () const   { return pos.x; }
         const float    getY     () const   { return pos.y; }
         const Especie  getEspecie() const  { return especie; }
+        const bool     getAtivo () const   { return ativo; }
         
         void  setVel   (const float _x, const float _y)  { vel.x = _x; vel.y = _y; }
         void  setPos   (const float _x, const float _y)  { pos.x = _x; pos.y = _y; forma.atualizar(pos); }

@@ -9,9 +9,10 @@ namespace Inimigos
     Jogador* Inimigo::pJogador1(NULL); //Jogador* Inimigo::pJogador1(Fase::pJogador1);
     Jogador* Inimigo::pJogador2(NULL); //Jogador* Inimigo::pJogador2(Fase::pJogador2);
 
-    Inimigo::Inimigo(Especie _especie, int maxVida, int dano):
+    Inimigo::Inimigo(Especie _especie, int const maxVida):
     Personagem(_especie, maxVida),
-    dano(dano)
+    cooldown(3.0),
+    tempoUltimoAtaque(0.0)
     {
         
         /*if(pJogador1 == NULL)
@@ -21,19 +22,26 @@ namespace Inimigos
 
     Inimigo::~Inimigo()
     {
-        dano = -1;
+        cooldown = -1;
+        tempoUltimoAtaque = -1;
         maxVida = -1;
         vida = -1;
         vivo = false;
     }
 
-    void Inimigo::setDano(const int d)
+    void Inimigo::setCooldown(const float c)
     {
-        dano = d;
+        cooldown = c;
     }
-    const int Inimigo::getDano() const
+
+    const float Inimigo::getCooldown() const
     {
-        return dano;
+        return cooldown;
+    }
+
+    const float Inimigo::getTempoUltimoAtaque() const
+    {
+        return tempoUltimoAtaque;
     }
 
     void Inimigo::setpJogador1(Jogador* pJ)
