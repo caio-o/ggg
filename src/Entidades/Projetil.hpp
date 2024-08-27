@@ -20,7 +20,7 @@ namespace Entidades
             static Jogador* pJogador2;
 
         public:
-            Projetil(Especie _especie = projetil, const int dano = 2, const bool pers = false);
+            Projetil(const int _dano = 2, const bool pers = false);
             ~Projetil();
 
             void reagirAhColisao(Entidade* pE);

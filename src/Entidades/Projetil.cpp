@@ -19,9 +19,9 @@ namespace Entidades
     Jogador* Projetil::pJogador1(NULL);
     Jogador* Projetil::pJogador2(NULL);
 
-    Projetil::Projetil(Especie _especie, const int dano, const bool pers):
-    Entidade(_especie),
-    dano(dano),
+    Projetil::Projetil(const int _dano, const bool pers):
+    Entidade(Especie::projetil),
+    dano(_dano),
     perseguindo(pers)
     {
         forma.setTextura(CAMINHO_TEXTURA, true);
@@ -49,7 +49,7 @@ namespace Entidades
             {
                 //...em caso afirmativo, dá dano no jogador
                 Jogador* pJ = static_cast<Jogador*>(pE);
-                pJ->receberDano(dano);
+                pJ->receberDano(dano, true);
             }
 
             //Por fim, é desativado, independente do tipo de Entidade com a qual colidiu.
@@ -62,7 +62,8 @@ namespace Entidades
     //Persegue alternadamente os jogadores (se houver jogador 2)
     void Projetil::executar(const float dT)
     {
-        srand(time(NULL));
+        // srand() soh deve ser usado uma vez por programa. Coloquei na principal.
+        //srand(time(NULL));
         
         //Persegue alternadamente os jogadores (se houver jogador 2)
         if(pJogador2 && rand()%2)
@@ -78,7 +79,7 @@ namespace Entidades
             else
                 vel.y = VELOCIDADE_PERSEGUICAO;
         }
-        else
+        else if (pJogador1)
         {
             if(pJogador1->getPos().x < pos.x)
                 vel.x = -VELOCIDADE_PERSEGUICAO;
@@ -89,6 +90,10 @@ namespace Entidades
                 vel.y = -VELOCIDADE_PERSEGUICAO;
             else
                 vel.y = VELOCIDADE_PERSEGUICAO;
+        }
+        else 
+        {
+            cout << "PROJETIL DIZ: JOGADOR NULO!" << endl;
         }
 
         perseguindo = true;

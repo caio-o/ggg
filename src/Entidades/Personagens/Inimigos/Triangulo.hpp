@@ -28,6 +28,6 @@ namespace Inimigos
             void atacar();
             void reagirAhColisao(Entidade* pE);
 
-            static void setpFase(Fases::Fase* pF);            
+            static void setpFase(Fases::Fase* pF) { pFase = pF; };            
     };
 } // namespace Inimigos

@@ -1,6 +1,7 @@
 #include "Fases/FaseTeste.hpp"
 #include "Entidades/Personagens/Inimigos/Triangulo.hpp"
 
+
 using namespace Fases;
 #define GRAVIDADE 1000.0F
 
@@ -37,8 +38,11 @@ void FaseTeste::criarObstaculos()
 
 void FaseTeste::criarInimigos()
 {
+    Inimigos::Triangulo* pTri;
     Inimigo* pIni = static_cast<Inimigo*> (new Quadrado(Especie::inimigo, 10));
     Inimigo::setpJogador1(pJog);
+    Projetil::setpJogador1(pJog);
+
     pIni->setPos(800.f, 300.f);
     pGC->inserirInimigo(pIni);
     colecao.incluir(static_cast<Entidade*> (pIni));
@@ -47,7 +51,10 @@ void FaseTeste::criarInimigos()
     pGC->inserirInimigo(pIni);
     colecao.incluir(static_cast<Entidade*> (pIni));*/
 
-    pIni = static_cast<Inimigo*>(new Triangulo());
+    pTri = new Triangulo;
+    pTri->setpFase(this);
+    pIni = static_cast<Inimigo*>(pTri);
+    
     pIni->setPos(500., 425.);
     pGC->inserirInimigo(pIni);
     colecao.incluir(static_cast<Entidade*>(pIni));

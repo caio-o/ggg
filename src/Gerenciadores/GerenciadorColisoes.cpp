@@ -40,7 +40,9 @@ GerenciadorColisoes::GerenciadorColisoes():
 { }
 
 GerenciadorColisoes::~GerenciadorColisoes()
-{ }
+{
+    cout << "DESTRUINDO GERENCIADOR DE COLISOES." << endl;
+}
 
 void GerenciadorColisoes::verificaInimigos()
 {
@@ -66,8 +68,8 @@ void GerenciadorColisoes::verificaInimigos()
                     if (interseccao > zero)
                     {
                         repelir(static_cast<Entidade*> (pJ), static_cast<Entidade*> (pI), interseccao);
-                        pJ->reagirAhColisao(pI);
-                        pI->reagirAhColisao(pJ);
+                        pJ->reagirAhColisao( static_cast<Entidade*> (pI));
+                        pI->reagirAhColisao( static_cast<Entidade*> (pJ));
                     }
                 }
                 else
@@ -112,8 +114,8 @@ void GerenciadorColisoes::verificaObstaculos()
                         if (pO->getPermeavel() == false) 
                             repelir(static_cast<Entidade*> (pJ), static_cast<Entidade*> (pO), interseccao);
                         
-                        pJ->reagirAhColisao(pO);
-                        pO->reagirAhColisao(pJ);
+                        pJ->reagirAhColisao(static_cast<Entidade*> (pO));
+                        pO->reagirAhColisao(static_cast<Entidade*> (pJ));
                     }
                 }
                 else
@@ -135,8 +137,8 @@ void GerenciadorColisoes::verificaObstaculos()
                         if (pO->getPermeavel() == false) 
                             repelir(static_cast<Entidade*> (pI), static_cast<Entidade*> (pO), interseccao);
                         
-                        pI->reagirAhColisao(pO);
-                        pO->reagirAhColisao(pI);
+                        pI->reagirAhColisao(static_cast<Entidade*> (pO));
+                        pO->reagirAhColisao(static_cast<Entidade*> (pI));
                     }
                 }
                 else

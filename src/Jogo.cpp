@@ -3,6 +3,8 @@
 #include "Ente.hpp"
 #include "Fases/Fase.hpp"
 #include <iostream>
+#include <stdlib.h>
+#include <time.h>
 using namespace std;
 using namespace Fases;
 
@@ -11,6 +13,7 @@ Jogo::Jogo():
     pGE(NULL),
     primeiraFase(NULL)
 {
+    srand(time(NULL));
     
     //cout << "Jogo::Jogo 1" << endl;
     pGG = Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico();
