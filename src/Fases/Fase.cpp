@@ -1,7 +1,9 @@
 #include "Fases/Fase.hpp"
-using namespace Fases;
+#include "Entidades/Projetil.hpp"
 
-Fase::Fase():
+namespace Fases
+{
+    Fase::Fase():
     Ente(),
     t0(0.0f),
     t1(0.0f),
@@ -14,16 +16,34 @@ Fase::Fase():
     pGE (Gerenciadores::GerenciadorEventos::getGerenciadorEventos()),
     gameOver(false),
     efeitoGameOver(Vetor2f (754.f, 360.f), Vetor2f(1290.f, 720.f), "../img/game_over.png", 1.f)
-{
-    cout << "Fase::FASE" << endl;
-    t0 = pGG->getTempo();
-    t1 = pGG->getTempo();
-}
+    {
+        cout << "Fase::FASE" << endl;
+        t0 = pGG->getTempo();
+        t1 = pGG->getTempo();
+    }
 
-Fase::~Fase()
-{
-    delete pGC;
-}
+    Fase::~Fase()
+    {
+        if(pGC)
+            delete pGC;
+    }
 
-void Fase::salvar() 
-{ }
+    void Fase::salvar() 
+    { }
+
+    void Fase::criarProjetil(float x, float y)
+    {
+        Entidades::Projetil* pProj = new Projetil();
+
+        if(pProj)
+        {
+            pProj->setPos(x, y);
+
+            //pGC->inserirProjetil(pProj);
+
+            colecao.incluir(static_cast<Entidade*>(pProj));
+        }
+        else
+            cout << "Erro em Fases::Fase::criarProjetil(): " << ERRO_ALOCACAO << endl;
+    }
+} // namespace Fases

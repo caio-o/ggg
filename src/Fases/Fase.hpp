@@ -39,6 +39,8 @@ namespace Fases
         }
 
         virtual void salvar  ();
+
+        void criarProjetil(float x, float y);
     };
 }
 
