@@ -1,4 +1,5 @@
 #include "Fases/FaseTeste.hpp"
+#include "Entidades/Personagens/Inimigos/Triangulo.hpp"
 
 using namespace Fases;
 #define GRAVIDADE 1000.0F
@@ -45,6 +46,11 @@ void FaseTeste::criarInimigos()
     pIni->setPos(700.f, 300.f);
     pGC->inserirInimigo(pIni);
     colecao.incluir(static_cast<Entidade*> (pIni));*/
+
+    pIni = static_cast<Inimigo*>(new Triangulo());
+    pIni->setPos(500., 425.);
+    pGC->inserirInimigo(pIni);
+    colecao.incluir(static_cast<Entidade*>(pIni));
 }
 
 /** TODO: Talvez por isto na fase abstrata, e chamar
