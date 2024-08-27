@@ -1,10 +1,10 @@
 /*
  * AUTORA    : Ana Julia Molinos Leite da Silva
- * DESCRIÇÃO : Implementação da classe responsável por definir o comportamento do obstáculo tipo Borracha
+ * DESCRIÇÃO : Implementação da classe responsável por definir o comportamento do obstáculo tipo Lapis
  *             que dá dano ao contato com o jogador.
  */
 
-#include "Borracha.hpp"
+#include "Lapis.hpp"
 #include "Erros.hpp"
 
 #define CAMINHO_TEXTURA "../img/lapis.png" //textura provisória
@@ -13,10 +13,10 @@ namespace Entidades
 {
     namespace Obstaculos
     {
-        Jogador* Borracha::pJogador1(NULL);
-        Jogador* Borracha::pJogador2(NULL);
+        Jogador* Lapis::pJogador1(NULL);
+        Jogador* Lapis::pJogador2(NULL);
 
-        Borracha::Borracha(Especie _especie, const bool _permeavel, int dano):
+        Lapis::Lapis(Especie _especie, const bool _permeavel, const int dano):
         Obstaculo(_especie, _permeavel),
         dano(dano)
         {
@@ -25,21 +25,21 @@ namespace Entidades
             setTamanho(80.f, 80.f);
         }
 
-        Borracha::~Borracha()
+        Lapis::~Lapis()
         {
             especie = indefinido;
             dano = -1;
         }
 
         
-        //Executa o obstáculo do tipo borracha
-        void Borracha::executar(const float dT)
+        //Executa o obstáculo do tipo Lapis
+        void Lapis::executar(const float dT)
         {
             vel.x = 0.0; //ta sempre garantindo q não se move, não sei se isso faz sentido
         }
 
         //Reage ao contato aplicando dano ao jogador e fazendo com que ele pule
-        void Borracha::reagirAhColisao(Entidade* pE)
+        void Lapis::reagirAhColisao(Entidade* pE)
         {
             if(pE->getEspecie() == jogador)
             {
@@ -50,33 +50,33 @@ namespace Entidades
         }
 
 
-        //Seta o dano do obstáculo borracha
-        void Borracha::setDano(const int d)
+        //Seta o dano do obstáculo Lapis
+        void Lapis::setDano(const int d)
         {
             dano = d;
         }
 
-        //Retorna o dano do obstáculo borracha
-        const int Borracha::getDano() const
+        //Retorna o dano do obstáculo Lapis
+        const int Lapis::getDano() const
         {
             return dano;
         }
 
 
-        void Borracha::setpJogador1(Jogador* pJ)
+        void Lapis::setpJogador1(Jogador* pJ)
         {
             pJogador1 = pJ;
 
             if(pJogador1 == NULL)
-                cout << "Erro em Entidades::Obstaculos::Borracha::setpJogador1(): " << ERRO_NULLPTR << endl;
+                cout << "Erro em Entidades::Obstaculos::Lapis::setpJogador1(): " << ERRO_NULLPTR << endl;
         }
 
-        void Borracha::setpJogador2(Jogador* pJ)
+        void Lapis::setpJogador2(Jogador* pJ)
         {
             pJogador2 = pJ;
 
             if(pJogador2 == NULL)
-                cout << "Erro em Entidades::Obstaculos::Borracha::setpJogador1(): " << ERRO_NULLPTR << endl;
+                cout << "Erro em Entidades::Obstaculos::Lapis::setpJogador1(): " << ERRO_NULLPTR << endl;
         }
 
     } // namespace Obstaculos

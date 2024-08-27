@@ -1,6 +1,6 @@
 /*
  * AUTORA    : Ana Julia Molinos Leite da Silva
- * DESCRIÇÃO : Declaração da classe responsável por definir o comportamento do obstáculo tipo Borracha
+ * DESCRIÇÃO : Declaração da classe responsável por definir o comportamento do obstáculo tipo Lapis
  *             que dá dano ao contato com o jogador.
  */
 
@@ -13,7 +13,7 @@ namespace Entidades
 {
     namespace Obstaculos
     {
-        class Borracha: public Obstaculo
+        class Lapis: public Obstaculo
         {
             private:
                 int dano;
@@ -23,8 +23,8 @@ namespace Entidades
                 static Jogador* pJogador2;
 
             public:
-                Borracha(Especie _especie = obstaculo, const bool _permeavel = false, int dano = 1);
-                ~Borracha();
+                Lapis(Especie _especie = obstaculo, const bool _permeavel = false, const int dano = 1);
+                ~Lapis();
                 
                 void executar(const float dT);
                 void reagirAhColisao(Entidade* pE);

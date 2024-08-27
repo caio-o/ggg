@@ -22,7 +22,7 @@
 #include "Entidades/Personagens/Jogador.hpp"
 #include "Ente.hpp"
 #include "Entidades/Obstaculos/Plataforma.hpp"
-#include "Entidades/Obstaculos/Borracha.hpp"
+#include "Entidades/Obstaculos/Lapis.hpp"
 
 #include "Entidades/Personagens/Inimigos/Quadrado.hpp"
 
@@ -412,7 +412,7 @@ void testeFase()
      plat.setTamanho(gg->getTamanhoJanela().x, 25.f);
      plat.setPos((gg->getTamanhoJanela().x)/2, (pIni->getPos().y)+((pIni->getTam().y)/2) +((plat.getTam().y)/2));
 
-     Obstaculos::Borracha bor;
+     Obstaculos::Lapis bor;
      bor.setPos((gg->getTamanhoJanela().x)/2, plat.getPos().y - (plat.getTam().y)/2 - (bor.getTam().y)/2);
      
      gc->inserirJogador(pJog);
