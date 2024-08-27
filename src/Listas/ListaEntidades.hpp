@@ -1,3 +1,11 @@
+/**
+ *   AUTOR: Caio e Silva Barbieri (caio-o).
+ *   Arquivo com definicao da classe Listas::ListaEntidades.
+ * Salvo engano, assume o padrao de projeto << ABSTRACT COLLECTION >>.
+ *   DATA: 26/08/2024
+ *   DEPENDENCIAS: ENTIDADE, LISTA, LISTA::ELEMENTO E LISTA::ITERADOR.
+ */
+
 #ifndef _LISTA_ENTIDADES_HPP
 #define _LISTA_ENTIDADES_HPP
 
