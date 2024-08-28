@@ -7,12 +7,6 @@ using namespace Fases;
 
 void FaseTeste::criarObstaculos() 
 {
-    pJog = new Jogador;
-    Inimigo::setpJogador1(pJog);
-    pJog->setPos(300.f, 200.f);
-    pGC->inserirJogador(pJog);
-    colecao.incluir(static_cast<Entidade*>(pJog));
-
     Obstaculos::Plataforma* pPlat = new Obstaculos::Plataforma(100.f, pGG->getTamanhoJanela().y);
     pPlat->setPos(25.f, 360.f);
     colecao.incluir(static_cast<Entidade*> (pPlat));
@@ -83,11 +77,7 @@ void FaseTeste::executar(const float dT = 0.f)
         if(pJog->getY() < -50.f || pJog->getY() > 770.f) pJog->setPos(500.f, 500.f);
         if(pJog->getX() < -50.f || pJog->getY() > 1340.f) pJog->setPos(500.f, 500.f);
 
-        if(pJog && pJog2)
-        {
-            
-        }
-        else if(pJog)
+        if(pJog)
         {
             if(verificaGameOver())
             {
@@ -105,6 +95,19 @@ FaseTeste::FaseTeste():
     Fase(),
     maxInimigos(100)
 {
+    pJog = new Jogador(15.f, true);
+    pJog2 = new Jogador(15.f, false);
+
+    Inimigo::setpJogador1(pJog);
+    Inimigo::setpJogador2(pJog2);
+    
+    pJog->setPos(300.f, 200.f);
+    pJog2->setPos(330.f, 200.f);
+    pGC->inserirJogador(pJog);
+    pGC->inserirJogador(pJog2);
+    colecao.incluir(static_cast<Entidade*>(pJog));
+    colecao.incluir(static_cast<Entidade*>(pJog2));
+
     colecao.setGravidade(GRAVIDADE);
     criarObstaculos();
     criarInimigos();

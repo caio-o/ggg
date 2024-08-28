@@ -33,7 +33,7 @@ namespace Fases
         virtual void executar(const float dT = 0.f) = 0;
         virtual const bool verificaGameOver()
         {
-            if       (pJog && pJog2)  { return gameOver = (bool) !( pJog->getVivo() && pJog2->getVivo() ); }
+            if       (pJog && pJog2)  { return gameOver = (bool) !( pJog->getVivo() || pJog2->getVivo() ); }
             else if  (pJog         )  { return gameOver = (bool) !( pJog->getVivo() );                     }
             else                      { return false;                                                      }
         }

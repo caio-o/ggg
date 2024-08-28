@@ -4,13 +4,21 @@ using sf::Keyboard;
 using namespace ElementosGraficos;
 #define DANO_PISADA 5
 
-Jogador::Jogador(int _maxVida):
+Jogador::Jogador(const int _maxVida, const bool j1):
     Personagem (Especie::jogador, _maxVida),
+    ehJogador1(j1),
     agilidade  (300.0f),
     noChao(false),
     velPulo(-700.f)
 { 
-    setTextura("../img/circulo_azul.png", true);
+    if(ehJogador1)
+    {
+        setTextura("../img/emoji_com_faca.png", true);
+    }
+    else
+    {
+        setTextura("../img/emoji_sorrindo.png", true);
+    }
     setTamanho(30.f, 30.f);
 }
 
@@ -47,11 +55,23 @@ void Jogador::executar(const float dT)
 { 
     if(vivo)
     {
-        if       (Keyboard::isKeyPressed (Keyboard::Up   ))    { pular();             }
+        if(ehJogador1)
+        {
+            if       (Keyboard::isKeyPressed (Keyboard::Up   ))    { pular();             }
 
-        if       (Keyboard::isKeyPressed (Keyboard::Right))    { setVelX( agilidade); }
-        else if  (Keyboard::isKeyPressed (Keyboard::Left) )    { setVelX(-agilidade); }
-        else                                                   { setVelX(      0.0f); }
+            if       (Keyboard::isKeyPressed (Keyboard::Right))    { setVelX( agilidade); }
+            else if  (Keyboard::isKeyPressed (Keyboard::Left) )    { setVelX(-agilidade); }
+            else                                                   { setVelX(      0.0f); }
+        }
+
+        else
+        {
+            if       (Keyboard::isKeyPressed (Keyboard::W   ))    { pular();             }
+
+            if       (Keyboard::isKeyPressed (Keyboard::D   ))    { setVelX( agilidade); }
+            else if  (Keyboard::isKeyPressed (Keyboard::A   ))    { setVelX(-agilidade); }
+            else                                                  { setVelX(      0.0f); }
+        }
     }
     
     noChao = false;
