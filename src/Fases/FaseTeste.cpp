@@ -14,6 +14,7 @@ using namespace Fases;
 
 void FaseTeste::criarObstaculos() 
 {
+    Obstaculos::Lapis *pLap;
     Obstaculos::Plataforma* pPlat;
 
     pPlat = new Obstaculos::Plataforma(LARGURA_FASE-400.F, 100.f);
@@ -26,25 +27,38 @@ void FaseTeste::criarObstaculos()
     colecao.incluir(static_cast<Entidade*> (pPlat));
     pGC->inserirObstaculo(static_cast<Obstaculo*> (pPlat));
 
+    pLap = new Lapis();
+    pLap->setPos(700.f, pPlat->getY() - pLap->getTam().y/2);
+    colecao.incluir(static_cast<Entidade*> (pLap));
+    pGC->inserirObstaculo(static_cast<Obstaculo*> (pLap));
+    
     pPlat = new Obstaculos::Plataforma();
     pPlat->setPos(700.f, CHAO-320.f);
     colecao.incluir(static_cast<Entidade*> (pPlat));
     pGC->inserirObstaculo(static_cast<Obstaculo*> (pPlat));
 
+    
     pPlat = new Obstaculos::Plataforma(500.f,  100.F);
     pPlat->setPos(800.f, CHAO-100.f);
     colecao.incluir(static_cast<Entidade*> (pPlat));
     pGC->inserirObstaculo(static_cast<Obstaculo*> (pPlat));
+    
 
     pPlat = new Obstaculos::Plataforma(500.f, 100.f);
     pPlat->setPos(700.f, CHAO-900.f);
     colecao.incluir(static_cast<Entidade*> (pPlat));
     pGC->inserirObstaculo(static_cast<Obstaculo*> (pPlat));
 
-    Lapis* pLap = new Lapis();
-    pLap->setPos(700.f, pPlat->getY() - pLap->getTam().y/2);
+    pLap = new Lapis();
+    pLap->setPos(600.f, pPlat->getY() - pLap->getTam().y/2);
     colecao.incluir(static_cast<Entidade*> (pLap));
     pGC->inserirObstaculo(static_cast<Obstaculo*> (pLap));
+
+    pLap = new Lapis();
+    pLap->setPos(650.f, pPlat->getY() - pLap->getTam().y/2);
+    colecao.incluir(static_cast<Entidade*> (pLap));
+    pGC->inserirObstaculo(static_cast<Obstaculo*> (pLap));
+
 
     //if(rand()%3)
     {
