@@ -1,57 +1,130 @@
 #include "Fases/FaseTeste.hpp"
 #include "Entidades/Personagens/Inimigos/Triangulo.hpp"
-
+#include "Gerenciadores/GerenciadorGrafico.hpp"
+#include "Entidades/Obstaculos/Lapis.hpp"
+#define GRAVIDADE      1000.0F
+#define LARGURA_FASE   2580.0F
+#define ALTURA_FASE    1440.0F
+#define CHAO           ALTURA_FASE
+#define TETO              0.0F
+#define CANTO_ESQUERDO    0.0F
+#define CANTO_DIREITO     LARGURA_FASE
 
 using namespace Fases;
-#define GRAVIDADE 1000.0F
 
 void FaseTeste::criarObstaculos() 
 {
-    Obstaculos::Plataforma* pPlat = new Obstaculos::Plataforma(100.f, pGG->getTamanhoJanela().y);
-    pPlat->setPos(25.f, 360.f);
-    colecao.incluir(static_cast<Entidade*> (pPlat));
-    pGC->inserirObstaculo(static_cast<Obstaculo*>(pPlat));
+    Obstaculos::Plataforma* pPlat;
 
-    pPlat = new Obstaculos::Plataforma(100.f, pGG->getTamanhoJanela().y);
-    pPlat->setPos(1265.f, 360.f);
+    pPlat = new Obstaculos::Plataforma(LARGURA_FASE-400.F, 100.f);
+    pPlat->setPos((CANTO_DIREITO + CANTO_ESQUERDO)/2.F - 200.F, CHAO-540.F);
     colecao.incluir(static_cast<Entidade*> (pPlat));
     pGC->inserirObstaculo(static_cast<Obstaculo*> (pPlat));
 
-    pPlat = new Obstaculos::Plataforma(pGG->getTamanhoJanela().x, 100.f);
-    pPlat->setPos(645.f, 700.f);
+    pPlat = new Obstaculos::Plataforma(LARGURA_FASE-400.F, 100.f);
+    pPlat->setPos((CANTO_DIREITO + CANTO_ESQUERDO)/2.F + 200.F, CHAO-1140.F);
     colecao.incluir(static_cast<Entidade*> (pPlat));
     pGC->inserirObstaculo(static_cast<Obstaculo*> (pPlat));
 
     pPlat = new Obstaculos::Plataforma();
-    pPlat->setPos(500.f, 400.f);
+    pPlat->setPos(700.f, CHAO-320.f);
     colecao.incluir(static_cast<Entidade*> (pPlat));
     pGC->inserirObstaculo(static_cast<Obstaculo*> (pPlat));
-    
+
+    pPlat = new Obstaculos::Plataforma(500.f,  100.F);
+    pPlat->setPos(800.f, CHAO-100.f);
+    colecao.incluir(static_cast<Entidade*> (pPlat));
+    pGC->inserirObstaculo(static_cast<Obstaculo*> (pPlat));
+
+    pPlat = new Obstaculos::Plataforma(500.f, 100.f);
+    pPlat->setPos(700.f, CHAO-900.f);
+    colecao.incluir(static_cast<Entidade*> (pPlat));
+    pGC->inserirObstaculo(static_cast<Obstaculo*> (pPlat));
+
+    Lapis* pLap = new Lapis();
+    pLap->setPos(700.f, pPlat->getY() - pLap->getTam().y/2);
+    colecao.incluir(static_cast<Entidade*> (pLap));
+    pGC->inserirObstaculo(static_cast<Obstaculo*> (pLap));
+
+    //if(rand()%3)
+    {
+        pPlat = new Obstaculos::Plataforma(400.F);
+        pPlat->setPos(CANTO_DIREITO - 250.F, CHAO - 300.f);
+        colecao.incluir(static_cast<Entidade*> (pPlat));
+        pGC->inserirObstaculo(static_cast<Obstaculo*> (pPlat));
+
+        pPlat = new Obstaculos::Plataforma(400.F, 300.F);
+        pPlat->setPos(CANTO_ESQUERDO + 250.F, CHAO - 740.f);
+        colecao.incluir(static_cast<Entidade*> (pPlat));
+        pGC->inserirObstaculo(static_cast<Obstaculo*> (pPlat));
+    }
+
+    if(rand()%3)
+    {
+        pPlat = new Obstaculos::Plataforma(500.F);
+        pPlat->setPos(CANTO_DIREITO - 250.F, CHAO - 1000.f);
+        colecao.incluir(static_cast<Entidade*> (pPlat));
+        pGC->inserirObstaculo(static_cast<Obstaculo*> (pPlat));
+    }
+
+    if(rand()%3)
+    {
+        pPlat = new Obstaculos::Plataforma(400.F);
+        pPlat->setPos(CANTO_DIREITO - 350.F, CHAO - 1600.f);
+        colecao.incluir(static_cast<Entidade*> (pPlat));
+        pGC->inserirObstaculo(static_cast<Obstaculo*> (pPlat));
+    }
+
     colecao.irAoInicio();
 }
 
 void FaseTeste::criarInimigos()
 {
     Inimigos::Triangulo* pTri;
-    Inimigo* pIni = static_cast<Inimigo*> (new Quadrado(Especie::inimigo, 10));
     Inimigo::setpJogador1(pJog);
     Projetil::setpJogador1(pJog);
 
-    pIni->setPos(800.f, 300.f);
+    Inimigo* pIni = static_cast<Inimigo*> (new Quadrado(Especie::inimigo, 10));
+    pIni->setPos(CANTO_DIREITO-230.F, CHAO-150.F);
     pGC->inserirInimigo(pIni);
     colecao.incluir(static_cast<Entidade*> (pIni));
-    /*pIni = static_cast<Inimigo*> (new Quadrado(Especie::inimigo, 10, 100));
-    pIni->setPos(700.f, 300.f);
+
+    pIni = static_cast<Inimigo*> (new Quadrado(Especie::inimigo, 10));
+    pIni->setPos(CANTO_DIREITO-400.F, CHAO-150.F);
     pGC->inserirInimigo(pIni);
-    colecao.incluir(static_cast<Entidade*> (pIni));*/
+    colecao.incluir(static_cast<Entidade*> (pIni));
+
+    pIni = static_cast<Inimigo*> (new Quadrado(Especie::inimigo, 10));
+    pIni->setPos(CANTO_DIREITO-150.F, CHAO-150.F);
+    pGC->inserirInimigo(pIni);
+    colecao.incluir(static_cast<Entidade*> (pIni));
 
     pTri = new Triangulo;
     pTri->setpFase(this);
     pIni = static_cast<Inimigo*>(pTri);
-    
-    pIni->setPos(500., 425.);
+    pIni->setPos(900.f, 900.f);
     pGC->inserirInimigo(pIni);
     colecao.incluir(static_cast<Entidade*>(pIni));
+
+    pTri = new Triangulo;
+    pIni = static_cast<Inimigo*>(pTri);
+    pIni->setPos(1000.f, 600.F-100);
+    pGC->inserirInimigo(pIni);
+    colecao.incluir(static_cast<Entidade*>(pIni));
+
+    pTri = new Triangulo;
+    pIni = static_cast<Inimigo*>(pTri);
+    pIni->setPos(400.f, CHAO-900.f);
+    pGC->inserirInimigo(pIni);
+    colecao.incluir(static_cast<Entidade*>(pIni));
+
+    if(rand()%2)
+    {
+        Inimigo* pIni = static_cast<Inimigo*> (new Quadrado(Especie::inimigo, 1));
+        pIni->setPos(700.F, CHAO+300);
+        pGC->inserirInimigo(pIni);
+        colecao.incluir(static_cast<Entidade*> (pIni));
+    }
 }
 
 /** TODO: Talvez por isto na fase abstrata, e chamar
@@ -74,9 +147,6 @@ void FaseTeste::executar(const float dT = 0.f)
         // Executar, mover e desenhar entidades.
         colecao.percorrer(deltaT);
 
-        if(pJog->getY() < -50.f || pJog->getY() > 770.f) pJog->setPos(500.f, 500.f);
-        if(pJog->getX() < -50.f || pJog->getY() > 1340.f) pJog->setPos(500.f, 500.f);
-
         if(pJog)
         {
             if(verificaGameOver())
@@ -95,20 +165,46 @@ FaseTeste::FaseTeste():
     Fase(),
     maxInimigos(100)
 {
+    pGG->setTamanhoCamera(Vetor2f(LARGURA_FASE, ALTURA_FASE));
+    pGG->centralizarCamera();
+
     pJog = new Jogador(15.f, true);
     pJog2 = new Jogador(15.f, false);
 
     Inimigo::setpJogador1(pJog);
     Inimigo::setpJogador2(pJog2);
     
-    pJog->setPos(300.f, 200.f);
-    pJog2->setPos(330.f, 200.f);
+    pJog->setPos(190.f, CHAO-100.f);
+    pJog2->setPos(190.f, CHAO-100.f);
     pGC->inserirJogador(pJog);
     pGC->inserirJogador(pJog2);
     colecao.incluir(static_cast<Entidade*>(pJog));
     colecao.incluir(static_cast<Entidade*>(pJog2));
 
     colecao.setGravidade(GRAVIDADE);
+    
+    {// CRIAR PAREDES, CHAO E TETO
+    Obstaculos::Plataforma* pPlat = new Obstaculos::Plataforma(100.f, ALTURA_FASE);
+    pPlat->setPos(CANTO_ESQUERDO, ALTURA_FASE/2.F);
+    colecao.incluir(static_cast<Entidade*> (pPlat));
+    pGC->inserirObstaculo(static_cast<Obstaculo*>(pPlat));
+
+    pPlat = new Obstaculos::Plataforma(100.f, ALTURA_FASE);
+    pPlat->setPos(CANTO_DIREITO, ALTURA_FASE/2.F);
+    colecao.incluir(static_cast<Entidade*> (pPlat));
+    pGC->inserirObstaculo(static_cast<Obstaculo*> (pPlat));
+
+    pPlat = new Obstaculos::Plataforma(LARGURA_FASE, 100.f);
+    pPlat->setPos((CANTO_DIREITO + CANTO_ESQUERDO)/2.F, CHAO);
+    colecao.incluir(static_cast<Entidade*> (pPlat));
+    pGC->inserirObstaculo(static_cast<Obstaculo*> (pPlat));
+
+    pPlat = new Obstaculos::Plataforma(LARGURA_FASE, 100.f);
+    pPlat->setPos((CANTO_DIREITO + CANTO_ESQUERDO)/2.F, TETO);
+    colecao.incluir(static_cast<Entidade*> (pPlat));
+    pGC->inserirObstaculo(static_cast<Obstaculo*> (pPlat));
+    }
+
     criarObstaculos();
     criarInimigos();
 }

@@ -20,7 +20,7 @@ namespace Inimigos
     tempoUltimoAtaque(0.0)
     {
         forma.setTextura(CAMINHO_TEXTURA, true);
-        setTamanho(70.,70.);
+        setTamanho(50.f, 50.f);
     }
 
     Triangulo::~Triangulo()

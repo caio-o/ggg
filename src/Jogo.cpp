@@ -14,7 +14,9 @@ Jogo::Jogo():
     primeiraFase(NULL)
 {
     srand(time(NULL));
-    
+    /*Jogador *jog1 = new Jogador;
+    Jogador *jog2 = NULL;*/
+
     //cout << "Jogo::Jogo 1" << endl;
     pGG = Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico();
     pGE = Gerenciadores::GerenciadorEventos::getGerenciadorEventos();

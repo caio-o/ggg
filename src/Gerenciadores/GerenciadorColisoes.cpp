@@ -57,7 +57,7 @@ void GerenciadorColisoes::verificaInimigos()
 
         pI = itInim.get();
 
-        if(pI)
+        if(pI && pI->getVivo())
         {
             for(LJ.inicializa(itJoga); ! itJoga.fim(); itJoga++)
             {
@@ -143,7 +143,7 @@ void GerenciadorColisoes::verificaObstaculos()
                 }
                 else
                 {
-                    // remover jogador
+                    // remover inimigo
                 }
             }
         }

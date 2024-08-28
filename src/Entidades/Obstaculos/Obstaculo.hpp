@@ -20,6 +20,7 @@ namespace Obstaculos
             getForma()->getpCorpo()->setTexture(NULL);
             setTamanho(100.f, 100.f);
             getForma()->getpCorpo()->setFillColor (sf::Color((sf::Uint8)200, (sf::Uint8)200, (sf::Uint8)200));
+            setAcelVertical(1000.f);
         }
 
         virtual ~Obstaculo()

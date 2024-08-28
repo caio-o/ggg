@@ -3,11 +3,14 @@
 
 #include "Fases/Fase.hpp"
 #include "Fases/FaseTeste.hpp"
+#include "Entidades/Personagens/Jogador.hpp"
 using Fases::Fase;
 
 class Jogo
 {
 private:
+    
+
     Gerenciadores::GerenciadorGrafico *pGG;
     Gerenciadores::GerenciadorEventos *pGE;
     Fase* primeiraFase;

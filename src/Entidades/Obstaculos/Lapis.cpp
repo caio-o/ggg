@@ -20,6 +20,7 @@ namespace Entidades
         Obstaculo(_especie, _permeavel),
         dano(dano)
         {
+            setAcelVertical(-1000.f);
             forma.setTextura(CAMINHO_TEXTURA, true);
             vel.x = 0.0;
             setTamanho(80.f, 80.f);

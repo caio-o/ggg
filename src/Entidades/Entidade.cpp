@@ -7,7 +7,7 @@ Entidade::Entidade(Especie _especie):
     Ente          (/*_pForma*/),
     //tam(50.f,50.f),
     especie(_especie),
-    pos           (10.0f, 10.0f),
+    pos           (500.0f, 500.0f),
     vel           (0.0f, 0.0f),
     acelVertical  (1.0f),
     forma(pos, Vetor2f(50.f, 50.f),  "../img/emoji_sorrindo.png", 1.f),

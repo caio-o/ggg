@@ -11,8 +11,8 @@
 #include "Erros.hpp"
 
 //DIMENSÕES PROVISÓRIAS
-#define ALTURA 720.0
-#define LARGURA 1290.0
+#define ALTURA_JANELA 720.0
+#define LARGURA_JANELA 1290.0
 
 namespace Gerenciadores
 {
@@ -21,19 +21,18 @@ namespace Gerenciadores
 
     GerenciadorGrafico::GerenciadorGrafico():
     pJanela(NULL), 
-    /* O primeiro argumento (sf::Vector2f((LARGURA/2), (ALTURA/2))) se trata do centro
+    /* O primeiro argumento (sf::Vector2f((LARGURA/2), (ALTURA_JANELA_JANELA/2))) se trata do centro
      * da janela.
-     * Já, o segundo (sf::Vector2f(LARGURA, ALTURA)) é o tamanho da janela
+     * Já, o segundo (sf::Vector2f(LARGURA, ALTURA_JANELA)) é o tamanho da janela
      * Ou seja, seta a camêra como a própria janela inicialmente...
      */
-    camera(sf::Vector2f((LARGURA/2), (ALTURA/2)), sf::Vector2f(LARGURA, ALTURA)),
+    camera(sf::Vector2f((LARGURA_JANELA), (ALTURA_JANELA)), sf::Vector2f(LARGURA_JANELA*2, ALTURA_JANELA*2)),
     mapaTexturas(),
     mapaFontes(),
     relogio()
     {
         //instancia a janela adequadamente
-        pJanela = new sf::RenderWindow(sf::VideoMode(LARGURA, ALTURA), "GGG - Grande Guerra Geométrica");
-
+        pJanela = new sf::RenderWindow(sf::VideoMode(LARGURA_JANELA, ALTURA_JANELA), "GGG - Grande Guerra Geométrica");
         //associa a camera à janela
         if(pJanela)
             pJanela->setView(camera);
@@ -216,7 +215,7 @@ namespace Gerenciadores
             setTamanhoCamera(tam);
         }
     }
-    
+
     //Retorna o tamanho da janela por meio de variavel do tipo Coordenada
     const Coordenadas::Vetor2f GerenciadorGrafico::getTamanhoJanela() const
     {
