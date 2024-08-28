@@ -76,7 +76,7 @@ namespace Listas
             
             TL*  get     () const; // Retorna a informacao apontada do elemento da lista.
             void set     (TL* p);  // Escolhe a informacao apontada do elemento da lista.
-            Elemento* getElem () const { return elem; }
+            Elemento* getElem () const;
             void setElem (Elemento* _elem) { elem = _elem; }
 
             // Retorna true se o proximo elemento nao eh NULL,
@@ -129,6 +129,7 @@ namespace Listas
         Elemento*   buscaElemento  (TL *dados);
         //void      removeDados    (TL* dados);
         void removeElemento      (Elemento* elem);
+        void remove(Iterador *it);
 
         // ATENCAO: NAO FUNCIONA COM TODOS OS TIPOS. Eh preciso que esteja definido o operador "<<" para o tipo TL.
         void  imprimir(); 
@@ -161,6 +162,10 @@ Lista<TL>::Elemento::~Elemento()
     {
         cout << "Em funcao Elemento::~Elemento: " << ERRO_DELETE_NULLPTR << endl;
     }
+
+    pInfo = NULL;
+    pProx = NULL;
+    pAnt  = NULL;
 }
 
 template<class TL> 
@@ -236,6 +241,17 @@ template<class TL>
 typename Lista<TL>::Iterador& Lista<TL>::Iterador::operator++(int)
 {
     return ++(*this);
+}
+
+template<class TL>
+typename Lista<TL>::Elemento* Lista<TL>::Iterador::getElem () const 
+{ 
+    if(elem) return elem;
+    else
+    {
+        cout << "ERRO em Lista<TL>::Iterador::getElem: " << ERRO_RETURN_NULLPTR << endl;
+        return NULL;
+    }
 }
 /*
 template<class TL>
@@ -472,7 +488,6 @@ void Lista<TL>::pop_front()
 template<class TL>
 void Lista<TL>::removeElemento(Elemento* elem)
 {
-    Elemento* aux = elem;
     if(elem->getAnt())
     {
         elem->getAnt()->setProx(elem->getProx());
@@ -492,6 +507,20 @@ void Lista<TL>::removeElemento(Elemento* elem)
     }
 
     delete elem;
+}
+
+template<class TL>
+void Lista<TL>::remove(Iterador *it)
+{
+    Elemento* elem = it->getElem();
+    (*it)++;
+
+    removeElemento(elem);
+
+    it->setElem(it->getElem()->getAnt());
+
+    delete elem;
+    // TODO: FAZER OPERATOR--()
 }
 
 #endif /// _LISTA_HPP

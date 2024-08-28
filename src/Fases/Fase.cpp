@@ -39,7 +39,7 @@ namespace Fases
         {
             pProj->setPos(x, y);
 
-            //pGC->inserirProjetil(pProj);
+            pGC->inserirProjetil(pProj);
 
             colecao.incluir(static_cast<Entidade*>(pProj));
         }

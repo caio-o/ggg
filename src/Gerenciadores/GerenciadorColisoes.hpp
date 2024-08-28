@@ -6,6 +6,7 @@
 #include "Entidades/Personagens/Inimigos/Inimigo.hpp"
 #include "Listas/Lista.hpp"
 #include "Entidades/Obstaculos/Obstaculo.hpp"
+#include "Entidades/Projetil.hpp"
 
 using namespace Coordenadas;
 using namespace Entidades;
@@ -26,13 +27,15 @@ namespace Gerenciadores
     private:
         static GerenciadorColisoes* pInstancia;
 
-        Lista<Inimigo> LI;
-        Lista<Jogador> LJ;
-        Lista<Obstaculo> LO;
+        Lista<Inimigo>    LI;
+        Lista<Jogador>    LJ;
+        Lista<Obstaculo>  LO;
+        Lista<Projetil>   LP;
      
         Lista<Inimigo>::Iterador itInim;
         Lista<Jogador>::Iterador itJoga;
         Lista<Obstaculo>::Iterador itObst;
+        Lista<Projetil>::Iterador itProj;
 
         // equivalente a Vetor2f(0.0F, 0.0F). Usado na verificacao da colisao.
         const Vetor2f zero;
@@ -42,6 +45,7 @@ namespace Gerenciadores
 
         void verificaInimigos();
         void verificaObstaculos();
+        void verificaProjeteis();
         GerenciadorColisoes();
 
     public:
@@ -51,6 +55,7 @@ namespace Gerenciadores
         void inserirInimigo   (Inimigo*   pI) { LI.push_back(pI); }
         void inserirJogador   (Jogador*   pJ) { LJ.push_back(pJ); }
         void inserirObstaculo (Obstaculo* pO) { LO.push_back(pO); }
+        void inserirProjetil  (Projetil*  pP) { LP.push_back(pP); }
 
         /** METODO EXECUTAR verifica (nesta ordem) colisoes entre:
          *     1. Inimigos e jogadores;

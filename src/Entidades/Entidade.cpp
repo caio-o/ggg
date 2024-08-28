@@ -57,5 +57,5 @@ const Vetor2f Entidade::getTam() const
     if (forma.getpCorpo())
         return Vetor2f(forma.getpCorpo()->getSize().x, forma.getpCorpo()->getSize().y);
     else 
-        return Vetor2f();
+        cout << "ERRO em Entidade::getTam: FORMA SEM CORPO!" << endl;
 }

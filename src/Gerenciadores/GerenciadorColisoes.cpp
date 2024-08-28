@@ -32,9 +32,11 @@ GerenciadorColisoes::GerenciadorColisoes():
     LI(),
     LJ(),
     LO(),
+    LP(),
     itInim(),
     itJoga(),
     itObst(),
+    itProj(),
     zero(0.0F, 0.0F),
     interseccao(0.0F, 0.0F)
 { }
@@ -84,8 +86,6 @@ void GerenciadorColisoes::verificaInimigos()
         }
     }
 }
-
-
 
 void GerenciadorColisoes::verificaObstaculos()
 {
@@ -154,6 +154,96 @@ void GerenciadorColisoes::verificaObstaculos()
     }
 }
 
+void GerenciadorColisoes::verificaProjeteis()
+{
+    Inimigo *pI = NULL;
+    Jogador *pJ = NULL;
+    Projetil *pP = NULL;
+    Obstaculo *pO = NULL;
+    
+
+    for(LP.inicializa(itProj); ! itProj.fim(); itProj++)
+    {
+
+
+        pP = itProj.get();
+
+        if(pP && pP->getAtivo())
+        {
+            // VERIFICAR COLISOES PROJETIL-JOGADOR
+            for(LJ.inicializa(itJoga); ! itJoga.fim(); itJoga++)
+            { 
+                pJ = itJoga.get();
+                
+                if(pJ)
+                {
+                    interseccao = calcularInterseccao (static_cast<Entidade*> (pP), static_cast<Entidade*> (pJ));
+
+                    if (interseccao > zero)
+                    {                
+                        pJ->reagirAhColisao(static_cast<Entidade*> (pP));
+                        pP->reagirAhColisao(static_cast<Entidade*> (pJ));
+                        //LP.remove(&itProj);
+                        //LP.removeElemento(itProj.getElem());
+                    }
+                }
+                else
+                {
+                    // remover jogador
+                }
+            }
+
+            // VERIFICAR COLISOES PROJETIL-INIMIGO
+            /*for(LI.inicializa(itInim); ! itInim.fim(); itInim++)
+            {
+                pI = itInim.get();
+                
+                if(pI)
+                {
+                    interseccao = calcularInterseccao (static_cast<Entidade*> (pP), static_cast<Entidade*> (pI));
+
+                    if (interseccao > zero)
+                    {                        
+                        pI->reagirAhColisao(static_cast<Entidade*> (pP));
+                        pP->reagirAhColisao(static_cast<Entidade*> (pI));
+                        LP.removeElemento(itProj.getElem());
+                    }
+                }
+                else
+                {
+                    // remover inimigo
+                }
+            }*/
+
+            // VERIFICAR COLISOES PROJETIL-OBSTACULO
+            for(LO.inicializa(itObst); ! itObst.fim(); itObst++)
+            {
+                pO = itObst.get();
+                
+                if(pO)
+                {
+                    interseccao = calcularInterseccao (static_cast<Entidade*> (pP), static_cast<Entidade*> (pO));
+
+                    if (interseccao > zero)
+                    {                        
+                        pO->reagirAhColisao(static_cast<Entidade*> (pP));
+                        pP->reagirAhColisao(static_cast<Entidade*> (pO));
+                        //LP.remove(&itProj);
+                    }
+                }
+                else
+                {
+                    // remover obstaculo
+                }
+            }
+        }
+        else
+        {
+            //LP.removeElemento(itProj.getElem());
+        }
+    }
+}
+
 
 void GerenciadorColisoes::executar()
 {
@@ -161,6 +251,7 @@ void GerenciadorColisoes::executar()
 
     verificaInimigos();
     verificaObstaculos();
+    verificaProjeteis();
 }
 
 const Vetor2f GerenciadorColisoes::calcularInterseccao(Entidade* pE1, Entidade* pE2) const
@@ -199,10 +290,10 @@ void GerenciadorColisoes::repelir (Entidade* pRepelido, Entidade* pRepulsor, Vet
             if (pRepelido->getVel().x < 0.0f)
                 pRepelido->setVelX(0.0f);
         }
-        
-        pRepelido->setVelX(0.0f);
     }
-    else// if (interseccao.y > 0.F)// REPELIR NO EIXO-Y SOMENTE.
+    
+    // REPELIR NO EIXO-Y SOMENTE.
+    else
     {
         if (pRepelido->getY() < pRepulsor->getY())
         {
@@ -216,7 +307,5 @@ void GerenciadorColisoes::repelir (Entidade* pRepelido, Entidade* pRepulsor, Vet
             if (pRepelido->getVel().y < 0.0f)
                 pRepelido->setVelY(0.0f);
         }
-
-        pRepelido->setVelY(0.0f);
     }
 }

@@ -54,6 +54,7 @@ namespace Entidades
 
             //Por fim, é desativado, independente do tipo de Entidade com a qual colidiu.
             ativo = false;
+            setVel(0.f,0.f);
         }
         else
             cout << "Erro em Entidades::Projetil::reagirAhColisao(pE): " << ERRO_NULLPTR << endl;

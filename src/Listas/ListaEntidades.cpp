@@ -1,5 +1,6 @@
 #include "Listas/ListaEntidades.hpp"
 #include <SFML/System.hpp>
+#include "Gerenciadores/GerenciadorColisoes.hpp"
 
 using namespace Listas;
 
@@ -37,13 +38,17 @@ void ListaEntidades::percorrer(float deltaT)
         p = it.get();
         if(p)
         {
-            // if(it.get()->estahAtiva()) { ... }
-            p->executar(deltaT);
+            if(p->getAtivo())
+            {
+                // if(it.get()->estahAtiva()) { ... }
+                p->executar(deltaT);
 
-            p->moverse(deltaT);
-            p->aceleraY( deltaT * (gravidade + (p->getAcelVertical())) );
+                p->moverse(deltaT);
+                p->aceleraY( deltaT * (gravidade + (p->getAcelVertical())) );
 
-            p->desenhar();
+                p->desenhar();
+            }
+            
             (*this)++;
         }
         else

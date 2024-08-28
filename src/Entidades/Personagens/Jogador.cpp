@@ -45,11 +45,14 @@ void Jogador::atacar()
 
 void Jogador::executar(const float dT) 
 { 
-    if       (Keyboard::isKeyPressed (Keyboard::Up   ))    { pular();             }
-    
-    if       (Keyboard::isKeyPressed (Keyboard::Right))    { setVelX( agilidade); }
-    else if  (Keyboard::isKeyPressed (Keyboard::Left) )    { setVelX(-agilidade); }
-    else                                                   { setVelX(      0.0f); }
+    if(vivo)
+    {
+        if       (Keyboard::isKeyPressed (Keyboard::Up   ))    { pular();             }
+
+        if       (Keyboard::isKeyPressed (Keyboard::Right))    { setVelX( agilidade); }
+        else if  (Keyboard::isKeyPressed (Keyboard::Left) )    { setVelX(-agilidade); }
+        else                                                   { setVelX(      0.0f); }
+    }
     
     noChao = false;
 
