@@ -15,7 +15,7 @@ namespace Fases
     pGG (Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico()),
     pGE (Gerenciadores::GerenciadorEventos::getGerenciadorEventos()),
     gameOver(false),
-    efeitoGameOver(Vetor2f (754.f, 360.f), Vetor2f(1290.f, 720.f), "../img/game_over.png", 1.f)
+    efeitoGameOver(Vetor2f (1290, 720.f), Vetor2f(2580.f, 1440.f), "../img/game_over.png", 1.f)
     {
         cout << "Fase::FASE" << endl;
         t0 = pGG->getTempo();
