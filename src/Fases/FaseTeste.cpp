@@ -207,6 +207,8 @@ FaseTeste::FaseTeste():
 
     criarObstaculos();
     criarInimigos();
+    Projetil::setpJogador1(pJog);
+    Projetil::setpJogador2(pJog2);
 }
 
 FaseTeste::~FaseTeste()
