@@ -91,7 +91,7 @@ void Jogador::reagirAhColisao(Entidade* pE)
     case Especie::inimigo:
         if(pE->getY() - pE->getTam().y/2.F > getY())
         {
-            static_cast<Personagem*>(pE)->receberDano(DANO_PISADA);
+            danificar(static_cast<Personagem*>(pE));//->receberDano(DANO_PISADA);
             aceleraY(-200.f);
         }
         break;
@@ -99,4 +99,9 @@ void Jogador::reagirAhColisao(Entidade* pE)
     default:
         break;
     }
+}
+
+void Jogador::danificar(Personagem*pPers)
+{
+    pPers->receberDano(DANO_PISADA);
 }

@@ -26,7 +26,7 @@ void Entidade::desenhar ()
 {
     forma.atualizar(pos);
 
-    forma.renderizar();
+    pGG->renderizar(&forma);
 
     //Ente::desenhar();
 }

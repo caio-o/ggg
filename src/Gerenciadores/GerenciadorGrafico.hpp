@@ -13,7 +13,10 @@
 #include <map>
 #include "../Coordenada.hpp"
 
+
 using namespace std;
+
+namespace ElementosGraficos{ class Forma; }
 
 namespace Gerenciadores
 {
@@ -38,6 +41,7 @@ namespace Gerenciadores
             ~GerenciadorGrafico();
             static GerenciadorGrafico* getGerenciadorGrafico();
             sf::RenderWindow* getJanela() const;
+            void renderizar(ElementosGraficos::Forma* pForma);
             void renderizar(sf::RectangleShape* corpo);
             void renderizar(sf::Shape* corpo); // Com static_cast, desenhamos qualquer shape. Poderia ateh ser sf::drawable
             void renderizar(sf::Text* texto);

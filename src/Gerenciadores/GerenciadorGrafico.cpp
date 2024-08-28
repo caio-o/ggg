@@ -7,6 +7,7 @@
 
 #include <string.h>
 
+#include "ElementosGraficos/Forma.hpp"
 #include "Gerenciadores/GerenciadorGrafico.hpp"
 #include "Erros.hpp"
 
@@ -384,4 +385,17 @@ namespace Gerenciadores
         return relogio.getElapsedTime().asSeconds();
     }
 
+    void GerenciadorGrafico::renderizar(ElementosGraficos::Forma *pForma)
+    {
+        //cout << "GerenciadorGrafico::renderizar()" << endl;
+        
+        if(pJanela && pForma && pForma->getpCorpo())
+            pJanela->draw(*(pForma->getpCorpo()));
+        else
+            cout << "RectangleShape inexistente." << endl;
+            /* P.s: draw(const sf::Drawable &drawable, const sf...)
+             * o primeiro argumento é passado por referencia escondida,
+             * ou seja, ele espera receber um objeto do tipo drawable, e não um ptr...
+             */
+    }
 }

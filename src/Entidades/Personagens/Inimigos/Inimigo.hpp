@@ -20,6 +20,7 @@ namespace Inimigos
             virtual void salvar() = 0;
             virtual void executar(const float dT) = 0;
             virtual void atacar() = 0;
+            virtual void danificar(Personagem *pPers) = 0;
 
             virtual void reagirAhColisao(Entidade* pE) = 0;
 

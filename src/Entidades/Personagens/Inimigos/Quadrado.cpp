@@ -116,7 +116,8 @@ namespace Inimigos
         
         if(pE->getEspecie() == jogador && atacando/* && pE->getY() >= getY() - getTam().y/2.3*/)
         {
-            static_cast<Jogador*>(pE)->receberDano(dano, true);
+            //static_cast<Jogador*>(pE)->receberDano(dano, true);
+            danificar(static_cast<Personagem*>(pE));
             cout << "ReagirAhColisao::dano: " << dano << endl;
         }
     }
