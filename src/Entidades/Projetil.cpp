@@ -25,7 +25,7 @@ namespace Entidades
     perseguindoJogador1(true)
     {
         forma.setTextura(CAMINHO_TEXTURA, true);
-        setTamanho(10.0, 10.0);
+        setTamanho(20.0, 20.0);
         setVel(500.0, 500.0);
 
         if(pJogador2 && rand()%2)

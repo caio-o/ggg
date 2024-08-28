@@ -23,8 +23,9 @@ namespace Entidades
 
         ~Jogador();
 
-        void pular();
-        const bool getChao() const { return noChao; }
+        const bool  getChao  () const                { return noChao;    }
+        void        setChao  (const bool _noChao)    { noChao = _noChao; }
+        void        pular();
 
         void danificar(Personagem *pPers);
         void salvar();

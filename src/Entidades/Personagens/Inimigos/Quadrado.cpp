@@ -1,4 +1,4 @@
-#define TEXTURA "../img/quadrado_vermelho.png"
+#define TEXTURA "../img/quadrado_raivoso.png"
 
 #define RANGE_ATAQUE 100.0
 #define RANGE_PERSEGUE 300.0
@@ -21,6 +21,7 @@ namespace Inimigos
     dano(1.0)
     {
         forma.setTextura(TEXTURA, true);
+        setTamanho(70.f, 70.f);
     }
 
     Quadrado::~Quadrado()

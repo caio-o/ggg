@@ -19,7 +19,7 @@ Jogador::Jogador(const int _maxVida, const bool j1):
     {
         setTextura("../img/emoji_sorrindo.png", true);
     }
-    setTamanho(30.f, 30.f);
+    setTamanho(45.f, 45.f);
 }
 
 Jogador::~Jogador()
