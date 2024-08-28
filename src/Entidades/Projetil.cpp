@@ -19,14 +19,18 @@ namespace Entidades
     Jogador* Projetil::pJogador1(NULL);
     Jogador* Projetil::pJogador2(NULL);
 
-    Projetil::Projetil(const int _dano, const bool pers):
+    Projetil::Projetil(const int _dano):
     Entidade(Especie::projetil),
     dano(_dano),
-    perseguindo(pers)
+    perseguindoJogador1(true)
     {
         forma.setTextura(CAMINHO_TEXTURA, true);
         setTamanho(10.0, 10.0);
         setVel(500.0, 500.0);
+
+        if(pJogador2 && rand()%2)
+            perseguindoJogador1 = false;
+
     }
 
     Projetil::~Projetil()
@@ -67,7 +71,7 @@ namespace Entidades
         //srand(time(NULL));
         
         //Persegue alternadamente os jogadores (se houver jogador 2)
-        if(pJogador2 && rand()%2)
+        if(!perseguindoJogador1)
         {
     
             if(pJogador2->getPos().x < pos.x)
@@ -80,7 +84,7 @@ namespace Entidades
             else
                 vel.y = VELOCIDADE_PERSEGUICAO;
         }
-        else if (pJogador1)
+        else
         {
             if(pJogador1->getPos().x < pos.x)
                 vel.x = -VELOCIDADE_PERSEGUICAO;
@@ -92,12 +96,12 @@ namespace Entidades
             else
                 vel.y = VELOCIDADE_PERSEGUICAO;
         }
-        else 
+        /*else 
         {
             cout << "PROJETIL DIZ: JOGADOR NULO!" << endl;
         }
 
-        perseguindo = true;
+        perseguindo = true;*/
     }
 
     void Projetil::setDano(const int d)
@@ -110,14 +114,9 @@ namespace Entidades
         return dano;
     }
 
-    void Projetil::setPerseguindo(const bool p)
+    const bool Projetil::getPerseguindoJogador1() const
     {
-        perseguindo = p;
-    }
-
-    const bool Projetil::getPerseguindo() const
-    {
-        return perseguindo;
+        return perseguindoJogador1;
     }
 
     void Projetil::setpJogador1(Jogador* pJ)

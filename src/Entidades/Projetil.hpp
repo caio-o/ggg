@@ -15,12 +15,12 @@ namespace Entidades
     {
         protected:
             int dano;
-            bool perseguindo; //não usa pra nada
+            bool perseguindoJogador1; 
             static Jogador* pJogador1;
             static Jogador* pJogador2;
 
         public:
-            Projetil(const int _dano = 2, const bool pers = false);
+            Projetil(const int _dano = 2);
             ~Projetil();
 
             void reagirAhColisao(Entidade* pE);
@@ -30,8 +30,8 @@ namespace Entidades
             const int getDano() const;
 
             //A principio o atributo perseguindo não é utilizado, remover métodos posteriormente
-            void setPerseguindo(const bool p);
-            const bool getPerseguindo() const;
+            //void setPerseguindo(const bool p);
+            const bool getPerseguindoJogador1() const;
 
             static void setpJogador1(Jogador* pJ);
             static void setpJogador2(Jogador* pJ);
