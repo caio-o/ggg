@@ -39,17 +39,10 @@ namespace Entidades
             vel.x = 0.0; //ta sempre garantindo q não se move, não sei se isso faz sentido
         }
 
-        //Reage ao contato aplicando dano ao jogador e fazendo com que ele pule
-        void Lapis::reagirAhColisao(Entidade* pE)
+        void Lapis::obstacular(Jogador *pJog)
         {
-            if(pE->getEspecie() == jogador)
-            {
-                Jogador* pJ = static_cast<Jogador*>(pE);
-                pJ->receberDano(dano, true);
-                //pJ->aceleraY(-200.0); //para o jogador pular ao receber dano
-            }
+            pJog->receberDano(dano, true);
         }
-
 
         //Seta o dano do obstáculo Lapis
         void Lapis::setDano(const int d)

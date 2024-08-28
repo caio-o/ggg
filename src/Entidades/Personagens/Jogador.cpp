@@ -6,10 +6,11 @@ using namespace ElementosGraficos;
 
 Jogador::Jogador(const int _maxVida, const bool j1):
     Personagem (Especie::jogador, _maxVida),
-    ehJogador1(j1),
+    ehJogador1 (j1),
+    noChao     (false),
     agilidade  (300.0f),
-    noChao(false),
-    velPulo(-700.f)
+    lentidao   (000.0f),
+    velPulo    (-700.f)
 { 
     if(ehJogador1)
     {
@@ -59,8 +60,8 @@ void Jogador::executar(const float dT)
         {
             if       (Keyboard::isKeyPressed (Keyboard::Up   ))    { pular();             }
 
-            if       (Keyboard::isKeyPressed (Keyboard::Right))    { setVelX( agilidade); }
-            else if  (Keyboard::isKeyPressed (Keyboard::Left) )    { setVelX(-agilidade); }
+            if       (Keyboard::isKeyPressed (Keyboard::Right))    { setVelX( agilidade / lentidao); }
+            else if  (Keyboard::isKeyPressed (Keyboard::Left) )    { setVelX(-agilidade / lentidao); }
             else                                                   { setVelX(      0.0f); }
         }
 
@@ -68,10 +69,12 @@ void Jogador::executar(const float dT)
         {
             if       (Keyboard::isKeyPressed (Keyboard::W   ))    { pular();             }
 
-            if       (Keyboard::isKeyPressed (Keyboard::D   ))    { setVelX( agilidade); }
-            else if  (Keyboard::isKeyPressed (Keyboard::A   ))    { setVelX(-agilidade); }
+            if       (Keyboard::isKeyPressed (Keyboard::D   ))    { setVelX( agilidade / lentidao); }
+            else if  (Keyboard::isKeyPressed (Keyboard::A   ))    { setVelX(-agilidade / lentidao); }
             else                                                  { setVelX(      0.0f); }
         }
+
+        lentidao = 1.0f;
     }
     
     noChao = false;

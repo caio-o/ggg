@@ -2,6 +2,7 @@
 #include "Entidades/Personagens/Inimigos/Triangulo.hpp"
 #include "Gerenciadores/GerenciadorGrafico.hpp"
 #include "Entidades/Obstaculos/Lapis.hpp"
+#include "Entidades/Obstaculos/PlataformaGrudenta.hpp"
 #define GRAVIDADE      1000.0F
 #define LARGURA_FASE   2580.0F
 #define ALTURA_FASE    1440.0F
@@ -16,6 +17,7 @@ void FaseTeste::criarObstaculos()
 {
     Obstaculos::Lapis *pLap;
     Obstaculos::Plataforma* pPlat;
+    Obstaculos::PlataformaGrudenta *pPlatGrud;
 
     pPlat = new Obstaculos::Plataforma(LARGURA_FASE-400.F, 100.f);
     pPlat->setPos((CANTO_DIREITO + CANTO_ESQUERDO)/2.F - 200.F, CHAO-540.F);
@@ -32,17 +34,17 @@ void FaseTeste::criarObstaculos()
     colecao.incluir(static_cast<Entidade*> (pLap));
     pGC->inserirObstaculo(static_cast<Obstaculo*> (pLap));
     
-    pPlat = new Obstaculos::Plataforma();
-    pPlat->setPos(700.f, CHAO-320.f);
-    colecao.incluir(static_cast<Entidade*> (pPlat));
-    pGC->inserirObstaculo(static_cast<Obstaculo*> (pPlat));
+    pPlatGrud = new Obstaculos::PlataformaGrudenta();
+    pPlatGrud->setPos(700.f, CHAO-320.f);
+    colecao.incluir(static_cast<Entidade*> (pPlatGrud));
+    pGC->inserirObstaculo(static_cast<Obstaculo*> (pPlatGrud));
 
     
     pPlat = new Obstaculos::Plataforma(500.f,  100.F);
     pPlat->setPos(800.f, CHAO-100.f);
     colecao.incluir(static_cast<Entidade*> (pPlat));
     pGC->inserirObstaculo(static_cast<Obstaculo*> (pPlat));
-    
+
 
     pPlat = new Obstaculos::Plataforma(500.f, 100.f);
     pPlat->setPos(700.f, CHAO-900.f);
@@ -150,9 +152,8 @@ void FaseTeste::executar(const float dT = 0.f)
     while (pGG->janelaAberta())
     {
         pGG->limpar();
-
-        pGE->executar(); // Checar se a janela deve ser fechada.
         pGC->executar(); // Checar colisoes e gerar seus efeitos.
+        pGE->executar(); // Checar se a janela deve ser fechada.
 
         t0 = t1;
         t1 = pGG->getTempo();
@@ -160,6 +161,7 @@ void FaseTeste::executar(const float dT = 0.f)
 
         // Executar, mover e desenhar entidades.
         colecao.percorrer(deltaT);
+
 
         if(pJog)
         {

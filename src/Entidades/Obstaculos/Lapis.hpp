@@ -26,8 +26,9 @@ namespace Entidades
                 Lapis(Especie _especie = obstaculo, const bool _permeavel = false, const int dano = 1);
                 ~Lapis();
                 
+                void obstacular(Jogador *pJog);
+
                 void executar(const float dT);
-                void reagirAhColisao(Entidade* pE);
 
                 void setDano(const int d);
                 const int getDano() const;
