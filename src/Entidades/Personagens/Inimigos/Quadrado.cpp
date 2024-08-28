@@ -3,7 +3,7 @@
 #define RANGE_ATAQUE 100.0
 #define RANGE_PERSEGUE 300.0
 #define VELOCIDADE 250.0
-#define VELOCIDADE_DASH 1000.0
+#define VELOCIDADE_DASH 750.0
 #define COOLDOWN 3.0 //(segundos)
 #define DURACAO_ATAQUE 2.0
 
@@ -16,7 +16,7 @@ namespace Inimigos
 {
     Quadrado::Quadrado(Especie _especie, int maxVida):
     Inimigo(_especie, maxVida),
-    esquerda(false),
+    pJogadorPerseguido(pJogador1),
     atacando(false),
     dano(1.0)
     {
@@ -51,9 +51,11 @@ namespace Inimigos
         //     Fiz isso para que o quadrado possa dar dano no jogador.
         if (tempoUltimoAtaque >= DURACAO_ATAQUE) atacando = false;
         
-        //Se o jogador estiver dentro do range de perseguição...
+        //Se algum jogador estiver dentro do range de perseguição...
         if(rangePerseguir() && !atacando)
         {
+            definirPerseguido();
+            
             //... o inimigo passa a se mover a uma velocidade pré-definida em sua direção
             vel.x = VELOCIDADE;
 
@@ -121,14 +123,24 @@ namespace Inimigos
         }
     }
 
+    void Quadrado::definirPerseguido()
+    {
+        if(pJogador2 && abs(pJogador1->getPos().x - pos.x) > abs(pJogador2->getPos().x - pos.x))
+            pJogadorPerseguido = pJogador2;
+        else
+            pJogadorPerseguido = pJogador1;
+    }
+
     //Retorna true se algum jogador estiver no range de perseguição do quadrado
     //Range no eixo x: delimitado por constante;
     //Range no eixo y: a soma das metades do tamanho Quadrado e do Jogador.
     bool Quadrado::rangePerseguir()
     {
         if(pJogador2)
-            return (bool)(abs(pJogador1->getPos().x - pos.x) < RANGE_PERSEGUE ||
-                          abs(pJogador2->getPos().x - pos.x) < RANGE_PERSEGUE);
+            return (bool)((abs(pJogador1->getPos().x - pos.x) < RANGE_PERSEGUE &&
+                          (abs(pJogador1->getPos().y - pos.y) < ((pJogador1->getTam().y/2) + (getTam().y/2)))) ||
+                          (abs(pJogador2->getPos().x - pos.x) < RANGE_PERSEGUE) &&
+                          (abs(pJogador2->getPos().y - pos.y) < ((pJogador2->getTam().y/2) + (getTam().y/2))));
 
         return (bool)((abs(pJogador1->getPos().x - pos.x) < RANGE_PERSEGUE) && 
                       (abs(pJogador1->getPos().y - pos.y) < ((pJogador1->getTam().y/2) + (getTam().y/2))));
@@ -140,8 +152,10 @@ namespace Inimigos
     bool Quadrado::rangeAtacar()
     {        
         if(pJogador2)
-            return (bool)(abs(pJogador1->getPos().x - pos.x) < RANGE_ATAQUE ||
-                          abs(pJogador2->getPos().x - pos.x) < RANGE_ATAQUE);
+            return (bool)(((abs(pJogador1->getPos().x - pos.x) < RANGE_ATAQUE) &&
+                           (abs(pJogador1->getPos().y - pos.y) < ((pJogador1->getTam().y/2) + (getTam().y/2)))) ||
+                          ((abs(pJogador2->getPos().x - pos.x) < RANGE_ATAQUE)) &&
+                           (abs(pJogador2->getPos().y - pos.y) < ((pJogador2->getTam().y/2) + (getTam().y/2))));
 
         return (bool)((abs(pJogador1->getPos().x - pos.x) <  RANGE_ATAQUE) && 
                       (abs(pJogador1->getPos().y - pos.y) < ((pJogador1->getTam().y/2) + (getTam().y/2))));
@@ -150,10 +164,7 @@ namespace Inimigos
     //Retorna true se o jogador estiver a esquerda do inimigo
     bool Quadrado::jogadorAesquerda()
     {
-        if(pJogador2)
-            return (bool)(pJogador2->getPos().x < pos.x || pJogador1->getPos().x < pos.x);
-
-        return (bool)(pJogador1->getPos().x < pos.x);
+        return (bool)(pJogadorPerseguido->getPos().x < pos.x);
     }
 
     void Quadrado::setDano(const int d)

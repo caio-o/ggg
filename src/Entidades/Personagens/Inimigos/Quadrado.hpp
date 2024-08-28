@@ -8,7 +8,7 @@ namespace Inimigos
     {
         private:
             int dano;
-            bool esquerda;
+            Jogador* pJogadorPerseguido;
             bool atacando;
             
 
@@ -21,6 +21,7 @@ namespace Inimigos
             void atacar();
             void vira();
             void reagirAhColisao(Entidade* pE);
+            void definirPerseguido();
             
             bool rangePerseguir();
             bool rangeAtacar();
