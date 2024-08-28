@@ -31,7 +31,7 @@ namespace Fases
     void Fase::salvar() 
     { }
 
-    void Fase::criarProjetil(float x, float y)
+    void Fase::criarProjetil(const float x, const float y)
     {
         Entidades::Projetil* pProj = new Projetil();
 

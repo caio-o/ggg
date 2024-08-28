@@ -15,8 +15,6 @@ namespace Inimigos
     class Triangulo: public Inimigo
     {
         private:
-            float cooldown;
-            float tempoUltimoAtaque;
             static Fases::Fase* pFase;
 
         public:

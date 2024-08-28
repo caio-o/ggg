@@ -40,7 +40,7 @@ namespace Fases
 
         virtual void salvar  ();
 
-        void criarProjetil(float x, float y);
+        void criarProjetil(const float x, const float y);
     };
 }
 
