@@ -151,9 +151,7 @@ void FaseTeste::executar(const float dT = 0.f)
         {
             if(verificaGameOver())
             {
-                efeitoGameOver.setTamanho(pGG->getTamanhoJanela().x, pGG->getTamanhoJanela().y);
-                efeitoGameOver.atualizar(pGG->getTamanhoJanela()/2.f);
-                efeitoGameOver.renderizar();
+                pGG->renderizar(&efeitoGameOver);
             }
         }
 

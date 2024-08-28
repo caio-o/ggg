@@ -14,8 +14,8 @@ protected:
     static int      contEntes;
     const int id;
     static Gerenciadores::GerenciadorGrafico* pGG;
-    //Forma *pForma; não precisa de forma em ente, só em entidade
-
+    //Forma forma;
+    
 public:
     Ente(/*Forma* _pForma = NULL*/);
     virtual ~Ente();

@@ -21,6 +21,7 @@ namespace Inimigos
             Triangulo(Especie _especie = inimigo, int maxVida = 10, int dano = 1);
             ~Triangulo();
 
+            virtual void danificar(Personagem *pPers) {  };
             void salvar();
             void executar(const float dT);
             void atacar();

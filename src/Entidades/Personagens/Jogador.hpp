@@ -26,6 +26,7 @@ namespace Entidades
         void pular();
         const bool getChao() const { return noChao; }
 
+        void danificar(Personagem *pPers);
         void salvar();
         void atacar();
         void executar(const float dT);

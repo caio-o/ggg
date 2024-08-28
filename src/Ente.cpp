@@ -15,4 +15,5 @@ Ente::~Ente()
 void Ente::desenhar()
 {
     //pForma->renderizar();
+    //pGG->renderizar(&forma);
 }

@@ -99,11 +99,13 @@ namespace ElementosGraficos
     void Forma::renderizar()
     {
         ////cout << "Forma::renderizar()" << endl;
-        
+        /*
         if(pCorpo)
             pGerenciadorGrafico->renderizar(pCorpo);
         else
-            cout << "Erro em ElementosGraficos::Forma::renderizar(): " << ERRO_SET_NULLPTR << endl;
+            cout << "Erro em ElementosGraficos::Forma::renderizar(): " << ERRO_SET_NULLPTR << endl;*/
+
+        pGerenciadorGrafico->renderizar(this);
     }
 
     void Forma::setGerenciadorGrafico()
