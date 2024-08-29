@@ -13,12 +13,12 @@ namespace Entidades::Obstaculos
         float tempoAtual;
 
     public:
-        Plataforma(float largura = 300.f, float altura = 50.f, const bool _armadilha = false):
-            armadilha(_armadilha),
+        Plataforma(float largura = 300.f, float altura = 50.f, Especie _especie = plataforma):
+            armadilha(false),
             caindo(false),
             tempoDuracao(3),
             tempoAtual(0.0f),
-            Obstaculo(Especie::plataforma, false)
+            Obstaculo(_especie, false)
         {
             setAcelVertical(-1000.f);
             setTamanho(largura, altura);
@@ -29,23 +29,11 @@ namespace Entidades::Obstaculos
 
         }
 
-        void reagirAhColisao(Entidade *pE)
-        {
-            if(armadilha && (pE->getEspecie() == jogador || pE->getEspecie() == inimigo))
-            {
-                caindo = true;
-            }
-        }
-
         void executar(const float dT)
-        {
-            if(caindo)
-            {
-                /**
-                 * Fazer cair a plataforma pela contagem do tempo
-                 */
-            }
-        }
+        { }
+
+        virtual void obstacular(Jogador* pJog) 
+        { }
     };
 }
 

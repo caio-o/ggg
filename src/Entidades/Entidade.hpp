@@ -17,9 +17,10 @@ namespace Entidades
     {
         indefinido = 0,
         jogador,
-        plataforma,
         inimigo,
         obstaculo,
+        plataformaGrudenta,
+        plataforma,
         projetil
     };
 

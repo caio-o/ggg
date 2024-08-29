@@ -19,6 +19,14 @@ namespace Fases
     {
     private:
         int maxInimigos;
+
+        void criarPlataforma         (float posX, float posY, float tamX = 300.f, float tamY = 100.f);
+        void criarPlataformaGrudenta (float posX, float posY, float tamX = 300.f, float tamY = 100.f);
+        void criarLapis              (float posX, float posY, int dano = 1);
+        void criarTriangulo          (float posX, float posY);
+        void criarQuadrado           (float posX, float posY);
+        void criarBordas             ();
+        
         void criarObstaculos();
         void criarInimigos();
         

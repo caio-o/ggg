@@ -18,7 +18,7 @@ namespace Inimigos
     Inimigo(_especie, maxVida)
     {
         forma.setTextura(CAMINHO_TEXTURA, true);
-        setTamanho(50.f, 50.f);
+        setTamanho(65.f, 65.f);
     }
 
     Triangulo::~Triangulo()

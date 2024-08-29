@@ -14,6 +14,7 @@ namespace Entidades
         bool ehJogador1;
         bool noChao;
         float agilidade; // velocidade do CAMINHAR do jogador (no eixo X)
+        float lentidao;
         float velPulo;   // velocidade inicial do PULO do jogador (no eixo Y)
         virtual void morrer()  { forma.setEscala(2.f, 1.0f); }; //efeito da morte no 
         
@@ -23,8 +24,10 @@ namespace Entidades
 
         ~Jogador();
 
-        void pular();
-        const bool getChao() const { return noChao; }
+        const bool  getChao      () const                 { return noChao;        }
+        void        setChao      (const bool _noChao)     { noChao   = _noChao;   }
+        void        setLentidao  (const float _lentidao)  { lentidao = (_lentidao > 0.0f ? _lentidao : 1.0f); }
+        void        pular();
 
         void danificar(Personagem *pPers);
         void salvar();
