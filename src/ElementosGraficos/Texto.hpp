@@ -1,3 +1,10 @@
+/*
+ * AUTORA    : Ana Julia Molinos Leite da Silva
+ * DESCRIÇÃO : Declaração da classe responsável por conter os métodos relacionados a manipulação de 
+ *             texto (cor, fonte, tamanho, alinhamento e etc). Essa classe vai utilizar os recursos 
+ *             disponíveis da biblioteca gráfica SFML, permitindo maior desacoplamento.
+ */
+
 #pragma once
 
 #include "SFML/Graphics.hpp"
