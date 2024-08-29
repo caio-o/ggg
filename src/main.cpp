@@ -17,11 +17,10 @@ int main()
     //testeColisoes();
     //testeQuadrado();
     //testeFase();
+    testeTexto();
 
-
-
-    Jogo GGG;
-    GGG.executar();
+    // Jogo GGG;
+    // GGG.executar();
 
     return 0;
 }

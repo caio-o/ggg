@@ -2,6 +2,8 @@
 #define _ENTE_HPP
 
 #include "Gerenciadores/GerenciadorGrafico.hpp"
+#include "Gerenciadores/GerenciadorEventos.hpp"
+
 #include "SFML/Graphics.hpp"
 #include "ElementosGraficos/Forma.hpp"
 

@@ -8,22 +8,41 @@
 #include "Texto.hpp"
 #include "Erros.hpp"
 
-#define CAMINHO_FONTE "../fonte/MainFont.ttf"
+#define CAMINHO_FONTE "../fonte/ThaleahFat.ttf"
 
 namespace ElementosGraficos
 {
     Gerenciadores::GerenciadorGrafico* Texto::pGG(NULL);
     
-    Texto::Texto(const string info):
-    pTexto(new sf::Text()),
+    Texto::Texto(string info):
+    pTexto(NULL),
     info(info)
-    {
-        sf::Font* pFonte = pGG->carregarFonte(CAMINHO_FONTE);
+    {   
+        cout << "Inicio de construção de objeto texto: " << endl;
 
+        //Alocação da fonte  
+        sf::Font* pFonte = new sf::Font();
+
+        cout << "Alocação de fonte iniciada!" << endl;
+
+        pFonte = pGG->carregarFonte(CAMINHO_FONTE);
+
+        cout << "Alocação de fonte completa!" << endl;
+        
         if(pFonte)
-            pTexto->setFont(*pFonte);
+        {
+            //Alocação do corpo de texto
+            pTexto = new sf::Text(info, *pFonte);
+
+            cout << "Alocação de texto completa!" << endl;
+
+            if(pTexto == NULL)
+                cout << "Erro em ElementosGraficos::Texto::Texto()::pTexto: " << ERRO_ALOCACAO << endl;
+        }
         else
             cout << "Erro em ElementosGraficos::Texto::Texto()::pFonte: " << ERRO_ALOCACAO << endl;
+
+        cout << "Construção de objeto de texto completa!" << endl;
     }
 
     Texto::~Texto()
@@ -152,7 +171,7 @@ namespace ElementosGraficos
         return Coordenadas::Vetor2f(pTexto->getPosition().x, pTexto->getPosition().y);
     }
 
-    const string Texto::getInfo() const
+    string Texto::getInfo() const
     {
         return info;
     }

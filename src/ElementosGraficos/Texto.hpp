@@ -33,12 +33,12 @@ namespace ElementosGraficos
             static Gerenciadores::GerenciadorGrafico* pGG;
 
         public:
-            Texto(const string info = "");
+            Texto(string info = "");
             ~Texto();
 
             static void setpGG();
             
-            void setInfo(const string inf);
+            void setInfo(string inf);
             void setPosicao(const Coordenadas::Vetor2f pos);
             void setPosicao(const float x, const float y);
             void setCor(Cores cor);
@@ -47,7 +47,7 @@ namespace ElementosGraficos
             
             const Coordenadas::Vetor2f getTamanhoCaixaTexto() const;
             const Coordenadas::Vetor2f getPosicao() const;
-            const string getInfo() const;
+            string getInfo() const;
 
             void renderizar();
     };

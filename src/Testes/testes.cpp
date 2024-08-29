@@ -17,6 +17,7 @@
 #include "Gerenciadores/GerenciadorEventos.hpp"
 
 #include "ElementosGraficos/Forma.hpp"
+#include "ElementosGraficos/Texto.hpp"
 
 #include "Entidades/Entidade.hpp"
 #include "Entidades/Personagens/Jogador.hpp"
@@ -498,4 +499,31 @@ void testeFase()
 
      delete pIni;
      delete pJog;
+}
+
+void testeTexto()
+{
+     Gerenciadores::GerenciadorGrafico* pGG = Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico();
+     Gerenciadores::GerenciadorEventos* pGE = Gerenciadores::GerenciadorEventos::getGerenciadorEventos();
+     
+     cout << "Declaração de texto estático" << endl;
+     
+     ElementosGraficos::Texto titulo;
+
+     cout << "Texto estático ok" << endl;
+
+     titulo.setInfo("GGG: GRANDE GUERRA GEOMÉTRICA");
+     titulo.setPosicao(pGG->getTamanhoJanela().x/2, pGG->getTamanhoJanela().y-50);
+     titulo.setTamanho(20);
+     titulo.setCor(branco);
+     titulo.setAlinhamento(centro);
+
+     while(pGG->janelaAberta())
+     {
+          pGE->executar();
+
+          titulo.renderizar();
+
+          pGG->mostrar();
+     }
 }
