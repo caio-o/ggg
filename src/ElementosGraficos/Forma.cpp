@@ -79,6 +79,52 @@ namespace ElementosGraficos
             cout << "Erro em ElementosGraficos::Forma::setTextura(): textura não atualizada!" << endl;
     }
 
+    void Forma::setCorPreenchimento(Cores cor)
+    {
+        switch (cor)
+        {
+            case transparente:
+                pCorpo->setFillColor(sf::Color::Transparent);
+                break;
+
+            case branco:
+                pCorpo->setFillColor(sf::Color::White);
+                break;
+
+            case preto:
+                pCorpo->setFillColor(sf::Color::Black);
+                break;
+
+            case azul:
+                pCorpo->setFillColor(sf::Color::Blue);
+                break;
+                
+            case ciano:
+                pCorpo->setFillColor(sf::Color::Cyan);
+                break;
+            
+            case verde:
+                pCorpo->setFillColor(sf::Color::Green);
+                break;
+
+            case magenta:
+                pCorpo->setFillColor(sf::Color::Magenta);
+                break;
+
+            case vermelho:
+                pCorpo->setFillColor(sf::Color::Red);
+                break;
+
+            case amarelo:
+                pCorpo->setFillColor(sf::Color::Yellow);
+                break;
+            
+            default:
+                cout << "Erro em ElementosGraficos::Forma::setCorPreenchimento(): argumento invalido, cor não alterada!" << endl;
+                break;
+        }
+    }
+
     sf::RectangleShape* Forma::getpCorpo() const
     {
         if(pCorpo == NULL)
