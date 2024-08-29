@@ -29,7 +29,7 @@ namespace Gerenciadores
      */
     camera(sf::Vector2f((LARGURA_JANELA), (ALTURA_JANELA)), sf::Vector2f(LARGURA_JANELA*2, ALTURA_JANELA*2)),
     mapaTexturas(),
-    mapaFontes(),
+    pFonte(NULL),
     relogio()
     {
         //instancia a janela adequadamente
@@ -45,8 +45,13 @@ namespace Gerenciadores
 
         //garante que as coleções de textura e fontem iniciem vazias
         mapaTexturas.clear();
-        mapaFontes.clear();
 
+        //Aloca espaço para a fonte
+        pFonte = new sf::Font();
+
+        if(pFonte == NULL)
+            cout << "Erro em Gerenciadores::GerenciadorGrafico::GerenciadorGrafico()::pFonte: " << ERRO_ALOCACAO << endl;
+        
         //inicializa o relogio zerado
         resetarRelogio();
     }
@@ -75,24 +80,6 @@ namespace Gerenciadores
             }
             
             mapaTexturas.clear();
-        }
-
-        //desaloca fontes
-        if(!mapaFontes.empty())
-        {
-            map<const char*, sf::Font*>::iterator it;
-            sf::Font* pFnt = NULL;
-
-            for(it=mapaFontes.begin(); it!=mapaFontes.end(); it++)
-            {
-                pFnt = it->second;
-                if(pFnt)
-                    delete pFnt;
-
-                pFnt = NULL;
-            }
-
-            mapaFontes.clear();
         }
 
         dT = -1.0;
@@ -330,47 +317,24 @@ namespace Gerenciadores
     }
     
     /* 
-     * Procura se a fonte requerida já foi carregada anteriormente e a retorna.
-     * Caso não a encontre, carrega e retorna a nova fonte.
+     * Carrega a fonte dos textos
      * */
     sf::Font* GerenciadorGrafico::carregarFonte(const char* caminho)
     {
-        if(!mapaFontes.empty())
-        {
-            map<const char*, sf::Font*>::iterator it;
+        cout << "Entrou em carregar fonte" << endl;        
+        
+        //ESTA CRASHANDO QUANDO TENTA ACESSAR PFONTE =((((((((((((((
+        
+        //comando teste p ver onde ta crashando
+        //cout << pFonte->getInfo().family << endl;
 
-            for(it=mapaFontes.begin(); it!=mapaFontes.end(); it++)
-            {
-                if(!strcmp(caminho, it->first))
-                {
-                    if(it->second)
-                        return it->second;
+        if(!(pFonte->loadFromFile(caminho)))
+            cout << "Erro em Gerenciadores::GerenciadorGrafico::carregarFonte(): carregamento de fonte falhou!" << endl;
+        else
+            cout << "Carregamento deu certo" << endl;
 
-                    cout << "Erro de gerenciamento GerenciadorGrafico: textura correspondente ao caminho "
-                            << caminho << " nao esta alocada adequadamente!" << endl;
-
-                    exit(1);
-                }
-            }
-        }
-
-        sf::Font* pFnt = new sf::Font();
-
-        if(pFnt)
-        {
-            if(!pFnt->loadFromFile(caminho))
-            {
-                cout << "Erro ao carregar arquivo de textura!" << endl;
-                exit(1);
-            }
-
-            mapaFontes.insert(std::pair<const char*,sf::Font*>(caminho, pFnt));
-
-            return pFnt;
-        }
-
-        cout << "Erro de gerenciamento GerenciadorGrafico: textura nao alocada!" << endl;
-        exit(1); 
+        cout << "Carregou fonte" << endl;
+        return pFonte;
     }
     
     //Reinicia a contagem de tempo
