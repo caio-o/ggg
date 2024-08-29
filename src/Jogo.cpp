@@ -23,7 +23,7 @@ Jogo::Jogo():
     
     Ente::setGerenciadorGrafico();
 
-    primeiraFase =  static_cast<Fase*> (new FaseTeste);
+    primeiraFase =  static_cast<Fase*> (new Fases::Calabouco);
     //cout << "Jogo::Jogo 2" << endl;
 }
 

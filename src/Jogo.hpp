@@ -2,7 +2,7 @@
 #define _JOGO_HPP
 
 #include "Fases/Fase.hpp"
-#include "Fases/FaseTeste.hpp"
+#include "Fases/Calabouco.hpp"
 #include "Entidades/Personagens/Jogador.hpp"
 using Fases::Fase;
 

@@ -1,10 +1,9 @@
-#include "Fases/FaseTeste.hpp"
 #include "Entidades/Personagens/Inimigos/Triangulo.hpp"
 #include "Gerenciadores/GerenciadorGrafico.hpp"
 #include "Entidades/Obstaculos/Lapis.hpp"
 #include "Entidades/Obstaculos/PlataformaGrudenta.hpp"
-#include "Fases/FaseTeste.hpp"
-#include "FaseTeste.hpp"
+#include "Fases/Calabouco.hpp"
+
 #define GRAVIDADE      1000.0F
 #define LARGURA_FASE   2580.0F
 #define ALTURA_FASE    1440.0F
@@ -15,7 +14,7 @@
 
 using namespace Fases;
 
-void Fases::FaseTeste::criarPlataforma(float posX, float posY, float tamX, float tamY)
+void Fases::Calabouco::criarPlataforma(float posX, float posY, float tamX, float tamY)
 {
     Plataforma *pPlat = new Obstaculos::Plataforma(tamX, tamY);
     
@@ -29,7 +28,7 @@ void Fases::FaseTeste::criarPlataforma(float posX, float posY, float tamX, float
     else cout << "Faseteste::criarPlataforma: " << ERRO_ALOCACAO << "\n" << ERRO_INCLUI_NULLPTR << endl;
 }
 
-void Fases::FaseTeste::criarPlataformaGrudenta(float posX, float posY, float tamX, float tamY)
+void Fases::Calabouco::criarPlataformaGrudenta(float posX, float posY, float tamX, float tamY)
 {
     PlataformaGrudenta *pPlat = new PlataformaGrudenta(tamX, tamY);
     
@@ -43,7 +42,7 @@ void Fases::FaseTeste::criarPlataformaGrudenta(float posX, float posY, float tam
     else cout << "Faseteste::criarPlataforma: " << ERRO_ALOCACAO << "\n" << ERRO_INCLUI_NULLPTR << endl;
 }
 
-void Fases::FaseTeste::criarLapis(float posX, float posY, int dano)
+void Fases::Calabouco::criarLapis(float posX, float posY, int dano)
 {
     Lapis *pLap = new Lapis();
     
@@ -55,7 +54,7 @@ void Fases::FaseTeste::criarLapis(float posX, float posY, int dano)
     }
 }
 
-void Fases::FaseTeste::criarTriangulo(float posX, float posY)
+void Fases::Calabouco::criarTriangulo(float posX, float posY)
 {
     Inimigo* pIni = static_cast<Inimigo*> (new Triangulo(Especie::inimigo));
     pIni->setPos(posX, posY);
@@ -63,7 +62,7 @@ void Fases::FaseTeste::criarTriangulo(float posX, float posY)
     colecao.incluir(static_cast<Entidade*> (pIni));
 }
 
-void Fases::FaseTeste::criarQuadrado(float posX, float posY)
+void Fases::Calabouco::criarQuadrado(float posX, float posY)
 {
     Inimigo* pIni = static_cast<Inimigo*> (new Quadrado(Especie::inimigo, 10));
     pIni->setPos(posX, posY);
@@ -71,7 +70,7 @@ void Fases::FaseTeste::criarQuadrado(float posX, float posY)
     colecao.incluir(static_cast<Entidade*> (pIni));
 }
 
-void Fases::FaseTeste::criarBordas()
+void Fases::Calabouco::criarBordas()
 {
     //                 POS_X                                    POS_Y           TAM_X           TAM_Y
     criarPlataforma (CANTO_ESQUERDO,                         ALTURA_FASE/2.F,   100.f,          ALTURA_FASE); // PAREDE ESQUERDA
@@ -80,7 +79,7 @@ void Fases::FaseTeste::criarBordas()
     criarPlataforma ((CANTO_DIREITO + CANTO_ESQUERDO)/2.F,   TETO,              LARGURA_FASE,   100.f);       // TETO
 }
 
-void FaseTeste::criarObstaculos() 
+void Fases::Calabouco::criarObstaculos() 
 {
     criarPlataforma ((CANTO_DIREITO + CANTO_ESQUERDO)/2.F - 200.F, CHAO-540.F, LARGURA_FASE-400.F, 100.f);  // SEGUNDO  PISO
     criarPlataforma ((CANTO_DIREITO + CANTO_ESQUERDO)/2.F + 200.F, CHAO-1140.F, LARGURA_FASE-400.F, 100.f); // TERCEIRO PISO
@@ -98,7 +97,7 @@ void FaseTeste::criarObstaculos()
     criarLapis(700.f, CHAO-900.f - 40.f);
 }
 
-void FaseTeste::criarInimigos()
+void Fases::Calabouco::criarInimigos()
 {
     Inimigos::Triangulo::setpFase(this);
     Inimigo:: setpJogador1(pJog);
@@ -122,7 +121,7 @@ void FaseTeste::criarInimigos()
  *     Fase::Executar no fim do loop de cada fase. 
  *     Isto pouparia tempo.
  */ 
-void FaseTeste::executar(const float dT)
+void Fases::Calabouco::executar(const float dT)
 {
     while (pGG->janelaAberta())
     {
@@ -150,7 +149,7 @@ void FaseTeste::executar(const float dT)
     }
 }
 
-FaseTeste::FaseTeste():
+Fases::Calabouco::Calabouco():
     Fase(),
     maxInimigos(100)
 {
@@ -178,5 +177,5 @@ FaseTeste::FaseTeste():
     colecao.irAoInicio();
 }
 
-FaseTeste::~FaseTeste()
+Fases::Calabouco::~Calabouco()
 { }

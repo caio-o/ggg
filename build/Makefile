@@ -12,6 +12,9 @@ else
 	CP = cp -f
 endif
 
+call:
+	clean all
+
 clean:
 	$(RM) *.o main.exe
 

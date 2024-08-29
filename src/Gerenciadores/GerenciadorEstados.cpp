@@ -7,7 +7,7 @@
 //dar créditos ao geovane
 
 #include "GerenciadorEstados.hpp"
-#include "Fases/FaseTeste.hpp"
+#include "Fases/Calabouco.hpp"
 
 #include <iostream>
 using namespace std;
@@ -27,7 +27,7 @@ namespace Gerenciadores
 
         Estado* pEstado = NULL;
 
-        pEstado = static_cast<Estado*>(new Fases::FaseTeste());
+        pEstado = static_cast<Estado*>(new Fases::Calabouco());
 
         if(pEstado)
         {

@@ -15,7 +15,7 @@ using namespace Entidades::Obstaculos;
 
 namespace Fases
 {
-    class FaseTeste : public Estado, public Fase
+    class Calabouco : public Estado, public Fase
     {
     private:
         int maxInimigos;
@@ -32,9 +32,9 @@ namespace Fases
         
 
     public:
-        FaseTeste();
+        Calabouco();
 
-        ~FaseTeste();
+        ~Calabouco();
 
         void executar(const float dT);
         void desenhar(){};
