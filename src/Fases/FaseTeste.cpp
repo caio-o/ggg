@@ -73,25 +73,11 @@ void Fases::FaseTeste::criarQuadrado(float posX, float posY)
 
 void Fases::FaseTeste::criarBordas()
 {
-    Obstaculos::Plataforma* pPlat = new Obstaculos::Plataforma(100.f, ALTURA_FASE);
-    pPlat->setPos(CANTO_ESQUERDO, ALTURA_FASE/2.F);
-    colecao.incluir(static_cast<Entidade*> (pPlat));
-    pGC->inserirObstaculo(static_cast<Obstaculo*>(pPlat));
-
-    pPlat = new Obstaculos::Plataforma(100.f, ALTURA_FASE);
-    pPlat->setPos(CANTO_DIREITO, ALTURA_FASE/2.F);
-    colecao.incluir(static_cast<Entidade*> (pPlat));
-    pGC->inserirObstaculo(static_cast<Obstaculo*> (pPlat));
-
-    pPlat = new Obstaculos::Plataforma(LARGURA_FASE, 100.f);
-    pPlat->setPos((CANTO_DIREITO + CANTO_ESQUERDO)/2.F, CHAO);
-    colecao.incluir(static_cast<Entidade*> (pPlat));
-    pGC->inserirObstaculo(static_cast<Obstaculo*> (pPlat));
-
-    pPlat = new Obstaculos::Plataforma(LARGURA_FASE, 100.f);
-    pPlat->setPos((CANTO_DIREITO + CANTO_ESQUERDO)/2.F, TETO);
-    colecao.incluir(static_cast<Entidade*> (pPlat));
-    pGC->inserirObstaculo(static_cast<Obstaculo*> (pPlat));
+    //                 POS_X                                    POS_Y           TAM_X           TAM_Y
+    criarPlataforma (CANTO_ESQUERDO,                         ALTURA_FASE/2.F,   100.f,          ALTURA_FASE); // PAREDE ESQUERDA
+    criarPlataforma (CANTO_DIREITO,                          ALTURA_FASE/2.F,   100.f,          ALTURA_FASE); // PAREDE DIREITA
+    criarPlataforma ((CANTO_DIREITO + CANTO_ESQUERDO)/2.F,   CHAO,              LARGURA_FASE,   100.f);       // CHAO
+    criarPlataforma ((CANTO_DIREITO + CANTO_ESQUERDO)/2.F,   TETO,              LARGURA_FASE,   100.f);       // TETO
 }
 
 void FaseTeste::criarObstaculos() 
