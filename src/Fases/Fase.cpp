@@ -1,4 +1,8 @@
 #include "Fases/Fase.hpp"
+#include "Entidades/Obstaculos/Plataforma.hpp"
+#include "Entidades/Obstaculos/PlataformaGrudenta.hpp"
+#include "Entidades/Personagens/Inimigos/Quadrado.hpp"
+#include "Entidades/Personagens/Inimigos/Triangulo.hpp"
 #include "Entidades/Projetil.hpp"
 
 namespace Fases
@@ -45,5 +49,66 @@ namespace Fases
         }
         else
             cout << "Erro em Fases::Fase::criarProjetil(): " << ERRO_ALOCACAO << endl;
+    }
+
+    void Fase::criarPlataforma(float posX, float posY, float tamX, float tamY)
+    {
+        Plataforma *pPlat = new Obstaculos::Plataforma(tamX, tamY);
+
+        if(pPlat)
+        {
+            pPlat->setPos(posX, posY);
+            colecao.incluir(static_cast<Entidade*> (pPlat));
+            pGC->inserirObstaculo(static_cast<Obstaculo*> (pPlat));
+        }
+
+        else cout << "Faseteste::criarPlataforma: " << ERRO_ALOCACAO << "\n" << ERRO_INCLUI_NULLPTR << endl;
+    }
+
+    void Fase::criarPlataformaGrudenta(float posX, float posY, float tamX, float tamY)
+    {
+        PlataformaGrudenta *pPlat = new PlataformaGrudenta(tamX, tamY);
+
+        if(pPlat)
+        {
+            pPlat->setPos(posX, posY);
+            colecao.incluir(static_cast<Entidade*> (pPlat));
+            pGC->inserirObstaculo(static_cast<Obstaculo*> (pPlat));
+        }
+
+        else cout << "Faseteste::criarPlataforma: " << ERRO_ALOCACAO << "\n" << ERRO_INCLUI_NULLPTR << endl;
+    }
+
+    void Fase::criarBordas()
+    {
+            //                 POS_X                                    POS_Y           TAM_X           TAM_Y
+        criarPlataforma (CANTO_ESQUERDO,                         ALTURA_FASE/2.F,   100.f,          ALTURA_FASE); // PAREDE ESQUERDA
+        criarPlataforma (CANTO_DIREITO,                          ALTURA_FASE/2.F,   100.f,          ALTURA_FASE); // PAREDE DIREITA
+        criarPlataforma ((CANTO_DIREITO + CANTO_ESQUERDO)/2.F,   CHAO,              LARGURA_FASE,   100.f);       // CHAO
+        criarPlataforma ((CANTO_DIREITO + CANTO_ESQUERDO)/2.F,   TETO,              LARGURA_FASE,   100.f);       // TETO
+
+    }
+
+    void Fase::criarTriangulo(float posX, float posY)
+    {
+        Inimigo* pIni = static_cast<Inimigo*> (new Triangulo(Especie::inimigo));
+        pIni->setPos(posX, posY);
+        pGC->inserirInimigo(pIni);
+        colecao.incluir(static_cast<Entidade*> (pIni));
+    }
+
+    void Fase::criarQuadrado(float posX, float posY)
+    {
+        Inimigo* pIni = static_cast<Inimigo*> (new Quadrado(Especie::inimigo, 10));
+        pIni->setPos(posX, posY);
+        pGC->inserirInimigo(pIni);
+        colecao.incluir(static_cast<Entidade*> (pIni));
+    }
+        
+    const bool Fase::verificaGameOver()
+    {
+        if       (pJog && pJog2)  { return gameOver = (bool) !( pJog->getVivo() || pJog2->getVivo() ); }
+        else if  (pJog         )  { return gameOver = (bool) !( pJog->getVivo() );                     }
+        else                      { return false;                                                      }
     }
 } // namespace Fases

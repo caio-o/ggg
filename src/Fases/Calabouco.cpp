@@ -5,79 +5,14 @@
 #include "Fases/Calabouco.hpp"
 
 #define GRAVIDADE      1000.0F
-#define LARGURA_FASE   2580.0F
+/*#define LARGURA_FASE   2580.0F
 #define ALTURA_FASE    1440.0F
 #define CHAO           ALTURA_FASE
 #define TETO              0.0F
 #define CANTO_ESQUERDO    0.0F
-#define CANTO_DIREITO     LARGURA_FASE
+#define CANTO_DIREITO     LARGURA_FASE*/
 
 using namespace Fases;
-
-void Fases::Calabouco::criarPlataforma(float posX, float posY, float tamX, float tamY)
-{
-    Plataforma *pPlat = new Obstaculos::Plataforma(tamX, tamY);
-    
-    if(pPlat)
-    {
-        pPlat->setPos(posX, posY);
-        colecao.incluir(static_cast<Entidade*> (pPlat));
-        pGC->inserirObstaculo(static_cast<Obstaculo*> (pPlat));
-    }
-
-    else cout << "Faseteste::criarPlataforma: " << ERRO_ALOCACAO << "\n" << ERRO_INCLUI_NULLPTR << endl;
-}
-
-void Fases::Calabouco::criarPlataformaGrudenta(float posX, float posY, float tamX, float tamY)
-{
-    PlataformaGrudenta *pPlat = new PlataformaGrudenta(tamX, tamY);
-    
-    if(pPlat)
-    {
-        pPlat->setPos(posX, posY);
-        colecao.incluir(static_cast<Entidade*> (pPlat));
-        pGC->inserirObstaculo(static_cast<Obstaculo*> (pPlat));
-    }
-
-    else cout << "Faseteste::criarPlataforma: " << ERRO_ALOCACAO << "\n" << ERRO_INCLUI_NULLPTR << endl;
-}
-
-void Fases::Calabouco::criarLapis(float posX, float posY, int dano)
-{
-    Lapis *pLap = new Lapis();
-    
-    if(pLap)
-    {
-        pLap->setPos(posX, posY);
-        colecao.incluir(static_cast<Entidade*> (pLap));
-        pGC->inserirObstaculo(static_cast<Obstaculo*> (pLap));
-    }
-}
-
-void Fases::Calabouco::criarTriangulo(float posX, float posY)
-{
-    Inimigo* pIni = static_cast<Inimigo*> (new Triangulo(Especie::inimigo));
-    pIni->setPos(posX, posY);
-    pGC->inserirInimigo(pIni);
-    colecao.incluir(static_cast<Entidade*> (pIni));
-}
-
-void Fases::Calabouco::criarQuadrado(float posX, float posY)
-{
-    Inimigo* pIni = static_cast<Inimigo*> (new Quadrado(Especie::inimigo, 10));
-    pIni->setPos(posX, posY);
-    pGC->inserirInimigo(pIni);
-    colecao.incluir(static_cast<Entidade*> (pIni));
-}
-
-void Fases::Calabouco::criarBordas()
-{
-    //                 POS_X                                    POS_Y           TAM_X           TAM_Y
-    criarPlataforma (CANTO_ESQUERDO,                         ALTURA_FASE/2.F,   100.f,          ALTURA_FASE); // PAREDE ESQUERDA
-    criarPlataforma (CANTO_DIREITO,                          ALTURA_FASE/2.F,   100.f,          ALTURA_FASE); // PAREDE DIREITA
-    criarPlataforma ((CANTO_DIREITO + CANTO_ESQUERDO)/2.F,   CHAO,              LARGURA_FASE,   100.f);       // CHAO
-    criarPlataforma ((CANTO_DIREITO + CANTO_ESQUERDO)/2.F,   TETO,              LARGURA_FASE,   100.f);       // TETO
-}
 
 void Fases::Calabouco::criarObstaculos() 
 {
@@ -93,8 +28,6 @@ void Fases::Calabouco::criarObstaculos()
 
     if((bool) rand()%3) 
         criarPlataforma(CANTO_DIREITO - 350.F, CHAO - 1600.f, 400.F, 300.F);
-
-    criarLapis(700.f, CHAO-900.f - 40.f);
 }
 
 void Fases::Calabouco::criarInimigos()
@@ -112,8 +45,8 @@ void Fases::Calabouco::criarInimigos()
     criarTriangulo(1000.f, 600.F-100);
     criarTriangulo(400.f, CHAO-900.f);
 
-    /*if(rand()%2)
-        criarTriangulo(700.F, CHAO+300);*/
+    if(rand()%2)
+        criarTriangulo(700.F, CHAO+300);
 
 }
 
