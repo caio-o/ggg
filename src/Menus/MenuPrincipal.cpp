@@ -5,7 +5,7 @@
  */
 
 #include "Erros.hpp"
-
+#include "Gerenciadores/GerenciadorEstados.hpp"
 #include "MenuPrincipal.hpp"
 #include "Gerenciadores/GerenciadorEventos.hpp"
 

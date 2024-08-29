@@ -4,7 +4,7 @@
  *             objeto conforme o momento (i.e, o estado) em que ele se encontra, realizando o padrão
  *             de projeto State.
  */
-
+#include "Gerenciadores/GerenciadorEstados.hpp"
 #include "Estado.hpp"
 #include "Erros.hpp"
 

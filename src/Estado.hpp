@@ -7,8 +7,8 @@
 
 #pragma once
 
-#include "Gerenciadores/GerenciadorEstados.hpp"
-
+//#include "Gerenciadores/GerenciadorEstados.hpp"
+namespace Gerenciadores { class GerenciadorEstados; }
     //Possíveis estados do jogo
     enum idEstados
     {
