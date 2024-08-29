@@ -8,23 +8,26 @@
 
 #include "GerenciadorEstados.hpp"
 #include "Fases/Calabouco.hpp"
+#include "Menus/MenuPrincipal.hpp"
 
 #include <iostream>
 using namespace std;
 
 namespace Gerenciadores
 {
-    GerenciadorEstados* GerenciadorEstados::pEstados(NULL);
+    GerenciadorEstados* GerenciadorEstados::pGEs(NULL);
 
     GerenciadorEstados::GerenciadorEstados():
     mapaEstados()
     {
+        cout << "Inicio alocação pges!" << endl;
         mapaEstados.clear();
 
         /*
          * Aqui podem ser instanciados todos os estados (com loop? Da pra usar o enum no loop?)
          */
 
+        //Aloca fase 1
         Estado* pEstado = NULL;
 
         pEstado = static_cast<Estado*>(new Fases::Calabouco());
@@ -35,8 +38,23 @@ namespace Gerenciadores
         }
         else
             cout << "Erro em Gerenciadores::GerenciadorEstados::GerenciadorEstados(): " << ERRO_ALOCACAO << endl;
-
         pEstado = NULL;
+
+        cout << "Alocou fase" << endl;
+
+        //Aloca Menu Principal
+        pEstado = static_cast<Estado*>(new Menus::MenuPrincipal(menuPrincipal));
+        cout << "Alocou menu principal" << endl;
+
+        if(pEstado)
+            mapaEstados.insert(std::pair<idEstados, Estado*>(menuPrincipal, pEstado));
+        else
+            cout << "Erro em Gerenciadores::GerenciadorEstados::GerenciadorEstados(): " << ERRO_ALOCACAO << endl;
+
+        cout << "1 - Solicitação de alocação do Menu Principal concluída!" << endl;
+        pEstado = NULL;
+
+        cout << "Passou alocação pGEs!" << endl;
     }
 
     GerenciadorEstados::~GerenciadorEstados()
@@ -56,10 +74,10 @@ namespace Gerenciadores
         mapaEstados.clear();
 
         //Desaloca o gerenciador.
-        if(pEstados)
-            delete pEstados;
+        if(pGEs)
+            delete pGEs;
 
-        pEstados = NULL;
+        pGEs = NULL;
     }
 
     /*
@@ -69,20 +87,26 @@ namespace Gerenciadores
      */
     GerenciadorEstados* GerenciadorEstados::getGerenciadorEstados()
     {
-        if(pEstados == NULL)
-            pEstados = new GerenciadorEstados();
+        cout << "getGerenciadorEstados()" << endl;
+        
+        if(pGEs == NULL)
+            pGEs = new GerenciadorEstados();
 
-        return pEstados;
+        return pGEs;
     }
 
     /*
      * Atualiza o id do estado executando atualmente e chama seu método de execução.
      */
-    void GerenciadorEstados::mudarEstado(idEstados id)
+    void GerenciadorEstados::executarEstado(idEstados id)
     {
+        
+        
         idEstadoAtual = id;
 
         mapaEstados[idEstadoAtual]->executar(0.0);
+
+        cout << " 3 - Solicitação de execução do estado " << id  << " concluida!" << endl;
     }
 
     //Retorna o id (tipo Estados::idEstados) do estado que está sendo executado atualmente.
