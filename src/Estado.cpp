@@ -6,9 +6,10 @@
  */
 
 #include "Estado.hpp"
+#include "Erros.hpp"
 
-namespace Estados
-{
+    Gerenciadores::GerenciadorEstados* Estado::pGEs(NULL);
+
     Estado::Estado(idEstados id):
     id(id)
     {
@@ -25,4 +26,20 @@ namespace Estados
         return id;
     }
 
-} // namespace Estados
+    void Estado::setAtivo(const bool a)
+    {
+        ativo = a;
+    }
+
+    const bool Estado::getAtivo()
+    {
+        return ativo;
+    }
+
+    void Estado::setpGEs(Gerenciadores::GerenciadorEstados* pG)
+    {
+        pGEs = pG;
+
+        if(pGEs == NULL)
+            cout << "Erro em Estados::Estado::setpGEs(): " << ERRO_NULLPTR << endl;
+    }

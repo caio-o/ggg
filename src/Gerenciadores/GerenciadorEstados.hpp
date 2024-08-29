@@ -7,7 +7,7 @@
 #pragma once
 
 #include <map>
-#include "Estados/Estado.hpp"
+#include "Estado.hpp"
 
 using namespace std;
 
@@ -16,8 +16,8 @@ namespace Gerenciadores
     class GerenciadorEstados
     {
         private:
-            Estados::idEstados idEstadoAtual;
-            map<Estados::idEstados, Estados::Estado*> mapaEstados;
+            idEstados idEstadoAtual;
+            map<idEstados, Estado*> mapaEstados;
             static GerenciadorEstados* pEstados;
 
         private:
@@ -26,8 +26,8 @@ namespace Gerenciadores
         public:
             ~GerenciadorEstados();
             static GerenciadorEstados* getGerenciadorEstados();
-            void mudarEstado(Estados::idEstados id);
-            Estados::idEstados getEstadoAtual() const;
+            void mudarEstado(idEstados id);
+            idEstados getEstadoAtual() const;
             void setObservadores();
     };
 } // namespace Gerenciadores

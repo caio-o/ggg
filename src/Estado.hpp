@@ -7,17 +7,18 @@
 
 #pragma once
 
-namespace Estados
-{
+#include "Gerenciadores/GerenciadorEstados.hpp"
+
     //Possíveis estados do jogo
     enum idEstados
     {
-        desconhecido = -1,
-        menuPrincipal = 0, //opções: 1 jogador, 2 jogadores, ranking, carregar jogo salvo
+        desconhecido = 0,
+        menuPrincipal, //opções: 1 jogador, 2 jogadores, ranking, carregar jogo salvo
         menuFase, //opções: fase 1, fase 2
         jogo, //execução do jogo (na dúvida se esse estado é necessário)
         fase1, //execução da fase 1
         fase2, //execução da fase 2
+        faseTeste,
         menuPause, //opções: salvar e voltar ao menu principal, apenas voltar ao menu principal
         menuSalvamento, //opções: registrar nome?
         menuFimJogo, //opções: registrar nome
@@ -28,12 +29,20 @@ namespace Estados
     {
         protected:
             idEstados id;
+            bool ativo;
+            static Gerenciadores::GerenciadorEstados* pGEs;
 
         public:
             Estado(idEstados id = desconhecido);
             virtual ~Estado();
+            
+            virtual void executar(const float dT) = 0;
+            virtual void desenhar() = 0;
+
             const idEstados getId() const;
-            virtual void executar() = 0;
-            virtual void renderizar() = 0;
+
+            void setAtivo(const bool a);
+            const bool getAtivo();
+
+            void setpGEs(Gerenciadores::GerenciadorEstados* pG);
     };
-} // namespace Estados

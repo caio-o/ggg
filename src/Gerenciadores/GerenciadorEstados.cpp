@@ -7,6 +7,7 @@
 //dar créditos ao geovane
 
 #include "GerenciadorEstados.hpp"
+#include "Fases/FaseTeste.hpp"
 
 #include <iostream>
 using namespace std;
@@ -23,6 +24,19 @@ namespace Gerenciadores
         /*
          * Aqui podem ser instanciados todos os estados (com loop? Da pra usar o enum no loop?)
          */
+
+        Estado* pEstado = NULL;
+
+        pEstado = static_cast<Estado*>(new Fases::FaseTeste());
+
+        if(pEstado)
+        {
+            mapaEstados.insert(std::pair<idEstados, Estado*>(faseTeste, pEstado));
+        }
+        else
+            cout << "Erro em Gerenciadores::GerenciadorEstados::GerenciadorEstados(): " << ERRO_ALOCACAO << endl;
+
+        pEstado = NULL;
     }
 
     GerenciadorEstados::~GerenciadorEstados()
@@ -30,7 +44,7 @@ namespace Gerenciadores
         //Desaloca os estados      
         if(!mapaEstados.empty())
         {
-            map<Estados::idEstados, Estados::Estado*>::iterator it;
+            map<idEstados, Estado*>::iterator it;
 
             for(it = mapaEstados.begin(); it != mapaEstados.end(); it++)
             {
@@ -64,15 +78,15 @@ namespace Gerenciadores
     /*
      * Atualiza o id do estado executando atualmente e chama seu método de execução.
      */
-    void GerenciadorEstados::mudarEstado(Estados::idEstados id)
+    void GerenciadorEstados::mudarEstado(idEstados id)
     {
         idEstadoAtual = id;
 
-        mapaEstados[idEstadoAtual]->executar();
+        mapaEstados[idEstadoAtual]->executar(0.0);
     }
 
     //Retorna o id (tipo Estados::idEstados) do estado que está sendo executado atualmente.
-    Estados::idEstados GerenciadorEstados::getEstadoAtual() const
+    idEstados GerenciadorEstados::getEstadoAtual() const
     {
         return idEstadoAtual;
     }
