@@ -8,7 +8,7 @@
 #include "Texto.hpp"
 #include "Erros.hpp"
 
-#define CAMINHO_FONTE ""
+#define CAMINHO_FONTE "../fonte/MainFont.ttf"
 
 namespace ElementosGraficos
 {
