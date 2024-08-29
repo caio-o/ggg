@@ -124,6 +124,7 @@ namespace Inimigos
         }
     }
 
+    //Define quem será o jogador perseguido com base na menor distância
     void Quadrado::definirPerseguido()
     {
         if(pJogador2 && abs(pJogador1->getPos().x - pos.x) > abs(pJogador2->getPos().x - pos.x))
@@ -162,7 +163,7 @@ namespace Inimigos
                       (abs(pJogador1->getPos().y - pos.y) < ((pJogador1->getTam().y/2) + (getTam().y/2))));
     }
 
-    //Retorna true se o jogador estiver a esquerda do inimigo
+    //Retorna true se o jogador perseguido estiver a esquerda do inimigo
     bool Quadrado::jogadorAesquerda()
     {
         return (bool)(pJogadorPerseguido->getPos().x < pos.x);

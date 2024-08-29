@@ -145,7 +145,7 @@ void FaseTeste::criarInimigos()
  *     Fase::Executar no fim do loop de cada fase. 
  *     Isto pouparia tempo.
  */ 
-void FaseTeste::executar(const float dT = 0.f)
+void FaseTeste::executar(const float dT)
 {
     while (pGG->janelaAberta())
     {

@@ -9,24 +9,27 @@
 #include "Entidades/Personagens/Jogador.hpp"
 #include "Gerenciadores/GerenciadorGrafico.hpp"
 
-
+#include "Estados/Estado.hpp"
 
 using namespace Entidades::Obstaculos;
 
 namespace Fases
 {
-    class FaseTeste : public Fase
+    class FaseTeste : public Estados::Estado, public Fase
     {
     private:
         int maxInimigos;
         void criarObstaculos();
         void criarInimigos();
-        void executar(const float dT);
+        
 
     public:
         FaseTeste();
 
         ~FaseTeste();
+
+        void executar(const float dT);
+        void desenhar(){};
     };
 }
 
