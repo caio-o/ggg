@@ -100,6 +100,8 @@ Fases::Tuneis::Tuneis():
 
 Fases::Tuneis::~Tuneis()
 {
+    if(pGC)
+        delete pGC;
 }
 
 void Fases::Tuneis::executar(const float dT)

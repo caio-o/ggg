@@ -261,6 +261,7 @@ namespace Menus
             else if(tecla == "3") //Jogar sequência de fases
             {
                 //pGEs->getEstado(fase1)->setJogoSequencia(sequenciaFases);
+                //pGEs->getEstado(fase1)->setDoisJogadores(doisJogadores);
                 pGEs->executarEstado(fase1);
             }
 
@@ -268,11 +269,13 @@ namespace Menus
             {
                 sequenciaFases = false;
                 //pGEs->getEstado(fase1)->setJogoSequencia(sequenciaFases);
+                //pGEs->getEstado(fase1)->setDoisJogadores(doisJogadores);
                 pGEs->executarEstado(fase1);
             }
 
             else if(tecla == "5") //Jogar fase tuneis
             {
+                //pGEs->getEstado(fase2)->setDoisJogadores(doisJogadores);
                 pGEs->executarEstado(fase2);
             }
 

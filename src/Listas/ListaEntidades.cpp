@@ -13,7 +13,7 @@ ListaEntidades::ListaEntidades():
 
 ListaEntidades::~ListaEntidades()
 {
-        
+    LE.destroiObjetos();
 }
 
 void ListaEntidades::incluir(Entidade* pE) 

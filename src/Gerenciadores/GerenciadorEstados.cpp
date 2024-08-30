@@ -7,7 +7,10 @@
 //dar créditos ao geovane
 
 #include "GerenciadorEstados.hpp"
+
 #include "Fases/Calabouco.hpp"
+#include "Fases/Tuneis.hpp"
+
 #include "Menus/MenuPrincipal.hpp"
 
 #include <iostream>
@@ -20,41 +23,47 @@ namespace Gerenciadores
     GerenciadorEstados::GerenciadorEstados():
     mapaEstados()
     {
-        cout << "Inicio alocação pges!" << endl;
         mapaEstados.clear();
 
         /*
          * Aqui podem ser instanciados todos os estados (com loop? Da pra usar o enum no loop?)
          */
 
-        //Aloca fase 1
-        Estado* pEstado = NULL;
+        // //Aloca fase 1
+        // Estado* pEstado = NULL;
 
-        pEstado = static_cast<Estado*>(new Fases::Calabouco());
+        // pEstado = static_cast<Estado*>(new Fases::Calabouco());
 
-        if(pEstado)
-        {
-            mapaEstados.insert(std::pair<idEstados, Estado*>(fase1, pEstado));
-        }
-        else
-            cout << "Erro em Gerenciadores::GerenciadorEstados::GerenciadorEstados(): " << ERRO_ALOCACAO << endl;
-        pEstado = NULL;
+        // if(pEstado)
+        // {
+        //     mapaEstados.insert(std::pair<idEstados, Estado*>(fase1, pEstado));
+        //     pEstado->setAtivo(false); //Para posterior desalocação
+        // }
+        // else
+        //     cout << "Erro em Gerenciadores::GerenciadorEstados::GerenciadorEstados()::pEstado: " << ERRO_ALOCACAO << endl;
+        // pEstado = NULL;
 
-        cout << "Alocou fase" << endl;
+        // //Aloca fase 2
+        // pEstado = static_cast<Estado*>(new Fases::Tuneis());
+
+        // if(pEstado)
+        // {
+        //     mapaEstados.insert(std::pair<idEstados, Estado*>(fase2, pEstado));
+        //     pEstado->setAtivo(false); //Para posterior desalocação
+        // }
+        // else
+        //     cout << "Erro em Gerenciadores::GerenciadorEstados::GerenciadorEstados()::pEstado: " << ERRO_ALOCACAO << endl;
+        // pEstado = NULL;
 
         //Aloca Menu Principal
-        pEstado = static_cast<Estado*>(new Menus::MenuPrincipal(menuPrincipal));
-        cout << "Alocou menu principal" << endl;
+        Estado* pEstado = static_cast<Estado*>(new Menus::MenuPrincipal(menuPrincipal));
 
         if(pEstado)
             mapaEstados.insert(std::pair<idEstados, Estado*>(menuPrincipal, pEstado));
         else
-            cout << "Erro em Gerenciadores::GerenciadorEstados::GerenciadorEstados(): " << ERRO_ALOCACAO << endl;
+            cout << "Erro em Gerenciadores::GerenciadorEstados::GerenciadorEstados()pEstado: " << ERRO_ALOCACAO << endl;
 
-        cout << "1 - Solicitação de alocação do Menu Principal concluída!" << endl;
         pEstado = NULL;
-
-        cout << "Passou alocação pGEs!" << endl;
     }
 
     GerenciadorEstados::~GerenciadorEstados()
@@ -102,9 +111,92 @@ namespace Gerenciadores
     {
         idEstadoAtual = id;
 
-        mapaEstados[idEstadoAtual]->executar(0.0);
+        //Se o estado a ser executado é uma fase...
+        if(id == fase1 || id == fase2)
+        {
+            bool achouFase1 = false;
+            bool achouFase2 = false;
+            Estado* pEstado1 = NULL;
+            Estado* pEstado2 = NULL;
 
-        cout << " 3 - Solicitação de execução do estado " << id  << " concluida!" << endl;
+            map<idEstados, Estado*>::iterator it = mapaEstados.begin();
+            
+            //Checa se já tem fases no mapa...
+            while(it!=mapaEstados.end() && (!achouFase1 || !achouFase2))
+            {
+                if(it->first == fase1)
+                {
+                    pEstado1 = it->second;
+                    achouFase1 = true;
+                }
+                else if(it->first == fase2)
+                {
+                    pEstado2 = it->second;
+                    achouFase2 = true;
+                }
+                
+                it++;
+            }
+
+            /* ---------- REMOÇÃO DE FASES DO MAPA ---------- */
+
+            //Se o mapa já tiver fase1 e for inativa...
+            if(achouFase1 && !pEstado1->getAtivo())
+            {
+                //...desaloca...
+                delete pEstado1;
+
+                pEstado1 = NULL;
+            }
+
+            //Se o mapa já tiver fase2 e for inativa...
+            if(achouFase1 && !pEstado2->getAtivo())
+            {
+                //...desaloca...
+                delete pEstado2;
+
+                pEstado2 = NULL;
+            }
+        
+            /* ---------- ALOCAÇÃO DE NOVA FASE ---------- */
+            
+            if(id == fase1 && pEstado1 == NULL)
+            {
+                pEstado1 = static_cast<Estado*>(new Fases::Calabouco());
+
+                if(pEstado1)
+                {
+                    if(achouFase1)
+                        mapaEstados[fase1] = pEstado1;
+                    else
+                        mapaEstados.insert(std::pair<idEstados, Estado*>(fase1, pEstado1));
+                }
+                else
+                    cout << "Erro em Gerenciadores::GerenciadorEstados::executarEstado()::pEstado: " << ERRO_ALOCACAO << endl;
+            }
+            else if(id == fase2 && pEstado2 == NULL)
+            {
+                pEstado2 = static_cast<Estado*>(new Fases::Tuneis());
+
+                if(pEstado2)
+                {
+                    if(achouFase1)
+                        mapaEstados[fase2] = pEstado2;
+                    else
+                        mapaEstados.insert(std::pair<idEstados, Estado*>(fase2, pEstado2));
+                }
+                else
+                    cout << "Erro em Gerenciadores::GerenciadorEstados::executarEstado()::pEstado: " << ERRO_ALOCACAO << endl;
+            }
+        }
+        
+        //if(pEstado)
+        if(mapaEstados[idEstadoAtual])
+            //pEstado->executar();
+            {cout << "Executou estado" << endl; mapaEstados[idEstadoAtual]->executar(0.0); }
+        else
+            cout << "Erro em Gerenciadores::GerenciadorEstados::executarEstado()::pEstado: " << ERRO_NULLPTR << endl;
+
     }
 
     //Retorna o id (tipo Estados::idEstados) do estado que está sendo executado atualmente.

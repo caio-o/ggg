@@ -43,6 +43,7 @@ GerenciadorColisoes::GerenciadorColisoes():
 
 GerenciadorColisoes::~GerenciadorColisoes()
 {
+    pInstancia = NULL;
     cout << "DESTRUINDO GERENCIADOR DE COLISOES." << endl;
 }
 

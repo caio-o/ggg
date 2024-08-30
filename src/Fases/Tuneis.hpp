@@ -2,6 +2,7 @@
 #define _TUNEIS_HPP
 
 #include "Fases/Fase.hpp"
+#include "Estado.hpp"
 
 namespace Fases
 {
@@ -21,7 +22,13 @@ namespace Fases
         ~Tuneis();
         void executar(const float dT);
         const bool verificaVitoria();
-        void desenhar(){};
+
+        /*ANA: Adição da declaração das funções virtuais puras pra poder compilar*/
+        void verificaTeclaPressionada(string tecla){}
+        void verificaTeclaSolta(string tecla){}
+
+        void desenhar(){}
+
     };
 }
 
