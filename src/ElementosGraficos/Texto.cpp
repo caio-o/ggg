@@ -18,34 +18,24 @@ namespace ElementosGraficos
     pTexto(NULL),
     info(info)
     {   
-        cout << "Inicio de construção de objeto texto: " << endl;
-
         //Alocação da fonte  
         sf::Font* pFonte = NULL;
-
-        cout << "Alocação de fonte iniciada!" << endl;
 
         if(pGG)
             pFonte = pGG->carregarFonte(CAMINHO_FONTE);
         else
             cout << "Erro em ElementosGraficos::Texto::Texto()::pGG: " << ERRO_NULLPTR << endl;
-
-        cout << "Alocação de fonte completa!" << endl;
         
         if(pFonte)
         {
             //Alocação do corpo de texto
             pTexto = new sf::Text(info, *pFonte);
 
-            cout << "Alocação de texto completa!" << endl;
-
             if(pTexto == NULL)
                 cout << "Erro em ElementosGraficos::Texto::Texto()::pTexto: " << ERRO_ALOCACAO << endl;
         }
         else
             cout << "Erro em ElementosGraficos::Texto::Texto()::pFonte: " << ERRO_ALOCACAO << endl;
-
-        cout << "Construção de objeto de texto completa!" << endl;
 
         setAlinhamento(centro);
     }
