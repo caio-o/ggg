@@ -15,6 +15,9 @@
 #include "Gerenciadores/GerenciadorEstados.hpp"
 #include "ElementosGraficos/Forma.hpp"
 
+#include <map>
+using namespace std;
+
 namespace Gerenciadores
 {
     class GerenciadorEventos{
@@ -22,6 +25,8 @@ namespace Gerenciadores
             static GerenciadorEventos* pGerenciadorEventos;
             static GerenciadorEstados* pGEs;
             static GerenciadorGrafico* pGG;
+
+            map<sf::Keyboard::Key, string> mapaTeclas;
 
         private:
             //Construtora privada atendendo ao padrão de projeto Singleton
