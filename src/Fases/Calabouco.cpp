@@ -12,6 +12,8 @@
 #define TETO              0.0F
 #define CANTO_ESQUERDO    0.0F
 #define CANTO_DIREITO     LARGURA_FASE*/
+#define X_SAIDA_CA CANTO_DIREITO-250.0F
+#define Y_SAIDA_CA TETO+200.0F
 
 using namespace Fases;
 
@@ -23,6 +25,9 @@ void Fases::Calabouco::criarObstaculos()
     criarPlataforma (CANTO_ESQUERDO + 250.F, CHAO - 740.f, 400.F, 300.F);
     criarPlataforma (800.f, CHAO-100.f, 500.f,  100.F);
     criarPlataforma (700.f, CHAO-900.f, 500.f,  100.F);
+    criarPlataformaGrudenta (700.f, CHAO-950.f, 200.f, 50.f);
+    criarPlataformaGrudenta (950.f, CHAO-1190.F, 230.f, 50.f);
+    criarPlataformaGrudenta (1200.f, CHAO-1190.F, 200.f, 50.f);
     
     if((bool) rand()%3) 
         criarPlataforma(CANTO_DIREITO - 250.F, CHAO - 1000.f, 500.F, 300.F);
@@ -48,11 +53,34 @@ void Fases::Calabouco::criarInimigos()
 
     if(rand()%2)
         criarTriangulo(700.F, CHAO+300);
+    if(rand()%2)
+        criarQuadrado(CANTO_DIREITO-450.F, CHAO-1000.F);
 
 }
 
 const bool Fases::Calabouco::verificaVitoria()
 {
+    static Vetor2f limiteSaida(X_SAIDA_CA-150, Y_SAIDA_CA-150);
+
+    if(pJog && pJog->getVivo())
+    {
+        if(pJog2 && pJog2->getVivo())
+        {
+            return pJog->getX() > X_SAIDA_CA && pJog->getY() < Y_SAIDA_CA &&  pJog2->getX() > X_SAIDA_CA && pJog2->getY() < Y_SAIDA_CA;
+        }
+        else
+        {
+            return pJog->getX() > X_SAIDA_CA && pJog->getY() < Y_SAIDA_CA;
+        }
+    }
+    else if(pJog2 && pJog2->getVivo())
+    {
+        return pJog2->getX() > X_SAIDA_CA && pJog2->getY() < Y_SAIDA_CA;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 /** TODO: Talvez por isto na fase abstrata, e chamar
@@ -72,15 +100,17 @@ void Fases::Calabouco::executar(const float dT)
         deltaT = t1 - t0;
 
         // Executar, mover e desenhar entidades.
+        
+        pGG->renderizar(&saida);
         colecao.percorrer(deltaT);
 
-
-        if(pJog)
+        if(verificaVitoria())
         {
-            if(verificaGameOver())
-            {
-                pGG->renderizar(&efeitoGameOver);
-            }
+            cout << "GANHARAM!" << endl;
+        }
+        else if(verificaGameOver())
+        {
+            pGG->renderizar(&efeitoGameOver);
         }
 
         pGG->mostrar();
@@ -91,6 +121,7 @@ Fases::Calabouco::Calabouco():
     Fase(),
     maxInimigos(100)
 {
+    saida.atualizar(Vetor2f(X_SAIDA_CA, Y_SAIDA_CA));
     pGG->setTamanhoCamera(Vetor2f(LARGURA_FASE, ALTURA_FASE));
     pGG->centralizarCamera();
 
@@ -98,7 +129,7 @@ Fases::Calabouco::Calabouco():
     pJog2 = new Jogador(15.f, false);
     
     pJog->setPos(190.f, CHAO-100.f);
-    pJog2->setPos(190.f, CHAO-100.f);
+    pJog2->setPos(170.f, CHAO-100.f);
     pGC->inserirJogador(pJog);
     pGC->inserirJogador(pJog2);
     colecao.incluir(static_cast<Entidade*>(pJog));

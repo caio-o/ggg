@@ -54,6 +54,7 @@ Jogo::Jogo():
     
 
     //primeiraFase =  static_cast<Fase*> (new Fases::Calabouco);
+    //segundaFase = static_cast<Fase*> (new Fases::Tuneis);
     cout << "Jogo::Jogo 2" << endl;
 }
 
@@ -67,8 +68,9 @@ Jogo::~Jogo()
 void Jogo::executar()
 {
     cout << "Jogo::Executar()" << endl;
-    pGEs->executarEstado(menuPrincipal);
+    pGEs->executarEstado(fase1);
     
     ////cout << "Jogo::EXECUTAR" << endl;
-    primeiraFase->executar();
+    //primeiraFase->executar();
+    //segundaFase->executar();
 }

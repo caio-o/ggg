@@ -8,7 +8,7 @@ namespace Fases
     class Tuneis : public Fase
     {
     private:
-        Forma saida;
+        //Forma saida;
         int maxInimigos;
         int  maxChefao;
         void criarLapis              (float posX, float posY, int dano = 1);

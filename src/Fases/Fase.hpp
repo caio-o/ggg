@@ -20,6 +20,7 @@ namespace Fases
     class Fase : public Ente
     {
     protected:
+        Forma saida;
         Forma efeitoGameOver;
         bool gameOver;
         ListaEntidades colecao;
