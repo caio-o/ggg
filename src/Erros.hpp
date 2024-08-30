@@ -17,6 +17,9 @@
     #define ERRO_RETURN_NULLPTR "Ponteiro nulo retornado."
     #define ERRO_NULLPTR "Ponteiro nulo."
     #define ERRO_ALOCACAO "Nao foi possivel alocar objeto."
+    #define ERRO_NULLPGG "Ponteiro estático para o Gerenciador Gráfico nulo."
+    #define ERRO_NULLPGE "Ponteiro estático para o Gerenciador de Eventos nulo."
+    #define ERRO_NULLPGES "Ponteiro estático para o Gerenciador de Estados nulo."
 
     void enterFechar ();
 
