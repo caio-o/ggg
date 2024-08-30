@@ -19,14 +19,11 @@ namespace Gerenciadores { class GerenciadorEstados; } //Include recursivo
     {
         desconhecido = 0,
         menuPrincipal, //opções: 1 jogador, 2 jogadores, ranking, carregar jogo salvo
-        menuFase, //opções: fase 1, fase 2
-        jogo, //execução do jogo (na dúvida se esse estado é necessário)
+        jogoSequencia, //execução do jogo com as duas fases em sequencia
         fase1, //execução da fase 1
-        fase2, //execução da fase 2
-        faseTeste,
-        menuPause, //opções: salvar e voltar ao menu principal, apenas voltar ao menu principal
-        menuSalvamento, //opções: registrar nome?
-        menuFimJogo, //opções: registrar nome
+        fase2, //execução da fase 2,
+        menuPause, //opções: salvar o jogo e voltar ao menu principal, apenas voltar ao menu principal 
+        menuFimJogo, //opções: registrar o nome no ranking
         ranking //exibe o ranking
     };
 
