@@ -60,7 +60,7 @@ void Fases::Calabouco::criarInimigos()
 
 const bool Fases::Calabouco::verificaVitoria()
 {
-    static Vetor2f limiteSaida(X_SAIDA_CA-150, Y_SAIDA_CA-150);
+    static Vetor2f limiteSaida(X_SAIDA_CA-150, Y_SAIDA_CA-250);
 
     if(pJog && pJog->getVivo())
     {
@@ -91,6 +91,7 @@ void Fases::Calabouco::executar(const float dT)
 {
     while (pGG->janelaAberta())
     {
+
         pGG->limpar();
         pGC->executar(); // Checar colisoes e gerar seus efeitos.
         pGE->executar(); // Checar se a janela deve ser fechada.
@@ -104,15 +105,25 @@ void Fases::Calabouco::executar(const float dT)
         pGG->renderizar(&saida);
         colecao.percorrer(deltaT);
 
+
         if(verificaVitoria())
         {
+            cout << "PONTOS DO JOGADOR 1:" << pJog->getPontos() << endl;
+            cout << "PONTOS DO JOGADOR 2:" << pJog2->getPontos() << endl;
+
             cout << "GANHARAM!" << endl;
         }
         else if(verificaGameOver())
         {
             pGG->renderizar(&efeitoGameOver);
+            cout << "PONTOS DO JOGADOR 1:" << pJog->getPontos() << endl;
+            cout << "PONTOS DO JOGADOR 2:" << pJog2->getPontos() << endl;
+            if(pGC) delete(pGC);
+            enterFechar();
+            pGEs->executarEstado(menuPrincipal);
+            return;
         }
-
+        
         pGG->mostrar();
     }
 }
@@ -146,4 +157,5 @@ Fases::Calabouco::Calabouco():
 }
 
 Fases::Calabouco::~Calabouco()
-{ }
+{
+}

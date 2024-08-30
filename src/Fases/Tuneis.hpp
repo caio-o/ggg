@@ -5,7 +5,7 @@
 
 namespace Fases
 {
-    class Tuneis : public Fase
+    class Tuneis : public Fase, public Estado
     {
     private:
         //Forma saida;
@@ -21,7 +21,7 @@ namespace Fases
         ~Tuneis();
         void executar(const float dT);
         const bool verificaVitoria();
-
+        void desenhar(){};
     };
 }
 

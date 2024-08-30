@@ -68,6 +68,7 @@ void Fases::Tuneis::criarInimigos()
 }
 
 Fases::Tuneis::Tuneis():
+    Estado(idEstados::fase2),
     Fase(),
     maxInimigos(9),
     maxChefao(3)
