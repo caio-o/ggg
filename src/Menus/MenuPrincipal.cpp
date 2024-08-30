@@ -138,6 +138,34 @@ namespace Menus
     //Precisa implementar e adaptar o código
     void MenuPrincipal::verificaTeclaPressionada(string tecla)
     {
+        if(tecla == "1")
+            opcoes[1]->setCor(vermelho); //Começa em 1 pq no 0 é o subtitulo
+        else if(tecla == "2")
+            opcoes[2]->setCor(vermelho);
+        else if(tecla == "3")
+            opcoes[3]->setCor(vermelho);
+        else if(tecla == "4")
+            opcoes[4]->setCor(vermelho);
+        else if(tecla == "5")
+            opcoes[5]->setCor(vermelho);
+    }
+
+    void MenuPrincipal::verificaTeclaSolta(string tecla)
+    {
+        if(tecla == "1") //Jogar com um jogador
+            pGEs->executarEstado(menuFase); //Começa em 1 pq no 0 é o subtitulo
+        else if(tecla == "2") //Jogar com dois jogadores
+        {
+            //pFase->setDoisJogadores(true);
+            //pGEs->executarEstado(menuFase);
+            pGEs->executarEstado(fase1);//provisorio
+        }
+        else if(tecla == "3") //Recuperar jogo salvo
+            pGEs->executarEstado(jogo);
+        else if(tecla == "4") //Ver ranking
+            pGEs->executarEstado(ranking);
+        else if(tecla == "5")
+            pGG->fecharJanela();
         //Obs.: só o caso 0 está corretamente implementado até o momento...
         // switch (tecla)
         // {
@@ -166,11 +194,6 @@ namespace Menus
         //     default:
         //         break;
         // }
-    }
-
-    void MenuPrincipal::verificaTeclaSolta(string tecla)
-    {
-
     }
 
 } // namespace Menus

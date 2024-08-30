@@ -34,7 +34,7 @@ namespace Gerenciadores
 
         if(pEstado)
         {
-            mapaEstados.insert(std::pair<idEstados, Estado*>(faseTeste, pEstado));
+            mapaEstados.insert(std::pair<idEstados, Estado*>(fase1, pEstado));
         }
         else
             cout << "Erro em Gerenciadores::GerenciadorEstados::GerenciadorEstados(): " << ERRO_ALOCACAO << endl;

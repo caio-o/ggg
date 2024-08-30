@@ -68,7 +68,7 @@ Jogo::~Jogo()
 void Jogo::executar()
 {
     cout << "Jogo::Executar()" << endl;
-    pGEs->executarEstado(faseTeste);
+    pGEs->executarEstado(fase1);
     
     ////cout << "Jogo::EXECUTAR" << endl;
     //primeiraFase->executar();
