@@ -25,5 +25,8 @@ namespace Menus
             
             void executar(const float dT);
             void desenhar();
+
+            virtual void verificaTeclaPressionada(string tecla);
+            virtual void verificaTeclaSolta(string tecla);
     };
 } // namespace Menus

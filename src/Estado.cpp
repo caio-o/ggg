@@ -36,9 +36,9 @@
         return ativo;
     }
 
-    void Estado::setpGEs(Gerenciadores::GerenciadorEstados* pG)
+    void Estado::setGerenciadorEstados()
     {
-        pGEs = pG;
+        pGEs = Gerenciadores::GerenciadorEstados::getGerenciadorEstados();
 
         if(pGEs == NULL)
             cout << "Erro em Estados::Estado::setpGEs(): " << ERRO_NULLPTR << endl;

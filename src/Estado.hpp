@@ -7,6 +7,10 @@
 
 #pragma once
 
+#include <string>
+
+using namespace std;
+
 //#include "Gerenciadores/GerenciadorEstados.hpp"
 namespace Gerenciadores { class GerenciadorEstados; } //Include recursivo
     
@@ -40,10 +44,13 @@ namespace Gerenciadores { class GerenciadorEstados; } //Include recursivo
             virtual void executar(const float dT) = 0;
             virtual void desenhar() = 0;
 
+            virtual void verificaTeclaPressionada(string tecla) = 0;
+            virtual void verificaTeclaSolta(string tecla) = 0;
+
             const idEstados getId() const;
 
             void setAtivo(const bool a);
             const bool getAtivo();
 
-            void setpGEs(Gerenciadores::GerenciadorEstados* pG);
+            static void setGerenciadorEstados();
     };

@@ -23,11 +23,11 @@ namespace Menus
         cout << "Inicio da alocação do MenuPrincipal" << endl;
         
         //Seta o título
-        titulo.setInfo("GGG: GRANDE GUERRA GEOMÉTRICA");
-        titulo.setPosicao(pGG->getTamanhoJanela().x/2, pGG->getTamanhoJanela().y-50);
-        titulo.setTamanho(20);
-        titulo.setCor(branco);
+        titulo.setInfo("GGG: GRANDE GUERRA GEOMETRICA");
         titulo.setAlinhamento(centro);
+        titulo.setPosicao(pGG->getCentroCamera().x, 100.0);
+        titulo.setTamanho(125);
+        titulo.setCor(branco);
 
         cout << "Setou titulo" << endl;
         opcoes.clear();
@@ -35,7 +35,7 @@ namespace Menus
         //Seta as opções
         //Subtitulo:
         ElementosGraficos::Texto* pOpcao = NULL;
-        pOpcao = new ElementosGraficos::Texto("Escolha uma das opções abaixo: ");
+        pOpcao = new ElementosGraficos::Texto("Escolha uma das opcoes abaixo: ");
 
         if (pOpcao)
             opcoes.push_back(pOpcao);
@@ -44,7 +44,7 @@ namespace Menus
 
         //Op1:
         pOpcao = NULL;
-        pOpcao = new ElementosGraficos::Texto("1 - Jogar com um jogador;");
+        pOpcao = new ElementosGraficos::Texto("1. Jogar com um jogador");
 
         if (pOpcao)
             opcoes.push_back(pOpcao);
@@ -53,7 +53,7 @@ namespace Menus
 
          //Op2:
         pOpcao = NULL;
-        pOpcao = new ElementosGraficos::Texto("2 - Jogar com dois jogadores;");
+        pOpcao = new ElementosGraficos::Texto("2. Jogar com dois jogadores");
 
         if (pOpcao)
             opcoes.push_back(pOpcao);
@@ -62,7 +62,7 @@ namespace Menus
 
          //Op3:
         pOpcao = NULL;
-        pOpcao = new ElementosGraficos::Texto("3 - Recuperar jogo salvo;");
+        pOpcao = new ElementosGraficos::Texto("3. Recuperar jogo salvo");
 
         if (pOpcao)
             opcoes.push_back(pOpcao);
@@ -71,7 +71,7 @@ namespace Menus
 
          //Op4:
         pOpcao = NULL;
-        pOpcao = new ElementosGraficos::Texto("4 - Ver ranking;");
+        pOpcao = new ElementosGraficos::Texto("4. Ver ranking");
 
         if (pOpcao)
             opcoes.push_back(pOpcao);
@@ -80,7 +80,7 @@ namespace Menus
 
          //Op5:
         pOpcao = NULL;
-        pOpcao = new ElementosGraficos::Texto("5 - Encerrar jogo.");
+        pOpcao = new ElementosGraficos::Texto("5. Encerrar jogo");
 
         if (pOpcao)
             opcoes.push_back(pOpcao);
@@ -92,10 +92,10 @@ namespace Menus
         //Percorre o vetor ajustando o texto das opções
         for(int i=0; i<(int)opcoes.size(); i++)
         {
-            opcoes[i]->setPosicao(pGG->getTamanhoJanela().x/2, pGG->getTamanhoJanela().y-(100.0*i));
-            opcoes[i]->setTamanho(10);
+            opcoes[i]->setAlinhamento(esquerda);
+            opcoes[i]->setPosicao(pGG->getCentroCamera().x, 300.0 + (100.0*(i+1)));
+            opcoes[i]->setTamanho(50);
             opcoes[i]->setCor(branco);
-            opcoes[i]->setAlinhamento(centro);
         }
 
         cout << "2 - Menu principal construido com título e opções!" << endl;
@@ -136,36 +136,41 @@ namespace Menus
     }
 
     //Precisa implementar e adaptar o código
-    // void MenuPrincipal::verificaTeclaPressionada(string tecla)
-    // {
-    //     bool doisJogadores = false;
-
-    //     int op = -1;
-
-    //     cin >> op;
-
-    //     //Obs.: só o caso 0 está corretamente implementado até o momento...
-    //     switch (op)
-    //     {
-    //         case 0:
-    //             pGEs->executarEstado(faseTeste);
+    void MenuPrincipal::verificaTeclaPressionada(string tecla)
+    {
+        //Obs.: só o caso 0 está corretamente implementado até o momento...
+        // switch (tecla)
+        // {
+        //     case 1:
+        //         pGEs->executarEstado(menuFase);
+        //         break;
             
-    //         //Selecionar jogar com um ou dois jogadores leva ao menu de seleção das fases...
-    //         case 1:
-    //             pGEs->executarEstado(menuFase);
-    //             break;
+        //     //Selecionar jogar com um ou dois jogadores leva ao menu de seleção das fases...
+        //     case 2:
+        //         //pFase->setDoisJogadores(true);
+        //         pGEs->executarEstado(menuFase);
+        //         break;
             
-    //         case 2:
-    //             doisJogadores = true; //isso funciona?? dois comandos no bloco sem chave?
-    //             pGEs->executarEstado(menuFase);
-    //             break;
+        //     case 3:
+        //         pGEs->executarEstado(jogo);
+        //         break;
             
-    //         case 5:
-    //             Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico()->fecharJanela();
+        //     case 4:
+        //         pGEs->executarEstado(ranking);
+        //         break;
 
-    //         default:
-    //             break;
-    //     }
-    // }
+        //     case 5:
+        //         pGG->fecharJanela();
+        //         break;
+            
+        //     default:
+        //         break;
+        // }
+    }
+
+    void MenuPrincipal::verificaTeclaSolta(string tecla)
+    {
+
+    }
 
 } // namespace Menus
