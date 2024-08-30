@@ -119,7 +119,7 @@ namespace Gerenciadores
         if(pJanela)
             return pJanela;
 
-        cout << "Erro de gerenciamento gráfico: janela de visualizacao nao alocada!" << endl;
+        cout << "Erro em Gerenciadores::GerenciadorGrafico::getJanela()::pJanela: " << ERRO_NULLPTR << endl;
         exit(1);
     }
     
@@ -150,19 +150,19 @@ namespace Gerenciadores
     //Renderiza texto na janela
     void GerenciadorGrafico::renderizar(sf::Text* texto)
     {
-        cout << "GerenciadorGrafico::renderizar(texto)" << endl;
         if(pJanela && texto)
-            {pJanela->draw(*texto); cout << "Entrou no if" << endl;}
+            pJanela->draw(*texto);
+        else
+            cout << "Erro em Gerenciadores::GerenciadorGrafico::renderizar()::texto e/ou pJanela: " << ERRO_NULLPTR << endl;
     }
     
     //Mostra na janela todos os objetos renderizados
     void GerenciadorGrafico::mostrar()
     {
         if(pJanela)
-        {
             pJanela->display();
-            //cout << "a b c " << endl;
-        }
+        else
+            cout << "Erro em Gerenciadores::GerenciadorGrafico::mostar()::pJanela: " << ERRO_NULLPTR << endl;
     }
     
     //Limpa a janela
@@ -170,6 +170,8 @@ namespace Gerenciadores
     {
         if(pJanela)
             pJanela->clear();
+        else
+            cout << "Erro em Gerenciadores::GerenciadorGrafico::mostar()::pJanela: " << ERRO_NULLPTR << endl;
     }
     
     //Retorna true se a janela estiver aberta
@@ -178,7 +180,7 @@ namespace Gerenciadores
         if(pJanela)
             return pJanela->isOpen();
 
-        cout << "Erro de gerenciamento gráfico: janela de visualizacao nao alocada!" << endl;
+        cout << "Erro em Gerenciadores::GerenciadorGrafico::janelaAberta()::pJanela: " << ERRO_NULLPTR << endl;
         exit(1);
     }
     
@@ -187,6 +189,8 @@ namespace Gerenciadores
     {
         if(pJanela)
             pJanela->close();
+        else
+            cout << "Erro em Gerenciadores::GerenciadorGrafico::fecharJanela()::pJanela: " << ERRO_NULLPTR << endl;
     }
     
     /* 
@@ -203,6 +207,8 @@ namespace Gerenciadores
             pJanela->setSize(dimensao);
             setTamanhoCamera(tam);
         }
+        else
+            cout << "Erro em Gerenciadores::GerenciadorGrafico::setTamanhoJanela()::pJanela: " << ERRO_NULLPTR << endl;
     }
 
     //Retorna o tamanho da janela por meio de variavel do tipo Coordenada
@@ -214,7 +220,7 @@ namespace Gerenciadores
             return Coordenadas::Vetor2f((float)dimensao.x, (float)dimensao.y);
         }
 
-        cout << "Erro de gerenciamento gráfico: janela de visualizacao nao alocada!" << endl;
+        cout << "Erro em Gerenciadores::GerenciadorGrafico::getTamanhoJanela()::pJanela: " << ERRO_NULLPTR << endl;
         exit(1);
     }
     
@@ -233,9 +239,14 @@ namespace Gerenciadores
      * que atualiza a posição para uma posição desejada que é passado como argumento.*/
     void GerenciadorGrafico::centralizarCamera()
     {
-        sf::Vector2f centro(pJanela->getSize());
+        if(pJanela)
+        {
+            sf::Vector2f centro(pJanela->getSize());
 
-        camera.setCenter(centro.x/2, centro.y/2);
+            camera.setCenter(centro.x/2, centro.y/2);
+        }
+        else
+            cout << "Erro em Gerenciadores::GerenciadorGrafico::centralizarCamera()::pJanela: " << ERRO_NULLPTR << endl;
     }
 
     /* Atualiza o tamanho da camera conforme dimensões passadas por meio da variavel
@@ -312,19 +323,9 @@ namespace Gerenciadores
      * */
     sf::Font* GerenciadorGrafico::carregarFonte(const char* caminho)
     {
-        cout << "Entrou em carregar fonte" << endl;        
-        
-        //ESTA CRASHANDO QUANDO TENTA ACESSAR PFONTE =((((((((((((((
-        
-        //comando teste p ver onde ta crashando
-        //cout << pFonte->getInfo().family << endl;
-
         if(!(pFonte->loadFromFile(caminho)))
             cout << "Erro em Gerenciadores::GerenciadorGrafico::carregarFonte(): carregamento de fonte falhou!" << endl;
-        else
-            cout << "Carregamento deu certo" << endl;
-
-        cout << "Carregou fonte" << endl;
+        
         return pFonte;
     }
     
