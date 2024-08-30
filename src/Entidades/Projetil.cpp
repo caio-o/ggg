@@ -25,7 +25,7 @@ namespace Entidades
     perseguindoJogador1(true)
     {
         forma.setTextura(CAMINHO_TEXTURA, true);
-        setTamanho(20.0, 20.0);
+        setTamanho(35.0, 35.0);
         setVel(500.0, 500.0);
 
         if(pJogador2 && rand()%2)
@@ -69,7 +69,8 @@ namespace Entidades
     {
         // srand() soh deve ser usado uma vez por programa. Coloquei na principal.
         //srand(time(NULL));
-        
+        getForma()->getpCorpo()->rotate(720.f*dT);
+
         //Persegue alternadamente os jogadores (se houver jogador 2)
         if(!perseguindoJogador1)
         {

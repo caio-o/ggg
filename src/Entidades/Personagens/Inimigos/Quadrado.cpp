@@ -1,7 +1,7 @@
 #define TEXTURA "../img/quadrado_raivoso.png"
 
 #define RANGE_ATAQUE 100.0
-#define RANGE_PERSEGUE 300.0
+#define RANGE_PERSEGUE 500.0
 #define VELOCIDADE 250.0
 #define VELOCIDADE_DASH 750.0
 #define COOLDOWN 3.0 //(segundos)
@@ -117,9 +117,8 @@ namespace Inimigos
     void Quadrado::reagirAhColisao(Entidade* pE)
     {
         
-        if(pE->getEspecie() == jogador && atacando/* && pE->getY() >= getY() - getTam().y/2.3*/)
+        if(pE->getEspecie() == jogador && atacando && pE->getY() >= getY() - getTam().y)
         {
-            //static_cast<Jogador*>(pE)->receberDano(dano, true);
             danificar(static_cast<Personagem*>(pE));
             cout << "ReagirAhColisao::dano: " << dano << endl;
         }

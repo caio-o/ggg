@@ -2,6 +2,7 @@
 #include "Jogo.hpp"
 #include "Ente.hpp"
 #include "Fases/Fase.hpp"
+#include "Fases/Tuneis.hpp"
 #include <iostream>
 #include <stdlib.h>
 #include <time.h>
@@ -69,5 +70,5 @@ void Jogo::executar()
     pGEs->executarEstado(menuPrincipal);
     
     ////cout << "Jogo::EXECUTAR" << endl;
-    //primeiraFase->executar();
+    primeiraFase->executar();
 }

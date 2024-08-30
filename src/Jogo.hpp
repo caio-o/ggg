@@ -15,6 +15,7 @@ private:
     Gerenciadores::GerenciadorEventos *pGE;
     Gerenciadores::GerenciadorEstados *pGEs;
     Fase* primeiraFase;
+    Fase* segundaFase;
 
 public:
 Jogo();
