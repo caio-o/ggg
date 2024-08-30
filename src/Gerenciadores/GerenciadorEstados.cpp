@@ -100,8 +100,6 @@ namespace Gerenciadores
      */
     void GerenciadorEstados::executarEstado(idEstados id)
     {
-        
-        
         idEstadoAtual = id;
 
         mapaEstados[idEstadoAtual]->executar(0.0);
@@ -115,6 +113,7 @@ namespace Gerenciadores
         return idEstadoAtual;
     }
 
+    //Retorna um ponteiro para o estado que está sendo executado atualmente
     Estado* GerenciadorEstados::getEstadoAtual()
     {
         if(mapaEstados[idEstadoAtual] == NULL)
@@ -123,9 +122,13 @@ namespace Gerenciadores
         return mapaEstados[idEstadoAtual];
     }
 
-    void GerenciadorEstados::setObservadores()
+    //Retorna um ponteiro para o estado que corresponde ao id passado por parâmetro
+    Estado* GerenciadorEstados::getEstado(const idEstados id)
     {
-
+        if(mapaEstados[id] == NULL)
+            cout << "Atenção em Gerenciadores::GerenciadorEstados::getEstado(): " << ERRO_RETURN_NULLPTR << endl;
+        
+        return mapaEstados[id];
     }
 
 } // namespace Gerenciadores

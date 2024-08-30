@@ -26,9 +26,9 @@ namespace Gerenciadores
         public:
             ~GerenciadorEstados();
             static GerenciadorEstados* getGerenciadorEstados();
-            void executarEstado(idEstados id);
+            void executarEstado(const idEstados id);
             const idEstados getIdEstadoAtual() const;
             Estado* getEstadoAtual();
-            void setObservadores();
+            Estado* getEstado(const idEstados id);
     };
 } // namespace Gerenciadores

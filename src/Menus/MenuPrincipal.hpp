@@ -13,11 +13,9 @@ namespace Menus
 {
     class MenuPrincipal: public Estado, public Menu
     {
-        /*private:
-            Menu* pMenu;
-        
-        temporariamente sem atributos
-        */
+        private:
+            bool doisJogadores;
+            bool sequenciaFases;
         
         public:
             MenuPrincipal(idEstados id = menuPrincipal);

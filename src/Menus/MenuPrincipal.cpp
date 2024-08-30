@@ -18,10 +18,10 @@ namespace Menus
 {
     MenuPrincipal::MenuPrincipal(idEstados id):
     Estado(id),
-    Menu()
-    {
-        cout << "Inicio da alocação do MenuPrincipal" << endl;
-        
+    Menu(),
+    doisJogadores(false),
+    sequenciaFases(true)
+    {        
         //Seta o título
         titulo.setInfo("GGG: GRANDE GUERRA GEOMETRICA");
         titulo.setAlinhamento(centro);
@@ -29,7 +29,6 @@ namespace Menus
         titulo.setTamanho(125);
         titulo.setCor(branco);
 
-        cout << "Setou titulo" << endl;
         opcoes.clear();
         
         //Seta as opções
@@ -42,7 +41,7 @@ namespace Menus
         else
             cout << "Erro em Menus::MenuPrincipal::MenuPrincipal()::pOpcao: " << ERRO_ALOCACAO << endl;
 
-        //Op1:
+        //Op1: ----------------------------------------------------------------------------------------
         pOpcao = NULL;
         pOpcao = new ElementosGraficos::Texto("1. Jogar com um jogador");
 
@@ -51,7 +50,7 @@ namespace Menus
         else
             cout << "Erro em Menus::MenuPrincipal::MenuPrincipal()::pOpcao: " << ERRO_ALOCACAO << endl;
 
-         //Op2:
+         //Op2: ----------------------------------------------------------------------------------------
         pOpcao = NULL;
         pOpcao = new ElementosGraficos::Texto("2. Jogar com dois jogadores");
 
@@ -60,9 +59,36 @@ namespace Menus
         else
             cout << "Erro em Menus::MenuPrincipal::MenuPrincipal()::pOpcao: " << ERRO_ALOCACAO << endl;
 
-         //Op3:
+        //Op3: ----------------------------------------------------------------------------------------
         pOpcao = NULL;
-        pOpcao = new ElementosGraficos::Texto("3. Recuperar jogo salvo");
+        pOpcao = new ElementosGraficos::Texto("3. Jogar sequencia de fases");
+
+        if (pOpcao)
+            opcoes.push_back(pOpcao);
+        else
+            cout << "Erro em Menus::MenuPrincipal::MenuPrincipal()::pOpcao: " << ERRO_ALOCACAO << endl;
+
+        //Op4: ----------------------------------------------------------------------------------------
+        pOpcao = NULL;
+        pOpcao = new ElementosGraficos::Texto("4. Jogar apenas fase Calabouco");
+
+        if (pOpcao)
+            opcoes.push_back(pOpcao);
+        else
+            cout << "Erro em Menus::MenuPrincipal::MenuPrincipal()::pOpcao: " << ERRO_ALOCACAO << endl;
+        
+        //Op5: ----------------------------------------------------------------------------------------
+        pOpcao = NULL;
+        pOpcao = new ElementosGraficos::Texto("5. Jogar apenas fase Tuneis");
+
+        if (pOpcao)
+            opcoes.push_back(pOpcao);
+        else
+            cout << "Erro em Menus::MenuPrincipal::MenuPrincipal()::pOpcao: " << ERRO_ALOCACAO << endl;
+        
+        //Op6:
+        pOpcao = NULL;
+        pOpcao = new ElementosGraficos::Texto("6. Recuperar jogo salvo");
 
         if (pOpcao)
             opcoes.push_back(pOpcao);
@@ -71,7 +97,7 @@ namespace Menus
 
          //Op4:
         pOpcao = NULL;
-        pOpcao = new ElementosGraficos::Texto("4. Ver ranking");
+        pOpcao = new ElementosGraficos::Texto("7. Ver ranking");
 
         if (pOpcao)
             opcoes.push_back(pOpcao);
@@ -80,120 +106,196 @@ namespace Menus
 
          //Op5:
         pOpcao = NULL;
-        pOpcao = new ElementosGraficos::Texto("5. Encerrar jogo");
+        pOpcao = new ElementosGraficos::Texto("8. Encerrar jogo");
 
         if (pOpcao)
             opcoes.push_back(pOpcao);
         else
             cout << "Erro em Menus::MenuPrincipal::MenuPrincipal()::pOpcao: " << ERRO_ALOCACAO << endl;
 
-        cout << "Alocou opções" << endl;
-
         //Percorre o vetor ajustando o texto das opções
         for(int i=0; i<(int)opcoes.size(); i++)
         {
-            opcoes[i]->setAlinhamento(esquerda);
-            opcoes[i]->setPosicao(pGG->getCentroCamera().x, 300.0 + (100.0*(i+1)));
-            opcoes[i]->setTamanho(50);
-            opcoes[i]->setCor(branco);
-        }
-
-        cout << "2 - Menu principal construido com título e opções!" << endl;
-        
+            if(opcoes[i])
+            {
+                opcoes[i]->setAlinhamento(esquerda);
+                opcoes[i]->setPosicao(pGG->getCentroCamera().x, 300.0 + (100.0*(i+1)));
+                opcoes[i]->setTamanho(50);
+                opcoes[i]->setCor(branco);
+            }
+            else
+                cout << "Erro em Menus::MenuPrincipal::MenuPrincipal()::Texto*: " << ERRO_NULLPTR << endl;
+        }       
     }
 
     MenuPrincipal::~MenuPrincipal()
     {
+        for(int i=0; i<(int)opcoes.size(); i++)
+        {
+            if(opcoes[i])
+                delete opcoes[i];
+        }
 
+        opcoes.clear();
     }
     
+    //Executa o loop para renderizar e mostrar os elementos do menu principal na tela.
     void MenuPrincipal::executar(const float dT)
     {
-        while (pGG->janelaAberta())
+        if(pGG)
         {
-            cout << "Solicita limpeza da tela e checagem das teclas" << endl;
-            pGG->limpar();
-            pGE->executar(); // Checar se a janela deve ser fechada.
+            while (pGG->janelaAberta())
+            {
+                pGG->limpar(); //Limpar a janela
+                
+                if(pGE)
+                    pGE->executar(); // Checar se a janela deve ser fechada.
+                else
+                    cout << "Erro em Menus::MenuPrincipal::executar(): " << ERRO_NULLPGE << endl;
 
-            cout << "Solicita renderezição do texto" << endl;
-            desenhar();
+                desenhar(); //Colocar na tela titulo e opções
 
-            cout << "SOlicita mostrar na tela" << endl;
-            pGG->mostrar();
-        } 
-
-        cout << "Execução do menu principal concluida" << endl;    
+                pGG->mostrar();
+            } 
+        }
+        else
+            cout << "Erro em Menus::MenuPrincipal::executar(): " << ERRO_NULLPGG << endl;
     }
     
+    //Renderiza título e opções na tela.
     void MenuPrincipal::desenhar()
     {
         titulo.renderizar();
 
         for(int i=0; i<(int)opcoes.size(); i++)
-            opcoes[i]->renderizar();
+        {
+            if(opcoes[i])
+                opcoes[i]->renderizar();
+            else
+                cout << "Erro em Menus::MenuPrincipal::desenhar()::Texto*: " << ERRO_NULLPTR << endl;
+        }
 
-        cout << "Renderização do menuPrincipal concluida!" << endl;
     }
 
-    //Precisa implementar e adaptar o código
+    //Muda a cor da opção escolhida pelo usuário para vermelho
     void MenuPrincipal::verificaTeclaPressionada(string tecla)
     {
         if(tecla == "1")
-            opcoes[1]->setCor(vermelho); //Começa em 1 pq no 0 é o subtitulo
+        {
+            if(opcoes[1] && opcoes[2]) //Começa em 1 pq no 0 é o subtitulo
+            {
+                opcoes[1]->setCor(vermelho); 
+                opcoes[2]->setCor(branco);
+            }
+            else
+                cout << "Erro em Menus::MenuPrincipal::verificaTeclaPressionada()::Texto*: " << ERRO_NULLPTR << endl;
+        }
         else if(tecla == "2")
-            opcoes[2]->setCor(vermelho);
+        {            
+            if(opcoes[2] && opcoes[1])
+            {
+                opcoes[2]->setCor(vermelho);
+                opcoes[1]->setCor(branco);
+            }
+            else
+                cout << "Erro em Menus::MenuPrincipal::verificaTeclaPressionada()::Texto*: " << ERRO_NULLPTR << endl;
+        }
         else if(tecla == "3")
-            opcoes[3]->setCor(vermelho);
+        {
+             if(opcoes[3])
+                opcoes[3]->setCor(vermelho);
+            else
+                cout << "Erro em Menus::MenuPrincipal::verificaTeclaPressionada()::Texto*: " << ERRO_NULLPTR << endl;
+        }
         else if(tecla == "4")
-            opcoes[4]->setCor(vermelho);
+        {
+             if(opcoes[4])
+                opcoes[4]->setCor(vermelho);
+            else
+                cout << "Erro em Menus::MenuPrincipal::verificaTeclaPressionada()::Texto*: " << ERRO_NULLPTR << endl;
+        }
         else if(tecla == "5")
-            opcoes[5]->setCor(vermelho);
+        {
+             if(opcoes[5])
+                opcoes[5]->setCor(vermelho);
+            else
+                cout << "Erro em Menus::MenuPrincipal::verificaTeclaPressionada()::Texto*: " << ERRO_NULLPTR << endl;
+        }
+        else if(tecla == "6")
+        {
+             if(opcoes[6])
+                opcoes[6]->setCor(vermelho);
+            else
+                cout << "Erro em Menus::MenuPrincipal::verificaTeclaPressionada()::Texto*: " << ERRO_NULLPTR << endl;
+        }
+        else if(tecla == "7")
+        {
+             if(opcoes[7])
+                opcoes[7]->setCor(vermelho);
+            else
+                cout << "Erro em Menus::MenuPrincipal::verificaTeclaPressionada()::Texto*: " << ERRO_NULLPTR << endl;
+        }
+        else if(tecla == "8")
+        {
+             if(opcoes[8])
+                opcoes[8]->setCor(vermelho);
+            else
+                cout << "Erro em Menus::MenuPrincipal::verificaTeclaPressionada()::Texto*: " << ERRO_NULLPTR << endl;
+        }
     }
 
+    //Realiza a atividade da opção escolhida pelo usuário (i.e. trocar de menu, iniciar o jogo, etc.)
     void MenuPrincipal::verificaTeclaSolta(string tecla)
     {
-        if(tecla == "1") //Jogar com um jogador
-            pGEs->executarEstado(menuFase); //Começa em 1 pq no 0 é o subtitulo
-        else if(tecla == "2") //Jogar com dois jogadores
+        if(pGEs)
         {
-            //pFase->setDoisJogadores(true);
-            //pGEs->executarEstado(menuFase);
-            pGEs->executarEstado(fase1);//provisorio
-        }
-        else if(tecla == "3") //Recuperar jogo salvo
-            pGEs->executarEstado(jogo);
-        else if(tecla == "4") //Ver ranking
-            pGEs->executarEstado(ranking);
-        else if(tecla == "5")
-            pGG->fecharJanela();
-        //Obs.: só o caso 0 está corretamente implementado até o momento...
-        // switch (tecla)
-        // {
-        //     case 1:
-        //         pGEs->executarEstado(menuFase);
-        //         break;
-            
-        //     //Selecionar jogar com um ou dois jogadores leva ao menu de seleção das fases...
-        //     case 2:
-        //         //pFase->setDoisJogadores(true);
-        //         pGEs->executarEstado(menuFase);
-        //         break;
-            
-        //     case 3:
-        //         pGEs->executarEstado(jogo);
-        //         break;
-            
-        //     case 4:
-        //         pGEs->executarEstado(ranking);
-        //         break;
+            if(tecla == "1") //Jogar com um jogador
+                {doisJogadores = false;
 
-        //     case 5:
-        //         pGG->fecharJanela();
-        //         break;
+                cout << "doisJogadores = " << doisJogadores << endl;}
             
-        //     default:
-        //         break;
-        // }
+            if(tecla == "2") //Jogar com dois jogadores
+                {doisJogadores = true;
+                cout << "doisJogadores = " << doisJogadores << endl;}
+            
+            else if(tecla == "3") //Jogar sequência de fases
+            {
+                //pGEs->getEstado(fase1)->setJogoSequencia(sequenciaFases);
+                pGEs->executarEstado(fase1);
+            }
+
+            else if(tecla == "4") //Jogar fase calabouco
+            {
+                sequenciaFases = false;
+                //pGEs->getEstado(fase1)->setJogoSequencia(sequenciaFases);
+                pGEs->executarEstado(fase1);
+            }
+
+            else if(tecla == "5") //Jogar fase tuneis
+            {
+                pGEs->executarEstado(fase2);
+            }
+
+            else if(tecla == "6") //Recuperar jogo salvo
+            {
+                //pGEs->executarEstado(jogoSalvo) ? nem ideia de como faz
+            }
+
+            else if(tecla == "7") //Ver ranking
+            {
+                pGEs->executarEstado(ranking);
+            }
+            
+            else if(tecla == "5") //Encerrar jogo
+            {
+                if(pGG)
+                    pGG->fecharJanela();
+                else
+                    cout << "Erro em Menus::MenuPrincipal::verificaTeclaSolta(): " << ERRO_NULLPGG << endl;
+            }
+        }
+        else
+            cout << "Erro em Menus::MenuPrincipal::verificaTeclaSolta(): " << ERRO_NULLPGES << endl;
     }
 
 } // namespace Menus
