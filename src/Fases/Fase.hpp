@@ -7,6 +7,7 @@
 #include "Gerenciadores/GerenciadorEventos.hpp"
 #include "Entidades/Personagens/Jogador.hpp"
 
+#define GRAVIDADE      1000.0F
 #define LARGURA_FASE   2580.0F
 #define ALTURA_FASE    1440.0F
 #define CHAO           ALTURA_FASE
@@ -40,6 +41,7 @@ namespace Fases
         
         virtual void executar(const float dT = 0.f) = 0;
         virtual const bool verificaGameOver();
+        virtual const bool verificaVitoria() = 0;
 
         virtual void salvar  ();
 

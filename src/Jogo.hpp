@@ -14,6 +14,7 @@ private:
     Gerenciadores::GerenciadorGrafico *pGG;
     Gerenciadores::GerenciadorEventos *pGE;
     Fase* primeiraFase;
+    Fase* segundaFase;
 
 public:
 Jogo();

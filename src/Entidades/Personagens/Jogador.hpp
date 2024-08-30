@@ -20,7 +20,7 @@ namespace Entidades
         
 
     public:
-        Jogador(int _maxVida = 10, const bool j1 = true);
+        Jogador(int _maxVida = 60, const bool j1 = true);
 
         ~Jogador();
 

@@ -21,15 +21,14 @@ namespace Fases
     gameOver(false),
     efeitoGameOver(Vetor2f (1290, 720.f), Vetor2f(2580.f, 1440.f), "../img/game_over.png", 1.f)
     {
-        cout << "Fase::FASE" << endl;
         t0 = pGG->getTempo();
         t1 = pGG->getTempo();
     }
 
     Fase::~Fase()
     {
-        if(pGC)
-            delete pGC;
+        /*if(pGC)
+            delete pGC;*/
     }
 
     void Fase::salvar() 

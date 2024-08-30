@@ -21,7 +21,7 @@ namespace Inimigos
             void atacar();
             void vira();
             void reagirAhColisao(Entidade* pE);
-            virtual void danificar(Personagem *pPers) { pPers->receberDano(dano); };
+            virtual void danificar(Personagem *pPers) { pPers->receberDano(dano, true); };
             void definirPerseguido();
             
             bool rangePerseguir();

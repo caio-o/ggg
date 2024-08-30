@@ -2,6 +2,7 @@
 #include "Jogo.hpp"
 #include "Ente.hpp"
 #include "Fases/Fase.hpp"
+#include "Fases/Tuneis.hpp"
 #include <iostream>
 #include <stdlib.h>
 #include <time.h>
@@ -23,7 +24,8 @@ Jogo::Jogo():
     
     Ente::setGerenciadorGrafico();
 
-    primeiraFase =  static_cast<Fase*> (new Fases::Calabouco);
+    //primeiraFase =  static_cast<Fase*> (new Fases::Calabouco);
+    segundaFase = static_cast<Fase*> (new Fases::Tuneis);
     //cout << "Jogo::Jogo 2" << endl;
 }
 
@@ -37,5 +39,6 @@ Jogo::~Jogo()
 void Jogo::executar()
 {
     ////cout << "Jogo::EXECUTAR" << endl;
-    primeiraFase->executar();
+    //primeiraFase->executar();
+    segundaFase->executar();
 }

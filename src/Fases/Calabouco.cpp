@@ -3,8 +3,9 @@
 #include "Entidades/Obstaculos/Lapis.hpp"
 #include "Entidades/Obstaculos/PlataformaGrudenta.hpp"
 #include "Fases/Calabouco.hpp"
+#include "Calabouco.hpp"
 
-#define GRAVIDADE      1000.0F
+//#define GRAVIDADE      1000.0F
 /*#define LARGURA_FASE   2580.0F
 #define ALTURA_FASE    1440.0F
 #define CHAO           ALTURA_FASE
@@ -50,11 +51,15 @@ void Fases::Calabouco::criarInimigos()
 
 }
 
+const bool Fases::Calabouco::verificaVitoria()
+{
+}
+
 /** TODO: Talvez por isto na fase abstrata, e chamar
  *     Fase::Executar no fim do loop de cada fase. 
  *     Isto pouparia tempo.
- */ 
-void Fases::Calabouco::executar(const float dT)
+ */
+void Fases::Calabouco::executar(const float dT) 
 {
     while (pGG->janelaAberta())
     {
@@ -91,7 +96,6 @@ Fases::Calabouco::Calabouco():
 
     pJog = new Jogador(15.f, true);
     pJog2 = new Jogador(15.f, false);
-
     
     pJog->setPos(190.f, CHAO-100.f);
     pJog2->setPos(190.f, CHAO-100.f);
