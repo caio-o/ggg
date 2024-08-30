@@ -2,6 +2,8 @@
 #define _ENTE_HPP
 
 #include "Gerenciadores/GerenciadorGrafico.hpp"
+#include "Gerenciadores/GerenciadorEventos.hpp"
+
 #include "SFML/Graphics.hpp"
 #include "ElementosGraficos/Forma.hpp"
 
@@ -14,6 +16,7 @@ protected:
     static int      contEntes;
     const int id;
     static Gerenciadores::GerenciadorGrafico* pGG;
+    static Gerenciadores::GerenciadorEventos* pGE;
     //Forma forma;
     
 public:
@@ -30,6 +33,7 @@ public:
     // TODO: MUDAR ISSO
     //void setForma (Forma* _pForma)        { pForma = _pForma; } 
     static void setGerenciadorGrafico ()  { pGG = Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico(); }
+    static void setGerenciadorEventos ()  { pGE = Gerenciadores::GerenciadorEventos::getGerenciadorEventos(); }
 }; 
 
 #endif

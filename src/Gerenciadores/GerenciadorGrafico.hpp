@@ -26,9 +26,7 @@ namespace Gerenciadores
             sf::RenderWindow* pJanela;
             sf::View camera;
             map<const char*, sf::Texture*> mapaTexturas;
-            //avaliar a necessidade uma vez que há a possibilidade de 
-            //se utilizar apenas uma fonte no jogo todo.
-            map<const char*, sf::Font*> mapaFontes;
+            sf::Font* pFonte;
             sf::Clock relogio;
             
             static float dT;

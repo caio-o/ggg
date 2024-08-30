@@ -13,6 +13,7 @@ private:
 
     Gerenciadores::GerenciadorGrafico *pGG;
     Gerenciadores::GerenciadorEventos *pGE;
+    Gerenciadores::GerenciadorEstados *pGEs;
     Fase* primeiraFase;
     Fase* segundaFase;
 

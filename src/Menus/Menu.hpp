@@ -4,18 +4,23 @@
 #include <vector>
 
 #include "ElementosGraficos/Forma.hpp"
+#include "ElementosGraficos/Texto.hpp"
+
+#include "Ente.hpp"
 
 using namespace std;
 
 namespace Menus
 {
-    class Menu
+    class Menu: public Ente
     {
         protected:
-            //provisorio: posteriormente usar elemento gráfico Texto proprio
-            sf::Text titulo; 
+            ElementosGraficos::Texto titulo;
+            ElementosGraficos::Forma fundo;
+
             //provisorio: posteriormente usar elemento gráfico Botao proprio
-            vector<ElementosGraficos::Forma*> colecaoBotoes;
+            vector<ElementosGraficos::Texto*> opcoes;
+            
 
         public:
             Menu(){}

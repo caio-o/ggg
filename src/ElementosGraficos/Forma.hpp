@@ -15,6 +15,19 @@
 
 namespace ElementosGraficos
 {
+    enum Cores
+    {
+        transparente = 0,
+        branco,
+        preto,
+        azul,
+        ciano,
+        verde,
+        magenta,
+        vermelho,
+        amarelo
+    };
+    
     class Forma
     {
         private:
@@ -40,6 +53,7 @@ namespace ElementosGraficos
             void setTamanho(const float x, const float y);
             void setEscala (const float escala);
             void setEscala (const float escalaX, const float escalaY);
+            void setCorPreenchimento(Cores cor);
 
             sf::RectangleShape* getpCorpo() const;
             void atualizar(Coordenadas::Vetor2f posicao);

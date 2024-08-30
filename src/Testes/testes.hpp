@@ -82,4 +82,11 @@ void testeColisoes();
  */
 void testeFase();
 
+/*
+ * AUTOR   :  Ana Julia Molinos Leite da Silva (ana-molinos)
+ * FUNCAO  :  Testar texto esstático e com ponteiro.
+ * SAIDA   :  Uma simulação do menu principal com titulo e opções.
+ */
+void testeTexto();
+
 #endif

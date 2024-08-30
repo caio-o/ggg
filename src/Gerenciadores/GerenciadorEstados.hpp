@@ -18,7 +18,7 @@ namespace Gerenciadores
         private:
             idEstados idEstadoAtual;
             map<idEstados, Estado*> mapaEstados;
-            static GerenciadorEstados* pEstados;
+            static GerenciadorEstados* pGEs;
 
         private:
             GerenciadorEstados();
@@ -26,7 +26,7 @@ namespace Gerenciadores
         public:
             ~GerenciadorEstados();
             static GerenciadorEstados* getGerenciadorEstados();
-            void mudarEstado(idEstados id);
+            void executarEstado(idEstados id);
             idEstados getEstadoAtual() const;
             void setObservadores();
     };
