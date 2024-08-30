@@ -19,6 +19,7 @@ namespace Fases
     pGG (Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico()),
     pGE (Gerenciadores::GerenciadorEventos::getGerenciadorEventos()),
     gameOver(false),
+    saida(Vetor2f(CANTO_DIREITO-350.0F, TETO-50.0F), Vetor2f(400.f, 400.f), "../img/saida_luz.png", 1.f),
     efeitoGameOver(Vetor2f (1290, 720.f), Vetor2f(2580.f, 1440.f), "../img/game_over.png", 1.f)
     {
         t0 = pGG->getTempo();

@@ -31,8 +31,8 @@ namespace ElementosGraficos
                 pTextura = pGerenciadorGrafico->carregarTextura(caminhoText);
                 
                 //Passa a textura para o Corpo
-                pCorpo->setTexture(pTextura);
-
+                pCorpo->setTexture(pTextura, true);
+                setTamanho(tamanho.x, tamanho.y);
                 //Faz o corpo se posicionar pelo seu centro, nao pelo seu canto superior esquerdo.
                 pCorpo->setOrigin(pCorpo->getSize() / 2.f);
             }

@@ -70,8 +70,8 @@ void Fases::Tuneis::criarInimigos()
 Fases::Tuneis::Tuneis():
     Fase(),
     maxInimigos(9),
-    maxChefao(3),
-    saida(Vetor2f(X_SAIDA+200.F, Y_SAIDA-250.F), Vetor2f(400.f, 300.f), "", 1.f)
+    maxChefao(3)
+    //saida(Vetor2f(X_SAIDA+200.F, Y_SAIDA-250.F), Vetor2f(400.f, 300.f), "", 1.f)
 {
     Ente::setGerenciadorGrafico();
     saida.getpCorpo()->setFillColor(sf::Color::Yellow);
