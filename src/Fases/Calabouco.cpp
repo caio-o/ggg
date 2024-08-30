@@ -156,4 +156,7 @@ Fases::Calabouco::Calabouco():
 }
 
 Fases::Calabouco::~Calabouco()
-{ }
+{ 
+    if(pGC)
+        delete pGC;
+}
