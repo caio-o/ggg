@@ -12,22 +12,16 @@
 
 #include <SFML/Graphics.hpp>
 #include "Gerenciadores/GerenciadorGrafico.hpp"
+#include "Gerenciadores/GerenciadorEstados.hpp"
 #include "ElementosGraficos/Forma.hpp"
 
 namespace Gerenciadores
 {
     class GerenciadorEventos{
-        private:
-            Gerenciadores::GerenciadorGrafico* pGerenciadorGrafico;
-
-            /*
-             * Atributo provisório, após implementação da classe Jogador, será substituído por um
-             * ponteiro do tipo Jogador, ou se relacionára com os objetos do padrão de projeto Observer.
-             */
-            ElementosGraficos::Forma* pForma;
-            
-            
+        private:         
             static GerenciadorEventos* pGerenciadorEventos;
+            static GerenciadorEstados* pGEs;
+            static GerenciadorGrafico* pGG;
 
         private:
             //Construtora privada atendendo ao padrão de projeto Singleton
@@ -36,11 +30,11 @@ namespace Gerenciadores
         public:
             ~GerenciadorEventos();
             static GerenciadorEventos* getGerenciadorEventos();
-            //void setGerenciadorGrafico(GerenciadorGrafico* pG);
-            //método desnecessário em função do ponteiro para o gGerenciadorGrafico ser estático
-            void setForma(ElementosGraficos::Forma* forma);
-            void verificaTeclaSolta();
-            void verificaTeclaPressionada();
+            static void setGerenciadorGrafico();
+            static void setGerenciadorEstados();
+   
+            void verificaTeclaSolta(sf::Keyboard::Key tecla);
+            void verificaTeclaPressionada(sf::Keyboard::Key tecla);
             void executar();
     };
 } // namespace Gerenciadores

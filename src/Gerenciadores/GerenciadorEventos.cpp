@@ -14,23 +14,25 @@ using namespace std;
 namespace Gerenciadores
 {
     GerenciadorEventos* GerenciadorEventos::pGerenciadorEventos(NULL);
+    GerenciadorEstados* GerenciadorEventos::pGEs(NULL);
+    GerenciadorGrafico* GerenciadorEventos::pGG(NULL);
 
     /*Construtora privada que permite a execução do padrão de projeto Singleton.*/
-    GerenciadorEventos::GerenciadorEventos():
-    pGerenciadorGrafico(GerenciadorGrafico::getGerenciadorGrafico()),
-    pForma(NULL)
+    GerenciadorEventos::GerenciadorEventos()
     {
         
     }
 
     GerenciadorEventos::~GerenciadorEventos()
     {
-        pGerenciadorGrafico = NULL;
-        pForma = NULL;
-
+        //só desaloca a ele mesmo
         if(pGerenciadorEventos)
             delete pGerenciadorEventos;
+        
         pGerenciadorEventos = NULL;
+
+        pGEs = NULL;
+        pGG = NULL;
     }
 
     /* 
@@ -56,25 +58,18 @@ namespace Gerenciadores
         }
     }
 
-    /*
-     * Configura "quem" sofrerá a ação do GerenciadorEventos gerenciado. Provisoriamente é
-     * um ponteiro do tipo RectangleShape (i.e. uma forma), mas futuramente será um 
-     * ponteiro do tipo Jogador e, se o padrão de projeto Observer for implementado, 
-     * serão os observadores que serão acionados pelo GerenciadorEventos.
-     */
-    void GerenciadorEventos::setForma(ElementosGraficos::Forma* forma)
+    void GerenciadorEventos::setGerenciadorGrafico()
     {
-        if(forma)
-            pForma = forma;
-        else
-        {
-            cout << "Gerenciadores::GerenciadorEventos: " << ERRO_SET_NULLPTR << endl;
-            //enterFechar();   
-        }
+        pGG = GerenciadorGrafico::getGerenciadorGrafico();
+    }
+
+    void GerenciadorEventos::setGerenciadorEstados()
+    {
+        pGEs = GerenciadorEstados::getGerenciadorEstados();
     }
 
     /*Função não implementada uma vez que ainda não se faz conveniente seu uso.*/
-    void GerenciadorEventos::verificaTeclaSolta()
+    void GerenciadorEventos::verificaTeclaSolta(sf::Keyboard::Key tecla)
     {
 
     }
@@ -83,19 +78,21 @@ namespace Gerenciadores
      * Verifica qual tecla está sendo pressionada (Direita, Esquerda, Cima ou Baixo) e faz a forma se
      * movimentar 0.01 unidade na direção da tecla pressionada.
      */
-    void GerenciadorEventos::verificaTeclaPressionada()
+    void GerenciadorEventos::verificaTeclaPressionada(sf::Keyboard::Key tecla)
     {
-        
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-            pForma->getpCorpo()->move(sf::Vector2f(0.1f, 0.f));
-        else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-            pForma->getpCorpo()->move(sf::Vector2f(-0.1f, 0.f));
-        else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-            pForma->getpCorpo()->move(sf::Vector2f(0.f, -0.1f));
-        else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-            pForma->getpCorpo()->move(sf::Vector2f(0.f, 0.1f));
+        if(pGEs)
+        {
+            if(pGEs->getIdEstadoAtual() == menuSalvamento)
+            {
 
-        //Obs.: método Forma::atualizar() ainda não está sendo utilizado
+            }
+            // else
+            // {
+            //     pGEs->getEstadoAtual()->
+            // }
+        }
+        else
+            cout << "Erro em Gerenciadores::GerenciadorEventos::verificaTeclaPressionada()::pGG: " << ERRO_NULLPTR << endl;
     }
 
 
@@ -105,7 +102,7 @@ namespace Gerenciadores
      */
     void GerenciadorEventos::executar()
     {
-        sf::Event Evento;
+        sf::Event evento;
 
         /*
          * sf::Window::pollEvent(Event& event)
@@ -120,15 +117,18 @@ namespace Gerenciadores
          */
 
         //Enquanto a janela "capturar" um evento... (i.e., clique ou movimento do mouse)
-        while(pGerenciadorGrafico->getJanela()->pollEvent(Evento))
+        if(pGG)
         {
-            //Se esse evento for do tipo "fechar"...
-            if(Evento.type == sf::Event::Closed)
-                pGerenciadorGrafico->fecharJanela();
-            /*else if (Evento.type == sf::Event::KeyPressed)
-                verificaTeclaPressionada();*/
+            while(pGG->getJanela()->pollEvent(evento))
+            {
+                //Se esse evento for do tipo "fechar"...
+                if(evento.type == sf::Event::Closed)
+                    pGG->fecharJanela();
+                else if (evento.type == sf::Event::KeyPressed)
+                    verificaTeclaPressionada(evento.key.code);
+            }
         }
-
-        if (pForma) verificaTeclaPressionada();
+        else
+            cout << "Erro em Gerenciadores::GerenciadorEventos::executar()::pGG: " << ERRO_NULLPTR << endl;
     }
 } // namespace Gerenciadores

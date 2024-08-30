@@ -21,11 +21,14 @@ namespace ElementosGraficos
         cout << "Inicio de construção de objeto texto: " << endl;
 
         //Alocação da fonte  
-        sf::Font* pFonte = new sf::Font();
+        sf::Font* pFonte = NULL;
 
         cout << "Alocação de fonte iniciada!" << endl;
 
-        pFonte = pGG->carregarFonte(CAMINHO_FONTE);
+        if(pGG)
+            pFonte = pGG->carregarFonte(CAMINHO_FONTE);
+        else
+            cout << "Erro em ElementosGraficos::Texto::Texto()::pGG: " << ERRO_NULLPTR << endl;
 
         cout << "Alocação de fonte completa!" << endl;
         
@@ -43,6 +46,8 @@ namespace ElementosGraficos
             cout << "Erro em ElementosGraficos::Texto::Texto()::pFonte: " << ERRO_ALOCACAO << endl;
 
         cout << "Construção de objeto de texto completa!" << endl;
+
+        setAlinhamento(centro);
     }
 
     Texto::~Texto()
@@ -54,82 +59,102 @@ namespace ElementosGraficos
         pTexto = NULL;
     }
 
-    void Texto::setpGG()
+    void Texto::setGerenciadorGrafico()
     {
         pGG = Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico();
+
+        if(pGG==NULL)
+            cout << "Erro em ElementosGraficos::Texto::setGerenciadorGrafico()::pGG: " << ERRO_NULLPTR << endl;
     }
-    
+
     //Recebe uma string que consistirá no conteúdo da caixa de texto
     void Texto::setInfo(const string inf)
     {
         info = inf;
 
-        pTexto->setString(info);
+        if(pTexto)
+            pTexto->setString(info);
+        else
+            cout << "Erro em ElementosGraficos::Texto::setInfo()::pTexto: " << ERRO_NULLPTR << endl;
     }
 
     //Seta a posição da caixa de texto
     void Texto::setPosicao(const Coordenadas::Vetor2f pos)
     {
-        pTexto->setPosition(pos.x, pos.y);
+        if(pTexto)
+            pTexto->setPosition(pos.x, pos.y);
+        else
+            cout << "Erro em ElementosGraficos::Texto::setPosicao()::pCorpo: " << ERRO_NULLPTR << endl;
     }
 
     //Seta a posição da caixa de texto
     void Texto::setPosicao(const float x, const float y)
     {
-        pTexto->setPosition(x, y);
+        if(pTexto)
+            pTexto->setPosition(x, y);
+        else
+            cout << "Erro em ElementosGraficos::Texto::setPosicao()::pCorpo: " << ERRO_NULLPTR << endl;
     }
 
     //Seta a cor do preenchimento do texto conforme a lista de cores presentes no namespace ElementosGraficos
     void Texto::setCor(Cores cor)
     {
-        switch (cor)
+        if(pTexto)
         {
-        case transparente:
-            pTexto->setFillColor(sf::Color::Transparent);
-            break;
+            switch (cor)
+            {
+            case transparente:
+                pTexto->setFillColor(sf::Color::Transparent);
+                break;
 
-        case branco:
-            pTexto->setFillColor(sf::Color::White);
-            break;
+            case branco:
+                pTexto->setFillColor(sf::Color::White);
+                break;
 
-        case preto:
-            pTexto->setFillColor(sf::Color::Black);
-            break;
+            case preto:
+                pTexto->setFillColor(sf::Color::Black);
+                break;
 
-        case azul:
-            pTexto->setFillColor(sf::Color::Blue);
-            break;
+            case azul:
+                pTexto->setFillColor(sf::Color::Blue);
+                break;
+                
+            case ciano:
+                pTexto->setFillColor(sf::Color::Cyan);
+                break;
             
-        case ciano:
-            pTexto->setFillColor(sf::Color::Cyan);
-            break;
-        
-        case verde:
-            pTexto->setFillColor(sf::Color::Green);
-            break;
+            case verde:
+                pTexto->setFillColor(sf::Color::Green);
+                break;
 
-        case magenta:
-            pTexto->setFillColor(sf::Color::Magenta);
-            break;
+            case magenta:
+                pTexto->setFillColor(sf::Color::Magenta);
+                break;
 
-        case vermelho:
-            pTexto->setFillColor(sf::Color::Red);
-            break;
+            case vermelho:
+                pTexto->setFillColor(sf::Color::Red);
+                break;
 
-        case amarelo:
-            pTexto->setFillColor(sf::Color::Yellow);
-            break;
-        
-        default:
-            cout << "Erro em ElementosGraficos::Texto::setCor(): argumento invalido, cor não alterada!" << endl;
-            break;
+            case amarelo:
+                pTexto->setFillColor(sf::Color::Yellow);
+                break;
+            
+            default:
+                cout << "Erro em ElementosGraficos::Texto::setCor(): argumento invalido, cor não alterada!" << endl;
+                break;
+            }
         }
+        else
+            cout << "Erro em ElementosGraficos::Texto::setCor()::pTexto: " << ERRO_NULLPTR << endl;
     }
 
     //Seta o tamanho da fonte
     void Texto::setTamanho(const int tam)
     {
-        pTexto->setCharacterSize(tam);
+        if(pTexto)
+            pTexto->setCharacterSize(tam);
+        else
+            cout << "Erro em ElementosGraficos::Texto::setTamanho()::pTexto: " <<ERRO_NULLPTR << endl;
     }
 
     //Seta o alinhamento do texto em relação a caixa de texto conforme opções do namespace ElementosGraficos:
@@ -138,37 +163,52 @@ namespace ElementosGraficos
     //Direita: posiciona o texto à direita na horizontal e no centro na vertical
     void Texto::setAlinhamento(Alinhamento posicao)
     {
-        switch (posicao)
+        if(pTexto)
         {
-        case esquerda:
-            pTexto->setOrigin(0.0, getTamanhoCaixaTexto().y/2);
-            break;
+            switch (posicao)
+            {
+            case esquerda:
+                pTexto->setOrigin(0.0, 0.0);
+                break;
 
-        case centro:
-            pTexto->setOrigin(getTamanhoCaixaTexto().x/2, getTamanhoCaixaTexto().y/2);
-            break;
+            case centro:
+                pTexto->setOrigin(getTamanhoCaixaTexto().x/2, getTamanhoCaixaTexto().y);
+                break;
 
-        case direita:
-            pTexto->setOrigin(getTamanhoCaixaTexto().x, getTamanhoCaixaTexto().y/2);
-            break;
+            case direita:
+                pTexto->setOrigin(getTamanhoCaixaTexto().x, 0.0);
+                break;
 
-        default:
-            pTexto->setOrigin(0.0, getTamanhoCaixaTexto().y/2);
-            break;
+            default:
+                pTexto->setOrigin(getTamanhoCaixaTexto().x/2, getTamanhoCaixaTexto().y);
+                break;
+            }
         }
+        else
+            cout << "Erro em ElementosGraficos::Texto::setAlinhamento()::pTexto: " << ERRO_NULLPTR << endl;
     }
     
     //Retorna as dimensões da caixa de texto
     const Coordenadas::Vetor2f Texto::getTamanhoCaixaTexto() const
     {
-        sf::FloatRect caixaTexto = pTexto->getLocalBounds();
+        if(pTexto)
+        {
+            sf::FloatRect caixaTexto = pTexto->getLocalBounds();
 
-        return Coordenadas::Vetor2f(caixaTexto.width, caixaTexto.height);
+            return Coordenadas::Vetor2f(caixaTexto.width, caixaTexto.height);
+        }
+
+        cout << "Erro em ElementosGraficos::Texto::getTamanhoCaixaTexto()::pTexto: " << ERRO_NULLPTR << endl;
+        exit(1);
     }
 
     const Coordenadas::Vetor2f Texto::getPosicao() const
     {
-        return Coordenadas::Vetor2f(pTexto->getPosition().x, pTexto->getPosition().y);
+        if(pTexto)
+            return Coordenadas::Vetor2f(pTexto->getPosition().x, pTexto->getPosition().y);
+        
+        cout << "Erro em ElementosGraficos::Texto::getPosicao()::pTexto: " << ERRO_NULLPTR << endl;
+        exit(1);
     }
 
     string Texto::getInfo() const
@@ -178,7 +218,10 @@ namespace ElementosGraficos
 
     void Texto::renderizar()
     {
-        pGG->renderizar(pTexto);
+        if(pGG)
+            pGG->renderizar(pTexto);
+        else
+            cout << "Erro em ElementosGraficos::Texto::renderizar()::pTexto: " << ERRO_NULLPTR << endl;
     }
     
 } // namespace Elementos Gráficos

@@ -36,7 +36,7 @@ namespace ElementosGraficos
             Texto(string info = "");
             ~Texto();
 
-            static void setpGG();
+            static void setGerenciadorGrafico();
             
             void setInfo(string inf);
             void setPosicao(const Coordenadas::Vetor2f pos);

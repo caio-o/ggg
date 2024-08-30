@@ -1317,6 +1317,24 @@
 										},
 										{
 											"_type": "UMLAttributeView",
+											"_id": "AAAAAAGRnwiBdZJxRtc=",
+											"_parent": {
+												"$ref": "AAAAAAGROAm0wAeZzFo="
+											},
+											"model": {
+												"$ref": "AAAAAAGRnwiBYZJruF4="
+											},
+											"fillColor": "#A3FFA3",
+											"font": "Arial;17;0",
+											"left": 3750,
+											"top": 1641,
+											"width": 481.4658203125,
+											"height": 17,
+											"text": "#pGE: static GerenciadorEventos*",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLAttributeView",
 											"_id": "AAAAAAGRW5LFLJCYXZc=",
 											"_parent": {
 												"$ref": "AAAAAAGROAm0wAeZzFo="
@@ -1327,7 +1345,7 @@
 											"fillColor": "#A3FFA3",
 											"font": "Arial;17;0",
 											"left": 3750,
-											"top": 1641,
+											"top": 1660,
 											"width": 481.4658203125,
 											"height": 17,
 											"underline": true,
@@ -1346,7 +1364,7 @@
 											"fillColor": "#A3FFA3",
 											"font": "Arial;17;0",
 											"left": 3750,
-											"top": 1660,
+											"top": 1679,
 											"width": 481.4658203125,
 											"height": 17,
 											"text": "#id: const int",
@@ -1364,7 +1382,7 @@
 											"fillColor": "#A3FFA3",
 											"font": "Arial;17;0",
 											"left": 3750,
-											"top": 1679,
+											"top": 1698,
 											"width": 481.4658203125,
 											"height": 17,
 											"text": "#forma; Forma",
@@ -1376,7 +1394,7 @@
 									"left": 3745,
 									"top": 1617,
 									"width": 491.4658203125,
-									"height": 84
+									"height": 103
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -1400,7 +1418,7 @@
 											"fillColor": "#A3FFA3",
 											"font": "Arial;17;0",
 											"left": 3750,
-											"top": 1706,
+											"top": 1725,
 											"width": 481.4658203125,
 											"height": 17,
 											"text": "«create»+Ente()",
@@ -1418,7 +1436,7 @@
 											"fillColor": "#A3FFA3",
 											"font": "Arial;17;0",
 											"left": 3750,
-											"top": 1725,
+											"top": 1744,
 											"width": 481.4658203125,
 											"height": 17,
 											"text": "«destroy»+virtual ~Ente()",
@@ -1436,7 +1454,7 @@
 											"fillColor": "#A3FFA3",
 											"font": "Arial;17;2",
 											"left": 3750,
-											"top": 1744,
+											"top": 1763,
 											"width": 481.4658203125,
 											"height": 17,
 											"text": "+executar(): virtual void",
@@ -1454,7 +1472,7 @@
 											"fillColor": "#A3FFA3",
 											"font": "Arial;17;0",
 											"left": 3750,
-											"top": 1763,
+											"top": 1782,
 											"width": 481.4658203125,
 											"height": 17,
 											"text": "+desenhar(): void",
@@ -1491,7 +1509,7 @@
 											"fillColor": "#A3FFA3",
 											"font": "Arial;17;0",
 											"left": 3750,
-											"top": 1782,
+											"top": 1801,
 											"width": 481.4658203125,
 											"height": 17,
 											"text": "+setTextura(caminho: const char*, resetarTam: const bool): void",
@@ -1501,7 +1519,7 @@
 									"fillColor": "#A3FFA3",
 									"font": "Arial;17;0",
 									"left": 3745,
-									"top": 1701,
+									"top": 1720,
 									"width": 491.4658203125,
 									"height": 103
 								},
@@ -1546,7 +1564,7 @@
 							"left": 3745,
 							"top": 1571,
 							"width": 490.4658203125,
-							"height": 233,
+							"height": 252,
 							"nameCompartment": {
 								"$ref": "AAAAAAGROAm0wAeUdXU="
 							},
@@ -1711,7 +1729,7 @@
 									"fillColor": "#fff8b3",
 									"font": "Arial;13;0",
 									"left": 3895,
-									"top": 1921,
+									"top": 1931,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -1733,7 +1751,7 @@
 									"fillColor": "#fff8b3",
 									"font": "Arial;13;0",
 									"left": 3880,
-									"top": 1921,
+									"top": 1931,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 30,
@@ -1755,7 +1773,7 @@
 									"fillColor": "#fff8b3",
 									"font": "Arial;13;0",
 									"left": 3925,
-									"top": 1922,
+									"top": 1932,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -1774,7 +1792,7 @@
 							"tail": {
 								"$ref": "AAAAAAGROA80JyV4duo="
 							},
-							"points": "3910:2053;3910:1804",
+							"points": "3910:2053;3910:1823",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAGROA+snigqifM="
@@ -28012,6 +28030,16 @@
 							"visibility": "protected",
 							"isStatic": true,
 							"type": "static Gerenciadores::Grafico*"
+						},
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAGRnwiBYZJruF4=",
+							"_parent": {
+								"$ref": "AAAAAAGROAm0vweRor8="
+							},
+							"name": "pGE",
+							"visibility": "protected",
+							"type": "static GerenciadorEventos*"
 						},
 						{
 							"_type": "UMLAttribute",

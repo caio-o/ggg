@@ -296,106 +296,106 @@ void testeVertexArray()
     }
 }
 
-void testeForma()
-{
-     //Instancia o gerenciador GerenciadorGrafico
-     Gerenciadores::GerenciadorGrafico* gg = Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico();
+// void testeForma()
+// {
+//      //Instancia o gerenciador GerenciadorGrafico
+//      Gerenciadores::GerenciadorGrafico* gg = Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico();
 
-     //Instancia o gerenciador de GerenciadorEventoss
-     Gerenciadores::GerenciadorEventos* ge = Gerenciadores::GerenciadorEventos::getGerenciadorEventos();
+//      //Instancia o gerenciador de GerenciadorEventoss
+//      Gerenciadores::GerenciadorEventos* ge = Gerenciadores::GerenciadorEventos::getGerenciadorEventos();
 
-     /*//Instancia um quadrado ciano
-     sf::RectangleShape ret(sf::Vector2f(100.f, 100.f));
-     ret.setFillColor(sf::Color::Cyan);*/
+//      /*//Instancia um quadrado ciano
+//      sf::RectangleShape ret(sf::Vector2f(100.f, 100.f));
+//      ret.setFillColor(sf::Color::Cyan);*/
 
-     //Instancia uma forma
-     ElementosGraficos::Forma* pForma = new ElementosGraficos::Forma(Coordenadas::Vetor2f(10.0,10.0), //posição
-                                                                     Coordenadas::Vetor2f(50.7,48.1), //tamanho
-                                                                     CAMINHO_TEXTURA,
-                                                                     3.0); //escala
+//      //Instancia uma forma
+//      ElementosGraficos::Forma* pForma = new ElementosGraficos::Forma(Coordenadas::Vetor2f(10.0,10.0), //posição
+//                                                                      Coordenadas::Vetor2f(50.7,48.1), //tamanho
+//                                                                      CAMINHO_TEXTURA,
+//                                                                      3.0); //escala
 
-     /*//Associa o quadrado ao ge
-     ge->setForma(&ret);*/
+//      /*//Associa o quadrado ao ge
+//      ge->setForma(&ret);*/
 
-     //Associa a forma ao ge
-     ge->setForma(pForma);
+//      //Associa a forma ao ge
+//      ge->setForma(pForma);
 
-     while (gg->janelaAberta())
-     {
-          /* 
-           * Substitui o loop mais interno do teste anterior, assim permite realizar o teste de maneira
-           * completamente desacoplada da biblioteca gráfica.
-           */
-          ge->executar();
+//      while (gg->janelaAberta())
+//      {
+//           /* 
+//            * Substitui o loop mais interno do teste anterior, assim permite realizar o teste de maneira
+//            * completamente desacoplada da biblioteca gráfica.
+//            */
+//           ge->executar();
 
-          gg->limpar();
-          //gg->renderizar(&ret);
-          pForma->renderizar();
-          gg->mostrar();
-     }
+//           gg->limpar();
+//           //gg->renderizar(&ret);
+//           pForma->renderizar();
+//           gg->mostrar();
+//      }
 
-     delete pForma;
-}
+//      delete pForma;
+// }*/
 
-void testeColisoes()
-{
-     Gerenciadores::GerenciadorGrafico*  gg = Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico();
-     Gerenciadores::GerenciadorEventos*  ge = Gerenciadores::GerenciadorEventos::getGerenciadorEventos();
-     Gerenciadores::GerenciadorColisoes* gc = Gerenciadores::GerenciadorColisoes::getInstancia();
-     ge->setForma(NULL);
+// void testeColisoes()
+// {
+//      Gerenciadores::GerenciadorGrafico*  gg = Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico();
+//      Gerenciadores::GerenciadorEventos*  ge = Gerenciadores::GerenciadorEventos::getGerenciadorEventos();
+//      Gerenciadores::GerenciadorColisoes* gc = Gerenciadores::GerenciadorColisoes::getInstancia();
+//      ge->setForma(NULL);
 
-     Ente::setGerenciadorGrafico();
-     Forma::setGerenciadorGrafico();
+//      Ente::setGerenciadorGrafico();
+//      Forma::setGerenciadorGrafico();
      
-     sf::Clock relogio;
-     sf::Time t0 = relogio.getElapsedTime();
-     sf::Time t1 = t0;
-     sf::Time dT = sf::Time::Zero;
+//      sf::Clock relogio;
+//      sf::Time t0 = relogio.getElapsedTime();
+//      sf::Time t1 = t0;
+//      sf::Time dT = sf::Time::Zero;
 
-     Jogador jog;
-     jog.setPos(300.0f, 10.0f);
+//      Jogador jog;
+//      jog.setPos(300.0f, 10.0f);
 
-     Obstaculos::Plataforma plat(500.f, 50.f);
-     Obstaculos::Plataforma plat2(50.f, 600.f);
-     plat.setPos(150.f, 600.f); 
-     plat2.setPos(400.f, 420.f);
+//      Obstaculos::Plataforma plat(500.f, 50.f);
+//      Obstaculos::Plataforma plat2(50.f, 600.f);
+//      plat.setPos(150.f, 600.f); 
+//      plat2.setPos(400.f, 420.f);
 
-     gc->inserirJogador    (&jog);
-     gc->inserirObstaculo  (&plat);
-     gc->inserirObstaculo  (&plat2);
-     //jog.setTextura("../img/emoji_com_faca.png", Vetor2f(50.7f, 48.9f));
+//      gc->inserirJogador    (&jog);
+//      gc->inserirObstaculo  (&plat);
+//      gc->inserirObstaculo  (&plat2);
+//      //jog.setTextura("../img/emoji_com_faca.png", Vetor2f(50.7f, 48.9f));
 
-     while (gg->janelaAberta())
-     {
-          gg->limpar();
+//      while (gg->janelaAberta())
+//      {
+//           gg->limpar();
 
-          // t0 = momento da ultima iteracao.
-          // t1 = momento atual.
-          t0 = t1;
-          t1 = relogio.getElapsedTime();
-          dT = t1 - t0;
+//           // t0 = momento da ultima iteracao.
+//           // t1 = momento atual.
+//           t0 = t1;
+//           t1 = relogio.getElapsedTime();
+//           dT = t1 - t0;
 
           
-          jog.executar(dT.asSeconds());
-          jog.setVelY(jog.getVel().y + 1000.f * (dT.asSeconds())); // gravidade
-          jog.moverse(dT.asSeconds());
-          jog.desenhar();
+//           jog.executar(dT.asSeconds());
+//           jog.setVelY(jog.getVel().y + 1000.f * (dT.asSeconds())); // gravidade
+//           jog.moverse(dT.asSeconds());
+//           jog.desenhar();
 
-          cout << "Gravidade " << 1000.f*dT.asSeconds() << endl;
+//           cout << "Gravidade " << 1000.f*dT.asSeconds() << endl;
           
-          plat.executar(dT.asSeconds());
-          plat.moverse(dT.asSeconds());
-          plat.desenhar();
+//           plat.executar(dT.asSeconds());
+//           plat.moverse(dT.asSeconds());
+//           plat.desenhar();
 
-          plat2.executar(dT.asSeconds());
-          plat2.moverse(dT.asSeconds());
-          plat2.desenhar();
+//           plat2.executar(dT.asSeconds());
+//           plat2.moverse(dT.asSeconds());
+//           plat2.desenhar();
 
-          gc->executar();
-          ge->executar();
-          gg->mostrar();
-     }
-}
+//           gc->executar();
+//           ge->executar();
+//           gg->mostrar();
+//      }
+// }
 
 void testeFase()
 {
@@ -403,7 +403,7 @@ void testeFase()
      Gerenciadores::GerenciadorGrafico*  gg = Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico();
      Gerenciadores::GerenciadorEventos*  ge = Gerenciadores::GerenciadorEventos::getGerenciadorEventos();
      Gerenciadores::GerenciadorColisoes* gc = Gerenciadores::GerenciadorColisoes::getInstancia();
-     ge->setForma(NULL);
+     //ge->setForma(NULL);
 
      Ente::setGerenciadorGrafico();
      Forma::setGerenciadorGrafico();
@@ -506,21 +506,35 @@ void testeTexto()
      Gerenciadores::GerenciadorGrafico* pGG = Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico();
      Gerenciadores::GerenciadorEventos* pGE = Gerenciadores::GerenciadorEventos::getGerenciadorEventos();
      
+     ElementosGraficos::Texto::setGerenciadorGrafico();
+     //ElementosGraficos::Texto::setFonte();
+     
      cout << "Declaração de texto estático" << endl;
      
      ElementosGraficos::Texto titulo;
 
      cout << "Texto estático ok" << endl;
 
-     titulo.setInfo("GGG: GRANDE GUERRA GEOMÉTRICA");
-     titulo.setPosicao(pGG->getTamanhoJanela().x/2, pGG->getTamanhoJanela().y-50);
-     titulo.setTamanho(20);
-     titulo.setCor(branco);
+     titulo.setInfo("GGG: GRANDE GUERRA GEOMETRICA");
+     cout << "Informação configurada" << endl;
+     titulo.setTamanho(100);
      titulo.setAlinhamento(centro);
+     titulo.setPosicao(pGG->getCentroCamera().x, pGG->getCentroCamera().y);
+     
+     //titulo.setAlinhamento(centro);
+     
+     cout << "Posição configurada" << endl;
+     cout << "Tamanho configurado" << endl;
+     titulo.setCor(branco);
+     cout << "Cor configurada" << endl;
+     cout << "Alinhamento configurado" << endl;
 
      while(pGG->janelaAberta())
      {
           pGE->executar();
+
+          pGG->limpar();
+
 
           titulo.renderizar();
 
