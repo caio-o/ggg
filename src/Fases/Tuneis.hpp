@@ -2,10 +2,11 @@
 #define _TUNEIS_HPP
 
 #include "Fases/Fase.hpp"
+#include "Estado.hpp"
 
 namespace Fases
 {
-    class Tuneis : public Fase
+    class Tuneis : public Fase, public Estado
     {
     private:
         //Forma saida;
@@ -21,6 +22,12 @@ namespace Fases
         ~Tuneis();
         void executar(const float dT);
         const bool verificaVitoria();
+
+        /*ANA: Adição da declaração das funções virtuais puras pra poder compilar*/
+        void verificaTeclaPressionada(string tecla){}
+        void verificaTeclaSolta(string tecla){}
+
+        void desenhar(){}
 
     };
 }

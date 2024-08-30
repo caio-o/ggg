@@ -91,9 +91,17 @@ void Fases::Calabouco::executar(const float dT)
 {
     while (pGG->janelaAberta())
     {
+        if(pGC)
+            cout << "Tem pgc" << endl;
+        else
+            cout <<"não tem pgc" << endl;
+
         pGG->limpar();
+        cout << "Passou limpar" << endl;
         pGC->executar(); // Checar colisoes e gerar seus efeitos.
+        cout << "Passou gc" << endl;
         pGE->executar(); // Checar se a janela deve ser fechada.
+
 
         t0 = t1;
         t1 = pGG->getTempo();
@@ -102,6 +110,7 @@ void Fases::Calabouco::executar(const float dT)
         // Executar, mover e desenhar entidades.
         
         pGG->renderizar(&saida);
+        cout << "Passou corpo saida" << endl;
         colecao.percorrer(deltaT);
 
         if(verificaVitoria())
@@ -111,6 +120,7 @@ void Fases::Calabouco::executar(const float dT)
         else if(verificaGameOver())
         {
             pGG->renderizar(&efeitoGameOver);
+            cout << "Passou corpo gameover" << endl;
         }
 
         pGG->mostrar();
