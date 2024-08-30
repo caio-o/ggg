@@ -29,34 +29,34 @@ namespace Gerenciadores
          * Aqui podem ser instanciados todos os estados (com loop? Da pra usar o enum no loop?)
          */
 
-        //Aloca fase 1
-        Estado* pEstado = NULL;
+        // //Aloca fase 1
+        // Estado* pEstado = NULL;
 
-        pEstado = static_cast<Estado*>(new Fases::Calabouco());
+        // pEstado = static_cast<Estado*>(new Fases::Calabouco());
 
-        if(pEstado)
-        {
-            mapaEstados.insert(std::pair<idEstados, Estado*>(fase1, pEstado));
-            pEstado->setAtivo(false); //Para posterior desalocação
-        }
-        else
-            cout << "Erro em Gerenciadores::GerenciadorEstados::GerenciadorEstados()::pEstado: " << ERRO_ALOCACAO << endl;
-        pEstado = NULL;
+        // if(pEstado)
+        // {
+        //     mapaEstados.insert(std::pair<idEstados, Estado*>(fase1, pEstado));
+        //     pEstado->setAtivo(false); //Para posterior desalocação
+        // }
+        // else
+        //     cout << "Erro em Gerenciadores::GerenciadorEstados::GerenciadorEstados()::pEstado: " << ERRO_ALOCACAO << endl;
+        // pEstado = NULL;
 
-        //Aloca fase 2
-        pEstado = static_cast<Estado*>(new Fases::Tuneis());
+        // //Aloca fase 2
+        // pEstado = static_cast<Estado*>(new Fases::Tuneis());
 
-        if(pEstado)
-        {
-            mapaEstados.insert(std::pair<idEstados, Estado*>(fase2, pEstado));
-            pEstado->setAtivo(false); //Para posterior desalocação
-        }
-        else
-            cout << "Erro em Gerenciadores::GerenciadorEstados::GerenciadorEstados()::pEstado: " << ERRO_ALOCACAO << endl;
-        pEstado = NULL;
+        // if(pEstado)
+        // {
+        //     mapaEstados.insert(std::pair<idEstados, Estado*>(fase2, pEstado));
+        //     pEstado->setAtivo(false); //Para posterior desalocação
+        // }
+        // else
+        //     cout << "Erro em Gerenciadores::GerenciadorEstados::GerenciadorEstados()::pEstado: " << ERRO_ALOCACAO << endl;
+        // pEstado = NULL;
 
         //Aloca Menu Principal
-        pEstado = static_cast<Estado*>(new Menus::MenuPrincipal(menuPrincipal));
+        Estado* pEstado = static_cast<Estado*>(new Menus::MenuPrincipal(menuPrincipal));
 
         if(pEstado)
             mapaEstados.insert(std::pair<idEstados, Estado*>(menuPrincipal, pEstado));
@@ -111,59 +111,83 @@ namespace Gerenciadores
     {
         idEstadoAtual = id;
 
-        //Se o estado a ser executado é uma fase e está inativa
-        if((id == fase1 || id == fase2) && !getEstado(id)->getAtivo())
+        //Se o estado a ser executado é uma fase...
+        if(id == fase1 || id == fase2)
         {
-            //Desaloca a fase1 no mapa se houver
-            if(mapaEstados[fase1])
+            bool achouFase1 = false;
+            bool achouFase2 = false;
+            Estado* pEstado1 = NULL;
+            Estado* pEstado2 = NULL;
+
+            map<idEstados, Estado*>::iterator it = mapaEstados.begin();
+            
+            //Checa se já tem fases no mapa...
+            while(it!=mapaEstados.end() && (!achouFase1 || !achouFase2))
             {
-                delete mapaEstados[fase1];
-                mapaEstados[fase1] = NULL;
-                cout << "Desalocou fase1" << endl;
+                if(it->first == fase1)
+                {
+                    pEstado1 = it->second;
+                    achouFase1 = true;
+                }
+                else if(it->first == fase2)
+                {
+                    pEstado2 = it->second;
+                    achouFase2 = true;
+                }
+                
+                it++;
             }
 
-            //Desaloca a fase2 no mapa se houver
-            if(mapaEstados[fase1])
+            /* ---------- REMOÇÃO DE FASES DO MAPA ---------- */
+
+            //Se o mapa já tiver fase1 e for inativa...
+            if(achouFase1 && !pEstado1->getAtivo())
             {
-                delete mapaEstados[fase1];
-                mapaEstados[fase1] = NULL;
-                cout << "Desalocou fase2" << endl;
+                //...desaloca...
+                delete pEstado1;
+
+                pEstado1 = NULL;
             }
 
-            cout << "Chegou na alocação fase1" << endl;
-            //Se o estado for fase1...
-            if(id == fase1)
+            //Se o mapa já tiver fase2 e for inativa...
+            if(achouFase1 && !pEstado2->getAtivo())
             {
-                Estado* pEstado = NULL;
+                //...desaloca...
+                delete pEstado2;
 
-                //...aloca uma nova fase1...
-                pEstado = static_cast<Estado*>(new Fases::Calabouco());
+                pEstado2 = NULL;
+            }
+        
+            /* ---------- ALOCAÇÃO DE NOVA FASE ---------- */
+            
+            if(id == fase1 && pEstado1 == NULL)
+            {
+                pEstado1 = static_cast<Estado*>(new Fases::Calabouco());
 
-                //...e adiciona mapa de estados no id correspondente
-                if(pEstado)
-                    {mapaEstados[id] = pEstado; cout << "Inseriu no mapa de estados fase1" << endl;}
+                if(pEstado1)
+                {
+                    if(achouFase1)
+                        mapaEstados[fase1] = pEstado1;
+                    else
+                        mapaEstados.insert(std::pair<idEstados, Estado*>(fase1, pEstado1));
+                }
                 else
                     cout << "Erro em Gerenciadores::GerenciadorEstados::executarEstado()::pEstado: " << ERRO_ALOCACAO << endl;
             }
-            cout << "Chegou na alocação fase2" << endl;
-
-            //Se o estado for fase2...
-            if(id == fase2)
+            else if(id == fase2 && pEstado2 == NULL)
             {
-                Estado* pEstado = NULL;
+                pEstado2 = static_cast<Estado*>(new Fases::Tuneis());
 
-                //...aloca uma nova fase2...
-                pEstado = static_cast<Estado*>(new Fases::Tuneis());
-
-                //...e adiciona mapa de estados no id correspondente
-                if(pEstado)
-                    {mapaEstados[id] = pEstado; cout << "Inseriu no mapa de estados fase1" << endl;}
+                if(pEstado2)
+                {
+                    if(achouFase1)
+                        mapaEstados[fase2] = pEstado2;
+                    else
+                        mapaEstados.insert(std::pair<idEstados, Estado*>(fase2, pEstado2));
+                }
                 else
                     cout << "Erro em Gerenciadores::GerenciadorEstados::executarEstado()::pEstado: " << ERRO_ALOCACAO << endl;
             }
-
-            cout << "Saiu alocação fase2" << endl;
-
         }
         
         //if(pEstado)
