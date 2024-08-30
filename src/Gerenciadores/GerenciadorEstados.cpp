@@ -110,9 +110,17 @@ namespace Gerenciadores
     }
 
     //Retorna o id (tipo Estados::idEstados) do estado que está sendo executado atualmente.
-    idEstados GerenciadorEstados::getEstadoAtual() const
+    const idEstados GerenciadorEstados::getIdEstadoAtual() const
     {
         return idEstadoAtual;
+    }
+
+    Estado* GerenciadorEstados::getEstadoAtual()
+    {
+        if(mapaEstados[idEstadoAtual] == NULL)
+            cout << "Atenção em Gerenciadores::GerenciadorEstados::getEstadoAtual(): " << ERRO_RETURN_NULLPTR << endl;
+        
+        return mapaEstados[idEstadoAtual];
     }
 
     void GerenciadorEstados::setObservadores()
