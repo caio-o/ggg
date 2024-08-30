@@ -28,8 +28,8 @@ namespace Fases
 
     Fase::~Fase()
     {
-        /*if(pGC)
-            delete pGC;*/
+        if(pGC)
+            delete pGC;
     }
 
     void Fase::salvar() 

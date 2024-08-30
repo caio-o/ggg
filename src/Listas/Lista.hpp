@@ -105,6 +105,8 @@ namespace Listas
         Lista();
         ~Lista();
 
+        void destroiObjetos();
+
         bool  vazia       ( )   { return pPrimeiro == NULL; } // Ignorar o warning. NAO FAZER TYPECAST (bool)pPrimeiro 
 
         void  anulaPtrs   ( );                 // Anula pPrimeiro e pUltimo
@@ -291,6 +293,9 @@ Lista<TL>::Lista():
 template<class TL>
 Lista<TL>::~Lista()
 {
+    /*
+    cout << "DELETANDO LISTA!" << endl;
+
     Elemento* atual = pPrimeiro;
     Elemento* aux;
 
@@ -301,6 +306,27 @@ Lista<TL>::~Lista()
         
         delete aux; // se houver problema na delecao, ~Elemento() avisarah
     }
+
+    cout << "LISTA DELETADA!" << endl;*/
+}
+
+template<class TL>
+void Lista<TL>::destroiObjetos()
+{
+    cout << "DELETANDO OBJETOS DA LISTA!" << endl;
+
+    Elemento* atual = pPrimeiro;
+    Elemento* aux;
+
+    while(atual != NULL)
+    {
+        aux   = atual;
+        atual = atual->getProx();
+        
+        delete aux; // se houver problema na delecao, ~Elemento() avisarah
+    }
+
+    cout << "OBJETOS DA LISTA DELETADOS!" << endl;
 }
 
 template<class TL>
