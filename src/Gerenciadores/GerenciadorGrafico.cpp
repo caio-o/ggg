@@ -150,8 +150,9 @@ namespace Gerenciadores
     //Renderiza texto na janela
     void GerenciadorGrafico::renderizar(sf::Text* texto)
     {
+        cout << "GerenciadorGrafico::renderizar(texto)" << endl;
         if(pJanela && texto)
-            pJanela->draw(*texto);
+            {pJanela->draw(*texto); cout << "Entrou no if" << endl;}
     }
     
     //Mostra na janela todos os objetos renderizados
@@ -222,19 +223,9 @@ namespace Gerenciadores
      * Obs.: analisar se é a posição mais conveniente para nosso interesse durante
      * o desenvolvimento.
      * */
-    const Coordenadas::Vetor2f GerenciadorGrafico::getPosicaoInicial() const
+    const Coordenadas::Vetor2f GerenciadorGrafico::getCentroCamera() const
     {
-        if(pJanela)
-        {
-            Coordenadas::Vetor2f posicao((float)pJanela->getPosition().x,(float)pJanela->getPosition().y);
-            
-            posicao -= Coordenadas::Vetor2f((float)pJanela->getSize().x/2.0, (float)pJanela->getSize().y/2.0);
-
-            return posicao;
-        }
-
-        cout << "Erro de gerenciamento gráfico: janela de visualizacao nao alocada!" << endl;
-        exit(1);
+        return Coordenadas::Vetor2f(camera.getCenter().x, camera.getCenter().y);
     }
     
     /* Atualiza a posição do centro da camera para o centro (da janela).

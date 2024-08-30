@@ -49,7 +49,7 @@ namespace Gerenciadores
             void fecharJanela();
             void setTamanhoJanela(const Coordenadas::Vetor2f tam);
             const Coordenadas::Vetor2f getTamanhoJanela() const;
-            const Coordenadas::Vetor2f getPosicaoInicial() const;
+            const Coordenadas::Vetor2f getCentroCamera() const;
             void centralizarCamera();
             void setTamanhoCamera(Coordenadas::Vetor2f tam);
             sf::View getCamera() const;
