@@ -9,12 +9,20 @@ Inimigos::Estrela::Estrela():
     nivelMaldade(5),
     nCapangas(20)
 {
+    setMaldade(153.f);
     setTextura("../img/estrela_raivosa.png", true);
     setTamanho(150.f, 150.f);
 }
 
 Inimigos::Estrela::~Estrela()
 {
+}
+
+void Inimigos::Estrela::arrependerse()
+{
+    arrependimento = true;
+    nivelMaldade = -15;
+    setTextura("../img/estrela_triste.png", false);
 }
 
 const bool Inimigos::Estrela::chamaCapangas()
@@ -46,10 +54,11 @@ void Inimigos::Estrela::atacar()
 
 void Inimigos::Estrela::executar(const float deltaT)
 {
-    //arrependimento = nCapangas <= 0;
+    arrependimento = nCapangas <= 0;
 
     if(arrependimento)
     {
+        nivelMaldade = -15;
         // MOSTRAR TEXTO NA TELA, DIZENDO PARA JOGADORES IREM EMBORA.
     }
     else if (! pFase->verificaGameOver() && pGG->getTempo() > momentoUltimaChamada+COOLDOWN_ESTRELA)

@@ -11,6 +11,7 @@ namespace Entidades
     class Jogador : public Personagem   
     {
     private:
+        int pontos;
         bool ehJogador1;
         bool noChao;
         float agilidade; // velocidade do CAMINHAR do jogador (no eixo X)
@@ -28,6 +29,10 @@ namespace Entidades
         void        setChao      (const bool _noChao)     { noChao   = _noChao;   }
         void        setLentidao  (const float _lentidao)  { lentidao = (_lentidao > 0.0f ? _lentidao : 1.0f); }
         void        pular();
+        
+        void        operator+=  (int num)   { pontos += num; }
+        void        operator-=  (int num)   { pontos -= num; }
+        const int   getPontos   () const    { return pontos; }
 
         void danificar(Personagem *pPers);
         void salvar();

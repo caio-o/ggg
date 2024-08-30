@@ -17,6 +17,7 @@ namespace Inimigos
     Triangulo::Triangulo(Especie _especie, int maxVida, int dano):
     Inimigo(_especie, maxVida)
     {
+        setMaldade(20.f);
         forma.setTextura(CAMINHO_TEXTURA, true);
         setTamanho(65.f, 65.f);
     }

@@ -1,4 +1,5 @@
 #include "Entidades/Personagens/Jogador.hpp"
+#include "Entidades/Personagens/Inimigos/Inimigo.hpp"
 #include <SFML/System.hpp>
 using sf::Keyboard;
 using namespace ElementosGraficos;
@@ -8,6 +9,7 @@ Jogador::Jogador(const int _maxVida, const bool j1):
     Personagem (Especie::jogador, _maxVida),
     ehJogador1 (j1),
     noChao     (false),
+    pontos     (000000),
     agilidade  (300.0f),
     lentidao   (000.0f),
     velPulo    (-700.f)
@@ -85,6 +87,8 @@ void Jogador::executar(const float dT)
 
 void Jogador::reagirAhColisao(Entidade* pE)
 {
+    static Inimigos::Inimigo* pIni = NULL;
+
     switch(pE->getEspecie())
     {
     case Especie::plataforma:
@@ -92,9 +96,22 @@ void Jogador::reagirAhColisao(Entidade* pE)
         break;
 
     case Especie::inimigo:
+        pIni = static_cast<Inimigos::Inimigo*> (pE);
+
         if(pE->getY() - pE->getTam().y/2.F > getY())
         {
-            danificar(static_cast<Personagem*>(pE));//->receberDano(DANO_PISADA);
+            if(pIni->getVivo())
+            {
+                danificar(static_cast<Personagem*>(pIni));
+                (*this) += DANO_PISADA*3;
+
+                if(! pIni->getVivo()) // se este ataque derrotou o inimigo, receber ainda mais pontos.
+                    (*this) += pIni->getMaxVida() * pIni->getMaldade(); // quanto mais malvado, mais pontos vale. maldade negativa retira os pontos do jogador (por sua crueldade).
+            }
+            else
+            {
+                
+            }
             aceleraY(-200.f);
         }
         break;

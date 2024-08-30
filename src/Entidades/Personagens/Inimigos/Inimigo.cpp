@@ -29,6 +29,16 @@ namespace Inimigos
         vivo = false;
     }
 
+    void Inimigo::setMaldade(const int mal)
+    {
+        nivelMaldade = mal;
+    }
+
+    const int   Inimigo::getMaldade() const
+    {
+        return nivelMaldade;
+    }
+
     void Inimigo::setCooldown(const float c)
     {
         cooldown = c;

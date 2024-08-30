@@ -20,6 +20,7 @@ namespace Inimigos
     atacando(false),
     dano(1.0)
     {
+        setMaldade(50.f);
         forma.setTextura(TEXTURA, true);
         setTamanho(70.f, 70.f);
     }

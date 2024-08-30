@@ -13,6 +13,7 @@ namespace Inimigos
         float momentoUltimaChamada;
         int   nivelMaldade;
         int   nCapangas;
+        void arrependerse();
 
     public:
         Estrela();

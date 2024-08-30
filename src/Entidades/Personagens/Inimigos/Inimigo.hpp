@@ -12,6 +12,7 @@ namespace Inimigos
             float cooldown;
             static Jogador* pJogador1;
             static Jogador* pJogador2;
+            int nivelMaldade;
 
         public:
             Inimigo(Especie _especie = inimigo, int const maxVida = 10);
@@ -24,8 +25,11 @@ namespace Inimigos
 
             virtual void reagirAhColisao(Entidade* pE) = 0;
 
-            void setCooldown(const float c);
+            void        setCooldown(const float c);
             const float getCooldown() const;
+
+            void        setMaldade(const int mal);
+            const int   getMaldade() const;
 
             const float getTempoUltimoAtaque() const;
 
