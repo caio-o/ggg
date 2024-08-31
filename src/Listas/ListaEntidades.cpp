@@ -2,6 +2,8 @@
 #include <SFML/System.hpp>
 #include "Gerenciadores/GerenciadorColisoes.hpp"
 #include "ListaEntidades.hpp"
+#include <iostream>
+#include <fstream>
 
 using namespace Listas;
 
@@ -45,10 +47,13 @@ void ListaEntidades::salvar(ofstream &ofs)
         }
         else
         {
-            cout << "Em funcao ListaEntidades::percorrer: " << ERRO_NULLPTR_LISTA << endl;
+            cout << "Em funcao ListaEntidades::salvar: " << ERRO_NULLPTR_LISTA << endl;
             enterFechar(); 
         }
+
+        (*this)++;
     }
+    ofs << "{\"fim\":1}" << endl;
 }
 
 void ListaEntidades::percorrer(float deltaT)

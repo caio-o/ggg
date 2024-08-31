@@ -27,7 +27,7 @@ public:
     virtual void desenhar ();
     
     //Forma*       getForma   () const  { return pForma; }
-    const int    getId      () const  { return id;      }
+    const int      getId      () const  { return id;      }
 
     // Permite-se pForma NULL em entes invisiveis. 
     // TODO: MUDAR ISSO

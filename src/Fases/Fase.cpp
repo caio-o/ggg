@@ -37,18 +37,11 @@ namespace Fases
 
     void Fase::salvar() 
     {
-        ofstream ofs("../dados/save.dat");
+        ofstream ofs("../dados/save.json");
 
-        if(pJog)
-        {
-            pJog->salvar(ofs);
-        }
-        if(pJog2)
-        {
-            pJog2->salvar(ofs);
-        }
+        colecao.salvar(ofs); // delegar a tarefa para a ListaEntidades, especificando o arquivo correspondente.
 
-        // em breve a tarefa serah delegada para a LISTA ENTIDADES
+        ofs.close();
     }
 
     void Fase::criarProjetil(const float x, const float y)
