@@ -15,7 +15,7 @@ using namespace Entidades::Obstaculos;
 
 namespace Fases
 {
-    class Calabouco : public Estado, public Fase
+    class Calabouco: public Fase
     {
     private:
         int maxInimigos;
@@ -32,8 +32,6 @@ namespace Fases
         void executar(const float dT);
         void desenhar(){};
 
-        void verificaTeclaPressionada(string tecla);
-        void verificaTeclaSolta(string tecla);
     };
 }
 

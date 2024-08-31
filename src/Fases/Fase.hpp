@@ -6,6 +6,7 @@
 #include "Gerenciadores/GerenciadorGrafico.hpp"
 #include "Gerenciadores/GerenciadorEventos.hpp"
 #include "Entidades/Personagens/Jogador.hpp"
+#include "Estado.hpp"
 
 #define GRAVIDADE      1000.0F
 #define LARGURA_FASE   2580.0F
@@ -17,7 +18,7 @@
 
 namespace Fases
 {
-    class Fase : public Ente
+    class Fase : public Ente, public Estado
     {
     protected:
         Forma saida;
@@ -54,7 +55,8 @@ namespace Fases
         void          criarTriangulo           (float posX, float posY);
         void          criarQuadrado            (float posX, float posY);
 
-
+        void verificaTeclaPressionada(string tecla);
+        void verificaTeclaSolta(string tecla);
     };
 }
 

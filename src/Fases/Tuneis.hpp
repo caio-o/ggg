@@ -6,7 +6,7 @@
 
 namespace Fases
 {
-    class Tuneis : public Fase, public Estado
+    class Tuneis : public Fase
     {
     private:
         //Forma saida;
@@ -22,10 +22,6 @@ namespace Fases
         ~Tuneis();
         void executar(const float dT);
         const bool verificaVitoria();
-
-        /*ANA: Adição da declaração das funções virtuais puras pra poder compilar*/
-        void verificaTeclaPressionada(string tecla);
-        void verificaTeclaSolta(string tecla);
 
         void desenhar(){}
 

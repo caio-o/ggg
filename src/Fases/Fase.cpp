@@ -8,6 +8,7 @@
 namespace Fases
 {
     Fase::Fase():
+    Estado(),
     Ente(),
     t0(0.0f),
     t1(0.0f),
@@ -110,5 +111,28 @@ namespace Fases
         if       (pJog && pJog2)  { return gameOver = (bool) !( pJog->getVivo() || pJog2->getVivo() ); }
         else if  (pJog         )  { return gameOver = (bool) !( pJog->getVivo() );                     }
         else                      { return false;                                                      }
+    }
+
+    void Fase::verificaTeclaPressionada(string tecla)
+    {
+        if(pJog)
+            pJog->verificaTeclaPressionada(tecla);
+        
+        if(pJog2)
+            pJog2->verificaTeclaPressionada(tecla);
+    }
+
+    void Fase::verificaTeclaSolta(string tecla)
+    {
+        if(tecla == "Escape")
+            { cout << "JOGO PAUSADO" << endl; pGEs->executarEstado(menuPause);}
+        else
+        {
+            if(pJog)
+                pJog->verificaTeclaSolta(tecla);
+        
+            if(pJog2)
+                pJog2->verificaTeclaSolta(tecla);
+        }
     }
 } // namespace Fases

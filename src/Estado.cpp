@@ -11,19 +11,19 @@
     Gerenciadores::GerenciadorEstados* Estado::pGEs(NULL);
 
     Estado::Estado(idEstados id):
-    id(id)
+    idEstado(id)
     {
 
     }
 
     Estado::~Estado()
     {
-        id = desconhecido;
+        idEstado = desconhecido;
     }
 
-    const idEstados Estado::getId() const
+    const idEstados Estado::getIdEstado() const
     {
-        return id;
+        return idEstado;
     }
 
     void Estado::setAtivo(const bool a)

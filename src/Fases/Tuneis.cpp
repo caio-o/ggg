@@ -68,12 +68,13 @@ void Fases::Tuneis::criarInimigos()
 }
 
 Fases::Tuneis::Tuneis():
-    Estado(idEstados::fase2),
     Fase(),
     maxInimigos(9),
     maxChefao(3)
     //saida(Vetor2f(X_SAIDA+200.F, Y_SAIDA-250.F), Vetor2f(400.f, 300.f), "", 1.f)
 {
+    idEstado = fase2;
+    
     Ente::setGerenciadorGrafico();
     saida.getpCorpo()->setFillColor(sf::Color::Yellow);
     pGG->setTamanhoCamera(Vetor2f(LARGURA_FASE, ALTURA_FASE));
@@ -160,22 +161,4 @@ const bool Fases::Tuneis::verificaVitoria()
     {
         return false;
     }
-}
-
-void Fases::Tuneis::verificaTeclaPressionada(string tecla)
-{
-    if(pJog)
-        pJog->verificaTeclaPressionada(tecla);
-    
-    if(pJog2)
-        pJog2->verificaTeclaPressionada(tecla);
-}
-
-void Fases::Tuneis::verificaTeclaSolta(string tecla)
-{
-    if(pJog)
-        pJog->verificaTeclaSolta(tecla);
-    
-    if(pJog2)
-        pJog2->verificaTeclaSolta(tecla);
 }

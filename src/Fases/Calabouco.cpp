@@ -132,6 +132,8 @@ Fases::Calabouco::Calabouco():
     Fase(),
     maxInimigos(100)
 {
+    idEstado = fase1;
+    
     saida.atualizar(Vetor2f(X_SAIDA_CA, Y_SAIDA_CA));
     pGG->setTamanhoCamera(Vetor2f(LARGURA_FASE, ALTURA_FASE));
     pGG->centralizarCamera();
@@ -160,22 +162,4 @@ Fases::Calabouco::~Calabouco()
 { 
     if(pGC)
         delete pGC;
-}
-
-void Calabouco::verificaTeclaPressionada(string tecla)
-{
-    if(pJog)
-        pJog->verificaTeclaPressionada(tecla);
-    
-    if(pJog2)
-        pJog2->verificaTeclaPressionada(tecla);
-}
-
-void Calabouco::verificaTeclaSolta(string tecla)
-{
-    if(pJog)
-        pJog->verificaTeclaSolta(tecla);
-    
-    if(pJog2)
-        pJog2->verificaTeclaSolta(tecla);
 }

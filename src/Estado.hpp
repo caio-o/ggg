@@ -30,7 +30,7 @@ namespace Gerenciadores { class GerenciadorEstados; } //Include recursivo
     class Estado
     {
         protected:
-            idEstados id;
+            idEstados idEstado;
             bool ativo;
             static Gerenciadores::GerenciadorEstados* pGEs;
 
@@ -44,7 +44,7 @@ namespace Gerenciadores { class GerenciadorEstados; } //Include recursivo
             virtual void verificaTeclaPressionada(string tecla){};
             virtual void verificaTeclaSolta(string tecla){};
 
-            const idEstados getId() const;
+            const idEstados getIdEstado() const;
 
             void setAtivo(const bool a);
             const bool getAtivo();
