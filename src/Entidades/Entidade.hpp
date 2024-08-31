@@ -75,6 +75,7 @@ namespace Entidades
         void aceleraX  (const float _x) { vel.x += _x; }
         void aceleraY  (const float _y) { vel.y += _y; }
         void acelera   (const float _x, const float _y) { aceleraX(_x); aceleraY(_y); }
+        virtual void salvar(ofstream &ofs) = 0;
     };
 } 
 

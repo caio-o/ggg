@@ -27,10 +27,7 @@ namespace Inimigos
         cooldown = -1.0;
     }
 
-    void Triangulo::salvar()
-    {
-
-    }
+    
 
     //Executa o comportamento do triângulo (não se movimenta, apenas lança projéteis conforme seu
     //cooldown)

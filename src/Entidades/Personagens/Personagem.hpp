@@ -22,7 +22,7 @@ public:
     virtual ~Personagem();
 
     //ADIÇÃO ana-molinos
-    virtual void salvar() = 0;
+    virtual void salvar(ofstream &ofs) = 0;
     virtual void executar (const float dT) = 0;
     virtual void danificar(Personagem *pPers) = 0;
     virtual void atacar() = 0;

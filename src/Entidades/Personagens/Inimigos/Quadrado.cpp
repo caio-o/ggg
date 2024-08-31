@@ -37,7 +37,7 @@ namespace Inimigos
         cooldown = -1; 
     }
 
-    void Quadrado::salvar()
+    void Quadrado::salvar(ofstream &ofs)
     {
         
     }

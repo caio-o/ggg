@@ -34,6 +34,8 @@ namespace Entidades::Obstaculos
 
         virtual void obstacular(Jogador* pJog) 
         { }
+
+        void salvar(std::ofstream &os) {}
     };
 }
 

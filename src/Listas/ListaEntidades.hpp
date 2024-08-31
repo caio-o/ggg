@@ -45,6 +45,8 @@ namespace Listas
 
         void incluir(Entidade* pE);
         void remover(Entidade* pE) { LE.removeElemento( LE.buscaElemento(pE) ); }
+
+        void salvar(ofstream &ofs);
     };
 }
 
