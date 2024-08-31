@@ -4,6 +4,8 @@
 #include "Entidades/Personagens/Inimigos/Quadrado.hpp"
 #include "Entidades/Personagens/Inimigos/Triangulo.hpp"
 #include "Entidades/Projetil.hpp"
+#include <iostream>
+#include <fstream>
 
 namespace Fases
 {
@@ -35,7 +37,20 @@ namespace Fases
     }
 
     void Fase::salvar() 
-    { }
+    {
+        ofstream ofs("../dados/save.dat");
+
+        if(pJog)
+        {
+            pJog->salvar(ofs);
+        }
+        if(pJog2)
+        {
+            pJog2->salvar(ofs);
+        }
+
+        // em breve a tarefa serah delegada para a LISTA ENTIDADES
+    }
 
     void Fase::criarProjetil(const float x, const float y)
     {
@@ -116,11 +131,11 @@ namespace Fases
 
     void Fase::verificaTeclaPressionada(string tecla)
     {
-        if(pJog)
+        /*if(pJog)
             pJog->verificaTeclaPressionada(tecla);
         
         if(pJog2)
-            pJog2->verificaTeclaPressionada(tecla);
+            pJog2->verificaTeclaPressionada(tecla);*/
     }
 
     void Fase::verificaTeclaSolta(string tecla)

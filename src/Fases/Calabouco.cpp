@@ -91,8 +91,15 @@ void Fases::Calabouco::executar(const float dT)
 {
     while (pGG->janelaAberta())
     {
+        /*if(pGC)
+            cout << "Tem pgc" << endl;
+        else
+            cout <<"não tem pgc" << endl;*/
+
         pGG->limpar();
+        //cout << "Passou limpar" << endl;
         pGC->executar(); // Checar colisoes e gerar seus efeitos.
+        //cout << "Passou gc" << endl;
         pGE->executar(); // Checar se a janela deve ser fechada.
 
 
@@ -103,6 +110,7 @@ void Fases::Calabouco::executar(const float dT)
         // Executar, mover e desenhar entidades.
         
         pGG->renderizar(&saida);
+        //cout << "Passou corpo saida" << endl;
         colecao.percorrer(deltaT);
 
 
@@ -138,12 +146,8 @@ Fases::Calabouco::Calabouco():
     pGG->setTamanhoCamera(Vetor2f(LARGURA_FASE, ALTURA_FASE));
     pGG->centralizarCamera();
 
-    //cout << "Arrumou a camera" << endl;
-
-    pJog = new Jogador(15.f, true);
-    pJog2 = new Jogador(15.f, false);
-
-    //cout <<"Instanciou jogadores" << endl;
+    pJog = new Jogador(50, true);
+    pJog2 = new Jogador(50, false);
     
     pJog->setPos(190.f, CHAO-100.f);
     pJog2->setPos(170.f, CHAO-100.f);
@@ -155,7 +159,7 @@ Fases::Calabouco::Calabouco():
     //cout <<" Inseriu no pgc" << endl;
     colecao.incluir(static_cast<Entidade*>(pJog));
     colecao.incluir(static_cast<Entidade*>(pJog2));
-
+    
     colecao.setGravidade(GRAVIDADE);
     
     criarBordas();
@@ -164,6 +168,8 @@ Fases::Calabouco::Calabouco():
     criarInimigos();
 
     colecao.irAoInicio();
+
+    salvar();
 }
 
 Fases::Calabouco::~Calabouco()
