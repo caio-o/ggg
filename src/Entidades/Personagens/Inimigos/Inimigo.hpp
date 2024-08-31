@@ -18,7 +18,7 @@ namespace Inimigos
             Inimigo(Especie _especie = inimigo, int const maxVida = 10);
             virtual ~Inimigo();
 
-            virtual void salvar() = 0;
+            virtual void salvar(ofstream &ofs) = 0;
             virtual void executar(const float dT) = 0;
             virtual void atacar() = 0;
             virtual void danificar(Personagem *pPers) = 0;

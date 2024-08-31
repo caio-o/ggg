@@ -2,6 +2,7 @@
 #define _JOGADOR_HPP
 
 #include "Personagem.hpp"
+#include "json.hpp"
 #include "Ente.hpp"
 #include <SFML/Graphics.hpp>
 using namespace Entidades;
@@ -35,7 +36,8 @@ namespace Entidades
         const int   getPontos   () const    { return pontos; }
 
         void danificar(Personagem *pPers);
-        void salvar();
+        void carregar(std::ifstream &is);
+        void salvar(std::ofstream &os);
         void atacar();
         void executar(const float dT);
         void reagirAhColisao(Entidade* pE);

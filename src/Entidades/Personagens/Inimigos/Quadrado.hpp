@@ -16,7 +16,7 @@ namespace Inimigos
             Quadrado(Especie _especie = inimigo, int maxVida = 10);
             ~Quadrado();
             
-            void salvar();
+            void salvar(ofstream &ofs);
             void executar(const float dT);
             void atacar();
             void vira();

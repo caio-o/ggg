@@ -1,9 +1,14 @@
 #include "Entidades/Personagens/Jogador.hpp"
 #include "Entidades/Personagens/Inimigos/Inimigo.hpp"
 #include <SFML/System.hpp>
+#include "json.hpp"
+#include <iostream>
+#include <fstream>
 using sf::Keyboard;
 using namespace ElementosGraficos;
 #define DANO_PISADA 5
+
+//using json = nlohmann::json;
 
 Jogador::Jogador(const int _maxVida, const bool j1):
     Personagem (Especie::jogador, _maxVida),
@@ -36,8 +41,36 @@ void Jogador::pular()
     }
 }
 
-void Jogador::salvar()
-{ }
+void Jogador::salvar(ofstream &os)
+{
+    nlohmann::ordered_json j;
+    j ["especie"]    = getEspecie();
+    j ["pos"]        = { {"x", getX()    }, {"y", getY()    } };
+    j ["tam"]        = { {"x", getTam().x}, {"y", getTam().y} };
+    j ["vida"]       = getVida();
+    j ["ehJogador1"] = ehJogador1;
+
+    // o output eh o que se espera no arquivo final
+    os << j << ",\n";
+    cout << j << ",\n";
+    cout << "salvamento concluido!" << endl;
+}
+
+void Jogador::carregar(ifstream &is)
+{
+    nlohmann::ordered_json j;
+    string str;
+    ehJogador1 = j["ehJogador1"];
+
+    if(ehJogador1) setTextura("../img/emoji_com_faca.png", true);
+    else           setTextura("../img/emoji_sorrindo.png", true);
+
+    setPos       (j["pos"]["x"], j["pos"]["y"]);
+    setTamanho   (j["tam"]["x"], j["tam"]["y"]);
+    setVida      (j["vida"]);
+
+    checarVida();
+}
 
 void Jogador::atacar()
 { }

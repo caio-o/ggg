@@ -23,6 +23,7 @@ namespace Entidades
             Projetil(const int _dano = 2);
             ~Projetil();
 
+            void salvar(std::ofstream &os) {}
             void reagirAhColisao(Entidade* pE);
             void executar(const float dT);
 
@@ -32,7 +33,6 @@ namespace Entidades
             //A principio o atributo perseguindo não é utilizado, remover métodos posteriormente
             //void setPerseguindo(const bool p);
             const bool getPerseguindoJogador1() const;
-
             static void setpJogador1(Jogador* pJ);
             static void setpJogador2(Jogador* pJ);
     };

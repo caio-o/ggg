@@ -5,26 +5,27 @@
 
 namespace Entidades
 {
-class Jogador;
+    class Jogador;
 
-namespace Obstaculos
-{
-    class Obstaculo : public Entidade
+    namespace Obstaculos
     {
-    private:
-        const bool permeavel; // A ser definida na construtora de cada obstaculo.
-    
-    public:
-        Obstaculo(Especie _especie = indefinido, const bool _permeavel = false);
+        class Obstaculo : public Entidade
+        {
+        private:
+            const bool permeavel; // A ser definida na construtora de cada obstaculo.
 
-        virtual ~Obstaculo(){ }
+        public:
+            Obstaculo(Especie _especie = indefinido, const bool _permeavel = false);
 
-        virtual void obstacular (Jogador* pJ) = 0;
-        virtual void executar (const float dT) = 0;
-        virtual void reagirAhColisao(Entidade *pE);
-        const bool getPermeavel() const { return permeavel; }
-    };
-}
+            virtual ~Obstaculo(){ }
+
+            virtual void salvar(std::ofstream &os) = 0;
+            virtual void obstacular (Jogador* pJ) = 0;
+            virtual void executar (const float dT) = 0;
+            virtual void reagirAhColisao(Entidade *pE);
+            const bool getPermeavel() const { return permeavel; }
+        };
+    }
 }
 
 #endif

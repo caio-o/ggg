@@ -22,7 +22,7 @@ namespace Inimigos
             ~Triangulo();
 
             virtual void danificar(Personagem *pPers) {  };
-            void salvar();
+            virtual void salvar(ofstream &ofs) {};
             void executar(const float dT);
             void atacar();
             void reagirAhColisao(Entidade* pE);
