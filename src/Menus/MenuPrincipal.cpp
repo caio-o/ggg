@@ -95,7 +95,7 @@ namespace Menus
         else
             cout << "Erro em Menus::MenuPrincipal::MenuPrincipal()::pOpcao: " << ERRO_ALOCACAO << endl;
 
-         //Op4:
+         //Op7:
         pOpcao = NULL;
         pOpcao = new ElementosGraficos::Texto("7. Ver ranking");
 
@@ -104,7 +104,7 @@ namespace Menus
         else
             cout << "Erro em Menus::MenuPrincipal::MenuPrincipal()::pOpcao: " << ERRO_ALOCACAO << endl;
 
-         //Op5:
+         //Op8:
         pOpcao = NULL;
         pOpcao = new ElementosGraficos::Texto("8. Encerrar jogo");
 
@@ -119,7 +119,7 @@ namespace Menus
             if(opcoes[i])
             {
                 opcoes[i]->setAlinhamento(esquerda);
-                opcoes[i]->setPosicao(pGG->getCentroCamera().x, 300.0 + (100.0*(i+1)));
+                opcoes[i]->setPosicao(pGG->getCentroCamera().x, 250.0 + (100.0*(i+1)));
                 opcoes[i]->setTamanho(50);
                 opcoes[i]->setCor(branco);
             }
@@ -142,6 +142,16 @@ namespace Menus
     //Executa o loop para renderizar e mostrar os elementos do menu principal na tela.
     void MenuPrincipal::executar(const float dT)
     {
+        //Deixa as opções brancas novamente
+        for(int i=0; i<(int)opcoes.size(); i++)
+        {
+            if(opcoes[i])
+                opcoes[i]->setCor(branco);
+            else
+                cout << "Erro em Menus::MenuPrincipal::executar()::Texto*: " << ERRO_NULLPTR << endl;
+        }
+        
+        //Executa o loop
         if(pGG)
         {
             while (pGG->janelaAberta())

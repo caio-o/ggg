@@ -138,13 +138,21 @@ Fases::Calabouco::Calabouco():
     pGG->setTamanhoCamera(Vetor2f(LARGURA_FASE, ALTURA_FASE));
     pGG->centralizarCamera();
 
+    //cout << "Arrumou a camera" << endl;
+
     pJog = new Jogador(15.f, true);
     pJog2 = new Jogador(15.f, false);
+
+    //cout <<"Instanciou jogadores" << endl;
     
     pJog->setPos(190.f, CHAO-100.f);
     pJog2->setPos(170.f, CHAO-100.f);
+
+    //cout << "Crashou no pgc" << endl;
     pGC->inserirJogador(pJog);
     pGC->inserirJogador(pJog2);
+
+    //cout <<" Inseriu no pgc" << endl;
     colecao.incluir(static_cast<Entidade*>(pJog));
     colecao.incluir(static_cast<Entidade*>(pJog2));
 
@@ -162,4 +170,6 @@ Fases::Calabouco::~Calabouco()
 { 
     if(pGC)
         delete pGC;
+
+    pGC = NULL;
 }

@@ -12,6 +12,7 @@
 #include "Fases/Tuneis.hpp"
 
 #include "Menus/MenuPrincipal.hpp"
+#include "Menus/MenuPause.hpp"
 
 #include <iostream>
 using namespace std;
@@ -60,6 +61,16 @@ namespace Gerenciadores
 
         if(pEstado)
             mapaEstados.insert(std::pair<idEstados, Estado*>(menuPrincipal, pEstado));
+        else
+            cout << "Erro em Gerenciadores::GerenciadorEstados::GerenciadorEstados()pEstado: " << ERRO_ALOCACAO << endl;
+
+        pEstado = NULL;
+
+        //Aloca Menu Principal
+        pEstado = static_cast<Estado*>(new Menus::MenuPause(menuPause));
+
+        if(pEstado)
+            mapaEstados.insert(std::pair<idEstados, Estado*>(menuPause, pEstado));
         else
             cout << "Erro em Gerenciadores::GerenciadorEstados::GerenciadorEstados()pEstado: " << ERRO_ALOCACAO << endl;
 
@@ -126,12 +137,14 @@ namespace Gerenciadores
             {
                 if(it->first == fase1)
                 {
-                    pEstado1 = it->second;
+                    pEstado1 = it->second; //armazena o ponteiro da fase1
+                    it->second = NULL; //deixa a chave nula no mapa
                     achouFase1 = true;
                 }
                 else if(it->first == fase2)
                 {
                     pEstado2 = it->second;
+                    it->second = NULL;
                     achouFase2 = true;
                 }
                 
@@ -141,28 +154,35 @@ namespace Gerenciadores
             /* ---------- REMOÇÃO DE FASES DO MAPA ---------- */
 
             //Se o mapa já tiver fase1 e for inativa...
-            if(achouFase1 && !pEstado1->getAtivo())
+            if(achouFase1 && pEstado1!=NULL && !pEstado1->getAtivo())
             {
+                cout << "Removendo fase1" <<endl;
                 //...desaloca...
                 delete pEstado1;
 
                 pEstado1 = NULL;
+
+                cout << "Removeu fase1" << endl;
             }
 
             //Se o mapa já tiver fase2 e for inativa...
-            if(achouFase1 && !pEstado2->getAtivo())
+            if(achouFase2 && pEstado2!=NULL && !pEstado2->getAtivo())
             {
+                cout << "Removendo fase2" << endl;
                 //...desaloca...
                 delete pEstado2;
 
                 pEstado2 = NULL;
+                cout << "Removeu fase2" << endl;
             }
         
             /* ---------- ALOCAÇÃO DE NOVA FASE ---------- */
             
             if(id == fase1 && pEstado1 == NULL)
             {
+                cout << "Alocando fase 1" << endl;
                 pEstado1 = static_cast<Estado*>(new Fases::Calabouco());
+                cout << "Alocou fase1" << endl;
 
                 if(pEstado1)
                 {
@@ -176,7 +196,9 @@ namespace Gerenciadores
             }
             else if(id == fase2 && pEstado2 == NULL)
             {
+                cout << "Alocando fase2" << endl;
                 pEstado2 = static_cast<Estado*>(new Fases::Tuneis());
+                cout << "Alocou fase2" << endl;
 
                 if(pEstado2)
                 {
@@ -193,7 +215,7 @@ namespace Gerenciadores
         //if(pEstado)
         if(mapaEstados[idEstadoAtual])
             //pEstado->executar();
-            {cout << "Executou estado" << endl; mapaEstados[idEstadoAtual]->executar(0.0); }
+            {/*cout << "Executou estado" << id << endl*/; mapaEstados[idEstadoAtual]->executar(0.0); }
         else
             cout << "Erro em Gerenciadores::GerenciadorEstados::executarEstado()::pEstado: " << ERRO_NULLPTR << endl;
 

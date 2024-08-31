@@ -7,6 +7,8 @@
 
 namespace Fases
 {
+    Gerenciadores::GerenciadorColisoes* Fase::pGC(NULL);
+    
     Fase::Fase():
     Estado(),
     Ente(),
@@ -16,15 +18,14 @@ namespace Fases
     colecao(),
     pJog(NULL),
     pJog2(NULL),
-    pGC (Gerenciadores::GerenciadorColisoes::getInstancia()),
-    pGG (Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico()),
-    pGE (Gerenciadores::GerenciadorEventos::getGerenciadorEventos()),
     gameOver(false),
     saida(Vetor2f(CANTO_DIREITO-350.0F, TETO-50.0F), Vetor2f(400.f, 400.f), "../img/saida_luz.png", 1.f),
     efeitoGameOver(Vetor2f (1290, 720.f), Vetor2f(2580.f, 1440.f), "../img/game_over.png", 1.f)
     {
         t0 = pGG->getTempo();
         t1 = pGG->getTempo();
+
+        setGerenciadorColisoes();
     }
 
     Fase::~Fase()
@@ -126,13 +127,10 @@ namespace Fases
     {
         if(tecla == "Escape")
             { cout << "JOGO PAUSADO" << endl; pGEs->executarEstado(menuPause);}
-        else
-        {
-            if(pJog)
-                pJog->verificaTeclaSolta(tecla);
-        
-            if(pJog2)
-                pJog2->verificaTeclaSolta(tecla);
-        }
+    }
+
+    void Fase::setGerenciadorColisoes()
+    {
+        pGC = Gerenciadores::GerenciadorColisoes::getInstancia();
     }
 } // namespace Fases

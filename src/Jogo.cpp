@@ -2,7 +2,6 @@
 #include "Jogo.hpp"
 #include "Ente.hpp"
 #include "Fases/Fase.hpp"
-#include "Fases/Tuneis.hpp"
 #include <iostream>
 #include <stdlib.h>
 #include <time.h>
@@ -30,6 +29,8 @@ Jogo::Jogo():
     cout << "Jogo::Jogo 1" << endl;
     pGG = Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico();
     pGE = Gerenciadores::GerenciadorEventos::getGerenciadorEventos();
+
+    Fases::Fase::setGerenciadorColisoes();
 
     Gerenciadores::GerenciadorEventos::setGerenciadorGrafico();
 
