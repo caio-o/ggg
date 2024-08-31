@@ -39,6 +39,9 @@ namespace Entidades
         void atacar();
         void executar(const float dT);
         void reagirAhColisao(Entidade* pE);
+
+        void verificaTeclaSolta(string tecla);
+        void verificaTeclaPressionada(string tecla);
     };
 }
 

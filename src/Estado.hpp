@@ -41,8 +41,8 @@ namespace Gerenciadores { class GerenciadorEstados; } //Include recursivo
             virtual void executar(const float dT) = 0;
             virtual void desenhar() = 0;
 
-            virtual void verificaTeclaPressionada(string tecla) = 0;
-            virtual void verificaTeclaSolta(string tecla) = 0;
+            virtual void verificaTeclaPressionada(string tecla){};
+            virtual void verificaTeclaSolta(string tecla){};
 
             const idEstados getId() const;
 

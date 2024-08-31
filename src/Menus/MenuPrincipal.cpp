@@ -31,7 +31,7 @@ namespace Menus
 
         opcoes.clear();
         
-        //Seta as opções
+        //Aloca as opções
         //Subtitulo:
         ElementosGraficos::Texto* pOpcao = NULL;
         pOpcao = new ElementosGraficos::Texto("Escolha uma das opcoes abaixo: ");

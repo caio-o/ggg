@@ -32,8 +32,8 @@ namespace Fases
         void executar(const float dT);
         void desenhar(){};
 
-        void verificaTeclaPressionada(string tecla){}
-        void verificaTeclaSolta(string tecla){}
+        void verificaTeclaPressionada(string tecla);
+        void verificaTeclaSolta(string tecla);
     };
 }
 

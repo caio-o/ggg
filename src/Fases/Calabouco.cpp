@@ -91,15 +91,8 @@ void Fases::Calabouco::executar(const float dT)
 {
     while (pGG->janelaAberta())
     {
-        if(pGC)
-            cout << "Tem pgc" << endl;
-        else
-            cout <<"não tem pgc" << endl;
-
         pGG->limpar();
-        cout << "Passou limpar" << endl;
         pGC->executar(); // Checar colisoes e gerar seus efeitos.
-        cout << "Passou gc" << endl;
         pGE->executar(); // Checar se a janela deve ser fechada.
 
 
@@ -110,7 +103,6 @@ void Fases::Calabouco::executar(const float dT)
         // Executar, mover e desenhar entidades.
         
         pGG->renderizar(&saida);
-        cout << "Passou corpo saida" << endl;
         colecao.percorrer(deltaT);
 
 
@@ -124,7 +116,6 @@ void Fases::Calabouco::executar(const float dT)
         else if(verificaGameOver())
         {
             pGG->renderizar(&efeitoGameOver);
-            cout << "Passou corpo gameover" << endl;
             cout << "PONTOS DO JOGADOR 1:" << pJog->getPontos() << endl;
             cout << "PONTOS DO JOGADOR 2:" << pJog2->getPontos() << endl;
             if(pGC) delete(pGC);
@@ -169,4 +160,22 @@ Fases::Calabouco::~Calabouco()
 { 
     if(pGC)
         delete pGC;
+}
+
+void Calabouco::verificaTeclaPressionada(string tecla)
+{
+    if(pJog)
+        pJog->verificaTeclaPressionada(tecla);
+    
+    if(pJog2)
+        pJog2->verificaTeclaPressionada(tecla);
+}
+
+void Calabouco::verificaTeclaSolta(string tecla)
+{
+    if(pJog)
+        pJog->verificaTeclaSolta(tecla);
+    
+    if(pJog2)
+        pJog2->verificaTeclaSolta(tecla);
 }

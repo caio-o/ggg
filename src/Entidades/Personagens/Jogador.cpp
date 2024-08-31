@@ -56,29 +56,7 @@ void Jogador::atacar()
 
 void Jogador::executar(const float dT) 
 { 
-    if(vivo)
-    {
-        if(ehJogador1)
-        {
-            if       (Keyboard::isKeyPressed (Keyboard::Up   ))    { pular();             }
-
-            if       (Keyboard::isKeyPressed (Keyboard::Right))    { setVelX( agilidade / lentidao); }
-            else if  (Keyboard::isKeyPressed (Keyboard::Left) )    { setVelX(-agilidade / lentidao); }
-            else                                                   { setVelX(      0.0f); }
-        }
-
-        else
-        {
-            if       (Keyboard::isKeyPressed (Keyboard::W   ))    { pular();             }
-
-            if       (Keyboard::isKeyPressed (Keyboard::D   ))    { setVelX( agilidade / lentidao); }
-            else if  (Keyboard::isKeyPressed (Keyboard::A   ))    { setVelX(-agilidade / lentidao); }
-            else                                                  { setVelX(      0.0f); }
-        }
-
-        lentidao = 1.0f;
-    }
-    
+        
     noChao = false;
 
     
@@ -124,4 +102,43 @@ void Jogador::reagirAhColisao(Entidade* pE)
 void Jogador::danificar(Personagem*pPers)
 {
     pPers->receberDano(DANO_PISADA);
+}
+
+void Jogador::verificaTeclaSolta(string tecla)
+{
+    if(vivo)
+    {
+        if(ehJogador1)
+        {
+            if (tecla == "Direita" || tecla == "Esquerda") {setVelX(0.0f); lentidao = 1.0f;}
+        }
+        else
+        {
+            if (tecla == "D" || tecla == "A")              {setVelX(0.0f); lentidao = 1.0f;}
+        }
+    }
+}
+
+void Jogador::verificaTeclaPressionada(string tecla)
+{
+    if(vivo)
+    {
+        if(ehJogador1)
+        {
+            if       (tecla == "Cima")       { pular();             }
+
+            if       (tecla == "Direita")    { setVelX( agilidade / lentidao); }
+            else if  (tecla == "Esquerda" )  { setVelX(-agilidade / lentidao); }
+        }
+
+        else
+        {
+            if       (tecla == "W")    { pular();             }
+
+            if       (tecla == "D")    { setVelX( agilidade / lentidao); }
+            else if  (tecla == "A")    { setVelX(-agilidade / lentidao); }
+        }
+
+        lentidao = 1.0f;
+    }
 }

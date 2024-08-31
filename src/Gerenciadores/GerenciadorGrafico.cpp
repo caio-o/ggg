@@ -22,7 +22,8 @@ namespace Gerenciadores
 
     GerenciadorGrafico::GerenciadorGrafico():
     pJanela(NULL), 
-    /* O primeiro argumento (sf::Vector2f((LARGURA/2), (ALTURA_JANELA_JANELA/2))) se trata do centro
+    /* camera(centro, tamanho) //(o Caio seta a camera como 2x a janela)
+     * O primeiro argumento (sf::Vector2f((LARGURA/2), (ALTURA_JANELA_JANELA/2))) se trata do centro
      * da janela.
      * Já, o segundo (sf::Vector2f(LARGURA, ALTURA_JANELA)) é o tamanho da janela
      * Ou seja, seta a camêra como a própria janela inicialmente...
@@ -225,10 +226,8 @@ namespace Gerenciadores
     }
     
     /*
-     * Retorna a posição superior esquerda da janela
-     * Obs.: analisar se é a posição mais conveniente para nosso interesse durante
-     * o desenvolvimento.
-     * */
+     * Retorna o centro da camera
+     */
     const Coordenadas::Vetor2f GerenciadorGrafico::getCentroCamera() const
     {
         return Coordenadas::Vetor2f(camera.getCenter().x, camera.getCenter().y);

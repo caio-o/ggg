@@ -161,3 +161,21 @@ const bool Fases::Tuneis::verificaVitoria()
         return false;
     }
 }
+
+void Fases::Tuneis::verificaTeclaPressionada(string tecla)
+{
+    if(pJog)
+        pJog->verificaTeclaPressionada(tecla);
+    
+    if(pJog2)
+        pJog2->verificaTeclaPressionada(tecla);
+}
+
+void Fases::Tuneis::verificaTeclaSolta(string tecla)
+{
+    if(pJog)
+        pJog->verificaTeclaSolta(tecla);
+    
+    if(pJog2)
+        pJog2->verificaTeclaSolta(tecla);
+}

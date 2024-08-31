@@ -24,8 +24,8 @@ namespace Fases
         const bool verificaVitoria();
 
         /*ANA: Adição da declaração das funções virtuais puras pra poder compilar*/
-        void verificaTeclaPressionada(string tecla){}
-        void verificaTeclaSolta(string tecla){}
+        void verificaTeclaPressionada(string tecla);
+        void verificaTeclaSolta(string tecla);
 
         void desenhar(){}
 
