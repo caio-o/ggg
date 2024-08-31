@@ -202,7 +202,7 @@ namespace Gerenciadores
 
                 if(pEstado2)
                 {
-                    if(achouFase1)
+                    if(achouFase2)
                         mapaEstados[fase2] = pEstado2;
                     else
                         mapaEstados.insert(std::pair<idEstados, Estado*>(fase2, pEstado2));
