@@ -1,6 +1,7 @@
 #include "Entidades/Personagens/Jogador.hpp"
 #include "Entidades/Personagens/Inimigos/Inimigo.hpp"
 #include <SFML/System.hpp>
+#include "Jogador.hpp"
 using sf::Keyboard;
 using namespace ElementosGraficos;
 #define DANO_PISADA 5
@@ -11,7 +12,7 @@ Jogador::Jogador(const int _maxVida, const bool j1):
     noChao     (false),
     pontos     (000000),
     agilidade  (300.0f),
-    lentidao   (000.0f),
+    lentidao   (1.0f),
     velPulo    (-700.f)
 { 
     if(ehJogador1)
@@ -56,9 +57,11 @@ void Jogador::atacar()
 
 void Jogador::executar(const float dT) 
 { 
-        
-    noChao = false;
+    // Faz que o jogador seja controlado pelo teclado.
+    controlarse(); 
 
+    lentidao = 1.0f;
+    noChao = false;
     
     checarVida();
 }
@@ -70,7 +73,8 @@ void Jogador::reagirAhColisao(Entidade* pE)
     switch(pE->getEspecie())
     {
     case Especie::plataforma:
-        noChao = true;
+        if(getY() < pE->getY() + pE->getTam().y/2) // se o jogador nao esta colidindo DE BAIXO
+            noChao = true;
         break;
 
     case Especie::inimigo:
@@ -99,46 +103,31 @@ void Jogador::reagirAhColisao(Entidade* pE)
     }
 }
 
+void Jogador::controlarse()
+{
+    if(vivo)
+    {
+        if(ehJogador1)
+        {
+            if       (Keyboard::isKeyPressed (Keyboard::Up   ))    { pular();             }
+
+            if       (Keyboard::isKeyPressed (Keyboard::Right))    { setVelX( agilidade / lentidao); }
+            else if  (Keyboard::isKeyPressed (Keyboard::Left) )    { setVelX(-agilidade / lentidao); }
+            else                                                   { setVelX(      0.0f); }
+        }
+
+        else
+        {
+            if       (Keyboard::isKeyPressed (Keyboard::W   ))    { pular();             }
+
+            if       (Keyboard::isKeyPressed (Keyboard::D   ))    { setVelX( agilidade / lentidao); }
+            else if  (Keyboard::isKeyPressed (Keyboard::A   ))    { setVelX(-agilidade / lentidao); }
+            else                                                  { setVelX(      0.0f); }
+        }
+    }
+}
+
 void Jogador::danificar(Personagem*pPers)
 {
     pPers->receberDano(DANO_PISADA);
-}
-
-void Jogador::verificaTeclaSolta(string tecla)
-{
-    if(vivo)
-    {
-        if(ehJogador1)
-        {
-            if (tecla == "Direita" || tecla == "Esquerda") {setVelX(0.0f); lentidao = 1.0f;}
-        }
-        else
-        {
-            if (tecla == "D" || tecla == "A")              {setVelX(0.0f); lentidao = 1.0f;}
-        }
-    }
-}
-
-void Jogador::verificaTeclaPressionada(string tecla)
-{
-    if(vivo)
-    {
-        if(ehJogador1)
-        {
-            if       (tecla == "Cima")       { pular();             }
-
-            if       (tecla == "Direita")    { setVelX( agilidade / lentidao); }
-            else if  (tecla == "Esquerda" )  { setVelX(-agilidade / lentidao); }
-        }
-
-        else
-        {
-            if       (tecla == "W")    { pular();             }
-
-            if       (tecla == "D")    { setVelX( agilidade / lentidao); }
-            else if  (tecla == "A")    { setVelX(-agilidade / lentidao); }
-        }
-
-        lentidao = 1.0f;
-    }
 }

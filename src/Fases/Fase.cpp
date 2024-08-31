@@ -115,11 +115,11 @@ namespace Fases
 
     void Fase::verificaTeclaPressionada(string tecla)
     {
-        if(pJog)
+        /*if(pJog)
             pJog->verificaTeclaPressionada(tecla);
         
         if(pJog2)
-            pJog2->verificaTeclaPressionada(tecla);
+            pJog2->verificaTeclaPressionada(tecla);*/
     }
 
     void Fase::verificaTeclaSolta(string tecla)
@@ -128,11 +128,11 @@ namespace Fases
             { cout << "JOGO PAUSADO" << endl; pGEs->executarEstado(menuPause);}
         else
         {
-            if(pJog)
+            /*if(pJog)
                 pJog->verificaTeclaSolta(tecla);
         
             if(pJog2)
-                pJog2->verificaTeclaSolta(tecla);
+                pJog2->verificaTeclaSolta(tecla);*/
         }
     }
 } // namespace Fases
