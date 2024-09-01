@@ -37,7 +37,7 @@ namespace ElementosGraficos
         else
             cout << "Erro em ElementosGraficos::Texto::Texto()::pFonte: " << ERRO_ALOCACAO << endl;
 
-        setAlinhamento(centro);
+        //setAlinhamento(centro);
     }
 
     Texto::~Texto()

@@ -146,8 +146,10 @@ Fases::Calabouco::Calabouco():
     idEstado = fase1;
     
     saida.atualizar(Vetor2f(X_SAIDA_CA, Y_SAIDA_CA));
-    pGG->setTamanhoCamera(Vetor2f(LARGURA_FASE, ALTURA_FASE));
-    pGG->centralizarCamera();
+    //pGG->setTamanhoJanela(Vetor2f(LARGURA_FASE/2, ALTURA_FASE/2));
+    //pGG->setTamanhoCamera(Vetor2f(LARGURA_FASE, ALTURA_FASE));
+    //pGG->centralizarCamera(Coordenadas::Vetor2f(pGG->getTamanhoJanela().x/2, pGG->getTamanhoJanela().y/2));
+    //pGG->centralizarCamera();
 
     pJog = new Jogador(50, true);
     pJog2 = new Jogador(50, false);

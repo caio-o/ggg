@@ -95,8 +95,9 @@ Fases::Tuneis::Tuneis():
 
     Ente::setGerenciadorGrafico();
     saida.getpCorpo()->setFillColor(sf::Color::Yellow);
-    pGG->setTamanhoCamera(Vetor2f(LARGURA_FASE, ALTURA_FASE));
-    pGG->centralizarCamera();
+    //pGG->setTamanhoJanela(Vetor2f(LARGURA_FASE/2, ALTURA_FASE/2));
+    //pGG->setTamanhoCamera(Vetor2f(LARGURA_FASE, ALTURA_FASE));
+    //pGG->centralizarCamera();
 
     pJog = new Jogador(15.f, true);
     pJog2 = new Jogador(15.f, false);
