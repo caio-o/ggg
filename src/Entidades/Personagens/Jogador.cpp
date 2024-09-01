@@ -10,11 +10,11 @@ using namespace ElementosGraficos;
 
 //using json = nlohmann::json;
 
-Jogador::Jogador(const int _maxVida, const bool j1):
+Jogador::Jogador(const int _maxVida, const bool j1, const int _pontos):
     Personagem (Especie::jogador, _maxVida),
     ehJogador1 (j1),
     noChao     (false),
-    pontos     (000000),
+    pontos     (_pontos),
     agilidade  (300.0f),
     lentidao   (1.0f),
     velPulo    (-700.f)

@@ -8,51 +8,102 @@
 #include <fstream>
 #include <string>
 #include "Fase.hpp"
+#include "Jogo.hpp"
 
 namespace Fases
 {
+    bool Fase::deveCarregar = false;
+    bool Fase::doisJogadores = false;
+
     Gerenciadores::GerenciadorColisoes* Fase::pGC(NULL);
     
     Fase::Fase():
-    Estado(),
-    Ente(),
-    t0(0.0f),
-    t1(0.0f),
-    deltaT(0.0f),
-    colecao(),
-    pJog(NULL),
-    pJog2(NULL),
-    gameOver(false),
-    saida(Vetor2f(CANTO_DIREITO-350.0F, TETO-50.0F), Vetor2f(400.f, 400.f), "../img/saida_luz.png", 1.f),
-    efeitoGameOver(Vetor2f (1290, 720.f), Vetor2f(2580.f, 1440.f), "../img/game_over.png", 1.f),
-    forma(Vetor2f(LARGURA_FASE/2, ALTURA_FASE/2), Vetor2f(LARGURA_FASE, ALTURA_FASE), "../img/fundo_cinza.png")
+        Estado(),
+        Ente(),
+        t0(0.0f),
+        t1(0.0f),
+        deltaT(0.0f),
+        colecao(),
+        pJog(NULL),
+        pJog2(NULL),
+        gameOver(false),
+        saida(Vetor2f(CANTO_DIREITO-350.0F, TETO-50.0F), Vetor2f(400.f, 400.f), "../img/saida_luz.png", 1.f),
+        efeitoGameOver(Vetor2f (1290, 720.f), Vetor2f(2580.f, 1440.f), "../img/game_over.png", 1.f),
+        forma(Vetor2f(LARGURA_FASE/2, ALTURA_FASE/2), Vetor2f(LARGURA_FASE, ALTURA_FASE), "../img/fundo_cinza.png")
     {
+        setGerenciadorColisoes();
+
+        cout << "CONSTRUTORA FASE ABSTRATA" << endl;
+
+        pJog = Jogo::getJogador1();
+        Inimigos::Inimigo::setpJogador1(pJog);
+        Projetil::setpJogador1(pJog);
+        pGC->inserirJogador(pJog);
+        colecao.incluir(static_cast<Entidade*>(pJog));
+
+        if(doisJogadores) 
+        {
+            pJog2 = Jogo::getJogador2();
+            pGC->inserirJogador(pJog2);
+            colecao.incluir(static_cast<Entidade*>(pJog2));
+
+            Inimigos::Inimigo::setpJogador2(pJog2);
+            Projetil::setpJogador2(pJog2);
+        }
+        else
+        {
+            pJog2 = NULL;
+            Inimigos::Inimigo ::setpJogador2(NULL);
+            Projetil          ::setpJogador2(NULL);
+        }
+
+        Triangulo::setpFase(this);
+        
+
+
         t0 = pGG->getTempo();
         t1 = pGG->getTempo();
-
-        setGerenciadorColisoes();
     }
 
     Fase::~Fase()
-    {
+    {   
+        cout << "DESTRUTORA FASE ABSTRATA DIZ:    ";
+
+        if(pJog)
+            Jogo::setJogador1(new Jogador(60, true, pJog->getPontos()));
+        else 
+            Jogo::setJogador1(new Jogador(60, true));
+
+        if(pJog2)
+            Jogo::setJogador2(new Jogador(60, false, pJog2->getPontos()));
+        else
+            Jogo::setJogador2(new Jogador(60, false));
+
         if(pGC)
+        {
             delete pGC;
+            cout << "GC DESTRUIDO" << endl;   
+        }
+
+        pGC = NULL;
+
+        cout << "FASE DESTRUIDA" << endl;
     }
 
-    void Fase::salvar() 
+    void Fase::salvar(string nomeArquivo) 
     {
-        ofstream ofs("../dados/save.json");
+        ofstream ofs(nomeArquivo);
 
         colecao.salvar(ofs); // delegar a tarefa para a ListaEntidades, especificando o arquivo correspondente.
 
         ofs.close();
     }
 
-    void Fase::carregar()
+    void Fase::carregar(string nomeArquivo)
     {
         cout << "FASE CARREGAR 1" << endl;
         // FUTURAMENTE USAR TRY CATCH
-        ifstream ifs("../dados/save.json");
+        ifstream ifs(nomeArquivo);
         string linha = "";
         nlohmann::ordered_json j;
         Especie esp = indefinido;
@@ -78,12 +129,12 @@ namespace Fases
                         if(j["ehJogador1"])
                         {
                             if(pJog) { pJog->carregar(j);                       }
-                            else     { pJog = new Jogador(); pJog->carregar(j); }
+                            else     { pJog = Jogo::getJogador1(); pJog->carregar(j); }
                         }
                         else
                         {
-                            if(pJog2) { pJog2->carregar(j);                        }
-                            else      { pJog2 = new Jogador(); pJog2->carregar(j); }
+                            if(pJog2)                  { pJog2->carregar(j);                              }
+                            else if(doisJogadores)     { pJog2 = Jogo::getJogador2(); pJog2->carregar(j); }
                         }
                         break;
 
@@ -212,9 +263,9 @@ namespace Fases
 
     const bool Fase::verificaGameOver()
     {
-        if       (pJog && pJog2)  { return gameOver = (bool) !( pJog->getVivo() || pJog2->getVivo() ); }
-        else if  (pJog         )  { return gameOver = (bool) !( pJog->getVivo() );                     }
-        else                      { return false;                                                      }
+        if       (doisJogadores && pJog && pJog2)  { return gameOver = (bool) !( pJog->getVivo() || pJog2->getVivo() ); }
+        else if  (pJog         )                   { return gameOver = (bool) !( pJog->getVivo() );                     }
+        else                                       { return false;                                                      }
     }
 
     void Fase::verificaTeclaPressionada(string tecla)

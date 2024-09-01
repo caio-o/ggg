@@ -4,6 +4,7 @@
 #include "Entidades/Obstaculos/PlataformaGrudenta.hpp"
 #include "Fases/Calabouco.hpp"
 #include "Calabouco.hpp"
+#include "Jogo.hpp"
 
 //#define GRAVIDADE      1000.0F
 /*#define LARGURA_FASE   2580.0F
@@ -64,7 +65,7 @@ const bool Fases::Calabouco::verificaVitoria()
 
     if(pJog && pJog->getVivo())
     {
-        if(pJog2 && pJog2->getVivo())
+        if(doisJogadores && pJog2 && pJog2->getVivo())
         {
             return pJog->getX() > limiteSaida.x && pJog->getY() < limiteSaida.y &&  pJog2->getX() > limiteSaida.x && pJog2->getY() < limiteSaida.y;
         }
@@ -73,7 +74,7 @@ const bool Fases::Calabouco::verificaVitoria()
             return pJog->getX() > limiteSaida.x && pJog->getY() < limiteSaida.y;
         }
     }
-    else if(pJog2 && pJog2->getVivo())
+    else if(doisJogadores && pJog2 && pJog2->getVivo())
     {
         return pJog2->getX() > limiteSaida.x && pJog2->getY() < limiteSaida.y;
     }
@@ -117,20 +118,17 @@ void Fases::Calabouco::executar(const float dT)
 
         if(verificaVitoria())
         {
-            carregar();
-
-            cout << "PONTOS DO JOGADOR 1:" << pJog->getPontos() << endl;
-            cout << "PONTOS DO JOGADOR 2:" << pJog2->getPontos() << endl;
+            Estado::setAtivo(false);
+            pGEs->executarEstado(idEstados::fase2);
 
             cout << "GANHARAM!" << endl;
         }
         else if(verificaGameOver())
         {
             pGG->renderizar(&efeitoGameOver);
-            cout << "PONTOS DO JOGADOR 1:" << pJog->getPontos() << endl;
-            cout << "PONTOS DO JOGADOR 2:" << pJog2->getPontos() << endl;
-            if(pGC) delete(pGC);
-            enterFechar();
+            pGG->mostrar();
+            Estado::setAtivo(false);
+            sf::sleep(sf::seconds(3.0F));
             pGEs->executarEstado(menuPrincipal);
             return;
         }
@@ -146,42 +144,38 @@ Fases::Calabouco::Calabouco():
     idEstado = fase1;
     
     saida.atualizar(Vetor2f(X_SAIDA_CA, Y_SAIDA_CA));
-    //pGG->setTamanhoJanela(Vetor2f(LARGURA_FASE/2, ALTURA_FASE/2));
-    //pGG->setTamanhoCamera(Vetor2f(LARGURA_FASE, ALTURA_FASE));
-    //pGG->centralizarCamera(Coordenadas::Vetor2f(pGG->getTamanhoJanela().x/2, pGG->getTamanhoJanela().y/2));
-    //pGG->centralizarCamera();
+    if(pJog2) pJog2->setAtivo(doisJogadores);
 
-    pJog = new Jogador(50, true);
-    pJog2 = new Jogador(50, false);
-    
-    pJog->setPos(190.f, CHAO-100.f);
-    pJog2->setPos(170.f, CHAO-100.f);
-
-    //cout << "Crashou no pgc" << endl;
-    pGC->inserirJogador(pJog);
-    pGC->inserirJogador(pJog2);
-
-    //cout <<" Inseriu no pgc" << endl;
-    colecao.incluir(static_cast<Entidade*>(pJog));
-    colecao.incluir(static_cast<Entidade*>(pJog2));
-    
-    colecao.setGravidade(GRAVIDADE);
-    
     criarBordas();
+    
+    if(deveCarregar)
+    {
+        carregar("../dados/calabouco.json");
+        deveCarregar = false;
+    }
+    else
+    {
+        pJog->setPos(190.f, CHAO-100.f);
+        pJog->setPontos(0);
+        pJog->setVida(pJog->getMaxVida());
+        
+        if(doisJogadores && pJog2)
+        {
+            pJog2->setPos(170.f, CHAO-100.f);
+            pJog2->setPontos(0);
+            pJog2->setVida(pJog2->getMaxVida());
+        }
+        
+        criarObstaculos();
+        criarInimigos();
+    }
 
-    criarObstaculos();
-    criarInimigos();
+    colecao.setGravidade(GRAVIDADE);
 
     colecao.irAoInicio();
-
-    salvar();
-    carregar();
 }
 
 Fases::Calabouco::~Calabouco()
 { 
-    if(pGC)
-        delete pGC;
 
-    pGC = NULL;
 }

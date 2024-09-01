@@ -90,40 +90,44 @@ Fases::Tuneis::Tuneis():
     maxChefao(3)
     //saida(Vetor2f(X_SAIDA+200.F, Y_SAIDA-250.F), Vetor2f(400.f, 300.f), "", 1.f)
 {
+    cout << "CONSTRUTORA FASE 2"<< endl;
     idEstado = fase2;
     forma.setTextura("../img/fundo_marrom.png", false);
 
     Ente::setGerenciadorGrafico();
     saida.getpCorpo()->setFillColor(sf::Color::Yellow);
-    //pGG->setTamanhoJanela(Vetor2f(LARGURA_FASE/2, ALTURA_FASE/2));
-    //pGG->setTamanhoCamera(Vetor2f(LARGURA_FASE, ALTURA_FASE));
-    //pGG->centralizarCamera();
+    saida.atualizar(Vetor2f(X_SAIDA, Y_SAIDA));
 
-    pJog = new Jogador(15.f, true);
-    pJog2 = new Jogador(15.f, false);
-    
     pJog->setPos(190.f, CHAO-100.f);
-    pJog2->setPos(190.f, CHAO-100.f);
-    pGC->inserirJogador(pJog);
-    pGC->inserirJogador(pJog2);
-    colecao.incluir(static_cast<Entidade*>(pJog));
-    colecao.incluir(static_cast<Entidade*>(pJog2));
+    
+    cout << "ACCESSANDO JOGADOR 2" << endl;
+    if(doisJogadores && pJog2)
+    {
+        pJog2->setPos(190.f, CHAO-100.f);
+    }
 
     colecao.setGravidade(GRAVIDADE);
     
     criarBordas();
-    criarObstaculos();
-    criarInimigos();
+    
+    if(deveCarregar)
+    {
+        cout << "CARREGANDO" << endl;
+        carregar("../dados/tuneis.json");
+        deveCarregar = false;
+    }
+    else
+    {
+        criarObstaculos();
+        criarInimigos();
+    }
 
     colecao.irAoInicio();
 }
 
 Fases::Tuneis::~Tuneis()
 {
-    if(pGC)
-        delete pGC;
-    
-    pGC = NULL;
+
 }
 
 void Fases::Tuneis::executar(const float dT)
@@ -148,11 +152,16 @@ void Fases::Tuneis::executar(const float dT)
         {
             if(verificaVitoria())
             {
-                cout << "GANHARAM!" << endl;
+                Estado::setAtivo(false);
+                pGEs->executarEstado(idEstados::menuPrincipal);
             }
             else if(verificaGameOver())
             {
+                Estado::setAtivo(false);
                 pGG->renderizar(&efeitoGameOver);
+                pGG->mostrar();
+                sf::sleep(sf::seconds(3.0f));
+                pGEs->executarEstado(idEstados::menuPrincipal);
             }
         }
 
@@ -166,7 +175,7 @@ const bool Fases::Tuneis::verificaVitoria()
 
     if(pJog && pJog->getVivo())
     {
-        if(pJog2 && pJog2->getVivo())
+        if(pJog2 && doisJogadores && pJog2->getVivo())
         {
             return pJog->getX() > X_SAIDA && pJog->getY() < Y_SAIDA &&  pJog2->getX() > X_SAIDA && pJog2->getY() < Y_SAIDA;
         }
@@ -175,7 +184,7 @@ const bool Fases::Tuneis::verificaVitoria()
             return pJog->getX() > X_SAIDA && pJog->getY() < Y_SAIDA;
         }
     }
-    else if(pJog2 && pJog2->getVivo())
+    else if(doisJogadores && pJog2 && pJog2->getVivo())
     {
         return pJog2->getX() > X_SAIDA && pJog2->getY() < Y_SAIDA;
     }
@@ -184,11 +193,11 @@ const bool Fases::Tuneis::verificaVitoria()
         return false;
     }
 }
-void Fases::Tuneis::carregar()
+void Fases::Tuneis::carregar(string nome)
 {
     cout << "FASE CARREGAR 1" << endl;
     // FUTURAMENTE USAR TRY CATCH
-    ifstream ifs("../dados/save.json");
+    ifstream ifs(nome);
     string linha = "";
     nlohmann::ordered_json j;
     Especie esp = indefinido;
@@ -218,8 +227,8 @@ void Fases::Tuneis::carregar()
                     }
                     else
                     {
-                        if(pJog2) { pJog2->carregar(j);                        }
-                        else      { pJog2 = new Jogador(); pJog2->carregar(j); }
+                        if (pJog2 && doisJogadores) { pJog2->carregar(j);                        }
+                        else      { if(doisJogadores) pJog2 = new Jogador(); pJog2->carregar(j); }
                     }
                     break;
 
