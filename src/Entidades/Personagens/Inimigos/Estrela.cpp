@@ -56,7 +56,7 @@ void Inimigos::Estrela::atacar()
 
 void Inimigos::Estrela::executar(const float deltaT)
 {
-    arrependimento = nCapangas <= 0;
+    if( nCapangas <= 0 ) arrependerse();
 
     if(arrependimento)
     {

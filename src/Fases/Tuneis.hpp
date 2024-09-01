@@ -20,10 +20,11 @@ namespace Fases
     public:
         Tuneis(/* args */);
         ~Tuneis();
+        void carregar();
         void executar(const float dT);
         const bool verificaVitoria();
 
-        void desenhar(){}
+        //void desenhar(){}
 
     };
 }

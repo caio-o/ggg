@@ -109,6 +109,7 @@ void Fases::Calabouco::executar(const float dT)
 
         // Executar, mover e desenhar entidades.
         
+        desenhar();
         pGG->renderizar(&saida);
         //cout << "Passou corpo saida" << endl;
         colecao.percorrer(deltaT);

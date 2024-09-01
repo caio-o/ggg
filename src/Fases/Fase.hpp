@@ -37,6 +37,7 @@ namespace Fases
     class Fase : public Ente, public Estado
     {
     protected:
+        Forma forma; // background
         Forma saida;
         Forma efeitoGameOver;
         bool gameOver;
@@ -56,6 +57,7 @@ namespace Fases
         virtual ~Fase();
         
         virtual void executar(const float dT = 0.f) = 0;
+        virtual void desenhar();
         virtual const bool verificaGameOver();
         virtual const bool verificaVitoria() = 0;
 

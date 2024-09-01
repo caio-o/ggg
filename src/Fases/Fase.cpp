@@ -24,7 +24,8 @@ namespace Fases
     pJog2(NULL),
     gameOver(false),
     saida(Vetor2f(CANTO_DIREITO-350.0F, TETO-50.0F), Vetor2f(400.f, 400.f), "../img/saida_luz.png", 1.f),
-    efeitoGameOver(Vetor2f (1290, 720.f), Vetor2f(2580.f, 1440.f), "../img/game_over.png", 1.f)
+    efeitoGameOver(Vetor2f (1290, 720.f), Vetor2f(2580.f, 1440.f), "../img/game_over.png", 1.f),
+    forma(Vetor2f(LARGURA_FASE/2, ALTURA_FASE/2), Vetor2f(LARGURA_FASE, ALTURA_FASE), "../img/fundo_cinza.png")
     {
         t0 = pGG->getTempo();
         t1 = pGG->getTempo();
@@ -101,6 +102,10 @@ namespace Fases
 
                     case triangulo:
                         criarTriangulo(0.f, 0.f)->carregar(j);
+                        break;
+
+                    case projetil:
+                        criarProjetil(0.f,0.f)->carregar(j);
                         break;
                     
                     default:
@@ -199,7 +204,12 @@ namespace Fases
 
         return pQuad;
     }
-        
+
+    void Fase::desenhar()
+    {
+        pGG->renderizar(&forma);
+    }
+
     const bool Fase::verificaGameOver()
     {
         if       (pJog && pJog2)  { return gameOver = (bool) !( pJog->getVivo() || pJog2->getVivo() ); }
