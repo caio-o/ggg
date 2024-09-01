@@ -34,7 +34,7 @@ namespace Gerenciadores
     relogio()
     {
         //instancia a janela adequadamente
-        pJanela = new sf::RenderWindow(sf::VideoMode(LARGURA_JANELA, ALTURA_JANELA), "GGG - Grande Guerra Geométrica");
+        pJanela = new sf::RenderWindow(sf::VideoMode(LARGURA_JANELA, ALTURA_JANELA), "GGG - Grande Guerra Geometrica");
         //associa a camera à janela
         if(pJanela)
             pJanela->setView(camera);
@@ -195,9 +195,7 @@ namespace Gerenciadores
     }
     
     /* 
-     * Ajusta o tamanho da janela e da camera conforme largura e 
-     * altura passadas por parâmetro por meio da variavel do tipo 
-     * Coordenada
+     * Ajusta o tamanho da janela conforme dimensões na variável tam
      */
     void GerenciadorGrafico::setTamanhoJanela(const Coordenadas::Vetor2f tam)
     {
@@ -206,7 +204,7 @@ namespace Gerenciadores
         if(pJanela)
         {
             pJanela->setSize(dimensao);
-            setTamanhoCamera(tam);
+            cout << "Tamanho da janela: " << tam.x << ", " << tam.y << endl;
         }
         else
             cout << "Erro em Gerenciadores::GerenciadorGrafico::setTamanhoJanela()::pJanela: " << ERRO_NULLPTR << endl;
@@ -233,27 +231,23 @@ namespace Gerenciadores
         return Coordenadas::Vetor2f(camera.getCenter().x, camera.getCenter().y);
     }
     
-    /* Atualiza a posição do centro da camera para o centro (da janela).
-     * Obs.: analisar a utilidade desse método. Talvez seja mais util ter um método
-     * que atualiza a posição para uma posição desejada que é passado como argumento.*/
-    void GerenciadorGrafico::centralizarCamera()
+    /* Atualiza a posição do centro da camera.*/
+    void GerenciadorGrafico::centralizarCamera(Coordenadas::Vetor2f centro)
     {
-        if(pJanela)
-        {
-            sf::Vector2f centro(pJanela->getSize());
+        camera.setCenter(centro.x, centro.y);
 
-            camera.setCenter(centro.x/2, centro.y/2);
-        }
-        else
-            cout << "Erro em Gerenciadores::GerenciadorGrafico::centralizarCamera()::pJanela: " << ERRO_NULLPTR << endl;
+        cout << "Centro da camera: " << centro.x << ", " << centro.y << endl;
     }
 
-    /* Atualiza o tamanho da camera conforme dimensões passadas por meio da variavel
-     * do tipo Coordenada<float>
+    /* Atualiza o tamanho e o centro da câmera conforme dimensões na variável tam.
      */
     void GerenciadorGrafico::setTamanhoCamera(Coordenadas::Vetor2f tam)
     {
         camera.setSize(tam.x, tam.y);
+        camera.setCenter(tam.x/2, tam.y/2);
+
+        cout << "Tamanho da camera: " << tam.x << ", " << tam.y << endl;
+        cout << "Centro da camera: " << tam.x/2 << ", " << tam.y/2 << endl;
     }
     
     //Retorna a camera

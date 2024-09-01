@@ -50,7 +50,7 @@ namespace Gerenciadores
             void setTamanhoJanela(const Coordenadas::Vetor2f tam);
             const Coordenadas::Vetor2f getTamanhoJanela() const;
             const Coordenadas::Vetor2f getCentroCamera() const;
-            void centralizarCamera();
+            void centralizarCamera(Coordenadas::Vetor2f centro);
             void setTamanhoCamera(Coordenadas::Vetor2f tam);
             sf::View getCamera() const;
             sf::Texture* carregarTextura(const char* caminho);

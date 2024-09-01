@@ -96,10 +96,7 @@ Fases::Tuneis::Tuneis():
 
     Ente::setGerenciadorGrafico();
     saida.getpCorpo()->setFillColor(sf::Color::Yellow);
-    pGG->setTamanhoCamera(Vetor2f(LARGURA_FASE, ALTURA_FASE));
-    pGG->centralizarCamera();
-    
-    cout << "ACESSANDO JOGADOR 1" << endl;
+
     pJog->setPos(190.f, CHAO-100.f);
     
     cout << "ACCESSANDO JOGADOR 2" << endl;
@@ -154,11 +151,14 @@ void Fases::Tuneis::executar(const float dT)
         {
             if(verificaVitoria())
             {
+                Estado::setAtivo(false);
                 pGEs->executarEstado(idEstados::menuPrincipal);
             }
             else if(verificaGameOver())
             {
+                Estado::setAtivo(false);
                 pGG->renderizar(&efeitoGameOver);
+                pGG->mostrar();
                 sf::sleep(sf::seconds(3.0f));
                 pGEs->executarEstado(idEstados::menuPrincipal);
             }

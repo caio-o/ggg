@@ -118,7 +118,7 @@ void Fases::Calabouco::executar(const float dT)
 
         if(verificaVitoria())
         {
-            //Estado::setAtivo(false);
+            Estado::setAtivo(false);
             pGEs->executarEstado(idEstados::fase2);
 
             cout << "GANHARAM!" << endl;
@@ -127,7 +127,7 @@ void Fases::Calabouco::executar(const float dT)
         {
             pGG->renderizar(&efeitoGameOver);
             pGG->mostrar();
-            //Estado::setAtivo(false);
+            Estado::setAtivo(false);
             sf::sleep(sf::seconds(3.0F));
             pGEs->executarEstado(menuPrincipal);
             return;
@@ -144,9 +144,6 @@ Fases::Calabouco::Calabouco():
     idEstado = fase1;
     
     saida.atualizar(Vetor2f(X_SAIDA_CA, Y_SAIDA_CA));
-    pGG->setTamanhoCamera(Vetor2f(LARGURA_FASE, ALTURA_FASE));
-    pGG->centralizarCamera();
-    
     if(pJog2) pJog2->setAtivo(doisJogadores);
 
     criarBordas();
@@ -173,16 +170,6 @@ Fases::Calabouco::Calabouco():
         criarInimigos();
     }
 
-
-
-    //cout << "Crashou no pgc" << endl;
-    //pGC->inserirJogador(pJog);
-    //pGC->inserirJogador(pJog2);
-
-    //cout <<" Inseriu no pgc" << endl;
-    //colecao.incluir(static_cast<Entidade*>(pJog));
-    //colecao.incluir(static_cast<Entidade*>(pJog2));
-    
     colecao.setGravidade(GRAVIDADE);
 
     colecao.irAoInicio();

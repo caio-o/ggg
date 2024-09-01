@@ -5,7 +5,11 @@
  */
 
 #include "Erros.hpp"
+
 #include "MenuPrincipal.hpp"
+#include "MenuFinal.hpp"
+
+#include "Fases/Fase.hpp"
 
 #include "Gerenciadores/GerenciadorEstados.hpp"
 #include "Gerenciadores/GerenciadorEventos.hpp"
@@ -26,9 +30,8 @@ namespace Menus
     {        
         //Seta o título
         titulo.setInfo("GGG: GRANDE GUERRA GEOMETRICA");
-        titulo.setAlinhamento(centro);
-        titulo.setPosicao(pGG->getCentroCamera().x, 100.0);
-        titulo.setTamanho(125);
+        titulo.setTamanho(125); //o tamanho muda a caixa de texto
+        titulo.setPosicao(200.0, 100.0);
         titulo.setCor(branco);
 
         opcoes.clear();
@@ -120,9 +123,8 @@ namespace Menus
         {
             if(opcoes[i])
             {
-                opcoes[i]->setAlinhamento(esquerda);
-                opcoes[i]->setPosicao(pGG->getCentroCamera().x, 250.0 + (100.0*(i+1)));
                 opcoes[i]->setTamanho(50);
+                opcoes[i]->setPosicao(200.0, 250.0 + (100.0*(i+1)));
                 opcoes[i]->setCor(branco);
             }
             else
@@ -262,12 +264,12 @@ namespace Menus
         if(pGEs)
         {
             if(tecla == "1") //Jogar com um jogador
-                {doisJogadores = false;
+                {doisJogadores = false; static_cast<MenuFinal*>(pGEs->getEstado(menuFimJogo))->setDoisJogadores(doisJogadores);
 
                 cout << "doisJogadores = " << doisJogadores << endl;}
             
             if(tecla == "2") //Jogar com dois jogadores
-                {doisJogadores = true;
+                {doisJogadores = true; static_cast<MenuFinal*>(pGEs->getEstado(menuFimJogo))->setDoisJogadores(doisJogadores);
                 cout << "doisJogadores = " << doisJogadores << endl;}
             
             else if(tecla == "3") //Jogar sequência de fases
@@ -300,10 +302,15 @@ namespace Menus
             else if(tecla == "6") //Recuperar jogo salvo
             {
                 //pGEs->executarEstado(jogoSalvo) ? nem ideia de como faz
-                Fases::Fase::setDeveCarregar(true);
-                Fases::Fase::setDoisJogadores(doisJogadores);
-                pGEs->executarEstado(fase1);
-                //pGEs->executarEstado(menuFimJogo); //(é para teste do menu final, mas ainda não foi realizado)
+                
+                cout <<"Entrou no if do menufinal" << endl;
+                static_cast<MenuFinal*>(pGEs->getEstado(menuFimJogo))->setpFase(static_cast<Fases::Fase*>(pGEs->getEstado(fase1)));
+                cout <<"Setou pfase no menufinal" << endl;
+                
+                //Fases::Fase::setDeveCarregar(true);
+                //Fases::Fase::setDoisJogadores(doisJogadores);
+                //pGEs->executarEstado(fase1);
+                pGEs->executarEstado(menuFimJogo); //(é para teste do menu final, mas ainda não foi realizado)
             }
 
             else if(tecla == "7") //Ver ranking
@@ -311,7 +318,7 @@ namespace Menus
                 pGEs->executarEstado(ranking);
             }
             
-            else if(tecla == "5") //Encerrar jogo
+            else if(tecla == "8") //Encerrar jogo
             {
                 if(pGG)
                     pGG->fecharJanela();
