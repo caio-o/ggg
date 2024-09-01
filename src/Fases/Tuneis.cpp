@@ -96,6 +96,7 @@ Fases::Tuneis::Tuneis():
 
     Ente::setGerenciadorGrafico();
     saida.getpCorpo()->setFillColor(sf::Color::Yellow);
+    saida.atualizar(Vetor2f(X_SAIDA, Y_SAIDA));
 
     pJog->setPos(190.f, CHAO-100.f);
     
