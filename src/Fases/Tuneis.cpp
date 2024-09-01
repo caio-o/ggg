@@ -154,7 +154,7 @@ void Fases::Tuneis::executar(const float dT)
         {
             if(verificaVitoria())
             {
-                //pGEs->executarEstado(idEstados::ranking);
+                pGEs->executarEstado(idEstados::menuPrincipal);
             }
             else if(verificaGameOver())
             {

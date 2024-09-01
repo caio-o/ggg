@@ -32,7 +32,7 @@ namespace Fases
         forma(Vetor2f(LARGURA_FASE/2, ALTURA_FASE/2), Vetor2f(LARGURA_FASE, ALTURA_FASE), "../img/fundo_cinza.png")
     {
         setGerenciadorColisoes();
-        
+
         cout << "CONSTRUTORA FASE ABSTRATA" << endl;
 
         pJog = Jogo::getJogador1();
@@ -67,10 +67,17 @@ namespace Fases
 
     Fase::~Fase()
     {   
-        cout << "DESTRUTORA FASE 1 DIZ:    ";
+        cout << "DESTRUTORA FASE ABSTRATA DIZ:    ";
 
-        Jogo::setJogador1(new Jogador(60, true, pJog->getPontos()));
-        Jogo::setJogador2(new Jogador(60, false, pJog2->getPontos()));
+        if(pJog)
+            Jogo::setJogador1(new Jogador(60, true, pJog->getPontos()));
+        else 
+            Jogo::setJogador1(new Jogador(60, true));
+
+        if(pJog2)
+            Jogo::setJogador2(new Jogador(60, false, pJog2->getPontos()));
+        else
+            Jogo::setJogador2(new Jogador(60, false));
 
         if(pGC)
         {
