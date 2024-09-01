@@ -19,6 +19,7 @@ namespace Inimigos
             virtual ~Inimigo();
 
             virtual void salvar(ofstream &ofs) = 0;
+            virtual void carregar(nlohmann::ordered_json &j) = 0;
             virtual void executar(const float dT) = 0;
             virtual void atacar() = 0;
             virtual void danificar(Personagem *pPers) = 0;

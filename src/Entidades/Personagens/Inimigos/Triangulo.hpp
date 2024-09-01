@@ -22,7 +22,8 @@ namespace Inimigos
             ~Triangulo();
 
             virtual void danificar(Personagem *pPers) {  };
-            virtual void salvar(ofstream &ofs) {};
+            void salvar(ofstream &ofs);
+            void carregar(nlohmann::ordered_json &j);
             void executar(const float dT);
             void atacar();
             void reagirAhColisao(Entidade* pE);

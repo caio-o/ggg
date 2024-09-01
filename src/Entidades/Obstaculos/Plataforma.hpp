@@ -2,6 +2,9 @@
 #define _PLATAFORMA_HPP
 
 #include "Entidades/Obstaculos/Obstaculo.hpp"
+#include <iostream>
+#include <fstream>
+
 namespace Entidades::Obstaculos
 {
     class Plataforma : public Obstaculo
@@ -35,7 +38,17 @@ namespace Entidades::Obstaculos
         virtual void obstacular(Jogador* pJog) 
         { }
 
-        void salvar(std::ofstream &os) {}
+        void salvar(std::ofstream &os) 
+        {
+            nlohmann::ordered_json j;
+            j ["especie"]    = getEspecie();
+            j ["pos"]        = { {"x", getX()    }, {"y", getY()    } };
+            j ["tam"]        = { {"x", getTam().x}, {"y", getTam().y} };
+
+            os   << j << "\n";
+        }
+        
+        virtual void carregar(nlohmann::ordered_json &j) {}
     };
 }
 

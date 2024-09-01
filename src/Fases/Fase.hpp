@@ -16,6 +16,22 @@
 #define CANTO_ESQUERDO    0.0F
 #define CANTO_DIREITO     LARGURA_FASE
 
+namespace Inimigos 
+{
+    class Quadrado;
+    class Triangulo;
+    class Estrela;
+} using namespace Inimigos;
+
+//class Projetil;
+
+namespace Entidades::Obstaculos
+{
+    class Plataforma;
+    class PlataformaGrudenta;
+    class Lapis;
+} using namespace Entidades::Obstaculos;
+
 namespace Fases
 {
     class Fase : public Ente, public Estado
@@ -46,14 +62,16 @@ namespace Fases
         virtual const bool verificaVitoria() = 0;
 
         virtual void salvar  ();
+        virtual void carregar();
 
-        void          criarProjetil            (const float x, const float y);
-        void          criarPlataforma          (float posX, float posY, float tamX = 300.f, float tamY = 100.f);
-        void          criarPlataformaGrudenta  (float posX, float posY, float tamX = 300.f, float tamY = 100.f);
-        void          criarBordas              ();
+        void                  criarBordas              ();
 
-        void          criarTriangulo           (float posX, float posY);
-        void          criarQuadrado            (float posX, float posY);
+        Plataforma*           criarPlataforma          (float posX, float posY, float tamX = 300.f, float tamY = 100.f);
+        PlataformaGrudenta*   criarPlataformaGrudenta  (float posX, float posY, float tamX = 300.f, float tamY = 100.f);
+        Projetil*             criarProjetil            (const float x, const float y);
+
+        Triangulo*            criarTriangulo           (float posX, float posY);
+        Quadrado*             criarQuadrado            (float posX, float posY);
 
         void verificaTeclaPressionada(string tecla);
         void verificaTeclaSolta(string tecla);

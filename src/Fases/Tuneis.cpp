@@ -6,7 +6,7 @@
 #define X_SAIDA CANTO_DIREITO-550.0F
 #define Y_SAIDA TETO+200.0F
 
-void Fases::Tuneis::criarLapis(float posX, float posY, int dano)
+Lapis* Fases::Tuneis::criarLapis(float posX, float posY, int dano)
 {
     Obstaculos::Lapis *pLap = new Obstaculos::Lapis();
     
@@ -16,15 +16,23 @@ void Fases::Tuneis::criarLapis(float posX, float posY, int dano)
         colecao.incluir(static_cast<Entidade*> (pLap));
         pGC->inserirObstaculo(static_cast<Obstaculo*> (pLap));
     }
+
+    return pLap;
 }
 
-void Fases::Tuneis::criarChefaoEstrela(const float posX, const float posY, const int nCapangas)
+Estrela* Fases::Tuneis::criarChefaoEstrela(const float posX, const float posY, const int nCapangas)
 {
     Estrela* pChefao = new Estrela();
-    pChefao->setNumCapangas(nCapangas);
-    pChefao->setPos(posX, posY);
-    colecao.incluir(static_cast<Entidade*>(pChefao));
-    pGC->inserirInimigo(static_cast<Inimigo*> (pChefao));
+
+    if(pChefao)
+    {
+        pChefao->setNumCapangas(nCapangas);
+        pChefao->setPos(posX, posY);
+        colecao.incluir(static_cast<Entidade*>(pChefao));
+        pGC->inserirInimigo(static_cast<Inimigo*> (pChefao));
+    }
+
+    return pChefao;
 }
 
 void Fases::Tuneis::criarObstaculos()

@@ -36,7 +36,7 @@ namespace Entidades
         const int   getPontos   () const    { return pontos; }
 
         void danificar(Personagem *pPers);
-        void carregar(std::ifstream &is);
+        void carregar(nlohmann::ordered_json &j);
         void salvar(std::ofstream &os);
         void atacar();
         void executar(const float dT);

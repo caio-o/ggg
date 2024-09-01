@@ -16,6 +16,8 @@ namespace Entidades::Obstaculos
         PlataformaGrudenta(float tamX = 300.f, float tamY = 100.f);
         ~PlataformaGrudenta();
 
+        //virtual void salvar(std::ofstream &os);
+
         // Mehtodo chamado na colisao com o jogador.
         // Divide a velocidade horizontal do jogador por pegajosidade, e não permite que ele pule.
         void obstacular(Jogador *pJog);

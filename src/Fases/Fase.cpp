@@ -6,6 +6,8 @@
 #include "Entidades/Projetil.hpp"
 #include <iostream>
 #include <fstream>
+#include <string>
+#include "Fase.hpp"
 
 namespace Fases
 {
@@ -44,23 +46,89 @@ namespace Fases
         ofs.close();
     }
 
-    void Fase::criarProjetil(const float x, const float y)
+    void Fase::carregar()
+    {
+        cout << "FASE CARREGAR 1" << endl;
+        // FUTURAMENTE USAR TRY CATCH
+        ifstream ifs("../dados/save.json");
+        string linha = "";
+        nlohmann::ordered_json j;
+        Especie esp = indefinido;
+        
+        // Se o arquivo eh acessivel
+        if(ifs.good())
+        {
+            cout << "FASE CARREGAR 2 (ANTES DO LOOP)" << endl;
+            while(! ifs.eof() && j["especie"] != -1)
+            {
+                linha = "";
+                std::getline(ifs, linha);
+
+                j = nlohmann::ordered_json::parse(linha);
+
+                if(! j.is_null())
+                {
+                    esp = j["especie"];
+
+                    switch(esp)
+                    {
+                    case jogador:
+                        if(j["ehJogador1"])
+                        {
+                            if(pJog) { pJog->carregar(j);                       }
+                            else     { pJog = new Jogador(); pJog->carregar(j); }
+                        }
+                        else
+                        {
+                            if(pJog2) { pJog2->carregar(j);                        }
+                            else      { pJog2 = new Jogador(); pJog2->carregar(j); }
+                        }
+                        break;
+
+
+                    case plataforma:
+                        criarPlataforma(0.f, 0.f)->carregar(j);
+                        break;
+
+                    case plataformaGrudenta:
+                        criarPlataformaGrudenta(0.f,0.f)->carregar(j);
+                        break;
+
+                    case quadrado:
+                        criarQuadrado(0.f,0.f)->carregar(j);
+                        break;
+
+                    case triangulo:
+                        criarTriangulo(0.f, 0.f)->carregar(j);
+                        break;
+                    
+                    default:
+                        break;
+                    }
+                }
+            }
+            cout << "FASE CARREGAR 3 (DEPOIS DO LOOP)" << endl;
+        }
+        
+    }
+
+    Projetil* Fase::criarProjetil(const float x, const float y)
     {
         Entidades::Projetil* pProj = new Projetil();
 
         if(pProj)
         {
             pProj->setPos(x, y);
-
             pGC->inserirProjetil(pProj);
-
             colecao.incluir(static_cast<Entidade*>(pProj));
         }
         else
             cout << "Erro em Fases::Fase::criarProjetil(): " << ERRO_ALOCACAO << endl;
+
+        return pProj;
     }
 
-    void Fase::criarPlataforma(float posX, float posY, float tamX, float tamY)
+    Plataforma* Fase::criarPlataforma(float posX, float posY, float tamX, float tamY)
     {
         Plataforma *pPlat = new Obstaculos::Plataforma(tamX, tamY);
 
@@ -72,9 +140,11 @@ namespace Fases
         }
 
         else cout << "Faseteste::criarPlataforma: " << ERRO_ALOCACAO << "\n" << ERRO_INCLUI_NULLPTR << endl;
+    
+        return pPlat;
     }
 
-    void Fase::criarPlataformaGrudenta(float posX, float posY, float tamX, float tamY)
+    PlataformaGrudenta* Fase::criarPlataformaGrudenta(float posX, float posY, float tamX, float tamY)
     {
         PlataformaGrudenta *pPlat = new PlataformaGrudenta(tamX, tamY);
 
@@ -86,6 +156,7 @@ namespace Fases
         }
 
         else cout << "Faseteste::criarPlataforma: " << ERRO_ALOCACAO << "\n" << ERRO_INCLUI_NULLPTR << endl;
+        return pPlat;
     }
 
     void Fase::criarBordas()
@@ -98,20 +169,34 @@ namespace Fases
 
     }
 
-    void Fase::criarTriangulo(float posX, float posY)
+    Triangulo* Fase::criarTriangulo(float posX, float posY)
     {
-        Inimigo* pIni = static_cast<Inimigo*> (new Triangulo(Especie::inimigo));
-        pIni->setPos(posX, posY);
-        pGC->inserirInimigo(pIni);
-        colecao.incluir(static_cast<Entidade*> (pIni));
+        Triangulo* pTri = new Triangulo(Especie::inimigo);
+        
+        if(pTri)
+        {
+            pTri->setPos(posX, posY);
+            pGC->inserirInimigo(static_cast<Inimigo*>(pTri));
+            colecao.incluir(static_cast<Entidade*> (pTri));
+        }
+        else cout << "Em funcao Fase::criarTriangulo:" << ERRO_ALOCACAO << endl;
+
+        return pTri;
     }
 
-    void Fase::criarQuadrado(float posX, float posY)
+    Quadrado* Fase::criarQuadrado(float posX, float posY)
     {
-        Inimigo* pIni = static_cast<Inimigo*> (new Quadrado(Especie::inimigo, 10));
-        pIni->setPos(posX, posY);
-        pGC->inserirInimigo(pIni);
-        colecao.incluir(static_cast<Entidade*> (pIni));
+        Quadrado* pQuad = new Quadrado(Especie::inimigo, 10);
+
+        if(pQuad)
+        {
+            pQuad->setPos(posX, posY);
+            pGC->inserirInimigo(static_cast<Inimigo*>(pQuad));
+            colecao.incluir(static_cast<Entidade*> (pQuad));
+        }
+        else cout << "Em funcao Fase::criarQuadrado:" << ERRO_ALOCACAO << endl;
+
+        return pQuad;
     }
         
     const bool Fase::verificaGameOver()

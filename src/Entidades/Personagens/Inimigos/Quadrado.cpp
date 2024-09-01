@@ -9,7 +9,9 @@
 
 #include "Gerenciadores/GerenciadorGrafico.hpp"
 
-#include "math.h"
+#include <iostream>
+#include <fstream>
+#include <math.h>
 #include "Quadrado.hpp"
 
 namespace Inimigos
@@ -35,11 +37,6 @@ namespace Inimigos
         vivo = false;       
         tempoUltimoAtaque - -1.0;
         cooldown = -1; 
-    }
-
-    void Quadrado::salvar(ofstream &ofs)
-    {
-        
     }
 
     void Quadrado::executar(const float dT)
@@ -178,6 +175,30 @@ namespace Inimigos
     const int Quadrado::getDano() const
     {
         return dano;
+    }
+
+    void Quadrado::salvar(std::ofstream &os) 
+    {
+        nlohmann::ordered_json j;
+        j ["especie"]       = Especie::quadrado;
+        j ["pos"]           = { {"x", getX()    }, {"y", getY()    } };
+        j ["tam"]           = { {"x", getTam().x}, {"y", getTam().y} };
+        j ["vida"]          = vida;
+        j ["nivelMaldade"]  = nivelMaldade;
+        j ["dano"]          = dano;
+
+        os << j << "\n";
+    }
+
+    void Quadrado::carregar(nlohmann::ordered_json &j)
+    {
+        setPos       (j["pos"]["x"], j["pos"]["y"]);
+        setTamanho   (j["tam"]["x"], j["tam"]["y"]);
+        setVida      (j["vida"]);
+        setMaldade   (j["nivelMaldade"]);
+        setDano      (j["dano"]);
+
+        checarVida();
     }
 
 } // namespace Inimigos

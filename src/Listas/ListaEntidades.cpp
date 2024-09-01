@@ -2,6 +2,7 @@
 #include <SFML/System.hpp>
 #include "Gerenciadores/GerenciadorColisoes.hpp"
 #include "ListaEntidades.hpp"
+#include <string>
 #include <iostream>
 #include <fstream>
 
@@ -53,8 +54,31 @@ void ListaEntidades::salvar(ofstream &ofs)
 
         (*this)++;
     }
-    ofs << "{\"fim\":1}" << endl;
+    ofs << "{\"especie\":-1}" << endl;
 }
+
+/*void Listas::ListaEntidades::carregar(ifstream &ifs)
+{
+    nlohmann::ordered_json j;
+    string linha;
+    std::getline(ifs, linha);
+    j = linha;
+
+    if(! j.is_null())
+    {
+        while(j["especie"] != -1)
+        {
+            linha = "";
+            std::getline(ifs, linha);
+            j = linha;
+
+            if(j["especie"] == jogador)
+            {
+                
+            }
+        }
+    }
+}*/
 
 void ListaEntidades::percorrer(float deltaT)
 {

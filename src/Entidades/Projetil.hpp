@@ -23,7 +23,8 @@ namespace Entidades
             Projetil(const int _dano = 2);
             ~Projetil();
 
-            void salvar(std::ofstream &os) {}
+            void salvar(std::ofstream &os);
+            virtual void carregar(nlohmann::ordered_json &j) {};
             void reagirAhColisao(Entidade* pE);
             void executar(const float dT);
 

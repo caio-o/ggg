@@ -31,7 +31,6 @@ namespace Fases
         const bool verificaVitoria();
         void executar(const float dT);
         void desenhar(){};
-
     };
 }
 

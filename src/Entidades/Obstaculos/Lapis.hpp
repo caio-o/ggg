@@ -26,7 +26,8 @@ namespace Entidades
                 Lapis(Especie _especie = obstaculo, const bool _permeavel = false, const int dano = 1);
                 ~Lapis();
                 
-                void salvar(std::ofstream &os) {}
+                void salvar(std::ofstream &os);
+                virtual void carregar(nlohmann::ordered_json &j) {};
                 void obstacular(Jogador *pJog);
                 void executar(const float dT);
 

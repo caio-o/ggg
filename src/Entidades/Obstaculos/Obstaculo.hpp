@@ -20,6 +20,7 @@ namespace Entidades
             virtual ~Obstaculo(){ }
 
             virtual void salvar(std::ofstream &os) = 0;
+            virtual void carregar(nlohmann::ordered_json &j) = 0;
             virtual void obstacular (Jogador* pJ) = 0;
             virtual void executar (const float dT) = 0;
             virtual void reagirAhColisao(Entidade *pE);
