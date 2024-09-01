@@ -149,13 +149,19 @@ namespace Gerenciadores
                 if(it->first == fase1)
                 {
                     pEstado1 = it->second; //armazena o ponteiro da fase1
-                    it->second = NULL; //deixa a chave nula no mapa
+                    
+                    if(!pEstado1->getAtivo())
+                        it->second = NULL; //deixa a chave nula no mapa
+
                     achouFase1 = true;
                 }
                 else if(it->first == fase2)
                 {
                     pEstado2 = it->second;
-                    it->second = NULL;
+                    
+                    if(!pEstado2->getAtivo())
+                        it->second = NULL;
+                    
                     achouFase2 = true;
                 }
                 

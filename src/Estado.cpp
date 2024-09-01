@@ -11,7 +11,8 @@
     Gerenciadores::GerenciadorEstados* Estado::pGEs(NULL);
 
     Estado::Estado(idEstados id):
-    idEstado(id)
+    idEstado(id),
+    ativo(true)
     {
 
     }

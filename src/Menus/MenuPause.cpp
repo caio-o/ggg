@@ -33,16 +33,25 @@ namespace Menus
 
         //Op1: ----------------------------------------------------------------------------------------
         pOpcao = NULL;
-        pOpcao = new ElementosGraficos::Texto("1. Salvar e voltar ao menu principal");
+        pOpcao = new ElementosGraficos::Texto("1. Voltar ao jogo");
+
+        if (pOpcao)
+            opcoes.push_back(pOpcao);
+        else
+            cout << "Erro em Menus::MenuPause::MenuPause()::pOpcao: " << ERRO_ALOCACAO << endl;
+        
+        //Op2: ----------------------------------------------------------------------------------------
+        pOpcao = NULL;
+        pOpcao = new ElementosGraficos::Texto("2. Salvar e voltar ao menu principal");
 
         if (pOpcao)
             opcoes.push_back(pOpcao);
         else
             cout << "Erro em Menus::MenuPause::MenuPause()::pOpcao: " << ERRO_ALOCACAO << endl;
 
-         //Op2: ----------------------------------------------------------------------------------------
+         //Op3: ----------------------------------------------------------------------------------------
         pOpcao = NULL;
-        pOpcao = new ElementosGraficos::Texto("2. Voltar ao menu principal");
+        pOpcao = new ElementosGraficos::Texto("3. Voltar ao menu principal");
 
         if (pOpcao)
             opcoes.push_back(pOpcao);
@@ -138,23 +147,49 @@ namespace Menus
             else
                 cout << "Erro em Menus::MenuPause::verificaTeclaPressionada()::Texto*: " << ERRO_NULLPTR << endl;
         }
+        else if(tecla == "3")
+        {
+            if(opcoes[3])
+                opcoes[3]->setCor(vermelho);
+            else
+                cout << "Erro em Menus::MenuPause::verificaTeclaPressionada()::Texto*: " << ERRO_NULLPTR << endl;
+        }
     }
     
     void MenuPause::verificaTeclaSolta(string tecla)
     {
         if(pGEs)
         {
-            if(tecla == "1") //Começa em 1 em função do subtitulo que ocupa a posição 0 do vetor
+            //pGEs->getEstadoAtual()->setAtivo(false);
+
+            if(tecla == "1") //Voltar ao jogo
             {
-                //comando para salvamento
-                pGEs->getEstadoAtual()->setAtivo(false);
-                pGEs->executarEstado(menuPrincipal);
+                if(pGEs->getEstado(fase1))
+                {
+                    cout<<"JOGO DESPAUSADO" << endl;
+                    cout << "Entrou em if(pGEs->getEstado(fase1))" << endl;
+                    if(pGEs->getEstado(fase1)->getAtivo())
+                        {cout << "Entrou em if(pGEs->getEstado(fase1)->getAtivo())" << endl; pGEs->executarEstado(fase1);}
+                }
+                else
+                    cout << "Erro em Menus::MenuPause::verificaTeclaPressionada()::Estado*: " << ERRO_NULLPTR << endl;
+                
+                if(pGEs->getEstado(fase2))
+                {   
+                    cout <<"Entrou no if da fase 2" << endl;
+                    if(pGEs->getEstado(fase2)->getAtivo())  
+                        pGEs->executarEstado(fase2);
+                }
+                else    
+                    cout << "Erro em Menus::MenuPause::verificaTeclaPressionada()::Estado*: " << ERRO_NULLPTR << endl;
             }
             else if(tecla == "2")
             {
-                pGEs->getEstadoAtual()->setAtivo(false);
+                //comando para salvamento
                 pGEs->executarEstado(menuPrincipal);
             }
+            else if(tecla == "2")
+                pGEs->executarEstado(menuPrincipal);
         }
         else
             cout << "Erro em Menus::MenuPause::verificaTeclaSolta(): " << ERRO_NULLPGES << endl;
