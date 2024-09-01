@@ -136,6 +136,7 @@ namespace Gerenciadores
         //Se o estado a ser executado é uma fase...
         if(id == fase1 || id == fase2)
         {
+            cout << "Entrou no if do pges" << endl;
             bool achouFase1 = false;
             bool achouFase2 = false;
             Estado* pEstado1 = NULL;
@@ -167,6 +168,8 @@ namespace Gerenciadores
                 
                 it++;
             }
+
+            cout << "passou checagem do mapa" << endl;
 
             /* ---------- REMOÇÃO DE FASES DO MAPA ---------- */
 

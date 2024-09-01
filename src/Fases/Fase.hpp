@@ -39,6 +39,7 @@ namespace Fases
     protected:
         static bool deveCarregar;
         static bool doisJogadores;
+        static bool sequenciaFases;
         Forma forma; // background
         Forma saida;
         Forma efeitoGameOver;
@@ -87,6 +88,7 @@ namespace Fases
 
         static void setDeveCarregar(const bool deve) { deveCarregar = deve; }
         static void setDoisJogadores(const bool dois) { doisJogadores = dois; }
+        static void setSequenciaFases(const bool seq) { sequenciaFases = seq; }
     };
 }
 

@@ -25,8 +25,7 @@ namespace Menus
     MenuPrincipal::MenuPrincipal(idEstados id):
     Estado(id),
     Menu(),
-    doisJogadores(false),
-    sequenciaFases(true)
+    doisJogadores(false)
     {        
         //Seta o título
         titulo.setInfo("GGG: GRANDE GUERRA GEOMETRICA");
@@ -146,6 +145,10 @@ namespace Menus
     //Executa o loop para renderizar e mostrar os elementos do menu principal na tela.
     void MenuPrincipal::executar(const float dT)
     {
+        cout << "entrou no menu principal" << endl;
+        //Reseta 2 jogadores
+        doisJogadores = false;
+        
         //Deixa as opções brancas novamente
         for(int i=0; i<(int)opcoes.size(); i++)
         {
@@ -174,6 +177,8 @@ namespace Menus
         }
         else
             cout << "Erro em Menus::MenuPrincipal::executar(): " << ERRO_NULLPGG << endl;
+        
+        cout << "executou no menu principal" << endl;
     }
     
     //Renderiza título e opções na tela.
@@ -283,8 +288,8 @@ namespace Menus
             {
                 Fases::Fase::setDeveCarregar(false);
                 Fases::Fase::setDoisJogadores(doisJogadores);
-                //pGEs->getEstado(fase1)->setJogoSequencia(true);
-                //pGEs->getEstado(fase1)->setDoisJogadores(doisJogadores);
+                Fases::Fase::setSequenciaFases(true);
+                
                 pGEs->executarEstado(fase1);
             }
 
@@ -292,32 +297,24 @@ namespace Menus
             {
                 Fases::Fase::setDeveCarregar(false);
                 Fases::Fase::setDoisJogadores(doisJogadores);
-                sequenciaFases = false;
-                //pGEs->getEstado(fase1)->setJogoSequencia(false);
-                //pGEs->getEstado(fase1)->setDoisJogadores(doisJogadores);
+                Fases::Fase::setSequenciaFases(false);
+
                 pGEs->executarEstado(fase1);
             }
 
             else if(tecla == "5") //Jogar fase tuneis
             {
-                //pGEs->getEstado(fase2)->setDoisJogadores(doisJogadores);
                 Fases::Fase::setDeveCarregar(false);
                 Fases::Fase::setDoisJogadores(doisJogadores);
+
                 pGEs->executarEstado(fase2);
             }
 
             else if(tecla == "6") //Recuperar jogo salvo
             {
-                //pGEs->executarEstado(jogoSalvo) ? nem ideia de como faz
-                
-                cout <<"Entrou no if do menufinal" << endl;
-                static_cast<MenuFinal*>(pGEs->getEstado(menuFimJogo))->setpFase(static_cast<Fases::Fase*>(pGEs->getEstado(fase1)));
-                cout <<"Setou pfase no menufinal" << endl;
-                
-                //Fases::Fase::setDeveCarregar(true);
-                //Fases::Fase::setDoisJogadores(doisJogadores);
-                //pGEs->executarEstado(fase1);
-                pGEs->executarEstado(menuFimJogo); //(é para teste do menu final, mas ainda não foi realizado)
+                Fases::Fase::setDeveCarregar(true);
+                Fases::Fase::setDoisJogadores(doisJogadores);
+                pGEs->executarEstado(fase1);
             }
 
             else if(tecla == "7") //Ver ranking

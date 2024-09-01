@@ -183,15 +183,39 @@ namespace Menus
                 else    
                     cout << "Erro em Menus::MenuPause::verificaTeclaPressionada()::Estado*: " << ERRO_NULLPTR << endl;
             }
-            else if(tecla == "2")
+            else if(tecla == "2") //Savar e voltar ao menu principal
             {
-                //comando para salvamento
+                if(pFase)
+                {
+                    pFase->salvar("../dados/fase");
+                    pFase->setAtivo(false);
+                }
+                else
+                    cout << "Erro em Menus::MenuPause::verificaTeclaPressionada()::Fase*: " << ERRO_NULLPTR << endl; 
+
                 pGEs->executarEstado(menuPrincipal);
             }
-            else if(tecla == "2")
+            else if(tecla == "3") //Voltar ao menu principal sem salvar
+            {
+                cout << "Entrou na opcao 2" << endl;
+                if(pFase)
+                    pFase->setAtivo(false);
+                else
+                    cout << "Erro em Menus::MenuPause::verificaTeclaPressionada()::Fase*: " << ERRO_NULLPTR << endl; 
+                
+                cout << "Vai executar menu principal" << endl;
                 pGEs->executarEstado(menuPrincipal);
+            }
         }
         else
             cout << "Erro em Menus::MenuPause::verificaTeclaSolta(): " << ERRO_NULLPGES << endl;
+    }
+
+    void MenuPause::setpFase(Fases::Fase* pF)
+    {
+        pFase = pF;
+
+        if(pFase == NULL)
+            cout << "Atenção em Menus::MenuPause::setpFases()::Fase*: " << ERRO_NULLPTR << endl;
     }
 }

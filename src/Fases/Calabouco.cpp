@@ -3,6 +3,7 @@
 #include "Entidades/Obstaculos/Lapis.hpp"
 #include "Entidades/Obstaculos/PlataformaGrudenta.hpp"
 #include "Fases/Calabouco.hpp"
+#include "Menus/MenuFinal.hpp"
 #include "Calabouco.hpp"
 #include "Jogo.hpp"
 
@@ -119,18 +120,34 @@ void Fases::Calabouco::executar(const float dT)
         if(verificaVitoria())
         {
             Estado::setAtivo(false);
-            pGEs->executarEstado(idEstados::fase2);
 
+            if(pGEs)
+            {
+                if(sequenciaFases)
+                    pGEs->executarEstado(idEstados::fase2);
+                else
+                {
+                    static_cast<Menus::MenuFinal*>(pGEs->getEstado(menuFimJogo))->setpFase(this);
+                    pGEs->executarEstado(menuFimJogo);
+                }
+            }
+            else
+                cout << "Erro em Fases::Calabouco::executar(): " << ERRO_NULLPGES << endl;
+            
             cout << "GANHARAM!" << endl;
         }
         else if(verificaGameOver())
         {
-            pGG->renderizar(&efeitoGameOver);
-            pGG->mostrar();
             Estado::setAtivo(false);
-            sf::sleep(sf::seconds(3.0F));
-            pGEs->executarEstado(menuPrincipal);
-            return;
+
+            if(pGEs)
+            {
+                static_cast<Menus::MenuFinal*>(pGEs->getEstado(menuFimJogo))->setpFase(this);
+                pGEs->executarEstado(menuFimJogo);
+            }
+            else
+                cout << "Erro em Fases::Calabouco::executar(): " << ERRO_NULLPGES << endl;
+            
         }
         
         pGG->mostrar();

@@ -4,6 +4,8 @@
 #include "Fases/Tuneis.hpp"
 #include "Tuneis.hpp"
 
+#include "Menus/MenuFinal.hpp"
+
 #include "Entidades/Personagens/Inimigos/Quadrado.hpp"
 #include "Entidades/Personagens/Inimigos/Triangulo.hpp"
 #include "Entidades/Personagens/Inimigos/Estrela.hpp"
@@ -150,18 +152,16 @@ void Fases::Tuneis::executar(const float dT)
 
         if(pJog)
         {
-            if(verificaVitoria())
+            if(verificaVitoria() || verificaGameOver())
             {
-                Estado::setAtivo(false);
-                pGEs->executarEstado(idEstados::menuPrincipal);
-            }
-            else if(verificaGameOver())
-            {
-                Estado::setAtivo(false);
-                pGG->renderizar(&efeitoGameOver);
-                pGG->mostrar();
-                sf::sleep(sf::seconds(3.0f));
-                pGEs->executarEstado(idEstados::menuPrincipal);
+                if(pGEs)
+                {
+                    setAtivo(false);
+                    static_cast<Menus::MenuFinal*>(pGEs->getEstado(menuFimJogo))->setpFase(this);
+                    pGEs->executarEstado(menuFimJogo);
+                }
+                else
+                    cout << "Erro em Fases::Calabouco::executar(): " << ERRO_NULLPGES << endl;
             }
         }
 

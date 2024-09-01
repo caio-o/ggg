@@ -15,7 +15,6 @@ namespace Menus
     {
         private:
             bool doisJogadores;
-            bool sequenciaFases;
         
         public:
             MenuPrincipal(idEstados id = menuPrincipal);

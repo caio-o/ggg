@@ -9,11 +9,13 @@
 #include <string>
 #include "Fase.hpp"
 #include "Jogo.hpp"
+#include "Menus/MenuPause.hpp"
 
 namespace Fases
 {
     bool Fase::deveCarregar = false;
     bool Fase::doisJogadores = false;
+    bool Fase::sequenciaFases = false;
 
     Gerenciadores::GerenciadorColisoes* Fase::pGC(NULL);
     
@@ -280,7 +282,18 @@ namespace Fases
     void Fase::verificaTeclaSolta(string tecla)
     {
         if(tecla == "Escape")
-            { cout << "JOGO PAUSADO" << endl; pGEs->executarEstado(menuPause);}
+        { 
+            cout << "JOGO PAUSADO" << endl; 
+            
+            if(pGEs)
+            {
+                static_cast<Menus::MenuPause*>(pGEs->getEstado(menuPause))->setpFase(this);
+            
+                pGEs->executarEstado(menuPause);
+            }
+            else
+                cout << "Erro em Fases::Fase::verificaTeclaSolta(): " << ERRO_NULLPGES << endl;
+        }
     }
 
     void Fase::setGerenciadorColisoes()
