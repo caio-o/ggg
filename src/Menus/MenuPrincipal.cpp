@@ -262,13 +262,20 @@ namespace Menus
         if(pGEs)
         {
             if(tecla == "1") //Jogar com um jogador
-                {doisJogadores = false; static_cast<MenuFinal*>(pGEs->getEstado(menuFimJogo))->setDoisJogadores(doisJogadores);
+            {
+                doisJogadores = false; 
+                static_cast<MenuFinal*>(pGEs->getEstado(menuFimJogo))->setDoisJogadores(doisJogadores);
 
-                cout << "doisJogadores = " << doisJogadores << endl;}
+                cout << "doisJogadores = " << doisJogadores << endl;
+            }
             
             if(tecla == "2") //Jogar com dois jogadores
-                {doisJogadores = true; static_cast<MenuFinal*>(pGEs->getEstado(menuFimJogo))->setDoisJogadores(doisJogadores);
-                cout << "doisJogadores = " << doisJogadores << endl;}
+            {
+                doisJogadores = true; 
+                static_cast<MenuFinal*>(pGEs->getEstado(menuFimJogo))->setDoisJogadores(doisJogadores);
+                
+                cout << "doisJogadores = " << doisJogadores << endl;
+            }
             
             else if(tecla == "3") //Jogar sequência de fases
             {

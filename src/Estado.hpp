@@ -17,11 +17,11 @@ namespace Gerenciadores { class GerenciadorEstados; } //Include recursivo
     //Possíveis estados do jogo
     enum idEstados
     {
-        desconhecido = 0,
-        menuPrincipal, //opções: 1 jogador, 2 jogadores, ranking, carregar jogo salvo
+        desconhecido = 0, //opções: 1 jogador, 2 jogadores, ranking, carregar jogo salvo
         jogoSequencia, //execução do jogo com as duas fases em sequencia
         fase1, //execução da fase 1
-        fase2, //execução da fase 2,
+        fase2,
+        menuPrincipal, //execução da fase 2,
         menuPause, //opções: salvar o jogo e voltar ao menu principal, apenas voltar ao menu principal 
         menuFimJogo, //opções: registrar o nome no ranking
         ranking //exibe o ranking
