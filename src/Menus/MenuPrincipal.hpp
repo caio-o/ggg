@@ -1,7 +1,7 @@
 /*
  * AUTORA    : Ana Julia Molinos Leite da Silva
- * DESCRIÇÃO : Declaração da classe derivada EstadoMenu, responsável por executar métodos específicos
- *             aos menus do jogo.
+ * DESCRIÇÃO : Declaração da classe derivada MenuPrincipal, responsável por executar métodos específicos
+ *             ao menu incial do jogo.
  */
 
 #pragma once
@@ -24,7 +24,7 @@ namespace Menus
             void executar(const float dT);
             void desenhar();
 
-            virtual void verificaTeclaPressionada(string tecla);
-            virtual void verificaTeclaSolta(string tecla);
+            void verificaTeclaPressionada(string tecla);
+            void verificaTeclaSolta(string tecla);
     };
 } // namespace Menus

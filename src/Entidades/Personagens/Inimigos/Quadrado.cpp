@@ -29,8 +29,6 @@ namespace Inimigos
 
     Quadrado::~Quadrado()
     {
-        cout << "Quadrado desalocado" << endl;
-        
         dano = -1;
         maxVida = -1;
         vida = -1;

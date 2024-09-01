@@ -153,8 +153,12 @@ Fases::Calabouco::Calabouco():
     
     pJog->setPos(190.f, CHAO-100.f);
     pJog2->setPos(170.f, CHAO-100.f);
+
+    //cout << "Crashou no pgc" << endl;
     pGC->inserirJogador(pJog);
     pGC->inserirJogador(pJog2);
+
+    //cout <<" Inseriu no pgc" << endl;
     colecao.incluir(static_cast<Entidade*>(pJog));
     colecao.incluir(static_cast<Entidade*>(pJog2));
     
@@ -175,4 +179,6 @@ Fases::Calabouco::~Calabouco()
 { 
     if(pGC)
         delete pGC;
+
+    pGC = NULL;
 }

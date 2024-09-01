@@ -41,9 +41,7 @@ namespace Fases
         Forma efeitoGameOver;
         bool gameOver;
         ListaEntidades colecao;
-        Gerenciadores::GerenciadorGrafico *pGG;
-        Gerenciadores::GerenciadorColisoes *pGC;
-        Gerenciadores::GerenciadorEventos *pGE;
+        static Gerenciadores::GerenciadorColisoes *pGC;
         Jogador *pJog;
         Jogador *pJog2;
         float t0;
@@ -75,6 +73,8 @@ namespace Fases
 
         void verificaTeclaPressionada(string tecla);
         void verificaTeclaSolta(string tecla);
+
+        static void setGerenciadorColisoes();
     };
 }
 
