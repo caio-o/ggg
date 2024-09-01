@@ -16,15 +16,20 @@
 using namespace std;
 using namespace Fases;
 
+Jogador* Jogo::pJog1 = NULL;
+Jogador* Jogo::pJog2 = NULL;
+
 Jogo::Jogo():
     pGG(NULL),
     pGE(NULL),
     pGEs(NULL),
     primeiraFase(NULL)
 {
+    Fase::setDeveCarregar(false);
+    getJogador1();
+    getJogador2();
+
     srand(time(NULL));
-    /*Jogador *jog1 = new Jogador;
-    Jogador *jog2 = NULL;*/
 
     cout << "Jogo::Jogo 1" << endl;
     pGG = Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico();
@@ -76,4 +81,68 @@ void Jogo::executar()
     //segundaFase->executar();
 
     pGEs->executarEstado(menuPrincipal);
+}
+
+void Jogo::carregarJogador1(nlohmann::ordered_json j) 
+{
+    if(pJog1)
+    {
+        pJog1->carregar(j);
+    }
+    else
+    {
+        cout << "Em Jogo::carregarJogador1: " << ERRO_SET_NULLPTR << endl;
+        enterFechar();
+        exit(1);
+    }
+}
+
+void Jogo::carregarJogador2(nlohmann::ordered_json j) 
+{
+    if(pJog2)
+    {
+        pJog2->carregar(j);
+    }
+    else
+    {
+        cout << "Em Jogo::carregarJogador2: " << ERRO_SET_NULLPTR << endl;
+        enterFechar();
+        exit(1);
+    }
+}
+
+Jogador *Jogo::getJogador1()
+{
+    if(pJog1)
+    {
+        return pJog1;
+    }
+    else
+    {
+        pJog1 = new Jogador(60, true);
+        return pJog1;
+    }
+}
+
+Jogador *Jogo::getJogador2()
+{
+    if(pJog2)
+    {
+        return pJog2;
+    }
+    else
+    {
+        pJog2 = new Jogador(60, false);
+        return pJog2;
+    }
+}
+
+void Jogo::setJogador1(Jogador *jog)
+{
+    pJog1 = jog;
+}
+
+void Jogo::setJogador2(Jogador *jog)
+{
+    pJog2 = jog;
 }

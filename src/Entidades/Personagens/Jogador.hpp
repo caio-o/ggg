@@ -22,7 +22,7 @@ namespace Entidades
         
 
     public:
-        Jogador(int _maxVida = 60, const bool j1 = true);
+        Jogador(int _maxVida = 60, const bool j1 = true, const int _pontos = 0);
 
         ~Jogador();
 
@@ -31,9 +31,10 @@ namespace Entidades
         void        setLentidao  (const float _lentidao)  { lentidao = (_lentidao > 0.0f ? _lentidao : 1.0f); }
         void        pular();
         
-        void        operator+=  (int num)   { pontos += num; }
-        void        operator-=  (int num)   { pontos -= num; }
-        const int   getPontos   () const    { return pontos; }
+        void        operator+=  (int num)          { pontos += num;    }
+        void        operator-=  (int num)          { pontos -= num;    }
+        const int   getPontos   () const           { return pontos;    }
+        void        setPontos (const int _pontos)  { pontos = _pontos; }
 
         void danificar(Personagem *pPers);
         void carregar(nlohmann::ordered_json &j);

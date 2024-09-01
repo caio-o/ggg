@@ -11,6 +11,8 @@
 #include "Gerenciadores/GerenciadorEventos.hpp"
 #include "Gerenciadores/GerenciadorGrafico.hpp"
 
+#include "Fases/Fase.hpp"
+
 #include "iostream"
 using namespace std;
 
@@ -270,6 +272,8 @@ namespace Menus
             
             else if(tecla == "3") //Jogar sequência de fases
             {
+                Fases::Fase::setDeveCarregar(false);
+                Fases::Fase::setDoisJogadores(doisJogadores);
                 //pGEs->getEstado(fase1)->setJogoSequencia(true);
                 //pGEs->getEstado(fase1)->setDoisJogadores(doisJogadores);
                 pGEs->executarEstado(fase1);
@@ -277,6 +281,8 @@ namespace Menus
 
             else if(tecla == "4") //Jogar fase calabouco
             {
+                Fases::Fase::setDeveCarregar(false);
+                Fases::Fase::setDoisJogadores(doisJogadores);
                 sequenciaFases = false;
                 //pGEs->getEstado(fase1)->setJogoSequencia(false);
                 //pGEs->getEstado(fase1)->setDoisJogadores(doisJogadores);
@@ -286,13 +292,18 @@ namespace Menus
             else if(tecla == "5") //Jogar fase tuneis
             {
                 //pGEs->getEstado(fase2)->setDoisJogadores(doisJogadores);
+                Fases::Fase::setDeveCarregar(false);
+                Fases::Fase::setDoisJogadores(doisJogadores);
                 pGEs->executarEstado(fase2);
             }
 
             else if(tecla == "6") //Recuperar jogo salvo
             {
                 //pGEs->executarEstado(jogoSalvo) ? nem ideia de como faz
-                pGEs->executarEstado(menuFimJogo); //(é para teste do menu final, mas ainda não foi realizado)
+                Fases::Fase::setDeveCarregar(true);
+                Fases::Fase::setDoisJogadores(doisJogadores);
+                pGEs->executarEstado(fase1);
+                //pGEs->executarEstado(menuFimJogo); //(é para teste do menu final, mas ainda não foi realizado)
             }
 
             else if(tecla == "7") //Ver ranking

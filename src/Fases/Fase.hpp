@@ -37,6 +37,8 @@ namespace Fases
     class Fase : public Ente, public Estado
     {
     protected:
+        static bool deveCarregar;
+        static bool doisJogadores;
         Forma forma; // background
         Forma saida;
         Forma efeitoGameOver;
@@ -61,8 +63,8 @@ namespace Fases
         virtual const bool verificaGameOver();
         virtual const bool verificaVitoria() = 0;
 
-        virtual void salvar  ();
-        virtual void carregar();
+        virtual void salvar  (string nomeArquivo);
+        virtual void carregar(string nomeArquivo);
 
         void                  criarBordas              ();
 
@@ -82,6 +84,9 @@ namespace Fases
         Jogador* getJogador2() const;
 
         const bool getGameOver() const;
+
+        static void setDeveCarregar(const bool deve) { deveCarregar = deve; }
+        static void setDoisJogadores(const bool dois) { doisJogadores = dois; }
     };
 }
 
