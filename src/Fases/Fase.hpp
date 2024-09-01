@@ -57,6 +57,11 @@ namespace Fases
         void verificaTeclaSolta(string tecla);
 
         static void setGerenciadorColisoes();
+
+        Jogador* getJogador1() const;
+        Jogador* getJogador2() const;
+
+        const bool getGameOver() const;
     };
 }
 

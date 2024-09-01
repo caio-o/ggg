@@ -270,7 +270,7 @@ namespace Menus
             
             else if(tecla == "3") //Jogar sequência de fases
             {
-                //pGEs->getEstado(fase1)->setJogoSequencia(sequenciaFases);
+                //pGEs->getEstado(fase1)->setJogoSequencia(true);
                 //pGEs->getEstado(fase1)->setDoisJogadores(doisJogadores);
                 pGEs->executarEstado(fase1);
             }
@@ -278,7 +278,7 @@ namespace Menus
             else if(tecla == "4") //Jogar fase calabouco
             {
                 sequenciaFases = false;
-                //pGEs->getEstado(fase1)->setJogoSequencia(sequenciaFases);
+                //pGEs->getEstado(fase1)->setJogoSequencia(false);
                 //pGEs->getEstado(fase1)->setDoisJogadores(doisJogadores);
                 pGEs->executarEstado(fase1);
             }
@@ -292,6 +292,7 @@ namespace Menus
             else if(tecla == "6") //Recuperar jogo salvo
             {
                 //pGEs->executarEstado(jogoSalvo) ? nem ideia de como faz
+                pGEs->executarEstado(menuFimJogo); //(é para teste do menu final, mas ainda não foi realizado)
             }
 
             else if(tecla == "7") //Ver ranking

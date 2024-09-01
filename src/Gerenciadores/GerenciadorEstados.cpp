@@ -13,6 +13,7 @@
 
 #include "Menus/MenuPrincipal.hpp"
 #include "Menus/MenuPause.hpp"
+#include "Menus/MenuFinal.hpp"
 
 #include <iostream>
 using namespace std;
@@ -66,11 +67,21 @@ namespace Gerenciadores
 
         pEstado = NULL;
 
-        //Aloca Menu Principal
+        //Aloca Menu de Pause
         pEstado = static_cast<Estado*>(new Menus::MenuPause(menuPause));
 
         if(pEstado)
             mapaEstados.insert(std::pair<idEstados, Estado*>(menuPause, pEstado));
+        else
+            cout << "Erro em Gerenciadores::GerenciadorEstados::GerenciadorEstados()pEstado: " << ERRO_ALOCACAO << endl;
+
+        pEstado = NULL;
+
+        //Aloca Menu de Finalização
+        pEstado = static_cast<Estado*>(new Menus::MenuFinal(menuFimJogo));
+
+        if(pEstado)
+            mapaEstados.insert(std::pair<idEstados, Estado*>(menuFimJogo, pEstado));
         else
             cout << "Erro em Gerenciadores::GerenciadorEstados::GerenciadorEstados()pEstado: " << ERRO_ALOCACAO << endl;
 

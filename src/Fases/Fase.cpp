@@ -148,4 +148,26 @@ namespace Fases
     {
         pGC = Gerenciadores::GerenciadorColisoes::getInstancia();
     }
+
+    Jogador* Fase::getJogador1() const
+    {
+        if(pJog == NULL)
+            cout << "Atenção em: Fases::Fase::getJogador1(): " << ERRO_RETURN_NULLPTR << endl;
+
+        return pJog;
+    }
+
+    Jogador* Fase::getJogador2() const
+    {
+        if(pJog2 == NULL)
+            cout << "Atenção em: Fases::Fase::getJogador2(): " << ERRO_RETURN_NULLPTR << endl;
+
+        return pJog2;
+    }
+
+    const bool Fase::getGameOver() const
+    {
+        return gameOver;
+    }
+
 } // namespace Fases
