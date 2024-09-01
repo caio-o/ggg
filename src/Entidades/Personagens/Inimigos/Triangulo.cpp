@@ -5,6 +5,8 @@
  */
 
 #include "Triangulo.hpp"
+#include <iostream>
+#include <fstream>
 
 #define CAMINHO_TEXTURA "./../img/triangulo_amarelo.png"
 
@@ -57,4 +59,25 @@ namespace Inimigos
         //não faz nada?
     }
 
+    void Triangulo::salvar(std::ofstream &os) 
+    {
+        nlohmann::ordered_json j;
+        j ["especie"]       = triangulo;
+        j ["pos"]           = { {"x", getX()    }, {"y", getY()    } };
+        j ["tam"]           = { {"x", getTam().x}, {"y", getTam().y} };
+        j ["vida"]          = vida;
+        j ["nivelMaldade"]  = nivelMaldade;
+
+        os << j << "\n";
+    }
+
+    void Triangulo::carregar(nlohmann::ordered_json &j)
+    {
+        setPos       (j["pos"]["x"], j["pos"]["y"]);
+        setTamanho   (j["tam"]["x"], j["tam"]["y"]);
+        setVida      (j["vida"]);
+        setMaldade   (j["nivelMaldade"]);
+
+        checarVida();
+    }
 } // namespace Inimigos

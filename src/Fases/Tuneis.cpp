@@ -1,12 +1,21 @@
+#include <iostream>
+#include <fstream>
+
 #include "Fases/Tuneis.hpp"
-#include "Entidades/Obstaculos/Lapis.hpp"
 #include "Tuneis.hpp"
-#include "Entidades/Personagens/Inimigos/Estrela.hpp"
+
+#include "Entidades/Personagens/Inimigos/Quadrado.hpp"
 #include "Entidades/Personagens/Inimigos/Triangulo.hpp"
+#include "Entidades/Personagens/Inimigos/Estrela.hpp"
+
+#include "Entidades/Obstaculos/Plataforma.hpp"
+#include "Entidades/Obstaculos/PlataformaGrudenta.hpp"
+#include "Entidades/Obstaculos/Lapis.hpp"
+
 #define X_SAIDA CANTO_DIREITO-550.0F
 #define Y_SAIDA TETO+200.0F
 
-void Fases::Tuneis::criarLapis(float posX, float posY, int dano)
+Lapis* Fases::Tuneis::criarLapis(float posX, float posY, int dano)
 {
     Obstaculos::Lapis *pLap = new Obstaculos::Lapis();
     
@@ -16,15 +25,23 @@ void Fases::Tuneis::criarLapis(float posX, float posY, int dano)
         colecao.incluir(static_cast<Entidade*> (pLap));
         pGC->inserirObstaculo(static_cast<Obstaculo*> (pLap));
     }
+
+    return pLap;
 }
 
-void Fases::Tuneis::criarChefaoEstrela(const float posX, const float posY, const int nCapangas)
+Estrela* Fases::Tuneis::criarChefaoEstrela(const float posX, const float posY, const int nCapangas)
 {
     Estrela* pChefao = new Estrela();
-    pChefao->setNumCapangas(nCapangas);
-    pChefao->setPos(posX, posY);
-    colecao.incluir(static_cast<Entidade*>(pChefao));
-    pGC->inserirInimigo(static_cast<Inimigo*> (pChefao));
+
+    if(pChefao)
+    {
+        pChefao->setNumCapangas(nCapangas);
+        pChefao->setPos(posX, posY);
+        colecao.incluir(static_cast<Entidade*>(pChefao));
+        pGC->inserirInimigo(static_cast<Inimigo*> (pChefao));
+    }
+
+    return pChefao;
 }
 
 void Fases::Tuneis::criarObstaculos()
@@ -74,7 +91,8 @@ Fases::Tuneis::Tuneis():
     //saida(Vetor2f(X_SAIDA+200.F, Y_SAIDA-250.F), Vetor2f(400.f, 300.f), "", 1.f)
 {
     idEstado = fase2;
-    
+    forma.setTextura("../img/fundo_marrom.png", false);
+
     Ente::setGerenciadorGrafico();
     saida.getpCorpo()->setFillColor(sf::Color::Yellow);
     pGG->setTamanhoCamera(Vetor2f(LARGURA_FASE, ALTURA_FASE));
@@ -120,8 +138,9 @@ void Fases::Tuneis::executar(const float dT)
         deltaT = t1 - t0;
 
         // Executar, mover e desenhar entidades.
-        colecao.percorrer(deltaT);
 
+        desenhar();
+        colecao.percorrer(deltaT);
         pGG->renderizar(&saida);
 
         if(pJog)
@@ -163,4 +182,81 @@ const bool Fases::Tuneis::verificaVitoria()
     {
         return false;
     }
+}
+void Fases::Tuneis::carregar()
+{
+    cout << "FASE CARREGAR 1" << endl;
+    // FUTURAMENTE USAR TRY CATCH
+    ifstream ifs("../dados/save.json");
+    string linha = "";
+    nlohmann::ordered_json j;
+    Especie esp = indefinido;
+        
+    // Se o arquivo eh acessivel
+    if(ifs.good())
+    {
+        cout << "FASE CARREGAR 2 (ANTES DO LOOP)" << endl;
+        while(! ifs.eof() && j["especie"] != -1)
+        {
+            linha = "";
+            std::getline(ifs, linha);
+
+            j = nlohmann::ordered_json::parse(linha);
+
+            if(! j.is_null())
+            {
+                esp = j["especie"];
+
+                switch(esp)
+                {
+                case jogador:
+                    if(j["ehJogador1"])
+                    {
+                        if(pJog) { pJog->carregar(j);                       }
+                        else     { pJog = new Jogador(); pJog->carregar(j); }
+                    }
+                    else
+                    {
+                        if(pJog2) { pJog2->carregar(j);                        }
+                        else      { pJog2 = new Jogador(); pJog2->carregar(j); }
+                    }
+                    break;
+
+
+                case plataforma:
+                    criarPlataforma(0.f, 0.f)->carregar(j);
+                    break;
+
+                case plataformaGrudenta:
+                    criarPlataformaGrudenta(0.f,0.f)->carregar(j);
+                    break;
+
+                case lapis:
+                    criarLapis(0.f, 0.f)->carregar(j);
+                    break;
+
+                case quadrado:
+                    criarQuadrado(0.f,0.f)->carregar(j);
+                    break;
+
+                case triangulo:
+                    criarTriangulo(0.f, 0.f)->carregar(j);
+                    break;
+                    
+                case estrela:
+                    criarChefaoEstrela(0.f, 0.f, 100)->carregar(j);
+                    break;
+
+                case projetil:
+                    criarProjetil(0.f, 0.f)->carregar(j);
+                    break;
+
+                default:
+                    break;
+                }
+            }
+        }
+        cout << "FASE CARREGAR 3 (DEPOIS DO LOOP)" << endl;
+    }
+        
 }

@@ -60,22 +60,22 @@ void Fases::Calabouco::criarInimigos()
 
 const bool Fases::Calabouco::verificaVitoria()
 {
-    static Vetor2f limiteSaida(X_SAIDA_CA-150, Y_SAIDA_CA-250);
+    static Vetor2f limiteSaida(X_SAIDA_CA-150, Y_SAIDA_CA+250);
 
     if(pJog && pJog->getVivo())
     {
         if(pJog2 && pJog2->getVivo())
         {
-            return pJog->getX() > X_SAIDA_CA && pJog->getY() < Y_SAIDA_CA &&  pJog2->getX() > X_SAIDA_CA && pJog2->getY() < Y_SAIDA_CA;
+            return pJog->getX() > limiteSaida.x && pJog->getY() < limiteSaida.y &&  pJog2->getX() > limiteSaida.x && pJog2->getY() < limiteSaida.y;
         }
         else
         {
-            return pJog->getX() > X_SAIDA_CA && pJog->getY() < Y_SAIDA_CA;
+            return pJog->getX() > limiteSaida.x && pJog->getY() < limiteSaida.y;
         }
     }
     else if(pJog2 && pJog2->getVivo())
     {
-        return pJog2->getX() > X_SAIDA_CA && pJog2->getY() < Y_SAIDA_CA;
+        return pJog2->getX() > limiteSaida.x && pJog2->getY() < limiteSaida.y;
     }
     else
     {
@@ -109,6 +109,7 @@ void Fases::Calabouco::executar(const float dT)
 
         // Executar, mover e desenhar entidades.
         
+        desenhar();
         pGG->renderizar(&saida);
         //cout << "Passou corpo saida" << endl;
         colecao.percorrer(deltaT);
@@ -116,6 +117,8 @@ void Fases::Calabouco::executar(const float dT)
 
         if(verificaVitoria())
         {
+            carregar();
+
             cout << "PONTOS DO JOGADOR 1:" << pJog->getPontos() << endl;
             cout << "PONTOS DO JOGADOR 2:" << pJog2->getPontos() << endl;
 
@@ -170,6 +173,7 @@ Fases::Calabouco::Calabouco():
     colecao.irAoInicio();
 
     salvar();
+    carregar();
 }
 
 Fases::Calabouco::~Calabouco()

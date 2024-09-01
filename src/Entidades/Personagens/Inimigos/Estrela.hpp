@@ -19,9 +19,10 @@ namespace Inimigos
         Estrela();
         ~Estrela();
 
+        void salvar(ofstream &ofs);
+        virtual void carregar(nlohmann::ordered_json &j);
         void danificar(Personagem* pPers);
         void reagirAhColisao(Entidade *pE);
-        void salvar(ofstream &ofs){};
         void atacar();
         void executar(const float deltaT);
         static void setFase(Fases::Tuneis* _pFase) { pFase = _pFase; }

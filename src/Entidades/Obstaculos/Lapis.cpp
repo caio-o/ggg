@@ -6,6 +6,8 @@
 
 #include "Lapis.hpp"
 #include "Erros.hpp"
+#include <iostream>
+#include <fstream>
 
 #define CAMINHO_TEXTURA "../img/lapis.png" //textura provisória
 
@@ -13,9 +15,6 @@ namespace Entidades
 {
     namespace Obstaculos
     {
-        Jogador* Lapis::pJogador1(NULL);
-        Jogador* Lapis::pJogador2(NULL);
-
         Lapis::Lapis(Especie _especie, const bool _permeavel, const int dano):
         Obstaculo(_especie, _permeavel),
         dano(dano)
@@ -32,7 +31,16 @@ namespace Entidades
             dano = -1;
         }
 
-        
+        void Lapis::salvar(std::ofstream &os)
+        {
+            nlohmann::ordered_json j;
+            j ["especie"]    = getEspecie();
+            j ["pos"]        = { {"x", getX()    }, {"y", getY()    } };
+            j ["tam"]        = { {"x", getTam().x}, {"y", getTam().y} };
+
+            os   << j << "\n";
+        }
+
         //Executa o obstáculo do tipo Lapis
         void Lapis::executar(const float dT)
         {
@@ -55,24 +63,6 @@ namespace Entidades
         {
             return dano;
         }
-
-
-        void Lapis::setpJogador1(Jogador* pJ)
-        {
-            pJogador1 = pJ;
-
-            if(pJogador1 == NULL)
-                cout << "Erro em Entidades::Obstaculos::Lapis::setpJogador1(): " << ERRO_NULLPTR << endl;
-        }
-
-        void Lapis::setpJogador2(Jogador* pJ)
-        {
-            pJogador2 = pJ;
-
-            if(pJogador2 == NULL)
-                cout << "Erro em Entidades::Obstaculos::Lapis::setpJogador1(): " << ERRO_NULLPTR << endl;
-        }
-
     } // namespace Obstaculos
     
 } // namespace Entidades

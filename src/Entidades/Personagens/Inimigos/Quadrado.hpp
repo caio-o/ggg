@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Inimigo.hpp"
+#include "json.hpp"
 
 namespace Inimigos
 {
@@ -17,6 +18,7 @@ namespace Inimigos
             ~Quadrado();
             
             void salvar(ofstream &ofs);
+            virtual void carregar(nlohmann::ordered_json &j);
             void executar(const float dT);
             void atacar();
             void vira();

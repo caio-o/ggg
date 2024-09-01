@@ -21,3 +21,4 @@ PlataformaGrudenta::obstacular(Jogador *pJog)
 {
     pJog->setLentidao(pegajosidade);
 }
+

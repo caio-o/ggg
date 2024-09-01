@@ -12,18 +12,19 @@ namespace Fases
         //Forma saida;
         int maxInimigos;
         int  maxChefao;
-        void criarLapis              (float posX, float posY, int dano = 1);
-        void criarChefaoEstrela      (const float posX, const float posY, const int nCapangas);
+        Lapis*   criarLapis              (float posX, float posY, int dano = 1);
+        Estrela* criarChefaoEstrela      (const float posX, const float posY, const int nCapangas);
         void criarObstaculos();
         void criarInimigos();
 
     public:
         Tuneis(/* args */);
         ~Tuneis();
+        void carregar();
         void executar(const float dT);
         const bool verificaVitoria();
 
-        void desenhar(){}
+        //void desenhar(){}
 
     };
 }

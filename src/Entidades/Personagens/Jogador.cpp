@@ -51,15 +51,13 @@ void Jogador::salvar(ofstream &os)
     j ["ehJogador1"] = ehJogador1;
 
     // o output eh o que se espera no arquivo final
-    os << j << ",\n";
-    cout << j << ",\n";
+    os << j << "\n";
+    cout << j << "\n";
     cout << "salvamento concluido!" << endl;
 }
 
-void Jogador::carregar(ifstream &is)
+void Jogador::carregar(nlohmann::ordered_json &j)
 {
-    nlohmann::ordered_json j;
-    string str;
     ehJogador1 = j["ehJogador1"];
 
     if(ehJogador1) setTextura("../img/emoji_com_faca.png", true);

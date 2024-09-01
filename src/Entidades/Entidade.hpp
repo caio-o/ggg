@@ -7,6 +7,7 @@
 #include "Coordenada.hpp"
 
 #include "ElementosGraficos/Forma.hpp"
+#include "json.hpp"
 
 using namespace Coordenadas;
 using namespace ElementosGraficos;
@@ -18,9 +19,13 @@ namespace Entidades
         indefinido = 0,
         jogador,
         inimigo,
+        quadrado,
+        triangulo,
+        estrela,
         obstaculo,
         plataformaGrudenta,
         plataforma,
+        lapis,
         projetil
     };
 
@@ -29,12 +34,9 @@ namespace Entidades
     {
     protected:
         Vetor2f pos;
-        //Vetor2f tam;
         Vetor2f vel;
         float acelVertical;
-        //Coordenada<float> modGravidade;
         Especie especie;
-
         Forma forma;
 
         bool ativo;
@@ -76,6 +78,7 @@ namespace Entidades
         void aceleraY  (const float _y) { vel.y += _y; }
         void acelera   (const float _x, const float _y) { aceleraX(_x); aceleraY(_y); }
         virtual void salvar(ofstream &ofs) = 0;
+        virtual void carregar(nlohmann::ordered_json &j) = 0;
     };
 } 
 

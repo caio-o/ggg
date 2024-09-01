@@ -1,4 +1,6 @@
 #include "Estrela.hpp"
+#include <iostream>
+#include <fstream>
 #define COOLDOWN_ESTRELA 3.0F 
 
 Fases::Tuneis* Inimigos::Estrela::pFase = NULL;
@@ -54,7 +56,7 @@ void Inimigos::Estrela::atacar()
 
 void Inimigos::Estrela::executar(const float deltaT)
 {
-    arrependimento = nCapangas <= 0;
+    if( nCapangas <= 0 ) arrependerse();
 
     if(arrependimento)
     {
@@ -66,4 +68,31 @@ void Inimigos::Estrela::executar(const float deltaT)
         // MOSTRAR TEXTO NA TELA, AMEACANDO OS JOGADORES.
         atacar();
     }
+}
+
+void Inimigos::Estrela::salvar(std::ofstream &os) 
+{
+    nlohmann::ordered_json j;
+
+    j ["especie"]         = estrela;
+    j ["pos"]             = { {"x", getX()    }, {"y", getY()    } };
+    j ["tam"]             = { {"x", getTam().x}, {"y", getTam().y} };
+    j ["vida"]            = vida;
+    j ["nivelMaldade"]    = nivelMaldade;
+    j ["nCapangas"]       = nCapangas;
+    j ["arrependimento"]  = arrependimento;
+
+    os << j << "\n";
+}
+
+void Inimigos::Estrela::carregar(nlohmann::ordered_json &j)
+{
+    setPos          (j["pos"]["x"], j["pos"]["y"]);
+    setTamanho      (j["tam"]["x"], j["tam"]["y"]);
+    setVida         (j["vida"]);
+    setMaldade      (j["nivelMaldade"]);
+    setNumCapangas  (j["nCapangas"]);
+    if              (j["arrependimento"]) { arrependerse(); }
+
+    checarVida();
 }

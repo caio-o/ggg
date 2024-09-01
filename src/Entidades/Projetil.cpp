@@ -7,8 +7,10 @@
 #include "Projetil.hpp"
 #include "Erros.hpp"
 
-#include "stdlib.h"
-#include "time.h"
+#include <stdlib.h>
+#include <time.h>
+#include <fstream>
+#include <iostream>
 
 #define CAMINHO_TEXTURA "../img/projetil_triangulo.png"
 
@@ -134,5 +136,16 @@ namespace Entidades
 
         if(pJogador2 == NULL)
             cout << "ATENÇÃO EM: Entidades::Projetil::setpJogador2(): " << ERRO_NULLPTR << endl;
+    }
+
+    void Projetil::salvar(std::ofstream &os) 
+    {
+        nlohmann::ordered_json j;
+        j ["especie"]       = getEspecie();
+        j ["pos"]           = { {"x", getX()    }, {"y", getY()    } };
+        j ["tam"]           = { {"x", getTam().x}, {"y", getTam().y} };
+        j ["dano"]          = dano;
+
+        os << j << "\n";
     }
 } // namespace Entidades
