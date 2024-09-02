@@ -197,13 +197,11 @@ namespace Menus
             }
             else if(tecla == "3") //Voltar ao menu principal sem salvar
             {
-                cout << "Entrou na opcao 2" << endl;
                 if(pFase)
                     pFase->setAtivo(false);
                 else
                     cout << "Erro em Menus::MenuPause::verificaTeclaPressionada()::Fase*: " << ERRO_NULLPTR << endl; 
                 
-                cout << "Vai executar menu principal" << endl;
                 pGEs->executarEstado(menuPrincipal);
             }
         }

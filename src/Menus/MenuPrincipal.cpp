@@ -145,7 +145,6 @@ namespace Menus
     //Executa o loop para renderizar e mostrar os elementos do menu principal na tela.
     void MenuPrincipal::executar(const float dT)
     {
-        cout << "entrou no menu principal" << endl;
         //Reseta 2 jogadores
         doisJogadores = false;
         
@@ -178,7 +177,6 @@ namespace Menus
         else
             cout << "Erro em Menus::MenuPrincipal::executar(): " << ERRO_NULLPGG << endl;
         
-        cout << "executou no menu principal" << endl;
     }
     
     //Renderiza título e opções na tela.

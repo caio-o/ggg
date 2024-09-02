@@ -116,6 +116,20 @@ namespace Menus
                 cout << "Erro em Menus::MenuPause::executar()::Texto*: " << ERRO_NULLPTR << endl;
         }
 
+        //Limpa os nomes dos jogadores
+        if(opcoes[1])
+            opcoes[1]->setInfo("Nome do jogador 1: ");
+        else
+            cout << "Erro em Menus::MenuPause::executar()::Texto*: " << ERRO_NULLPTR << endl;   
+
+        if(doisJogadores)
+        {
+            if(opcoes[3])
+                opcoes[3]->setInfo("Nome do jogador 2: ");
+            else
+                cout << "Erro em Menus::MenuPause::executar()::Texto*: " << ERRO_NULLPTR << endl;   
+        }
+
         //Seta o texto que mostra a pontuação dos jogadores
         if(pFase)
         {

@@ -21,13 +21,13 @@ Jogador::Jogador(const int _maxVida, const bool j1, const int _pontos):
 { 
     if(ehJogador1)
     {
-        setTextura("../img/emoji_com_faca.png", true);
+        setTextura("../img/circulo1.png", true);
     }
     else
     {
-        setTextura("../img/emoji_sorrindo.png", true);
+        setTextura("../img/circulo3.png", true);
     }
-    setTamanho(45.f, 45.f);
+    setTamanho(90.f, 90.f);
 }
 
 Jogador::~Jogador()

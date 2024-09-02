@@ -136,7 +136,6 @@ namespace Gerenciadores
         //Se o estado a ser executado é uma fase...
         if(id == fase1 || id == fase2)
         {
-            cout << "Entrou no if do pges" << endl;
             bool achouFase1 = false;
             bool achouFase2 = false;
             Estado* pEstado1 = NULL;
@@ -149,27 +148,31 @@ namespace Gerenciadores
             {
                 if(it->first == fase1)
                 {
-                    pEstado1 = it->second; //armazena o ponteiro da fase1
+                    if(it->second!=NULL)
+                    {
+                        pEstado1 = it->second; //armazena o ponteiro da fase1
                     
-                    if(!pEstado1->getAtivo())
-                        it->second = NULL; //deixa a chave nula no mapa
+                        if(!pEstado1->getAtivo())
+                            it->second = NULL; //deixa a chave nula no mapa
+                    }
 
-                    achouFase1 = true;
+                    achouFase1 = true; //achou a chave da fase no mapa
                 }
                 else if(it->first == fase2)
                 {
-                    pEstado2 = it->second;
+                    if(it->second!=NULL)
+                    {
+                        pEstado2 = it->second;
                     
-                    if(!pEstado2->getAtivo())
-                        it->second = NULL;
+                        if(!pEstado2->getAtivo())
+                            it->second = NULL;
+                    }
                     
                     achouFase2 = true;
                 }
                 
                 it++;
             }
-
-            cout << "passou checagem do mapa" << endl;
 
             /* ---------- REMOÇÃO DE FASES DO MAPA ---------- */
 
