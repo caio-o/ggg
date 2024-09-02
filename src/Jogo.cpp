@@ -119,7 +119,7 @@ Jogador *Jogo::getJogador1()
     }
     else
     {
-        pJog1 = new Jogador(60, true);
+        pJog1 = new Jogador(30, true);
         return pJog1;
     }
 }
@@ -132,7 +132,7 @@ Jogador *Jogo::getJogador2()
     }
     else
     {
-        pJog2 = new Jogador(60, false);
+        pJog2 = new Jogador(30, false);
         return pJog2;
     }
 }
