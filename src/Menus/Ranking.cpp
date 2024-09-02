@@ -15,7 +15,7 @@ namespace Menus
         //Seta o título
         titulo.setInfo("RANKING");
         titulo.setTamanho(125); //o tamanho muda a caixa de texto
-        titulo.setPosicao(200.0, 100.0);
+        titulo.setPosicao(200.0, 50.0);
         titulo.setCor(branco);
         
         /* ========================= CARREGAMENTO DO RANKING ============================*/
@@ -130,7 +130,7 @@ namespace Menus
 
         int cont = 0;
 
-        string nome, pontos, tracos = "..........................................................................";
+        string nome, pontos, tracos = "_____________________________________________________________";
 
         ElementosGraficos::Texto* pOpcao;
 
@@ -159,10 +159,10 @@ namespace Menus
 
             //Formata o texto
             pOpcao->setTamanho(50);
-            pOpcao->setPosicao(200.0, 250.0 + (100.0*(cont+1)));
+            pOpcao->setPosicao(200.0, 150.0 + (100.0*(cont+1)));
             pOpcao->setCor(branco);
 
-            tracos = "..........................................................................";
+            tracos = "_____________________________________________________________";
             cont++;
             it++;
         }
@@ -178,7 +178,7 @@ namespace Menus
 
         //Formata o texto
         pOpcao->setTamanho(50);
-        pOpcao->setPosicao(pGG->getTamanhoJanela().x/2, 250.0 + (100.0*(cont+2)));
+        pOpcao->setPosicao(pGG->getTamanhoJanela().x/2, 100.0 + (100.0*(cont+2)));
         pOpcao->setCor(vermelho);
     }
 
