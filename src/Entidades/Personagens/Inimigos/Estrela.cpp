@@ -24,7 +24,8 @@ void Inimigos::Estrela::arrependerse()
 {
     arrependimento = true;
     nivelMaldade = -15;
-    setTextura("../img/estrela_triste.png", false);
+    setTextura("../img/estrela_triste.png", true);
+    setTamanho(150.f, 150.f);
 }
 
 const bool Inimigos::Estrela::chamaCapangas()

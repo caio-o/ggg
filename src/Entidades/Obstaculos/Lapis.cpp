@@ -34,11 +34,20 @@ namespace Entidades
         void Lapis::salvar(std::ofstream &os)
         {
             nlohmann::ordered_json j;
-            j ["especie"]    = getEspecie();
+            j ["especie"]    = lapis;
             j ["pos"]        = { {"x", getX()    }, {"y", getY()    } };
             j ["tam"]        = { {"x", getTam().x}, {"y", getTam().y} };
+            j ["dano"]       = dano;
 
             os   << j << "\n";
+        }
+
+        void Lapis::carregar(nlohmann::ordered_json &j)
+        {
+            setPos     (j["pos"]["x"], j["pos"]["y"]);
+            setTamanho (j["tam"]["x"], j["tam"]["y"]);
+            setDano    (j["dano"]);
+
         }
 
         //Executa o obstáculo do tipo Lapis

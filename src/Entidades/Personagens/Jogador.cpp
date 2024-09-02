@@ -60,8 +60,8 @@ void Jogador::carregar(nlohmann::ordered_json &j)
 {
     ehJogador1 = j["ehJogador1"];
 
-    if(ehJogador1) setTextura("../img/emoji_com_faca.png", true);
-    else           setTextura("../img/emoji_sorrindo.png", true);
+    if(ehJogador1) setTextura("../img/circulo1.png", true);
+    else           setTextura("../img/circulo3.png", true);
 
     setPos       (j["pos"]["x"], j["pos"]["y"]);
     setTamanho   (j["tam"]["x"], j["tam"]["y"]);

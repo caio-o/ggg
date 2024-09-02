@@ -148,4 +148,11 @@ namespace Entidades
 
         os << j << "\n";
     }
+    
+    void Projetil::carregar(nlohmann::ordered_json &j)
+    {
+        setPos     (j["pos"]["x"], j["pos"]["y"]);
+        setTamanho (j["tam"]["x"], j["tam"]["y"]);
+        dano      = j["dano"];
+    }
 } // namespace Entidades

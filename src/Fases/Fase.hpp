@@ -37,6 +37,7 @@ namespace Fases
     class Fase : public Ente, public Estado
     {
     protected:
+        string nome;
         static bool deveCarregar;
         static bool doisJogadores;
         static bool sequenciaFases;
@@ -59,13 +60,14 @@ namespace Fases
         Fase();
         virtual ~Fase();
         
+        string getNome() { return nome; }
         virtual void executar(const float dT = 0.f) = 0;
         virtual void desenhar();
         virtual const bool verificaGameOver();
         virtual const bool verificaVitoria() = 0;
 
-        virtual void salvar  (string nomeArquivo);
-        virtual void carregar(string nomeArquivo);
+        virtual void salvar  (string nomeArquivo = "");
+        virtual void carregar(string nomeArquivo = "");
 
         void                  criarBordas              ();
 

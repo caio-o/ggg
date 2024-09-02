@@ -187,7 +187,7 @@ namespace Menus
             {
                 if(pFase)
                 {
-                    pFase->salvar("../dados/fase");
+                    pFase->salvar();
                     pFase->setAtivo(false);
                 }
                 else

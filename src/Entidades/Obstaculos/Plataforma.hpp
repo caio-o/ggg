@@ -48,7 +48,13 @@ namespace Entidades::Obstaculos
             os   << j << "\n";
         }
         
-        virtual void carregar(nlohmann::ordered_json &j) {}
+        virtual void carregar(nlohmann::ordered_json &j) 
+        {
+            setX(j["pos"]["x"]);
+            setY(j["pos"]["y"]);
+
+            setTamanho( j["tam"]["x"], j["tam"]["y"]);
+        }
     };
 }
 

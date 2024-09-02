@@ -36,6 +36,9 @@ void Fases::Calabouco::criarObstaculos()
 
     if((bool) rand()%3) 
         criarPlataforma(CANTO_DIREITO - 350.F, CHAO - 1600.f, 400.F, 300.F);
+
+    if((bool) rand()%100 < 60) 
+        criarPlataformaGrudenta(CANTO_DIREITO - 350.F, CHAO - 1650.f, 400.F, 300.F);
 }
 
 void Fases::Calabouco::criarInimigos()
@@ -53,16 +56,18 @@ void Fases::Calabouco::criarInimigos()
     criarTriangulo(1000.f, 600.F-100);
     criarTriangulo(400.f, CHAO-900.f);
 
-    if(rand()%2)
+    if(rand()%100 + 1 <= 80)
         criarTriangulo(700.F, CHAO+300);
-    if(rand()%2)
+    if(rand()%100 + 1 <= 80)
         criarQuadrado(CANTO_DIREITO-450.F, CHAO-1000.F);
+    if(rand()%100 + 1 <= 50)
+        criarTriangulo(CANTO_DIREITO-500.F, CHAO-1000.F);
 
 }
 
 const bool Fases::Calabouco::verificaVitoria()
 {
-    static Vetor2f limiteSaida(X_SAIDA_CA-150, Y_SAIDA_CA+250);
+    static Vetor2f limiteSaida(X_SAIDA_CA-150, Y_SAIDA_CA+320);
 
     if(pJog && pJog->getVivo())
     {
@@ -158,6 +163,7 @@ Fases::Calabouco::Calabouco():
     Fase(),
     maxInimigos(100)
 {
+    nome = "../dados/calabouco.json";
     idEstado = fase1;
     
     saida.atualizar(Vetor2f(X_SAIDA_CA, Y_SAIDA_CA));
