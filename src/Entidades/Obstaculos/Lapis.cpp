@@ -15,8 +15,8 @@ namespace Entidades
 {
     namespace Obstaculos
     {
-        Lapis::Lapis(Especie _especie, const bool _permeavel, const int dano):
-        Obstaculo(_especie, _permeavel),
+        Lapis::Lapis(const bool _permeavel, const int dano):
+        Obstaculo(obstaculo, _permeavel),
         dano(dano)
         {
             setAcelVertical(-1000.f);

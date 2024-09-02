@@ -18,7 +18,7 @@ namespace Inimigos
             static Fases::Fase* pFase;
 
         public:
-            Triangulo(Especie _especie = inimigo, int maxVida = 10, int dano = 1);
+            Triangulo(int maxVida = 10, int dano = 1);
             ~Triangulo();
 
             virtual void danificar(Personagem *pPers) {  };

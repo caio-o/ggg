@@ -16,8 +16,8 @@
 
 namespace Inimigos
 {
-    Quadrado::Quadrado(Especie _especie, int maxVida):
-    Inimigo(_especie, maxVida),
+    Quadrado::Quadrado(int maxVida):
+    Inimigo(inimigo, maxVida),
     pJogadorPerseguido(pJogador1),
     atacando(false),
     dano(1.0)

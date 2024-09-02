@@ -54,22 +54,22 @@ void Fases::Tuneis::criarObstaculos()
     criarPlataforma (CANTO_ESQUERDO + 250.F, CHAO - 740.f, 400.F, 300.F);
     criarPlataforma (700.f, CHAO-900.f, 500.f,  100.F);
     
-    criarPlataformaGrudenta (800.f, CHAO-20.F, 500.F,  50.F);
-    criarPlataformaGrudenta (850.F, CHAO-550.F, 90.F,  50.F);
-    criarPlataformaGrudenta (900.F, CHAO-550.F, 80.F,  50.F);
+    criarPlataformaGrudenta (800.f, CHAO-40.F, 500.F,  50.F);
+    criarPlataformaGrudenta (850.F, CHAO-600.F, 90.F,  50.F);
+    criarPlataformaGrudenta (990.F, CHAO-600.F, 80.F,  50.F);
 
-    criarLapis(500.f, CHAO-30.F);
-    criarLapis(650.f, CHAO-50.F);
+    criarLapis(500.f, CHAO-60.F);
+    criarLapis(650.f, CHAO-65.F);
     if ((bool) rand()%3) criarLapis(700.f, CHAO-30.F);
-    criarLapis(750.f, CHAO-30.F);
-    if ((rand()%100) < 10) criarLapis ( 800.f, CHAO-45.F);
-    if ((rand()%100) < 10) criarLapis ( 850.f, CHAO-48.F);
-    if ((rand()%100) < 10) criarLapis ( 900.f, CHAO-40.F);
-    if ((rand()%100) < 10) criarLapis ( 950.f, CHAO-40.F);
-    if ((rand()%100) < 10) criarLapis (1000.f, CHAO-48.F);
-    if ((rand()%100) < 10) criarLapis (1050.f, CHAO-53.F);
-    if ((rand()%100) < 10) criarLapis (1100.f, CHAO-43.F);
-    if ((rand()%100) < 10) criarLapis (1150.f, CHAO-43.F);
+    criarLapis(750.f, CHAO-60.F);
+    if ((rand()%100) <  2) criarLapis ( 800.f, CHAO-72.F);
+    if ((rand()%100) <  2) criarLapis ( 850.f, CHAO-78.F);
+    if ((rand()%100) <  2) criarLapis ( 900.f, CHAO-75.F);
+    if ((rand()%100) <  2) criarLapis ( 950.f, CHAO-72.F);
+    if ((rand()%100) < 10) criarLapis (1000.f, CHAO-70.F);
+    if ((rand()%100) < 10) criarLapis (1050.f, CHAO-73.F);
+    if ((rand()%100) < 10) criarLapis (1100.f, CHAO-63.F);
+    if ((rand()%100) < 10) criarLapis (1150.f, CHAO-63.F);
     if ((rand()%100) < 10) criarLapis (1200.f, CHAO-53.F);
     if ((rand()%100) < 10) criarLapis (1250.f, CHAO-58.F);
     if ((rand()%100) < 10) criarLapis (1300.f, CHAO-73.F);

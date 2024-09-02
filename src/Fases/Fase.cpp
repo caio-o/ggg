@@ -237,7 +237,7 @@ namespace Fases
 
     Triangulo* Fase::criarTriangulo(float posX, float posY)
     {
-        Triangulo* pTri = new Triangulo(Especie::inimigo);
+        Triangulo* pTri = new Triangulo();
         
         if(pTri)
         {
@@ -252,7 +252,7 @@ namespace Fases
 
     Quadrado* Fase::criarQuadrado(float posX, float posY)
     {
-        Quadrado* pQuad = new Quadrado(Especie::inimigo, 10);
+        Quadrado* pQuad = new Quadrado(10);
 
         if(pQuad)
         {

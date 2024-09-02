@@ -16,8 +16,8 @@ namespace Inimigos
 {
     Fases::Fase* Triangulo::pFase(NULL);
     
-    Triangulo::Triangulo(Especie _especie, int maxVida, int dano):
-    Inimigo(_especie, maxVida)
+    Triangulo::Triangulo(int maxVida, int dano):
+    Inimigo(inimigo, maxVida)
     {
         setMaldade(20.f);
         forma.setTextura(CAMINHO_TEXTURA, true);

@@ -14,7 +14,7 @@ namespace Inimigos
             
 
         public:
-            Quadrado(Especie _especie = inimigo, int maxVida = 10);
+            Quadrado(int maxVida = 10);
             ~Quadrado();
             
             void salvar(ofstream &ofs);

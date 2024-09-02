@@ -23,7 +23,7 @@ namespace Entidades
                 static Jogador* pJogador2;
 
             public:
-                Lapis(Especie _especie = obstaculo, const bool _permeavel = false, const int dano = 1);
+                Lapis(const bool _permeavel = false, const int dano = 1);
                 ~Lapis();
                 
                 void salvar(std::ofstream &os);
