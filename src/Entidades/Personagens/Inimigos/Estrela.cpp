@@ -8,7 +8,7 @@ Fases::Tuneis* Inimigos::Estrela::pFase = NULL;
 Inimigos::Estrela::Estrela():
     Inimigo(Especie::inimigo, 30),
     arrependimento(false),
-    nivelMaldade(5),
+    momentoUltimaChamada(0.f),
     nCapangas(20)
 {
     setMaldade(153.f);
@@ -64,7 +64,7 @@ void Inimigos::Estrela::executar(const float deltaT)
         nivelMaldade = -15;
         // MOSTRAR TEXTO NA TELA, DIZENDO PARA JOGADORES IREM EMBORA.
     }
-    else if (! pFase->verificaGameOver() && pGG->getTempo() > momentoUltimaChamada+COOLDOWN_ESTRELA)
+    else if (pFase && ! pFase->verificaGameOver() && pGG->getTempo() > momentoUltimaChamada+COOLDOWN_ESTRELA)
     {
         // MOSTRAR TEXTO NA TELA, AMEACANDO OS JOGADORES.
         atacar();

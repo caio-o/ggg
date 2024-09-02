@@ -11,7 +11,7 @@ namespace Inimigos
         static Fases::Tuneis *pFase;
         bool  arrependimento;
         float momentoUltimaChamada;
-        int   nivelMaldade;
+        //int   nivelMaldade;
         int   nCapangas;
         void arrependerse();
 
