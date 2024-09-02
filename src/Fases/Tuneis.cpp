@@ -14,7 +14,7 @@
 #include "Entidades/Obstaculos/PlataformaGrudenta.hpp"
 #include "Entidades/Obstaculos/Lapis.hpp"
 
-#define X_SAIDA CANTO_DIREITO-550.0F
+#define X_SAIDA CANTO_DIREITO-250.0F
 #define Y_SAIDA TETO+200.0F
 
 Lapis* Fases::Tuneis::criarLapis(float posX, float posY, int dano)
@@ -58,14 +58,40 @@ void Fases::Tuneis::criarObstaculos()
     criarPlataformaGrudenta (850.F, CHAO-550.F, 90.F,  50.F);
     criarPlataformaGrudenta (900.F, CHAO-550.F, 80.F,  50.F);
 
-    criarLapis(800.f, CHAO);
-    criarLapis(650.f, CHAO-50.F);
     criarLapis(500.f, CHAO-30.F);
+    criarLapis(650.f, CHAO-50.F);
+    if ((bool) rand()%3) criarLapis(700.f, CHAO-30.F);
+    criarLapis(750.f, CHAO-30.F);
+    if ((rand()%100) < 10) criarLapis ( 800.f, CHAO-45.F);
+    if ((rand()%100) < 10) criarLapis ( 850.f, CHAO-48.F);
+    if ((rand()%100) < 10) criarLapis ( 900.f, CHAO-40.F);
+    if ((rand()%100) < 10) criarLapis ( 950.f, CHAO-40.F);
+    if ((rand()%100) < 10) criarLapis (1000.f, CHAO-48.F);
+    if ((rand()%100) < 10) criarLapis (1050.f, CHAO-53.F);
+    if ((rand()%100) < 10) criarLapis (1100.f, CHAO-43.F);
+    if ((rand()%100) < 10) criarLapis (1150.f, CHAO-43.F);
+    if ((rand()%100) < 10) criarLapis (1200.f, CHAO-53.F);
+    if ((rand()%100) < 10) criarLapis (1250.f, CHAO-58.F);
+    if ((rand()%100) < 10) criarLapis (1300.f, CHAO-73.F);
+    if ((rand()%100) < 10) criarLapis (1350.f, CHAO-73.F);
+    if ((rand()%100) < 10) criarLapis (1400.f, CHAO-53.F);
+    if ((rand()%100) < 10) criarLapis (1450.f, CHAO-43.F);
+    if ((rand()%100) < 10) criarLapis (1500.f, CHAO-43.F);
+    if ((rand()%100) < 10) criarLapis (1550.f, CHAO-43.F);
+    if ((rand()%100) < 10) criarLapis (1600.f, CHAO-43.F);
+    if ((rand()%100) < 10) criarLapis (1650.f, CHAO-68.F);
+    if ((rand()%100) < 10) criarLapis (1700.f, CHAO-53.F);
+    if ((rand()%100) < 10) criarLapis (1750.f, CHAO-53.F);
+    if ((rand()%100) < 10) criarLapis (1800.f, CHAO-53.F);
+    if ((rand()%100) < 10) criarLapis (1850.f, CHAO-53.F);
+    if ((rand()%100) < 10) criarLapis (1900.f, CHAO-69.F);
+    if ((rand()%100) < 10) criarLapis (1950.f, CHAO-49.F);
     
-    if((bool) rand()%3) 
+
+    if ((bool) rand()%3) 
         criarPlataforma(CANTO_DIREITO - 250.F, CHAO - 1000.f, 500.F, 300.F);
 
-    if((bool) rand()%3) 
+    if ((bool) rand()%3) 
         criarPlataforma(CANTO_DIREITO - 350.F, CHAO - 1600.f, 400.F, 300.F);
 }
 
@@ -92,6 +118,8 @@ Fases::Tuneis::Tuneis():
     maxChefao(3)
     //saida(Vetor2f(X_SAIDA+200.F, Y_SAIDA-250.F), Vetor2f(400.f, 300.f), "", 1.f)
 {
+    nome = "../dados/tuneis.json";
+
     cout << "CONSTRUTORA FASE 2"<< endl;
     idEstado = fase2;
     forma.setTextura("../img/fundo_marrom.png", false);
@@ -147,8 +175,8 @@ void Fases::Tuneis::executar(const float dT)
         // Executar, mover e desenhar entidades.
 
         desenhar();
-        colecao.percorrer(deltaT);
         pGG->renderizar(&saida);
+        colecao.percorrer(deltaT);
 
         if(pJog)
         {
@@ -171,22 +199,22 @@ void Fases::Tuneis::executar(const float dT)
 
 const bool Fases::Tuneis::verificaVitoria()
 {
-    static Vetor2f limiteSaida(X_SAIDA, Y_SAIDA);
+    static Vetor2f limiteSaida(X_SAIDA-150, Y_SAIDA+320);
 
     if(pJog && pJog->getVivo())
     {
         if(pJog2 && doisJogadores && pJog2->getVivo())
         {
-            return pJog->getX() > X_SAIDA && pJog->getY() < Y_SAIDA &&  pJog2->getX() > X_SAIDA && pJog2->getY() < Y_SAIDA;
+            return pJog->getX() > limiteSaida.x && pJog->getY() < limiteSaida.y &&  pJog2->getX() > limiteSaida.x && pJog2->getY() < limiteSaida.y;
         }
         else
         {
-            return pJog->getX() > X_SAIDA && pJog->getY() < Y_SAIDA;
+            return pJog->getX() > limiteSaida.x && pJog->getY() < limiteSaida.y;
         }
     }
     else if(doisJogadores && pJog2 && pJog2->getVivo())
     {
-        return pJog2->getX() > X_SAIDA && pJog2->getY() < Y_SAIDA;
+        return pJog2->getX() > limiteSaida.x && pJog2->getY() < limiteSaida.y;
     }
     else
     {

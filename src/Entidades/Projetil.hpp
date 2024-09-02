@@ -24,7 +24,7 @@ namespace Entidades
             ~Projetil();
 
             void salvar(std::ofstream &os);
-            virtual void carregar(nlohmann::ordered_json &j) {};
+            virtual void carregar(nlohmann::ordered_json &j);
             void reagirAhColisao(Entidade* pE);
             void executar(const float dT);
 

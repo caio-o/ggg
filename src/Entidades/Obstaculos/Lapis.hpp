@@ -27,7 +27,7 @@ namespace Entidades
                 ~Lapis();
                 
                 void salvar(std::ofstream &os);
-                virtual void carregar(nlohmann::ordered_json &j) {};
+                virtual void carregar(nlohmann::ordered_json &j);
                 void obstacular(Jogador *pJog);
                 void executar(const float dT);
 

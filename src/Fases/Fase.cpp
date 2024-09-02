@@ -31,7 +31,8 @@ namespace Fases
         gameOver(false),
         saida(Vetor2f(CANTO_DIREITO-350.0F, TETO-50.0F), Vetor2f(400.f, 400.f), "../img/saida_luz.png", 1.f),
         efeitoGameOver(Vetor2f (1290, 720.f), Vetor2f(2580.f, 1440.f), "../img/game_over.png", 1.f),
-        forma(Vetor2f(LARGURA_FASE/2, ALTURA_FASE/2), Vetor2f(LARGURA_FASE, ALTURA_FASE), "../img/fundo_cinza.png")
+        forma(Vetor2f(LARGURA_FASE/2, ALTURA_FASE/2), Vetor2f(LARGURA_FASE, ALTURA_FASE), "../img/fundo_cinza.png"),
+        nome("")
     {
         setGerenciadorColisoes();
 
@@ -94,6 +95,9 @@ namespace Fases
 
     void Fase::salvar(string nomeArquivo) 
     {
+        if(nomeArquivo == "")
+            nomeArquivo = nome;
+
         ofstream ofs(nomeArquivo);
 
         colecao.salvar(ofs); // delegar a tarefa para a ListaEntidades, especificando o arquivo correspondente.
@@ -103,6 +107,9 @@ namespace Fases
 
     void Fase::carregar(string nomeArquivo)
     {
+        if(nomeArquivo == "")
+            nomeArquivo = nome;
+
         cout << "FASE CARREGAR 1" << endl;
         // FUTURAMENTE USAR TRY CATCH
         ifstream ifs(nomeArquivo);

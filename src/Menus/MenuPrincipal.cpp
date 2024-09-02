@@ -295,7 +295,6 @@ namespace Menus
 
             else if(tecla == "4") //Jogar fase calabouco
             {
-                Fases::Fase::setDeveCarregar(false);
                 Fases::Fase::setDoisJogadores(doisJogadores);
                 Fases::Fase::setSequenciaFases(false);
 
@@ -304,7 +303,6 @@ namespace Menus
 
             else if(tecla == "5") //Jogar fase tuneis
             {
-                Fases::Fase::setDeveCarregar(false);
                 Fases::Fase::setDoisJogadores(doisJogadores);
 
                 pGEs->executarEstado(fase2);
@@ -314,13 +312,6 @@ namespace Menus
             {
                 Fases::Fase::setDeveCarregar(true);
                 Fases::Fase::setDoisJogadores(doisJogadores);
-
-                // Fases::Fase* pAux = new Fase();
-
-                // if(dynamic_cast<Fases::Calabouco>(pAux)!= nullptr)
-                //     pGEs->executarEstado(fase1);
-                // else if(dynamic_cast<Fases::Calabouco>(pAux)!= nullptr)
-                //     pGEs->executarEstado(fase2);
             }
 
             else if(tecla == "7") //Ver ranking
