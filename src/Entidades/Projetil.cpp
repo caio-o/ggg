@@ -117,10 +117,10 @@ namespace Entidades
         return dano;
     }
 
-    const bool Projetil::getPerseguindoJogador1() const
+    /*const bool Projetil::getPerseguindoJogador1() const
     {
         return perseguindoJogador1;
-    }
+    }*/
 
     void Projetil::setpJogador1(Jogador* pJ)
     {

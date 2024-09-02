@@ -22,8 +22,8 @@ Jogador* Jogo::pJog2 = NULL;
 Jogo::Jogo():
     pGG(NULL),
     pGE(NULL),
-    pGEs(NULL),
-    primeiraFase(NULL)
+    pGEs(NULL)
+    //primeiraFase(NULL)
 {
     Fase::setDeveCarregar(false);
     getJogador1();

@@ -22,6 +22,8 @@ namespace Entidades::Obstaculos
 
         void salvar(std::ofstream &ofs);
         void carregar(nlohmann::ordered_json &j);
+
+        void setCor(ElementosGraficos::Cores _cor) { cor = _cor; }
     };
 }
 

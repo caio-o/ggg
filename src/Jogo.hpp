@@ -17,8 +17,8 @@ private:
     Gerenciadores::GerenciadorGrafico *pGG;
     Gerenciadores::GerenciadorEventos *pGE;
     Gerenciadores::GerenciadorEstados *pGEs;
-    Fase* primeiraFase;
-    Fase* segundaFase;
+    //Fase* primeiraFase;
+    //Fase* segundaFase;
 
     void carregarJogador1(nlohmann::ordered_json j);
     void carregarJogador2(nlohmann::ordered_json j);
