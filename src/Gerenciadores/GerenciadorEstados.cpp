@@ -113,7 +113,11 @@ namespace Gerenciadores
                 cout << "Deletando " << it->first << endl;
                 
                 if(it->second != NULL)
+                {
+                    cout << "Entrou para deletar" << it->first << endl;  
                     delete (it->second);
+                    it->second = NULL;
+                }
 
                 cout << "Deletou " << it->first << endl;
             }

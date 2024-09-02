@@ -397,109 +397,109 @@ void testeVertexArray()
 //      }
 // }
 
-void testeFase()
-{
-     //Instancia os gerenciadores
-     Gerenciadores::GerenciadorGrafico*  gg = Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico();
-     Gerenciadores::GerenciadorEventos*  ge = Gerenciadores::GerenciadorEventos::getGerenciadorEventos();
-     Gerenciadores::GerenciadorColisoes* gc = Gerenciadores::GerenciadorColisoes::getInstancia();
-     //ge->setForma(NULL);
+// void testeFase()
+// {
+//      //Instancia os gerenciadores
+//      Gerenciadores::GerenciadorGrafico*  gg = Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico();
+//      Gerenciadores::GerenciadorEventos*  ge = Gerenciadores::GerenciadorEventos::getGerenciadorEventos();
+//      Gerenciadores::GerenciadorColisoes* gc = Gerenciadores::GerenciadorColisoes::getInstancia();
+//      //ge->setForma(NULL);
 
-     Ente::setGerenciadorGrafico();
-     Forma::setGerenciadorGrafico();
+//      Ente::setGerenciadorGrafico();
+//      Forma::setGerenciadorGrafico();
      
-     //Seta o relógio
-     /*sf::Clock relogio;
-     sf::Time t0 = relogio.getElapsedTime();
-     sf::Time t1 = t0;
-     sf::Time dT = sf::Time::Zero;*/
+//      //Seta o relógio
+//      /*sf::Clock relogio;
+//      sf::Time t0 = relogio.getElapsedTime();
+//      sf::Time t1 = t0;
+//      sf::Time dT = sf::Time::Zero;*/
 
-     //Momento da ultima iteracao
-     float t0 = gg->getTempo();
-     //Momento da iteração atual
-     float t1 = t0;
-     float dT = 0.0;    
+//      //Momento da ultima iteracao
+//      float t0 = gg->getTempo();
+//      //Momento da iteração atual
+//      float t1 = t0;
+//      float dT = 0.0;    
      
-     //Instancia jogador
-     Jogador* pJog = new Jogador(1000);
-     pJog->setPos(30.f, 300.f);
-     //Instancia inimigo do tipo Quadrado
-     Inimigos::Quadrado* pIni = new Inimigos::Quadrado();
-     pIni->setPos((gg->getTamanhoJanela().x)-50.0, (gg->getTamanhoJanela().y)/2);
-     pIni->setDano(5);
+//      //Instancia jogador
+//      Jogador* pJog = new Jogador(1000);
+//      pJog->setPos(30.f, 300.f);
+//      //Instancia inimigo do tipo Quadrado
+//      Inimigos::Quadrado* pIni = new Inimigos::Quadrado();
+//      pIni->setPos((gg->getTamanhoJanela().x)-50.0, (gg->getTamanhoJanela().y)/2);
+//      pIni->setDano(5);
 
-     pIni->setVel(pJog->getVel().x-20.0, pJog->getVel().y-20.0);
+//      pIni->setVel(pJog->getVel().x-20.0, pJog->getVel().y-20.0);
 
-     //Associa o o jogador ao quadrado
-     Inimigos::Inimigo::setpJogador1(pJog);
+//      //Associa o o jogador ao quadrado
+//      Inimigos::Inimigo::setpJogador1(pJog);
 
-     //Cria a plataforma
-     Obstaculos::Plataforma plat;
-     Obstaculos::Plataforma parede1(100.f, gg->getTamanhoJanela().y);
-     Obstaculos::Plataforma parede2(100.f, gg->getTamanhoJanela().y);
-     parede1.setPos(0.F, (gg->getTamanhoJanela().y)/2);
-     parede2.setPos(gg->getTamanhoJanela().x, (gg->getTamanhoJanela().y)/2);
+//      //Cria a plataforma
+//      Obstaculos::Plataforma plat;
+//      Obstaculos::Plataforma parede1(100.f, gg->getTamanhoJanela().y);
+//      Obstaculos::Plataforma parede2(100.f, gg->getTamanhoJanela().y);
+//      parede1.setPos(0.F, (gg->getTamanhoJanela().y)/2);
+//      parede2.setPos(gg->getTamanhoJanela().x, (gg->getTamanhoJanela().y)/2);
 
-     plat.setTamanho(gg->getTamanhoJanela().x, 25.f);
-     plat.setPos((gg->getTamanhoJanela().x)/2, (pIni->getPos().y)+((pIni->getTam().y)/2) +((plat.getTam().y)/2));
+//      plat.setTamanho(gg->getTamanhoJanela().x, 25.f);
+//      plat.setPos((gg->getTamanhoJanela().x)/2, (pIni->getPos().y)+((pIni->getTam().y)/2) +((plat.getTam().y)/2));
 
-     Obstaculos::Lapis bor;
-     bor.setPos((gg->getTamanhoJanela().x)/2, plat.getPos().y - (plat.getTam().y)/2 - (bor.getTam().y)/2);
+//      Obstaculos::Lapis bor;
+//      bor.setPos((gg->getTamanhoJanela().x)/2, plat.getPos().y - (plat.getTam().y)/2 - (bor.getTam().y)/2);
      
-     gc->inserirJogador(pJog);
-     gc->inserirInimigo(pIni);
-     gc->inserirObstaculo(&plat);
-     gc->inserirObstaculo(&parede1);
-     gc->inserirObstaculo(&parede2);
-     gc->inserirObstaculo(&bor);
+//      gc->inserirJogador(pJog);
+//      gc->inserirInimigo(pIni);
+//      gc->inserirObstaculo(&plat);
+//      gc->inserirObstaculo(&parede1);
+//      gc->inserirObstaculo(&parede2);
+//      gc->inserirObstaculo(&bor);
 
-     while (gg->janelaAberta())
-     {
-          //Verifica se a janela precisa ser fechada e outras coisas
-          ge->executar();
+//      while (gg->janelaAberta())
+//      {
+//           //Verifica se a janela precisa ser fechada e outras coisas
+//           ge->executar();
 
-          //Limpa a tela
-          gg->limpar();
+//           //Limpa a tela
+//           gg->limpar();
           
-          // t0 = momento da ultima iteracao.
-          // t1 = momento atual.
-          t0 = t1;
-          t1 = gg->getTempo();
-          dT = t1 - t0;         
+//           // t0 = momento da ultima iteracao.
+//           // t1 = momento atual.
+//           t0 = t1;
+//           t1 = gg->getTempo();
+//           dT = t1 - t0;         
 
-          //Executa as entidades
-          pJog->executar(dT);
-          pIni->executar(dT);
-          plat.executar(dT);
-          parede1.executar(dT);
-          parede2.executar(dT);
+//           //Executa as entidades
+//           pJog->executar(dT);
+//           pIni->executar(dT);
+//           plat.executar(dT);
+//           parede1.executar(dT);
+//           parede2.executar(dT);
 
-          //Ajusta a gravidade
-          pJog->setVelY(pJog->getVel().y + 1000.f * dT);
-          pIni->setVelY(pIni->getVel().y + 1000.f * dT);
+//           //Ajusta a gravidade
+//           pJog->setVelY(pJog->getVel().y + 1000.f * dT);
+//           pIni->setVelY(pIni->getVel().y + 1000.f * dT);
 
-          //cout << "Gravidade " << 1000.f*dT << endl;
+//           //cout << "Gravidade " << 1000.f*dT << endl;
 
-          //Move as entidades
-          pJog->moverse(dT);
-          pIni->moverse(dT); //(o método executar do jogador agora chama o moverse)
+//           //Move as entidades
+//           pJog->moverse(dT);
+//           pIni->moverse(dT); //(o método executar do jogador agora chama o moverse)
 
-          //Renderiza as entidades
-          pJog->desenhar();
-          pIni->desenhar();
-          parede1.desenhar();
-          parede2.desenhar();
-          plat.desenhar();
-          bor.desenhar();
+//           //Renderiza as entidades
+//           pJog->desenhar();
+//           pIni->desenhar();
+//           parede1.desenhar();
+//           parede2.desenhar();
+//           plat.desenhar();
+//           bor.desenhar();
    
-          //Mostra tudo que foi renderizado
-          gg->mostrar();
-          gc->executar();
-     }
+//           //Mostra tudo que foi renderizado
+//           gg->mostrar();
+//           gc->executar();
+//      }
 
-     delete pIni;
-     delete pJog;
-}
+//      delete pIni;
+//      delete pJog;
+// }
 
 void testeTexto()
 {
