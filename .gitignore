@@ -50,4 +50,4 @@ Makefile
 build/Makefile
 ggg
 *.pdf
-dados/
+*.json
