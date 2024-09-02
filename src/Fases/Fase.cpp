@@ -73,14 +73,14 @@ namespace Fases
         cout << "DESTRUTORA FASE ABSTRATA DIZ:    ";
 
         if(pJog)
-            Jogo::setJogador1(new Jogador(60, true, pJog->getPontos()));
+            Jogo::setJogador1(new Jogador(30, true, pJog->getPontos()));
         else 
-            Jogo::setJogador1(new Jogador(60, true));
+            Jogo::setJogador1(new Jogador(30, true));
 
         if(pJog2)
-            Jogo::setJogador2(new Jogador(60, false, pJog2->getPontos()));
+            Jogo::setJogador2(new Jogador(30, false, pJog2->getPontos()));
         else
-            Jogo::setJogador2(new Jogador(60, false));
+            Jogo::setJogador2(new Jogador(30, false));
 
         if(pGC)
         {

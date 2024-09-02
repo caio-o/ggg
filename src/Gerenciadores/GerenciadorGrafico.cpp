@@ -59,6 +59,8 @@ namespace Gerenciadores
     
     GerenciadorGrafico::~GerenciadorGrafico()
     {
+
+        cout << "ENTRA NA DESTRUTORA DO GG" << endl;
         //desaloca a janela
         if(pJanela)
             delete pJanela;
@@ -86,10 +88,17 @@ namespace Gerenciadores
         dT = -1.0;
 
         //desaloca o ponteiro para o gerenciador
-        if(pGerenciadorGrafico)
-            delete pGerenciadorGrafico;
+        /*if(pGerenciadorGrafico)
+            delete pGerenciadorGrafico;*/
 
         pGerenciadorGrafico = NULL;
+
+        if(pFonte)
+            delete pFonte;
+
+        pFonte = NULL;
+
+        cout << "SAI DA DESTRUTORA DO GG" << endl;
     }
 
     /* 

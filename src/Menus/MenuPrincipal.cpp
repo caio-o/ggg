@@ -16,6 +16,8 @@
 #include "Gerenciadores/GerenciadorGrafico.hpp"
 
 #include "Fases/Fase.hpp"
+#include "Fases/Calabouco.hpp"
+#include "Fases/Tuneis.hpp"
 
 #include "iostream"
 using namespace std;

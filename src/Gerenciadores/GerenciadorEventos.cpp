@@ -86,11 +86,7 @@ namespace Gerenciadores
     }
 
     GerenciadorEventos::~GerenciadorEventos()
-    {
-        //só desaloca a ele mesmo
-        if(pGerenciadorEventos)
-            delete pGerenciadorEventos;
-        
+    {        
         pGerenciadorEventos = NULL;
 
         pGEs = NULL;

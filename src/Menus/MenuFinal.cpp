@@ -1,4 +1,5 @@
 #include "MenuFinal.hpp"
+#include "Ranking.hpp"
 
 namespace Menus
 {
@@ -252,18 +253,24 @@ namespace Menus
             else if(tecla == "Apagar" && !nomeJogador2)
             {
                 //Remove o ultimo caractere da string que armazena o nome do Jogador 1 e do texto na tela
-                nome1.pop_back();
-                if(opcoes[1])
-                    opcoes[1]->setInfo("Nome do jogador 1: " + nome1);
+                if(nome1!="")
+                {
+                    nome1.pop_back();
+                    if(opcoes[1])
+                        opcoes[1]->setInfo("Nome do jogador 1: " + nome1);
+                }
             }
 
             //Se a entrada for "apagar" e estiver preenchendo o nome do jogador 2...
             else if(tecla == "Apagar" && nomeJogador2)
             {
                 //Remove o ultimo caractere da string que armazena o nome do Jogador 2 e do texto na tela  
-                nome2.pop_back();
-                if(opcoes[3])
-                    opcoes[3]->setInfo("Nome do jogador 2: " + nome2);
+                if(nome2!="")
+                {
+                    nome2.pop_back();
+                    if(opcoes[3])
+                        opcoes[3]->setInfo("Nome do jogador 2: " + nome2);
+                }
             }
 
             //Se teclar enter enquanto digita o nome do jogador 1 e houver 2 jogadores, passa para 
@@ -278,22 +285,20 @@ namespace Menus
                     (tecla == "Enter" && !doisJogadores))
             {
                 //Insere os nomes e pontuações dos jogadores no ranking
-                /*
-                    if(pFase)
-                    {
-                        if(nome1!="" && pFase->getJogador1)
-                            static_cast<Ranking*>(PGEs->getEstado(ranking))->inserirInfo(nome1, pFase->getJogador1()->getPontos());
-                        else
-                            cout <<...
-
-                        if(nome2!="" && pFase->getJogador2())
-                            static_cast<Ranking*>(PGEs->getEstado(ranking))->inserirInfo(nome1, pFase->getJogador1()->getPontos());
-                        else
-                            cout <<...
-                    }
+                if(pFase)
+                {
+                    if(nome1!="" && pFase->getJogador1())
+                        static_cast<Ranking*>(pGEs->getEstado(ranking))->inserirRegistro(pFase->getJogador1()->getPontos(), nome1);
                     else
-                        cout << ...
-                */
+                        cout << "Erro em Menus::MenuFinal::verificaTeclaSolta()::Jogador*: " << ERRO_NULLPTR << endl;
+
+                    if(nome2!="" && pFase->getJogador2())
+                        static_cast<Ranking*>(pGEs->getEstado(ranking))->inserirRegistro(pFase->getJogador2()->getPontos(), nome2);
+                    else
+                        cout << "Erro em Menus::MenuFinal::verificaTeclaSolta()::Jogador*: " << ERRO_NULLPTR << endl;
+                }
+                else
+                    cout << "Erro em Menus::MenuFinal::verificaTeclaSolta()::Fase*: " << ERRO_NULLPTR << endl;
 
                 pGEs->executarEstado(ranking);
             }
