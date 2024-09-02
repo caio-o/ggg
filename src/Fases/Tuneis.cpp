@@ -19,16 +19,21 @@
 
 Lapis* Fases::Tuneis::criarLapis(float posX, float posY, int dano)
 {
-    Obstaculos::Lapis *pLap = new Obstaculos::Lapis();
     
-    if(pLap)
+    if(numObstaculos < maxObstaculos)
     {
-        pLap->setPos(posX, posY);
-        colecao.incluir(static_cast<Entidade*> (pLap));
-        pGC->inserirObstaculo(static_cast<Obstaculo*> (pLap));
-    }
+        Obstaculos::Lapis *pLap = new Obstaculos::Lapis();
 
-    return pLap;
+        if(pLap)
+        {
+            pLap->setPos(posX, posY);
+            colecao.incluir(static_cast<Entidade*> (pLap));
+            pGC->inserirObstaculo(static_cast<Obstaculo*> (pLap));
+        }
+
+        return pLap;
+    }
+    else return NULL;
 }
 
 Estrela* Fases::Tuneis::criarChefaoEstrela(const float posX, const float posY, const int nCapangas)

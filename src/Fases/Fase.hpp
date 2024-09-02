@@ -39,6 +39,8 @@ namespace Fases
     protected:
         int maxInimigos;
         int numInimigos;
+        int maxObstaculos;
+        int numObstaculos;
         string nome;
         static bool deveCarregar;
         static bool doisJogadores;

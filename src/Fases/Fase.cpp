@@ -34,7 +34,9 @@ namespace Fases
         forma(Vetor2f(LARGURA_FASE/2, ALTURA_FASE/2), Vetor2f(LARGURA_FASE, ALTURA_FASE), "../img/fundo_cinza.png"),
         nome(""),
         maxInimigos(100),
-        numInimigos(0)
+        numInimigos(0),
+        maxObstaculos(100),
+        numObstaculos(0)
     {
         setGerenciadorColisoes();
 
@@ -198,33 +200,46 @@ namespace Fases
 
     Plataforma* Fase::criarPlataforma(float posX, float posY, float tamX, float tamY)
     {
-        Plataforma *pPlat = new Obstaculos::Plataforma(tamX, tamY);
+        if(numObstaculos < maxObstaculos)
+        {    
+            Plataforma *pPlat = new Obstaculos::Plataforma(tamX, tamY);
 
-        if(pPlat)
-        {
-            pPlat->setPos(posX, posY);
-            colecao.incluir(static_cast<Entidade*> (pPlat));
-            pGC->inserirObstaculo(static_cast<Obstaculo*> (pPlat));
+            if(pPlat)
+            {
+                pPlat->setPos(posX, posY);
+                colecao.incluir(static_cast<Entidade*> (pPlat));
+                pGC->inserirObstaculo(static_cast<Obstaculo*> (pPlat));
+                numObstaculos++;
+            }
+
+            else cout << "Faseteste::criarPlataforma: " << ERRO_ALOCACAO << "\n" << ERRO_INCLUI_NULLPTR << endl;
+
+            return pPlat;
         }
-
-        else cout << "Faseteste::criarPlataforma: " << ERRO_ALOCACAO << "\n" << ERRO_INCLUI_NULLPTR << endl;
-    
-        return pPlat;
+        else
+        {
+            return NULL;
+        }
     }
 
     PlataformaGrudenta* Fase::criarPlataformaGrudenta(float posX, float posY, float tamX, float tamY)
     {
-        PlataformaGrudenta *pPlat = new PlataformaGrudenta(tamX, tamY);
-
-        if(pPlat)
+        if(numObstaculos < maxObstaculos)
         {
-            pPlat->setPos(posX, posY);
-            colecao.incluir(static_cast<Entidade*> (pPlat));
-            pGC->inserirObstaculo(static_cast<Obstaculo*> (pPlat));
-        }
+            PlataformaGrudenta *pPlat = new PlataformaGrudenta(tamX, tamY);
 
-        else cout << "Faseteste::criarPlataforma: " << ERRO_ALOCACAO << "\n" << ERRO_INCLUI_NULLPTR << endl;
-        return pPlat;
+            if(pPlat)
+            {
+                pPlat->setPos(posX, posY);
+                colecao.incluir(static_cast<Entidade*> (pPlat));
+                pGC->inserirObstaculo(static_cast<Obstaculo*> (pPlat));
+                numObstaculos++;
+            }
+
+            else cout << "Faseteste::criarPlataforma: " << ERRO_ALOCACAO << "\n" << ERRO_INCLUI_NULLPTR << endl;
+            return pPlat;
+        }
+        else return NULL;
     }
 
     void Fase::criarBordas()
