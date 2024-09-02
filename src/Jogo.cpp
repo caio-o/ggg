@@ -66,9 +66,9 @@ Jogo::Jogo():
 
 Jogo::~Jogo()
 {
-    delete primeiraFase;
     delete pGG;
     delete pGE;
+    delete pGEs;
 }
 
 void Jogo::executar()

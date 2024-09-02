@@ -16,6 +16,8 @@
 #include "Gerenciadores/GerenciadorGrafico.hpp"
 
 #include "Fases/Fase.hpp"
+#include "Fases/Calabouco.hpp"
+#include "Fases/Tuneis.hpp"
 
 #include "iostream"
 using namespace std;
@@ -312,7 +314,13 @@ namespace Menus
             {
                 Fases::Fase::setDeveCarregar(true);
                 Fases::Fase::setDoisJogadores(doisJogadores);
-                pGEs->executarEstado(fase1);
+
+                // Fases::Fase* pAux = new Fase();
+
+                // if(dynamic_cast<Fases::Calabouco>(pAux)!= nullptr)
+                //     pGEs->executarEstado(fase1);
+                // else if(dynamic_cast<Fases::Calabouco>(pAux)!= nullptr)
+                //     pGEs->executarEstado(fase2);
             }
 
             else if(tecla == "7") //Ver ranking

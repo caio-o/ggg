@@ -194,5 +194,5 @@ Fases::Calabouco::Calabouco():
 
 Fases::Calabouco::~Calabouco()
 { 
-
+    cout << "ENTROU DESTRUTORA CALABOUCO" << endl;
 }

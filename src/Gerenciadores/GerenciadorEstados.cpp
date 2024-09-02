@@ -14,6 +14,7 @@
 #include "Menus/MenuPrincipal.hpp"
 #include "Menus/MenuPause.hpp"
 #include "Menus/MenuFinal.hpp"
+#include "Menus/Ranking.hpp"
 
 #include <iostream>
 using namespace std;
@@ -86,10 +87,22 @@ namespace Gerenciadores
             cout << "Erro em Gerenciadores::GerenciadorEstados::GerenciadorEstados()pEstado: " << ERRO_ALOCACAO << endl;
 
         pEstado = NULL;
+
+        //Aloca Ranking
+        pEstado = static_cast<Estado*>(new Menus::Ranking(ranking));
+
+        if(pEstado)
+            mapaEstados.insert(std::pair<idEstados, Estado*>(ranking, pEstado));
+        else
+            cout << "Erro em Gerenciadores::GerenciadorEstados::GerenciadorEstados()pEstado: " << ERRO_ALOCACAO << endl;
+
+        pEstado = NULL;
     }
 
     GerenciadorEstados::~GerenciadorEstados()
     {
+        cout << "ENTROU NA DESTRUTORA DO GE" << endl;
+        
         //Desaloca os estados      
         if(!mapaEstados.empty())
         {
@@ -97,18 +110,21 @@ namespace Gerenciadores
 
             for(it = mapaEstados.begin(); it != mapaEstados.end(); it++)
             {
-                if(it->second)
+                cout << "Deletando " << it->first << endl;
+                
+                if(it->second != NULL)
                     delete (it->second);
+
+                cout << "Deletou " << it->first << endl;
             }
         }
         
         mapaEstados.clear();
 
         //Desaloca o gerenciador.
-        if(pGEs)
-            delete pGEs;
-
         pGEs = NULL;
+
+        cout <<"saiu da destrutora do ges" << endl;
     }
 
     /*

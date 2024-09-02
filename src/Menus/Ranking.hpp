@@ -30,5 +30,8 @@ namespace Menus
             void executar(const float dT);
             void desenhar();
             void inserirRegistro(const int pontos, string nome);
+            void atualizarOpcoes();
+            void limparOpcoes();
+            void verificaTeclaSolta(string tecla);
     };
 } // namespace Menus
