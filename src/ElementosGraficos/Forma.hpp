@@ -25,7 +25,8 @@ namespace ElementosGraficos
         verde,
         magenta,
         vermelho,
-        amarelo
+        amarelo,
+        cinza
     };
     
     class Forma

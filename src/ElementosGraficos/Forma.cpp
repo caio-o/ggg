@@ -119,6 +119,10 @@ namespace ElementosGraficos
                 pCorpo->setFillColor(sf::Color::Yellow);
                 break;
             
+            case cinza:
+                pCorpo->setFillColor(sf::Color(sf::Uint8(150), sf::Uint8(150), sf::Uint8(150)));
+                break;
+
             default:
                 cout << "Erro em ElementosGraficos::Forma::setCorPreenchimento(): argumento invalido, cor não alterada!" << endl;
                 break;
