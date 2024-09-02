@@ -10,14 +10,22 @@ namespace Inimigos
     Jogador* Inimigo::pJogador2(NULL); //Jogador* Inimigo::pJogador2(Fase::pJogador2);
 
     Inimigo::Inimigo(Especie _especie, int const maxVida):
-    Personagem(_especie, maxVida),
-    cooldown(3.0),
-    tempoUltimoAtaque(0.0)
+        Personagem(_especie, maxVida),
+        cooldown(3.0),
+        tempoUltimoAtaque(0.0)
     {
         
         /*if(pJogador1 == NULL)
             cout << "'Erro em Entidades::Personagens::Inimigos::Inimigo::Inimigo() em pJogador1: "
                  << ERRO_NULLPTR << endl;*/
+    }
+
+    Inimigo::Inimigo(int const maxVida):
+        Personagem(inimigo, maxVida),
+        cooldown(3.0),
+        tempoUltimoAtaque(0.0)
+    {
+
     }
 
     Inimigo::~Inimigo()

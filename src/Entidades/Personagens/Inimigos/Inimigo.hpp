@@ -16,6 +16,7 @@ namespace Inimigos
 
         public:
             Inimigo(Especie _especie = inimigo, int const maxVida = 10);
+            Inimigo(int const maxVida = 10);
             virtual ~Inimigo();
 
             virtual void salvar(ofstream &ofs) = 0;
