@@ -37,6 +37,8 @@ namespace Fases
     class Fase : public Ente, public Estado
     {
     protected:
+        int maxInimigos;
+        int numInimigos;
         string nome;
         static bool deveCarregar;
         static bool doisJogadores;

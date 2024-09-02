@@ -32,7 +32,9 @@ namespace Fases
         saida(Vetor2f(CANTO_DIREITO-350.0F, TETO-50.0F), Vetor2f(400.f, 400.f), "../img/saida_luz.png", 1.f),
         efeitoGameOver(Vetor2f (1290, 720.f), Vetor2f(2580.f, 1440.f), "../img/game_over.png", 1.f),
         forma(Vetor2f(LARGURA_FASE/2, ALTURA_FASE/2), Vetor2f(LARGURA_FASE, ALTURA_FASE), "../img/fundo_cinza.png"),
-        nome("")
+        nome(""),
+        maxInimigos(100),
+        numInimigos(0)
     {
         setGerenciadorColisoes();
 
@@ -237,32 +239,54 @@ namespace Fases
 
     Triangulo* Fase::criarTriangulo(float posX, float posY)
     {
-        Triangulo* pTri = new Triangulo();
-        
-        if(pTri)
+        if(numInimigos < maxInimigos)
         {
-            pTri->setPos(posX, posY);
-            pGC->inserirInimigo(static_cast<Inimigo*>(pTri));
-            colecao.incluir(static_cast<Entidade*> (pTri));
-        }
-        else cout << "Em funcao Fase::criarTriangulo:" << ERRO_ALOCACAO << endl;
+            Triangulo* pTri = new Triangulo();
 
-        return pTri;
+            if(pTri)
+            {
+                pTri->setPos(posX, posY);
+                pGC->inserirInimigo(static_cast<Inimigo*>(pTri));
+                colecao.incluir(static_cast<Entidade*> (pTri));
+                numInimigos++;
+            }
+            else 
+            {
+                cout << "Em funcao Fase::criarTriangulo:" << ERRO_ALOCACAO << endl;
+                exit(1);
+            }
+            return pTri;
+        }
+        else
+        {
+            return NULL;
+        }
+
     }
 
     Quadrado* Fase::criarQuadrado(float posX, float posY)
     {
-        Quadrado* pQuad = new Quadrado(10);
 
-        if(pQuad)
+        if(numInimigos < maxInimigos)
         {
-            pQuad->setPos(posX, posY);
-            pGC->inserirInimigo(static_cast<Inimigo*>(pQuad));
-            colecao.incluir(static_cast<Entidade*> (pQuad));
+            Quadrado* pQuad = new Quadrado(10);
+            if(pQuad)
+            {
+                pQuad->setPos(posX, posY);
+                pGC->inserirInimigo(static_cast<Inimigo*>(pQuad));
+                colecao.incluir(static_cast<Entidade*> (pQuad));
+                numInimigos++;
+            }
+            else 
+            {
+                cout << "Em funcao Fase::criarQuadrado:" << ERRO_ALOCACAO << endl;
+                exit(1);
+            }
+            
+            return pQuad;
         }
-        else cout << "Em funcao Fase::criarQuadrado:" << ERRO_ALOCACAO << endl;
-
-        return pQuad;
+        else
+            return NULL;
     }
 
     void Fase::desenhar()
