@@ -19,6 +19,7 @@ namespace Entidades::Obstaculos
         // Mehtodo chamado na colisao com o jogador.
         // Divide a velocidade horizontal do jogador por pegajosidade, e não permite que ele pule.
         void obstacular(Jogador *pJog);
+        void retardar(Jogador *pJog);
     };
 }
 

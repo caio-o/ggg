@@ -33,7 +33,7 @@ namespace Entidades
 
             //A principio o atributo perseguindo não é utilizado, remover métodos posteriormente
             //void setPerseguindo(const bool p);
-            const bool getPerseguindoJogador1() const;
+            //const bool getPerseguindoJogador1() const;
             static void setpJogador1(Jogador* pJ);
             static void setpJogador2(Jogador* pJ);
     };

@@ -19,6 +19,12 @@ Entidades::Obstaculos
 void Entidades::Obstaculos::
 PlataformaGrudenta::obstacular(Jogador *pJog)
 {
-    pJog->setLentidao(pegajosidade);
+    //pJog->setLentidao(pegajosidade);
+    retardar(pJog);
 }
 
+void Entidades::Obstaculos::
+PlataformaGrudenta::retardar(Jogador *pJog)
+{
+    pJog->setLentidao(pegajosidade);
+}
