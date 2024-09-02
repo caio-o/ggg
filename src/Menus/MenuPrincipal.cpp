@@ -304,6 +304,7 @@ namespace Menus
             else if(tecla == "5") //Jogar fase tuneis
             {
                 Fases::Fase::setDoisJogadores(doisJogadores);
+                Fases::Fase::setDoisJogadores(doisJogadores);
 
                 pGEs->executarEstado(fase2);
             }

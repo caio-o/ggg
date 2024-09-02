@@ -20,7 +20,7 @@ namespace Fases
     public:
         Tuneis(/* args */);
         ~Tuneis();
-        void carregar(string nome);
+        void carregar(string nomeArquivo = "");
         void executar(const float dT);
         const bool verificaVitoria();
 

@@ -143,7 +143,7 @@ Fases::Tuneis::Tuneis():
     if(deveCarregar)
     {
         cout << "CARREGANDO" << endl;
-        carregar("../dados/tuneis.json");
+        carregar();
         deveCarregar = false;
     }
     else
@@ -151,6 +151,13 @@ Fases::Tuneis::Tuneis():
         criarObstaculos();
         criarInimigos();
     }
+
+    Inimigo:: setpJogador1(pJog);
+    Inimigo:: setpJogador2(pJog2);
+    Projetil::setpJogador1(pJog);
+    Projetil::setpJogador2(pJog2);
+    Inimigos::Triangulo::setpFase(static_cast<Fase*>(this));
+    Estrela::setFase(this);
 
     colecao.irAoInicio();
 }
@@ -221,11 +228,14 @@ const bool Fases::Tuneis::verificaVitoria()
         return false;
     }
 }
-void Fases::Tuneis::carregar(string nome)
+void Fases::Tuneis::carregar(string nomeArquivo)
 {
     cout << "FASE CARREGAR 1" << endl;
     // FUTURAMENTE USAR TRY CATCH
-    ifstream ifs(nome);
+    if(nomeArquivo == "")
+        nomeArquivo = nome;
+    
+    ifstream ifs(nomeArquivo);
     string linha = "";
     nlohmann::ordered_json j;
     Especie esp = indefinido;
