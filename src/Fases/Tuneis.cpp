@@ -127,16 +127,19 @@ void Fases::Tuneis::criarInimigos()
     criarChefaoEstrela(CANTO_DIREITO-400, CHAO-150.F, maxCapangas/maxChefao);
     criarChefaoEstrela(CANTO_ESQUERDO+400, CHAO-665.F, maxCapangas/maxChefao);
     criarChefaoEstrela(CANTO_DIREITO-400, CHAO-1315.F, maxCapangas/maxChefao);
+
+    // 50% de chance de aparecer mais um chefao no terceiro piso.
+    if(rand()%2) criarChefaoEstrela(CANTO_DIREITO-600, CHAO-1315.F, maxCapangas/maxChefao);
 }
 
 Fases::Tuneis::Tuneis():
     Fase(),
-    maxChefao(3),
+    maxChefao(4),
     numChefoes(0)
     //saida(Vetor2f(X_SAIDA+200.F, Y_SAIDA-250.F), Vetor2f(400.f, 300.f), "", 1.f)
 {
     maxInimigos = 100;
-    maxCapangas = 10;
+    maxCapangas = 12;
 
     nome = "../dados/tuneis.json";
 
