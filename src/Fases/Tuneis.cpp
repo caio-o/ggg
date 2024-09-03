@@ -247,81 +247,88 @@ const bool Fases::Tuneis::verificaVitoria()
 }
 void Fases::Tuneis::carregar(string nomeArquivo)
 {
-    cout << "FASE CARREGAR 1" << endl;
-    // FUTURAMENTE USAR TRY CATCH
-    if(nomeArquivo == "")
-        nomeArquivo = nome;
-    
-    ifstream ifs(nomeArquivo);
-    string linha = "";
-    nlohmann::ordered_json j;
-    Especie esp = indefinido;
-        
-    // Se o arquivo eh acessivel
-    if(ifs.good())
+    try
     {
-        cout << "FASE CARREGAR 2 (ANTES DO LOOP)" << endl;
-        while(! ifs.eof() && j["especie"] != -1)
+        cout << "FASE CARREGAR 1" << endl;
+        // FUTURAMENTE USAR TRY CATCH
+        if(nomeArquivo == "")
+            nomeArquivo = nome;
+
+        ifstream ifs(nomeArquivo);
+        string linha = "";
+        nlohmann::ordered_json j;
+        Especie esp = indefinido;
+
+        // Se o arquivo eh acessivel
+        if(ifs.good())
         {
-            linha = "";
-            std::getline(ifs, linha);
-
-            j = nlohmann::ordered_json::parse(linha);
-
-            if(! j.is_null())
+            cout << "FASE CARREGAR 2 (ANTES DO LOOP)" << endl;
+            while(! ifs.eof() && j["especie"] != -1)
             {
-                esp = j["especie"];
+                linha = "";
+                std::getline(ifs, linha);
 
-                switch(esp)
+                j = nlohmann::ordered_json::parse(linha);
+
+                if(! j.is_null())
                 {
-                case jogador:
-                    if(j["ehJogador1"])
+                    esp = j["especie"];
+
+                    switch(esp)
                     {
-                        if(pJog) { pJog->carregar(j);                       }
-                        else     { pJog = new Jogador(); pJog->carregar(j); }
+                    case jogador:
+                        if(j["ehJogador1"])
+                        {
+                            if(pJog) { pJog->carregar(j);                       }
+                            else     { pJog = new Jogador(); pJog->carregar(j); }
+                        }
+                        else
+                        {
+                            if (pJog2 && doisJogadores) { pJog2->carregar(j);                        }
+                            else      { if(doisJogadores) pJog2 = new Jogador(); pJog2->carregar(j); }
+                        }
+                        break;
+
+
+                    case plataforma:
+                        criarPlataforma(0.f, 0.f)->carregar(j);
+                        break;
+
+                    case plataformaGrudenta:
+                        criarPlataformaGrudenta(0.f,0.f)->carregar(j);
+                        break;
+
+                    case lapis:
+                        criarLapis(0.f, 0.f)->carregar(j);
+                        break;
+
+                    case quadrado:
+                        criarQuadrado(0.f,0.f)->carregar(j);
+                        break;
+
+                    case triangulo:
+                        criarTriangulo(0.f, 0.f)->carregar(j);
+                        break;
+
+                    case estrela:
+                        criarChefaoEstrela(0.f, 0.f, 100)->carregar(j);
+                        break;
+
+                    case projetil:
+                        criarProjetil(0.f, 0.f)->carregar(j);
+                        break;
+
+                    default:
+                        break;
                     }
-                    else
-                    {
-                        if (pJog2 && doisJogadores) { pJog2->carregar(j);                        }
-                        else      { if(doisJogadores) pJog2 = new Jogador(); pJog2->carregar(j); }
-                    }
-                    break;
-
-
-                case plataforma:
-                    criarPlataforma(0.f, 0.f)->carregar(j);
-                    break;
-
-                case plataformaGrudenta:
-                    criarPlataformaGrudenta(0.f,0.f)->carregar(j);
-                    break;
-
-                case lapis:
-                    criarLapis(0.f, 0.f)->carregar(j);
-                    break;
-
-                case quadrado:
-                    criarQuadrado(0.f,0.f)->carregar(j);
-                    break;
-
-                case triangulo:
-                    criarTriangulo(0.f, 0.f)->carregar(j);
-                    break;
-                    
-                case estrela:
-                    criarChefaoEstrela(0.f, 0.f, 100)->carregar(j);
-                    break;
-
-                case projetil:
-                    criarProjetil(0.f, 0.f)->carregar(j);
-                    break;
-
-                default:
-                    break;
                 }
             }
+            cout << "FASE CARREGAR 3 (DEPOIS DO LOOP)" << endl;
         }
-        cout << "FASE CARREGAR 3 (DEPOIS DO LOOP)" << endl;
+    }
+    catch(std::exception const& e)
+    {
+        cout << "Erro em carregar o arquivo: " << e.what() <<endl;
     }
         
 }
