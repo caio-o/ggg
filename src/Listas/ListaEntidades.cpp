@@ -42,7 +42,8 @@ void ListaEntidades::salvar(ofstream &ofs)
         p = it.get();
         if(p)
         {
-            p->salvar(ofs); 
+            if(p->getAtivo())
+                p->salvar(ofs); 
             // talvez seja necessario fazer isto:
             // p->salvar(ofs, it.temProximo());
         }

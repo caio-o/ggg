@@ -10,7 +10,8 @@ namespace Fases
     {
     private:
         //Forma saida;
-        int maxInimigos;
+        int maxCapangas;
+        int numChefoes;
         int  maxChefao;
         Lapis*   criarLapis              (float posX, float posY, int dano = 1);
         Estrela* criarChefaoEstrela      (const float posX, const float posY, const int nCapangas);

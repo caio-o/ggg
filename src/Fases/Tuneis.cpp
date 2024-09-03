@@ -19,31 +19,45 @@
 
 Lapis* Fases::Tuneis::criarLapis(float posX, float posY, int dano)
 {
-    Obstaculos::Lapis *pLap = new Obstaculos::Lapis();
     
-    if(pLap)
+    if(numObstaculos < maxObstaculos)
     {
-        pLap->setPos(posX, posY);
-        colecao.incluir(static_cast<Entidade*> (pLap));
-        pGC->inserirObstaculo(static_cast<Obstaculo*> (pLap));
-    }
+        Obstaculos::Lapis *pLap = new Obstaculos::Lapis();
 
-    return pLap;
+        if(pLap)
+        {
+            pLap->setPos(posX, posY);
+            colecao.incluir(static_cast<Entidade*> (pLap));
+            pGC->inserirObstaculo(static_cast<Obstaculo*> (pLap));
+        }
+
+        return pLap;
+    }
+    else return NULL;
 }
 
 Estrela* Fases::Tuneis::criarChefaoEstrela(const float posX, const float posY, const int nCapangas)
 {
-    Estrela* pChefao = new Estrela();
-
-    if(pChefao)
+    if(numChefoes < maxChefao)
     {
-        pChefao->setNumCapangas(nCapangas);
-        pChefao->setPos(posX, posY);
-        colecao.incluir(static_cast<Entidade*>(pChefao));
-        pGC->inserirInimigo(static_cast<Inimigo*> (pChefao));
+        Estrela* pChefao = new Estrela();
+        
+        if(pChefao)
+        {
+            pChefao->setNumCapangas(nCapangas);
+            pChefao->setPos(posX, posY);
+            colecao.incluir(static_cast<Entidade*>(pChefao));
+            pGC->inserirInimigo(static_cast<Inimigo*> (pChefao));
+
+            numChefoes++;
+        }
+        return pChefao;
+    }
+    else
+    {
+        return NULL;
     }
 
-    return pChefao;
 }
 
 void Fases::Tuneis::criarObstaculos()
@@ -107,17 +121,20 @@ void Fases::Tuneis::criarInimigos()
     criarQuadrado(CANTO_ESQUERDO+800.F, CHAO-150.F);
     if(rand()%2) criarTriangulo(CANTO_ESQUERDO+900.F, CHAO-150.F);
     
-    criarChefaoEstrela(CANTO_DIREITO-400, CHAO-150.F, maxInimigos/maxChefao);
-    criarChefaoEstrela(CANTO_ESQUERDO+400, CHAO-665.F, maxInimigos/maxChefao);
-    criarChefaoEstrela(CANTO_DIREITO-400, CHAO-1315.F, maxInimigos/maxChefao);
+    criarChefaoEstrela(CANTO_DIREITO-400, CHAO-150.F, maxCapangas/maxChefao);
+    criarChefaoEstrela(CANTO_ESQUERDO+400, CHAO-665.F, maxCapangas/maxChefao);
+    criarChefaoEstrela(CANTO_DIREITO-400, CHAO-1315.F, maxCapangas/maxChefao);
 }
 
 Fases::Tuneis::Tuneis():
     Fase(),
-    maxInimigos(9),
-    maxChefao(3)
+    maxChefao(3),
+    numChefoes(0)
     //saida(Vetor2f(X_SAIDA+200.F, Y_SAIDA-250.F), Vetor2f(400.f, 300.f), "", 1.f)
 {
+    maxInimigos = 100;
+    maxCapangas = 10;
+
     nome = "../dados/tuneis.json";
 
     cout << "CONSTRUTORA FASE 2"<< endl;
