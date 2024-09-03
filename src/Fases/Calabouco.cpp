@@ -27,9 +27,21 @@ void Fases::Calabouco::criarObstaculos()
     criarPlataforma (CANTO_ESQUERDO + 250.F, CHAO - 740.f, 400.F, 300.F);
     criarPlataforma (800.f, CHAO-100.f, 500.f,  100.F);
     criarPlataforma (700.f, CHAO-900.f, 500.f,  100.F);
-    criarPlataformaGrudenta (700.f, CHAO-950.f, 200.f, 50.f);
-    criarPlataformaGrudenta (950.f, CHAO-1190.F, 230.f, 50.f);
-    criarPlataformaGrudenta (1200.f, CHAO-1190.F, 200.f, 50.f);
+    
+    criarPlataformaGrudenta (700.f, CHAO-950.f, 50.f, 50.f);
+    if(rand()%3)
+        criarPlataformaGrudenta (640.f, CHAO-950.f, 50.f, 50.f);
+    if(rand()%3)
+        criarPlataformaGrudenta (760.f, CHAO-950.f, 50.f, 50.f);
+    if(rand()%3)
+        criarPlataformaGrudenta (820.f, CHAO-950.F, 50.F, 50.F);
+    if(rand()%3)
+        criarPlataformaGrudenta (620.f, CHAO-590.F, 50.F, 50.F);
+    if(rand()%2)
+        criarPlataformaGrudenta (200.f, CHAO-590.F, 50.F, 50.F);
+
+    criarPlataformaGrudenta (950.f, CHAO-1190.F, 60.f, 50.f);
+    criarPlataformaGrudenta (1200.f, CHAO-1190.F, 55.f, 50.f);
     
     if((bool) rand()%3) 
         criarPlataforma(CANTO_DIREITO - 250.F, CHAO - 1000.f, 500.F, 300.F);

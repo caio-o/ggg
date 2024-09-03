@@ -118,8 +118,11 @@ void Fases::Tuneis::criarInimigos()
     Inimigos::Triangulo::setpFase(static_cast<Fase*>(this));
     Estrela::setFase(this);
 
-    criarQuadrado(CANTO_ESQUERDO+800.F, CHAO-150.F);
-    if(rand()%2) criarTriangulo(CANTO_ESQUERDO+900.F, CHAO-150.F);
+    if(rand()%100 < 30) criarQuadrado  (CANTO_ESQUERDO+800.F, CHAO-150.F);
+    if(rand()%100 < 10) criarTriangulo (CANTO_ESQUERDO+740.F, CHAO-150.F);
+    criarTriangulo(CANTO_ESQUERDO+900.F, CHAO-150.F);
+    criarTriangulo(CANTO_ESQUERDO+730.F, CHAO-1315.F);
+    criarTriangulo(CANTO_ESQUERDO+900.F, CHAO-665.F);
     
     criarChefaoEstrela(CANTO_DIREITO-400, CHAO-150.F, maxCapangas/maxChefao);
     criarChefaoEstrela(CANTO_ESQUERDO+400, CHAO-665.F, maxCapangas/maxChefao);
