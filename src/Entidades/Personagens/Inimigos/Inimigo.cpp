@@ -1,3 +1,9 @@
+/*
+ * AUTORA    : Ana Julia Molinos Leite da Silva
+ * ALTERAÇÕES: Caio e Silva Barbieri
+ * DESCRIÇÃO : Implementação da classe abstrata responsável pela definição dos inimigos.
+ */
+
 #include "Inimigo.hpp"
 #include "Erros.hpp"
 

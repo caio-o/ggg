@@ -19,8 +19,8 @@ namespace Entidades
                 int dano;
                 
                 //ponteiros temporários enquanto não há desenvolvimento da fase
-                static Jogador* pJogador1;
-                static Jogador* pJogador2;
+                /*static Jogador* pJogador1;
+                static Jogador* pJogador2;*/
 
             public:
                 Lapis(const bool _permeavel = false, const int dano = 1);
@@ -34,8 +34,8 @@ namespace Entidades
                 void      setDano(const int d);
                 const int getDano() const;
 
-                static void setpJogador1(Jogador* pJ);
-                static void setpJogador2(Jogador* pJ);
+                /*static void setpJogador1(Jogador* pJ);
+                static void setpJogador2(Jogador* pJ);*/
         };
     } // namespace Obstaculos
     

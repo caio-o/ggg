@@ -3,6 +3,9 @@
  * DESCRIÇÃO : Declaração da classe abstrata Estado, que viabiliza o comportamento específico de um 
  *             objeto conforme o momento (i.e, o estado) em que ele se encontra, realizando o padrão
  *             de projeto State.
+ * CRÉDITOS  : Código baseado na implementação do aluno Matheus Augusto Burda. Repositório disponível
+ *             em https://github.com/MatheusBurda/Desert, tutorial disponível em: 
+ *             https://youtu.be/2vFLfO-PKcw?si=opmw_KDV-Jbs0S0_
  */
 
 #pragma once

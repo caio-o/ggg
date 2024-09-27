@@ -1,7 +1,7 @@
 /*
  * AUTORA    : Ana Julia Molinos Leite da Silva
- * DESCRIÇÃO : Declaração da classe derivada MenuPause, responsável por executar métodos específicos
- *             aos menu de pausa do jogo.
+ * DESCRIÇÃO : Declaração da classe derivada MenuPause, responsável por dar as opções de retorno ao
+ *             jogo, salvamento da fase no estado atual e retorno ao menu principal.
  */
 
 #pragma once

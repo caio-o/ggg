@@ -1,7 +1,7 @@
 /*
  * AUTORA    : Ana Julia Molinos Leite da Silva
  * DESCRIÇÃO : Declaração da classe derivada Ranking, responsável por armazenar nome e pontuação dos 
- *             jogadores e exibi-lás em ordem decrescente.
+ *             jogadores e exibi-lás em ordem decrescente (apenas as 10 maiores pontuações).
  */
 
 #pragma once

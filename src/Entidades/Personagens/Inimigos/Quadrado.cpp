@@ -1,3 +1,11 @@
+/*
+ * AUTORA    : Ana Julia Molinos Leite da Silva
+ * ALTERAÇÕES: Caio e Silva Barbieri
+ * DESCRIÇÃO : Implementação da classe responsável por definir o comportamento e características do 
+ *             inimigo Quadrado, que persegue e se lança contra o jogador, conforme a distância entre
+ *             eles.
+ */
+
 #define TEXTURA "../img/quadrado_raivoso.png"
 
 #define RANGE_ATAQUE 100.0
@@ -37,12 +45,10 @@ namespace Inimigos
         cooldown = -1; 
     }
 
+    //persegue ou se lança contra o jogador, conforme a distância entre eles.
     void Quadrado::executar(const float dT)
     {
-        //cout << "QUADRADO EXECUTANDO!" << endl;
-
         tempoUltimoAtaque += dT;
-        //cout << tempoUltimoAtaque << endl;
 
         // MUDANÇA (Caio): Em vez de "atacando" receber false em toda iteração, recebe só quando passou o tempo de ataque.
         //     Fiz isso para que o quadrado possa dar dano no jogador.
@@ -74,23 +80,20 @@ namespace Inimigos
             if(tempoUltimoAtaque>cooldown)    
             {
                 atacar();
-                cout << "Quadrado ataca" << endl;
+                //cout << "Quadrado ataca" << endl;
             }
         }
         
-        //Caso contrário, o quadrado fica parado "camuflado" no cenário
+        //Caso contrário, o quadrado fica parado
         if(!rangeAtacar() && !rangePerseguir() && !atacando)
         {
             vel.x = 0.0;
             //cout << "Quadrado parado" << endl;
         }
-        
-        //moverse(dT);
-
     }
 
     /*
-     * Executa um dash na direção do jogador, seta a flag atacando como true e reinicia a contagem
+     * Permite um dash na direção do jogador, setando a flag atacando como true, e reinicia a contagem
      * de tempo do último ataque.
      */
     void Quadrado::atacar()
@@ -107,8 +110,8 @@ namespace Inimigos
     }
 
     /*
-     * Se o ente se tratar de um jogador, verifica se o próprio quadrado está em estado de ataque.
-     * Em caso afirmativo, danifica o jogador, como reação a colisão.
+     * Se a entidade se tratar de um jogador, verifica se o próprio quadrado está em estado de ataque
+     * (dash). Em caso afirmativo, danifica o jogador, como reação a colisão.
      */
     void Quadrado::reagirAhColisao(Entidade* pE)
     {
@@ -120,7 +123,7 @@ namespace Inimigos
         }
     }
 
-    //Define quem será o jogador perseguido com base na menor distância
+    //Define quem será o jogador perseguido com base na menor distância entre inimigo e jogadores.
     void Quadrado::definirPerseguido()
     {
         if(pJogador2 && abs(pJogador1->getPos().x - pos.x) > abs(pJogador2->getPos().x - pos.x))

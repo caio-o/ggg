@@ -1,5 +1,6 @@
 /*
  * AUTORA    : Ana Julia Molinos Leite da Silva
+ * ALTERAÇÕES: Caio e Silva Barbieri
  * DESCRIÇÃO : Declaração da classe responsável por definir o comportamento e características do 
  *             projétil lançado pelo inimigo do tipo Triângulo.
  */

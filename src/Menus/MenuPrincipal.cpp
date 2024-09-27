@@ -1,7 +1,8 @@
 /*
  * AUTORA    : Ana Julia Molinos Leite da Silva
- * DESCRIÇÃO : Implementação da classe derivada EstadoMenu, responsável por executar métodos específicos
- *             aos menus do jogo.
+ * DESCRIÇÃO : Implementação da classe derivada MenuPrincipal, responsável por permitir ao jogador 
+ *             iniciar a execução das fases, escolher a quantidade de jogadores, exibir o ranking,
+ *             carregar um jogo salvo ou encerrar a execução da aplicação.
  */
 
 #include "Erros.hpp"
@@ -144,7 +145,8 @@ namespace Menus
         opcoes.clear();
     }
     
-    //Executa o loop para renderizar e mostrar os elementos do menu principal na tela.
+    //Permite que o jogador navegue entre todas as opções iniciais do jogo (quantidade de jogadores,
+    //fases, ranking, jogo salvo ou finalização)
     void MenuPrincipal::executar(const float dT)
     {
         //Reseta 2 jogadores
@@ -196,7 +198,7 @@ namespace Menus
 
     }
 
-    //Muda a cor da opção escolhida pelo usuário para vermelho
+    //Destaca a tecla pressionada com a cor vermelho 
     void MenuPrincipal::verificaTeclaPressionada(string tecla)
     {
         if(tecla == "1")
@@ -263,7 +265,7 @@ namespace Menus
         }
     }
 
-    //Realiza a atividade da opção escolhida pelo usuário (i.e. trocar de menu, iniciar o jogo, etc.)
+    //Chama a ação pertinente a tecla solta
     void MenuPrincipal::verificaTeclaSolta(string tecla)
     {
         if(pGEs)

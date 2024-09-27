@@ -1,8 +1,13 @@
 /*
- * AUTOR(A): Ana Julia Molinos Leite da Silva (ana-molinos)
- * DATA: 12/08/2024
- * Implementação da classe que permite o gerenciamento dos elementos
- * gráficos usando recursos da biblioteca SFML.
+ * AUTOR(A)  : Ana Julia Molinos Leite da Silva
+ * ALTERAÇÕES: Caio e Silva Barbieri
+ * DESCRIÇÃO : Implementação da classe que permite o gerenciamento dos elementos gráficos usando
+ *             recursos da biblioteca SFML.
+ * CRÉDITOS  : Código baseado nas implementações dos alunos Matheus Augusto Burda (repositório 
+ *             disponívelem https://github.com/MatheusBurda/Desert, tutorial disponível em: 
+ *             https://youtu.be/RFSOXXsm4Ug?si=k1Uctco4N9yD9dzh e https://youtu.be/NODjfdL2Uv0?si=-gTZ4zPqxBcbNOJu) 
+ *             e Geovane Lima Salvi (repositório disponível em https://github.com/Giovanenero/JogoPlataforma2D-Jungle,
+ *             tutorial disponível em: https://youtu.be/RXmFcBGD8T8?si=zjLJBro0E3dok864)
  * */
 
 #include <string.h>

@@ -1,7 +1,10 @@
 /*
  * AUTORA    : Ana Julia Molinos Leite da Silva
  * DESCRIÇÃO : Declaração da classe GerenciadorEstados, cujo objeto é o único responsável por 
- *             manipular os estados de jogo (como menu e execução do próprio jogo).
+ *             manipular os estados de jogo (como menu e execução das fases).
+ * CRÉDITOS  : Código baseado na implementação do aluno Matheus Augusto Burda. Repositório disponível
+ *             em https://github.com/MatheusBurda/Desert, tutorial disponível em: 
+ *             https://youtu.be/2vFLfO-PKcw?si=opmw_KDV-Jbs0S0_
  */
 
 #pragma once

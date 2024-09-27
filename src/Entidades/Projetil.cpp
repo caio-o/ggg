@@ -1,5 +1,6 @@
 /*
  * AUTORA    : Ana Julia Molinos Leite da Silva
+ * ALTERAÇÕES: Caio e Silva Barbieri
  * DESCRIÇÃO : Implementação da classe responsável por definir o comportamento e características do 
  *             projétil lançado pelo inimigo do tipo Triângulo.
  */
@@ -44,13 +45,13 @@ namespace Entidades
     }
 
     //Reage a colisão dando dano se a entidade colidente for um jogador. Para todos os casos, o projétil
-    //é desativado após colisão.
+    //é "desativado" após colisão.
     void Projetil::reagirAhColisao(Entidade* pE)
     {
         //Ao colidir...
         if(pE)
         {
-            //...checa se a colisao foi com um jogado...
+            //...checa se a colisao foi com um jogador...
             if(pE->getEspecie() == jogador)
             {
                 //...em caso afirmativo, dá dano no jogador
@@ -69,31 +70,35 @@ namespace Entidades
     //Persegue alternadamente os jogadores (se houver jogador 2)
     void Projetil::executar(const float dT)
     {
-        // srand() soh deve ser usado uma vez por programa. Coloquei na principal.
-        //srand(time(NULL));
+        //Rotaciona o projetil em torno do proprio eixo
         getForma()->getpCorpo()->rotate(720.f*dT);
 
-        //Persegue alternadamente os jogadores (se houver jogador 2)
+        //Persegue o jogador 2
         if(!perseguindoJogador1)
         {
     
+            //Define a velocidade do projetil no eixo x
             if(pJogador2->getPos().x < pos.x)
                 vel.x = -VELOCIDADE_PERSEGUICAO;
             else
                 vel.x = VELOCIDADE_PERSEGUICAO;
 
+            //Define a velocidade do projetil no eixo y
             if(pJogador2->getPos().y < pos.y)
                 vel.y = -VELOCIDADE_PERSEGUICAO;
             else
                 vel.y = VELOCIDADE_PERSEGUICAO;
         }
+        //Persegue o jogador 1
         else
         {
+            //Define a velocidade do projetil no eixo x
             if(pJogador1->getPos().x < pos.x)
                 vel.x = -VELOCIDADE_PERSEGUICAO;
             else
                 vel.x = VELOCIDADE_PERSEGUICAO;
 
+            //Define a velocidade do projetil no eixo y
             if(pJogador1->getPos().y < pos.y)
                 vel.y = -VELOCIDADE_PERSEGUICAO;
             else

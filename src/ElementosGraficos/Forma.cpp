@@ -1,8 +1,12 @@
 /*
  * AUTORA    : Ana Julia Molinos Leite da Silva
+ * ALTERAÇÕES: Caio e Silva Barbieri
  * DESCRIÇÃO : Implementação da classe responsável por conter os métodos relacionados a manipulação de 
  *             formas (como mover, redimensionar, animar e etc). Essa classe vai utilizar os recursos 
  *             disponíveis da biblioteca gráfica SFML, permitindo maior desacoplamento.
+ * CRÉDITOS  : Código baseado na implementação do aluno Matheus Augusto Burda. Repositório disponível
+ *             em https://github.com/MatheusBurda/Desert, tutorial disponível em: 
+ *             https://youtu.be/e22ddfm1fBI?si=Clm-QH8AGKQyr3nK
  */
 
 #include "Forma.hpp"

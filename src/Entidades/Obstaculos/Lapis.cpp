@@ -50,12 +50,12 @@ namespace Entidades
 
         }
 
-        //Executa o obstáculo do tipo Lapis
         void Lapis::executar(const float dT)
         {
-            vel.x = 0.0; //ta sempre garantindo q não se move, não sei se isso faz sentido
+            vel.x = 0.0;
         }
 
+        //Dá dano ao jogador que colide com o objeto em questão
         void Lapis::obstacular(Jogador *pJog)
         {
             pJog->receberDano(dano, true);

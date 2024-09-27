@@ -1,3 +1,9 @@
+/*
+ * AUTOR(A)  : Ana Julia Molinos Leite da Silva
+ * DESCRIÇÃO : Definição e implementação da classe abstrata responsável pelos métodos e atributos 
+ *             pertinentes a todos os menus.
+ * */
+
 #pragma once
 
 #include "SFML/Graphics.hpp"
@@ -17,10 +23,7 @@ namespace Menus
         protected:
             ElementosGraficos::Texto titulo;
             ElementosGraficos::Forma fundo;
-
-            //provisorio: posteriormente usar elemento gráfico Botao proprio
             vector<ElementosGraficos::Texto*> opcoes;
-            
 
         public:
             Menu(){}

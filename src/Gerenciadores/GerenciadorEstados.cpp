@@ -2,9 +2,12 @@
  * AUTORA    : Ana Julia Molinos Leite da Silva
  * DESCRIÇÃO : Implementação da classe GerenciadorEstados, cujo objeto é o único responsável por 
  *             manipular os estados de jogo (como menu e execução do próprio jogo).
+ * CRÉDITOS  : Código baseado na implementação do aluno Matheus Augusto Burda. Repositório disponível
+ *             em https://github.com/MatheusBurda/Desert, tutorial disponível em: 
+ *             https://youtu.be/2vFLfO-PKcw?si=opmw_KDV-Jbs0S0_
  */
 
-//dar créditos ao geovane
+
 
 #include "GerenciadorEstados.hpp"
 
@@ -27,36 +30,6 @@ namespace Gerenciadores
     mapaEstados()
     {
         mapaEstados.clear();
-
-        /*
-         * Aqui podem ser instanciados todos os estados (com loop? Da pra usar o enum no loop?)
-         */
-
-        // //Aloca fase 1
-        // Estado* pEstado = NULL;
-
-        // pEstado = static_cast<Estado*>(new Fases::Calabouco());
-
-        // if(pEstado)
-        // {
-        //     mapaEstados.insert(std::pair<idEstados, Estado*>(fase1, pEstado));
-        //     pEstado->setAtivo(false); //Para posterior desalocação
-        // }
-        // else
-        //     cout << "Erro em Gerenciadores::GerenciadorEstados::GerenciadorEstados()::pEstado: " << ERRO_ALOCACAO << endl;
-        // pEstado = NULL;
-
-        // //Aloca fase 2
-        // pEstado = static_cast<Estado*>(new Fases::Tuneis());
-
-        // if(pEstado)
-        // {
-        //     mapaEstados.insert(std::pair<idEstados, Estado*>(fase2, pEstado));
-        //     pEstado->setAtivo(false); //Para posterior desalocação
-        // }
-        // else
-        //     cout << "Erro em Gerenciadores::GerenciadorEstados::GerenciadorEstados()::pEstado: " << ERRO_ALOCACAO << endl;
-        // pEstado = NULL;
 
         //Aloca Menu Principal
         Estado* pEstado = static_cast<Estado*>(new Menus::MenuPrincipal(menuPrincipal));
@@ -101,7 +74,7 @@ namespace Gerenciadores
 
     GerenciadorEstados::~GerenciadorEstados()
     {
-        cout << "ENTROU NA DESTRUTORA DO GE" << endl;
+        //cout << "ENTROU NA DESTRUTORA DO GE" << endl;
         
         //Desaloca os estados      
         if(!mapaEstados.empty())
@@ -110,16 +83,16 @@ namespace Gerenciadores
 
             for(it = mapaEstados.begin(); it != mapaEstados.end(); it++)
             {
-                cout << "Deletando " << it->first << endl;
+                //cout << "Deletando " << it->first << endl;
                 
                 if(it->second != NULL)
                 {
-                    cout << "Entrou para deletar" << it->first << endl;  
+                    //cout << "Entrou para deletar" << it->first << endl;  
                     delete (it->second);
                     it->second = NULL;
                 }
 
-                cout << "Deletou " << it->first << endl;
+                //cout << "Deletou " << it->first << endl;
             }
         }
         
@@ -128,7 +101,7 @@ namespace Gerenciadores
         //Desaloca o gerenciador.
         pGEs = NULL;
 
-        cout <<"saiu da destrutora do ges" << endl;
+        //cout <<"saiu da destrutora do ges" << endl;
     }
 
     /*

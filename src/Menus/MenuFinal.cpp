@@ -1,3 +1,10 @@
+/*
+ * AUTORA    : Ana Julia Molinos Leite da Silva
+ * DESCRIÇÃO : Implementação da classe derivada MenuFinal, responsável informar se os jogadores morreram
+ *             ou completaram a fase, quais foram suas pontuações, e por possibilitar o registro do
+ *             nome e pontuação no ranking, ou o retorno ao menu principal.
+ */
+
 #include "MenuFinal.hpp"
 #include "Ranking.hpp"
 
@@ -87,6 +94,8 @@ namespace Menus
     }
 
     
+    //Informa se os jogadores morreram ou completaram a fase, quais foram suas pontuações, e possibilita
+    //o registro do nome e pontuação no ranking ou o retorno ao menu principal
     void MenuFinal::executar(const float dT)
     {
         //Reinicializa as strings e booleano referentes ao nome dos jogadores
@@ -184,6 +193,7 @@ namespace Menus
             cout << "Erro em Menus::MenuPause::executar(): " << ERRO_NULLPGG << endl;
     }
 
+    //Renderiza as opções na tela
     void MenuFinal::desenhar()
     {
         titulo.renderizar();
@@ -199,7 +209,7 @@ namespace Menus
         }
     }
 
-
+    //Destaca a tecla pressionada com a cor vermelho    
     void MenuFinal::verificaTeclaPressionada(string tecla)
     {
         if(tecla == "Enter" && !nomeJogador2)
@@ -218,6 +228,7 @@ namespace Menus
         }
     }
 
+    //Chama a ação pertinente a tecla solta
     void MenuFinal::verificaTeclaSolta(string tecla)
     {
         cout <<"Entrou em verificaTeclaSolta()" << endl;

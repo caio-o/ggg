@@ -1,8 +1,12 @@
 /*
- * AUTOR(A): Ana Julia Molinos Leite da Silva (ana-molinos)
- * DATA: 15/08/2024
- * Classe que permite o gerenciamento das ações do usuário via mouse e teclado usando
- * recursos da biblioteca SFML.
+ * AUTOR(A)  : Ana Julia Molinos Leite da Silva
+ * DESCRIÇÃO : Classe que permite o gerenciamento das ações do usuário via mouse e teclado usando
+ *             recursos da biblioteca SFML.
+ * CRÉDITOS  : Código baseado nas implementações dos alunos Matheus Augusto Burda (repositório 
+ *             disponível em https://github.com/MatheusBurda/Desert, tutorial disponível em: 
+ *             https://youtu.be/bacO-m3-HnA?si=bSiWxTsi90R5eNJH)ce Geovane Lima Salvi (repositório 
+ *             disponível em https://github.com/Giovanenero/JogoPlataforma2D-Jungle, tutorial 
+ *             disponível em: https://youtu.be/FYlLKwSUrW0?si=qOwhLSCrHhIM6gzM)
  * */
 
 #ifndef _GerenciadorEventos_HPP

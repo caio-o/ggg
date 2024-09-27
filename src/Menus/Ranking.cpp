@@ -1,3 +1,9 @@
+/*
+ * AUTORA    : Ana Julia Molinos Leite da Silva
+ * DESCRIÇÃO : Implementação da classe derivada Ranking, responsável por armazenar nome e pontuação dos 
+ *             jogadores e exibi-lás em ordem decrescente (apenas as 10 maiores pontuações).
+ */
+
 #define CAMINHO_RANKING "../dados/ranking.dat"
 
 #include "Ranking.hpp"
@@ -57,7 +63,7 @@ namespace Menus
         mapaRegistros.clear();
     }
 
-
+    //Exibe as 10 maiores pontuações no jogo, acompanhadas do nome do jogador, em ordem decrescente
     void Ranking::executar(const float dT)
     {
         atualizarOpcoes();
@@ -83,6 +89,7 @@ namespace Menus
             cout << "Erro em Menus::MenuPrincipal::executar(): " << ERRO_NULLPGG << endl;
     }
 
+    //Renderiza os elementos textuais na tela
     void Ranking::desenhar()
     {
         titulo.renderizar();
@@ -96,6 +103,8 @@ namespace Menus
         }
     }
 
+    //Salva um novo registro, inserindo-o no mapa de registros e atualizando completamente o arquivo
+    //de salvamento
     void Ranking::inserirRegistro(const int pontos, string nome)
     {
         mapaRegistros.insert(pair<int, string>(pontos, nome));
@@ -122,6 +131,7 @@ namespace Menus
         arquivo.close();
     }
 
+    //Recupera os registros do arquivo de salvamento e os insere no mapa de registros para exibi-los
     void Ranking::atualizarOpcoes()
     {
         limparOpcoes();

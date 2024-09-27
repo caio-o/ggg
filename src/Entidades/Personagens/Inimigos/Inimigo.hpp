@@ -1,3 +1,9 @@
+/*
+ * AUTORA    : Ana Julia Molinos Leite da Silva
+ * ALTERAÇÕES: Caio e Silva Barbieri
+ * DESCRIÇÃO : Declaração da classe abstrata responsável pela definição dos inimigos.
+ */
+
 #pragma once
 
 #include "Entidades/Personagens/Personagem.hpp"

@@ -1,7 +1,8 @@
 /*
  * AUTORA    : Ana Julia Molinos Leite da Silva
- * DESCRIÇÃO : Declaração da classe derivada MenuPrincipal, responsável por executar métodos específicos
- *             ao menu incial do jogo.
+ * DESCRIÇÃO : Declaração da classe derivada MenuPrincipal, responsável por permitir ao jogador 
+ *             iniciar a execução das fases, escolher a quantidade de jogadores, exibir o ranking,
+ *             carregar um jogo salvo ou encerrar a execução da aplicação.
  */
 
 #pragma once

@@ -1,5 +1,6 @@
 /*
  * AUTORA    : Ana Julia Molinos Leite da Silva
+ * ALTERAÇÕES: Caio e Silva Barbieri
  * DESCRIÇÃO : Implementação da classe responsável por definir o comportamento e características do 
  *             inimigo Triângulo, que lança projéteis contra os jogadores.
  */
@@ -47,16 +48,15 @@ namespace Inimigos
         }
     }
 
-    //Pede para a fase instanciar um novo projétil com origem e sua própria posição.
+    //Pede para a fase instanciar um novo projétil com origem em sua própria posição.
     void Triangulo::atacar()
     {
         pFase->criarProjetil(pos.x, pos.y);
     }
 
-    //Não há reação.
+    //Não há.
     void Triangulo::reagirAhColisao(Entidade* pE)
     {
-        //não faz nada?
     }
 
     void Triangulo::salvar(std::ofstream &os) 

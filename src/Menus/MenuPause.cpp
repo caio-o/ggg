@@ -1,7 +1,7 @@
 /*
  * AUTORA    : Ana Julia Molinos Leite da Silva
- * DESCRIÇÃO : Implementação da classe derivada MenuPause, responsável por executar métodos específicos
- *             aos menu de pausa do jogo.
+ * DESCRIÇÃO : Implementação da classe derivada MenuPause, responsável por dar as opções de retorno ao
+ *             jogo, salvamento da fase no estado atual e retorno ao menu principal.
  */
 
 #include "MenuPause.hpp"
@@ -83,7 +83,7 @@ namespace Menus
         opcoes.clear();
     }
     
-    //Executa o loop para renderizar e mostrar os elementos do menu principal na tela.
+    //Exibe as opções de retorno ao jogo, salvamento da fase no estado atual e retorno ao menu principal
     void MenuPause::executar(const float dT)
     {
         //Deixa as opções brancas novamente
@@ -131,6 +131,7 @@ namespace Menus
 
     }
 
+    //Destaca a tecla pressionada com a cor vermelho
     void MenuPause::verificaTeclaPressionada(string tecla)
     {
         if(tecla == "1") //Começa em 1 em função do subtitulo que ocupa a posição 0 do vetor
@@ -156,6 +157,7 @@ namespace Menus
         }
     }
     
+    //Chama a ação pertinente a tecla solta
     void MenuPause::verificaTeclaSolta(string tecla)
     {
         if(pGEs)

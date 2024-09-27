@@ -1,8 +1,8 @@
 /*
  * AUTORA    : Ana Julia Molinos Leite da Silva
- * DESCRIÇÃO : Declaração da classe derivada MenuFinal, responsável por executar métodos específicos
- *             aos procedimentos de finalização do jogo (quando os jogadores morrem ou completam as
- *             fases).
+ * DESCRIÇÃO : Declaração da classe derivada MenuFinal, responsável informar se os jogadores morreram
+ *             ou completaram a fase, quais foram suas pontuações, e por possibilitar o registro do
+ *             nome e pontuação no ranking, ou o retorno ao menu principal.
  */
 
 #pragma once

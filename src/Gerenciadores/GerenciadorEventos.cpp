@@ -1,8 +1,12 @@
 /*
- * AUTOR(A): Ana Julia Molinos Leite da Silva (ana-molinos)
- * DATA: 15/08/2024
- * Implementação da classe que permite o gerenciamento das ações do usuário via 
- * mouse e teclado usando recursos da biblioteca SFML.
+ * AUTOR(A)  : Ana Julia Molinos Leite da Silva
+ * DESCRIÇÃO : Classe que permite o gerenciamento das ações do usuário via mouse e teclado usando
+ *             recursos da biblioteca SFML.
+ * CRÉDITOS  : Código baseado nas implementações dos alunos Matheus Augusto Burda (repositório 
+ *             disponível em https://github.com/MatheusBurda/Desert, tutorial disponível em: 
+ *             https://youtu.be/bacO-m3-HnA?si=bSiWxTsi90R5eNJH)ce Geovane Lima Salvi (repositório 
+ *             disponível em https://github.com/Giovanenero/JogoPlataforma2D-Jungle, tutorial 
+ *             disponível em: https://youtu.be/FYlLKwSUrW0?si=qOwhLSCrHhIM6gzM)
  * */
 
 #include "Gerenciadores/GerenciadorEventos.hpp"
@@ -128,7 +132,7 @@ namespace Gerenciadores
         pGEs = GerenciadorEstados::getGerenciadorEstados();
     }
 
-    /*Função não implementada uma vez que ainda não se faz conveniente seu uso.*/
+    //Informa ao estado em execução qual tecla foi solta
     void GerenciadorEventos::verificaTeclaSolta(sf::Keyboard::Key tecla)
     {
         if(pGEs)
@@ -139,10 +143,7 @@ namespace Gerenciadores
             cout << "Erro em Gerenciadores::GerenciadorEventos::verificaTeclaSolta()::pGEs: " << ERRO_NULLPTR << endl;
     }
 
-    /* 
-     * Verifica qual tecla está sendo pressionada (Direita, Esquerda, Cima ou Baixo) e faz a forma se
-     * movimentar 0.01 unidade na direção da tecla pressionada.
-     */
+    //Informa ao estado em execução qual tecla foi pressionada
     void GerenciadorEventos::verificaTeclaPressionada(sf::Keyboard::Key tecla)
     {
         if(pGEs)
@@ -181,11 +182,13 @@ namespace Gerenciadores
             {
                 //Se esse evento for do tipo "fechar"...
                 if(evento.type == sf::Event::Closed)
-                    pGG->fecharJanela();
+                    pGG->fecharJanela(); //Finaliza a janela
+                //Se for do tipo "tecla pressionada"
                 else if (evento.type == sf::Event::KeyPressed)
-                    verificaTeclaPressionada(evento.key.code);
+                    verificaTeclaPressionada(evento.key.code); //Chama a função pertinente
+                //Se for do tipo "tecla solta"
                 else if (evento.type == sf::Event::KeyReleased)
-                    verificaTeclaSolta(evento.key.code);
+                    verificaTeclaSolta(evento.key.code); //Chama a função pertinente
             }
         }
         else
